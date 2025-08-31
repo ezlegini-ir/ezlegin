@@ -1,4 +1,5 @@
 import LoginForm from "@/components/forms/login/LoginForm";
+import SignIn from "@/components/sign-in";
 import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
 import { Card } from "@ezlegin/ui/components/ui/card";
 import Link from "next/link";
@@ -23,6 +24,8 @@ const page = () => {
       <Card className="w-full">
         <LoginForm />
       </Card>
+
+      <SignIn />
     </div>
   );
 };
