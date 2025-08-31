@@ -1,0 +1,30 @@
+import FloatingBanner from "@/components/FloatingBanner";
+import Footer from "@/components/Footer";
+import MobileNavbar from "@/components/MobileNavbar";
+import NavBar from "@/components/NavBar";
+import DecorativeImage from "@ezlegin/ui/components/DecorativeImage";
+import NotifBar from "@ezlegin/ui/components/NotifBar";
+
+export default async function HomeLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`antialiased max-w-screen-xl mx-auto p-4 grid grid-rows-[auto_1fr_auto] min-h-screen`}
+    >
+      <div>
+        <NotifBar />
+        <NavBar />
+      </div>
+      <main className="relative">
+        <DecorativeImage />
+        {children}
+        <FloatingBanner />
+        <MobileNavbar />
+      </main>
+      <Footer />
+    </div>
+  );
+}

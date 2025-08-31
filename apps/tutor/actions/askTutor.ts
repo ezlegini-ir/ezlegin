@@ -1,0 +1,102 @@
+"use server";
+
+import { database } from "@ezlegin/database";
+import { newQaResponseSms, uploadCloudFile } from "@ezlegin/utils";
+import { UploadApiResponse } from "cloudinary";
+import { QaFormType } from "@/lib/validationSchema";
+
+export const sendAskTutorMessage = async (
+  data: QaFormType,
+  askTutorId: number
+) => {
+  const { message, file } = data;
+
+  try {
+    if (!message || message.trim() === "") {
+      throw new Error("Message content is required.");
+    }
+
+    const newMessage = await database.$transaction(async (tx) => {
+      const updatedAskTutor = await tx.askTutor.update({
+        where: { id: askTutorId },
+        data: {
+          status: "REPLIED",
+        },
+        include: {
+          user: {
+            select: {
+              phone: true,
+            },
+          },
+        },
+      });
+
+      if (file && file instanceof File) {
+        const buffer = Buffer.from(await file.arrayBuffer());
+        const fileName = file.name;
+        const fileFormat = file.name.split(".").pop() || "raw";
+        const isImageType = file.type.includes("image");
+
+        const { secure_url, bytes, public_id, format, resource_type } =
+          (await uploadCloudFile(buffer, {
+            format: fileFormat,
+            resource_type: isImageType ? "image" : "raw",
+            folder: "ticket",
+          })) as UploadApiResponse;
+
+        await tx.file.create({
+          data: {
+            format: format || fileFormat,
+            public_id,
+            size: bytes,
+            resource_type,
+            fileName,
+            type: "QA_ASSET",
+            url: secure_url,
+            askTutorMessage: {
+              create: {
+                message,
+                senderType: "TUTOR",
+                askTutorId,
+              },
+            },
+          },
+        });
+      } else {
+        await tx.askTutorMessages.create({
+          data: {
+            message,
+            senderType: "TUTOR",
+            askTutorId,
+          },
+        });
+      }
+
+      return updatedAskTutor;
+    });
+
+    await newQaResponseSms(newMessage.user.phone);
+
+    return { success: "Message Sent Successfully." };
+  } catch (error) {
+    return { error: String(error) };
+  }
+};
+
+export const markAsRead = async (askTutorId: number) => {
+  try {
+    const qa = await database.askTutor.findFirst({ where: { id: askTutorId } });
+    if (!qa) return { error: "QA did not exist." };
+
+    await database.askTutor.update({
+      where: { id: askTutorId },
+      data: {
+        status: "REPLIED",
+      },
+    });
+
+    return { success: "QA Marked as read successfully." };
+  } catch (error) {
+    return { error: String(error) };
+  }
+};
