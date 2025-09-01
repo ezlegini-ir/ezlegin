@@ -1,6 +1,6 @@
 "use client";
 
-import { sendOtp } from "@/actions/login/otp";
+import { authenticator } from "@/actions/login/authenticator";
 import { LoginFormsProps } from "@/app/login/page";
 import OAuthSignInForm from "@/components/sign-in";
 import { LoginFormType, loginFormSchema } from "@/lib/validationSchema";
@@ -19,32 +19,30 @@ import { Input } from "@ezlegin/ui/components/ui/input";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const InputForm = ({
-  setLoginStep,
-  setInputFormValue,
-  setIsNewUser,
-}: LoginFormsProps) => {
+const InputForm = ({ setLoginStep }: LoginFormsProps) => {
   // HOOKS
-  const router = useRouter();
   const { loading, setLoading } = useLoading();
 
   const form = useForm<LoginFormType>({
-    mode: "onSubmit",
+    mode: "onChange",
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      phoneOrEmail: "",
+      email: "",
+      password: "",
     },
   });
 
-  const onSendOtp = async (data: LoginFormType) => {
-    setLoading(true);
-    setIsNewUser?.(false);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
-    const res = await sendOtp({ ...data });
+  const onSignIn = async ({ email, password }: LoginFormType) => {
+    setLoading(true);
+
+    const res = await authenticator({ email, password });
 
     if (res.error) {
       toast.error(res.error);
@@ -52,14 +50,12 @@ const InputForm = ({
       return;
     }
 
-    if (res.isNewUser) {
-      setIsNewUser?.(res.isNewUser);
+    if (res.success) {
+      toast.success(res.success);
+      redirect(callbackUrl ? callbackUrl : "/panel");
     }
 
-    setInputFormValue?.(data.phoneOrEmail);
-
-    toast.success("کد احراز هویت ارسال شد");
-    setLoginStep("OTP");
+    setLoading(false);
   };
 
   return (
@@ -82,15 +78,15 @@ const InputForm = ({
       </div>
 
       <Form {...form}>
-        <form className="space-y-4" onSubmit={form.handleSubmit(onSendOtp)}>
+        <form className="space-y-4" onSubmit={form.handleSubmit(onSignIn)}>
           <FormField
             control={form.control}
-            name="phoneOrEmail"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input placeholder="test@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -99,12 +95,12 @@ const InputForm = ({
 
           <FormField
             control={form.control}
-            name="phoneOrEmail"
+            name="password"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input {...field} />
+                  <Input type="password" placeholder="********" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -120,10 +116,10 @@ const InputForm = ({
             Sign In
           </Button>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 pt-8">
             <Button
               variant={"outline"}
-              onClick={() => router.back()}
+              onClick={() => setLoginStep("PREREGISTER")}
               className="w-full"
               type="button"
             >
@@ -131,7 +127,7 @@ const InputForm = ({
             </Button>
             <Button
               variant={"ghost"}
-              onClick={() => router.back()}
+              onClick={() => setLoginStep("FORGOTPASSWORD")}
               className="w-full"
               type="button"
             >

@@ -1,13 +1,25 @@
-import Credentials from "next-auth/providers/credentials";
+import { database } from "@ezlegin/database";
+import bcrypt from "bcryptjs";
 import { NextAuthConfig } from "next-auth";
-import { getUserById, getUserByIdentifier } from "./data/user";
+import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import { getUserById } from "./data/user";
 
 export default {
   pages: {
     signIn: "/login",
   },
   trustHost: true,
+  events: {
+    async createUser({ user }) {
+      await database.user.update({
+        where: { id: +user.id! },
+        data: {
+          emailVerified: new Date(),
+        },
+      });
+    },
+  },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -29,19 +41,30 @@ export default {
       id: "user-login",
       name: "User Login",
       credentials: {
-        identifier: {},
+        email: {},
+        password: {},
       },
       authorize: async (credentials) => {
-        const { identifier } = credentials as {
-          identifier: string;
+        const { email, password } = credentials as {
+          email: string;
+          password: string;
         };
 
-        if (!identifier) {
-          throw new Error("لطفا اطلاعات را وارد کنید.");
+        if (!email || !password) {
+          throw new Error("Please insert your credentials");
         }
 
-        const user = await getUserByIdentifier(identifier);
-        if (!user) throw new Error("User Not Found");
+        const user = await database.user.findFirst({
+          where: { email: email.toLowerCase() },
+        });
+        if (!user) throw new Error("Invalid Credentials");
+
+        if (!user.password) {
+          throw new Error("You need to sign in with Your Google account");
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) throw new Error("Invalid Credentials");
 
         return { id: user.id.toString() };
       },

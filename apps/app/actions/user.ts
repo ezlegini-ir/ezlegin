@@ -1,62 +1,36 @@
 "use server";
 
-import {
-  ProfileFormType,
-  registerUserFormSchema,
-  RegisterUserFormType,
-} from "@/lib/validationSchema";
-import { database } from "@ezlegin/database";
-import { detectInputType, sendRegistrationCongratsSms } from "@ezlegin/utils";
-import { UploadApiResponse } from "cloudinary";
-import { deleteCloudFile, uploadCloudFile } from "@ezlegin/utils";
 import { getUserById } from "@/data/user";
+import { ProfileFormType, RegisterUserFormType } from "@/lib/validationSchema";
+import { database } from "@ezlegin/database";
+import { deleteCloudFile, uploadCloudFile } from "@ezlegin/utils";
+import bcrypt from "bcrypt";
+import { UploadApiResponse } from "cloudinary";
 
 //* CREATE --------------------------------------------------------
 
-export async function registerUser(
-  data: RegisterUserFormType,
-  indentifer: string
-) {
-  const { email, firstName, lastName, nationalId, phone } = data;
+export async function registerUser(data: RegisterUserFormType) {
+  const { email, fullName, password } = data;
 
   try {
-    //  FORM VALIDATION
-    const validation = registerUserFormSchema.safeParse(data);
-    if (!validation.success) return { error: "Form Inputs Not Valid" };
-
-    // USER LOOKUP
     const existingUser = await database.user.findFirst({
       where: {
-        OR: [{ email }, { nationalId }, { phone }],
+        email,
       },
     });
 
-    if (existingUser && existingUser.email === email)
-      return { error: "با این ایمیل کاربری از قبل وجود دارد." };
+    if (existingUser)
+      return { error: "A user with this email already exists." };
 
-    if (existingUser && existingUser.phone === phone)
-      return { error: "با این شماره تماس کاربری از قبل وجود دارد." };
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (existingUser && existingUser.nationalId === nationalId)
-      return { error: "با این کد ملی کاربری از قبل وجود دارد." };
-
-    const type = detectInputType(indentifer);
-    // CREATE USER
-    const newUser = await database.user.create({
+    await database.user.create({
       data: {
         email: email.toLowerCase(),
-        firstName,
-        lastName,
-        fullName: `${firstName} ${lastName}`,
-        nationalId,
-        phone,
-        ...(type === "email"
-          ? { emailVerified: true }
-          : { phoneVerified: true }),
+        name: fullName,
+        password: hashedPassword,
       },
     });
-
-    await sendRegistrationCongratsSms(newUser.firstName, newUser.phone);
 
     return { success: "User Created Successfully" };
   } catch (error) {

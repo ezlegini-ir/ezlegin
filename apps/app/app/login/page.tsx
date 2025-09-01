@@ -4,7 +4,10 @@ import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 export interface LoginFormsProps {
-  setLoginStep: Dispatch<SetStateAction<"INPUT" | "OTP" | "REGISTER">>;
+  setLoginStep: Dispatch<
+    SetStateAction<"INPUT" | "FORGOTPASSWORD" | "REGISTER" | "PREREGISTER">
+  >;
+  loginStep?: "INPUT" | "FORGOTPASSWORD" | "REGISTER" | "PREREGISTER";
   setInputFormValue?: Dispatch<React.SetStateAction<string>>;
   inputFormValue?: string;
   setIsNewUser?: Dispatch<React.SetStateAction<boolean>>;
@@ -25,7 +28,9 @@ const page = () => {
             <EzleginLogoSquare size={70} />
           </Link>
 
-          <h2 className="text-xl font-medium">Learn Without Limits!</h2>
+          <h2 className="text-xl text-foreground font-medium">
+            Learn Without Limits!
+          </h2>
           <p className="text-muted-foreground text-xs max-w-sm">
             Sign in to access your courses, track your progress, and unlock
             knowledge that helps you grow your skills and achieve your goals.

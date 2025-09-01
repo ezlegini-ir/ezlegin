@@ -3,17 +3,17 @@
 import { authenticator } from "@/actions/login/authenticator";
 import { registerUser } from "@/actions/user";
 import { LoginFormsProps } from "@/app/login/page";
+import OAuthSignInForm from "@/components/sign-in";
 import {
   RegisterUserFormType,
   registerUserFormSchema,
 } from "@/lib/validationSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
+  Card,
   CardContent,
   CardDescription,
-  CardHeader,
   CardTitle,
 } from "@ezlegin/ui/components/ui/card";
 import {
@@ -24,14 +24,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@ezlegin/ui/components/ui/hover-card";
 import { Input } from "@ezlegin/ui/components/ui/input";
-import { detectInputType, useLoading } from "@ezlegin/utils";
-import { Handshake, Info } from "lucide-react";
+import { useLoading } from "@ezlegin/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Check, Handshake } from "lucide-react";
 import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -39,32 +35,19 @@ import { toast } from "sonner";
 
 const RegisterForm = ({
   setLoginStep,
-  inputFormValue: identifier,
   redirectTo,
   onSuccess,
 }: LoginFormsProps) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
 
-  const inputType = detectInputType(identifier!);
-
-  let email;
-  let phone;
-  if (inputType === "email") {
-    email = identifier?.toLowerCase();
-  } else {
-    phone = identifier;
-  }
-
   const form = useForm<RegisterUserFormType>({
     mode: "onChange",
     resolver: zodResolver(registerUserFormSchema),
     defaultValues: {
-      email: email || "",
-      firstName: "",
-      lastName: "",
-      nationalId: "",
-      phone: phone || "",
+      fullName: "",
+      email: "",
+      password: "",
     },
   });
   const searchParams = useSearchParams();
@@ -73,7 +56,7 @@ const RegisterForm = ({
   const onRegisterUser = async (data: RegisterUserFormType) => {
     setLoading(true);
 
-    const res = await registerUser(data, identifier!);
+    const res = await registerUser(data);
 
     if (res.error) {
       toast.error(res.error);
@@ -81,7 +64,10 @@ const RegisterForm = ({
       return;
     }
 
-    const auth = await authenticator(identifier!);
+    const auth = await authenticator({
+      email: data.email,
+      password: data.password,
+    });
 
     if (auth?.error) {
       toast.error(auth.error);
@@ -98,21 +84,17 @@ const RegisterForm = ({
   };
 
   return (
-    <>
-      <CardHeader className="text-center">
+    <div className="space-y-8">
+      <div className="text-center space-y-1">
         <CardTitle>
-          <h3 className="flex items-center justify-center">
-            <span className="text-3xl animate-pulse"> 🎉 </span> به آی‌گرافیکال
-            خوش آمدید!
-          </h3>
+          <h3 className="font-medium">🎉 Create an Account!</h3>
         </CardTitle>
-
-        <CardDescription>
-          لطفا برای تکمیل ثبت نام اطلاعات زیر را وارد کنید
+        <CardDescription className="text-xs">
+          Please enter your information to complete your registration.
         </CardDescription>
-      </CardHeader>
+      </div>
 
-      <CardContent>
+      <CardContent className="p-0">
         <Form {...form}>
           <form
             className="space-y-3"
@@ -120,12 +102,12 @@ const RegisterForm = ({
           >
             <FormField
               control={form.control}
-              name="firstName"
+              name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>نام</FormLabel>
+                  <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input placeholder="John Doe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -134,79 +116,14 @@ const RegisterForm = ({
 
             <FormField
               control={form.control}
-              name="lastName"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>نام خانوادگی</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {inputType !== "email" && (
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>ایمیل</FormLabel>
-                    <FormControl>
-                      <Input type="email" className="en-digits" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-
-            {inputType !== "phone" && (
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>شماره تماس</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="مثال: 09121234567"
-                        type="text"
-                        style={{ direction: "ltr" }}
-                        maxLength={11}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-
-            <FormField
-              control={form.control}
-              name="nationalId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex gap-1">
-                    کد ملی
-                    <HoverCard>
-                      <HoverCardTrigger>
-                        <Info size={12} className="text-gray-500" />
-                      </HoverCardTrigger>
-                      <HoverCardContent className="max-w-sm font-normal text-gray-500 text-xs">
-                        <p>
-                          به جهت شفاف سازی حریم شخصی کاربران: کد ملی صرفا جهت
-                          صدور مدرک می باشد.
-                        </p>
-                      </HoverCardContent>
-                    </HoverCard>
-                  </FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      style={{ direction: "ltr" }}
-                      maxLength={10}
+                      placeholder="test@example.com"
+                      type="email"
                       {...field}
                     />
                   </FormControl>
@@ -215,39 +132,103 @@ const RegisterForm = ({
               )}
             />
 
-            <p className="alert alert-secondary text-xs drop-shadow-none  flex gap-1 items-center justify-center text-slate-500">
-              <Handshake size={20} />
-              با ثبت نام در آی‌گرافیکال با{" "}
-              <Link
-                className="text-blue-800 underline"
-                href={"/terms-and-conditions"}
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => {
+                const password = field.value || "";
+
+                const checks = [
+                  {
+                    label: "At least 8 characters",
+                    valid: password.length >= 8,
+                  },
+                  {
+                    label: "At least one uppercase letter",
+                    valid: /[A-Z]/.test(password),
+                  },
+                  {
+                    label: "At least one lowercase letter",
+                    valid: /[a-z]/.test(password),
+                  },
+                  {
+                    label: "At least one number",
+                    valid: /\d/.test(password),
+                  },
+                ];
+
+                return (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="********"
+                        type="password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+
+                    <div className="mt-2 space-y-1">
+                      {checks.map((check, i) => (
+                        <p
+                          key={i}
+                          className={`flex items-center gap-2 text-xs ${
+                            check.valid
+                              ? "text-green-500"
+                              : "text-muted-foreground"
+                          }`}
+                        >
+                          <Check size={14} /> {check.label}
+                        </p>
+                      ))}
+                    </div>
+                  </FormItem>
+                );
+              }}
+            />
+
+            <div className="pt-8 space-y-3">
+              <Card className="p-3">
+                <p className=" text-xs drop-shadow-none flex gap-3 items-center justify-center">
+                  <Handshake size={40} />
+
+                  <span>
+                    By registering on Ezlegin, you agree to its{" "}
+                    <Link
+                      className="underline text-primary"
+                      href={"/terms-and-conditions"}
+                    >
+                      Terms & Conditions!
+                    </Link>
+                  </span>
+                </p>
+              </Card>
+
+              <Button
+                disabled={!form.formState.isValid || loading}
+                className="w-full"
+                type="submit"
               >
-                قوانین
-              </Link>{" "}
-              آن موافق هستید!
-            </p>
+                <Loader loading={loading} />
+                Create Account
+              </Button>
 
-            <Button
-              disabled={!form.formState.isValid || loading}
-              className="w-full"
-              type="submit"
-            >
-              <Loader loading={loading} />
-              تکمیل ثبت نام
-            </Button>
+              <OAuthSignInForm type="SIGNUP" />
 
-            <Button
-              onClick={() => setLoginStep("INPUT")}
-              variant={"secondary"}
-              className="w-full"
-              type="button"
-            >
-              بازگشت
-            </Button>
+              <Button
+                onClick={() => setLoginStep("INPUT")}
+                variant={"ghost"}
+                className="w-full"
+                type="button"
+              >
+                Return
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>
-    </>
+    </div>
   );
 };
 

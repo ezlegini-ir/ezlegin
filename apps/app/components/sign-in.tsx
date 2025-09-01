@@ -7,7 +7,11 @@ import { Button } from "@ezlegin/ui/components/ui/button";
 import { useLoading } from "@ezlegin/utils";
 import Image from "next/image";
 
-export default function OAuthSignInForm() {
+export default function OAuthSignInForm({
+  type,
+}: {
+  type?: "SIGNIN" | "SIGNUP";
+}) {
   const { loading, setLoading } = useLoading();
 
   const onSignIn = async () => {
@@ -24,7 +28,7 @@ export default function OAuthSignInForm() {
       type="submit"
     >
       <Image alt="Google Logo" src={googleLogo} width={18} height={18} />
-      Signin with Google
+      {type === "SIGNUP" ? "Sign Up with Google" : "Sign In with Google"}
       <Loader loading={loading} />
     </Button>
   );

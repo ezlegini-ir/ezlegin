@@ -11,7 +11,6 @@ export const getUserByIdentifier = async (phoneOrEmail: string) => {
 };
 
 export const getUserById = async (id: number) => {
-  if (!id) return;
   return await database.user.findUnique({
     where: {
       id,
