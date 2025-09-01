@@ -1,13 +1,11 @@
-import LoginForm from "@/components/forms/login/LoginForm";
+import LoginForm, { LoginSteps } from "@/components/forms/login/LoginForm";
 import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 export interface LoginFormsProps {
-  setLoginStep: Dispatch<
-    SetStateAction<"INPUT" | "FORGOTPASSWORD" | "REGISTER" | "PREREGISTER">
-  >;
-  loginStep?: "INPUT" | "FORGOTPASSWORD" | "REGISTER" | "PREREGISTER";
+  setLoginStep: Dispatch<SetStateAction<LoginSteps>>;
+  loginStep?: LoginSteps;
   setInputFormValue?: Dispatch<React.SetStateAction<string>>;
   inputFormValue?: string;
   setIsNewUser?: Dispatch<React.SetStateAction<boolean>>;

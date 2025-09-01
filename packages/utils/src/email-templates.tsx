@@ -64,8 +64,8 @@ const Header = () => {
       }}
     >
       <Img
-        src="https://dl.igraphical.ir/assets/igraph-logo.png"
-        alt="آی‌گرافیکال"
+        src="https://dl.igraphical.ir/assets/ezlegin-logo.png"
+        alt="Ezlegin"
         width="135"
         height="auto"
         style={{ display: "inline-block" }}
@@ -134,6 +134,65 @@ const OtpEmail = ({ otp }: OtpEmailProps) => {
 
 export const renderOtpEmail = (otp: string) =>
   render(<OtpEmail otp={otp} />, { pretty: true });
+
+//! ----------------------------------------------------------
+
+const ResetPasswordEmail = ({ token }: { token: string }) => {
+  return (
+    <Html lang="en" dir="ltr">
+      <Head />
+      <Preview>🔒 Reset Password | Ezlegin</Preview>
+      <Body style={bodyStyles}>
+        <Header />
+
+        <Container style={containerStyles}>
+          <Text style={{ fontSize: "18px", color: "#333", direction: "ltr" }}>
+            Dear user, to reset your password, please click the button below:
+          </Text>
+          <Text
+            style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              direction: "ltr",
+              unicodeBidi: "plaintext",
+              color: "#526eff",
+            }}
+          >
+            <Button
+              href={`${process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "http://localhost:3000"}/reset-password?token=${token}`}
+              style={buttonStyles}
+            >
+              Reset Your Password
+            </Button>
+          </Text>
+
+          <Hr className="my-[16px] border-t-2 border-gray-300" />
+
+          <Text style={{ color: "#6b7280", direction: "ltr" }}>
+            For security reasons, this code is only valid for a limited time.
+            Please act as soon as possible.
+          </Text>
+          <Text style={{ color: "#6b7280", direction: "ltr" }}>
+            If you did not request this, you can safely ignore this email.
+          </Text>
+
+          <Hr className="my-[16px] border-t-2 border-gray-300" />
+
+          <Text style={{ fontSize: "12px", color: "#888", direction: "ltr" }}>
+            If you have any questions, contact us at ezlegin.com@gmail.com.
+          </Text>
+
+          <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
+            Ezlegin.com
+          </Link>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+
+export const renderResetPasswordEmail = (token: string) =>
+  render(<ResetPasswordEmail token={token} />, { pretty: true });
 
 //! ----------------------------------------------------------
 

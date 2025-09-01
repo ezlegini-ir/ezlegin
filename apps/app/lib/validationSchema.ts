@@ -38,8 +38,15 @@ export const registerUserFormSchema = z.object({
 
   password: z.string().min(8, { message: "Minimum 8 characters" }),
 });
-
 export type RegisterUserFormType = z.infer<typeof registerUserFormSchema>;
+
+// --------------
+
+export const resetPasswordFormSchema = z.object({
+  email: z.string().min(1, { message: requiredText }),
+});
+
+export type ResetPasswordFormType = z.infer<typeof resetPasswordFormSchema>;
 
 // --------------
 

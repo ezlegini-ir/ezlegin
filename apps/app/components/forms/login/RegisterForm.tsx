@@ -5,8 +5,8 @@ import { registerUser } from "@/actions/user";
 import { LoginFormsProps } from "@/app/login/page";
 import OAuthSignInForm from "@/components/sign-in";
 import {
-  RegisterUserFormType,
   registerUserFormSchema,
+  RegisterUserFormType,
 } from "@/lib/validationSchema";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";

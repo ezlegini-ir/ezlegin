@@ -23,6 +23,14 @@ export const getUserById = async (id: number) => {
   });
 };
 
+export const getUserByEmail = async (email: string) => {
+  return await database.user.findUnique({
+    where: {
+      email,
+    },
+  });
+};
+
 export const getSessionUser = async () => {
   const session = await auth();
   const userId = session?.user?.id;

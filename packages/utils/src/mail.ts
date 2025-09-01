@@ -4,6 +4,7 @@ import {
   PaymentType,
   renderFinishCourseEmail,
   renderOtpEmail,
+  renderResetPasswordEmail,
   renderSuccessPaymentEmail,
   renderSuccessPaymentEmailToAdmin,
 } from "./email-templates";
@@ -23,7 +24,7 @@ export const sendEmail = async ({
 }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: "آی‌گرافیکال <noreply@igraphical.ir>",
+      from: "Ezlegin <onboarding@resend.dev>",
       to,
       subject,
       html,
@@ -50,6 +51,24 @@ export const sendOtpEmail = async (email: string, userId?: number) => {
 
     await sendEmail({
       subject: `🔒 کد تایید: ${plainOtp}`,
+      to: email,
+      html: emailHtml,
+    });
+
+    return { success: true };
+  } catch (error) {
+    throw new Error(String(error));
+  }
+};
+
+//! -------------------------------------------------------------------
+
+export const sendResetPasswordEmail = async (email: string, token: string) => {
+  try {
+    const emailHtml = await renderResetPasswordEmail(token);
+
+    await sendEmail({
+      subject: `🔒 Reset Password | Ezlegin`,
       to: email,
       html: emailHtml,
     });

@@ -33,5 +33,5 @@ const notFound = () => {
 export default notFound;
 
 export const metadata: Metadata = {
-  title: "☹️ 404 گشتیم نبود",
+  title: "☹️ 404 Not Found",
 };
