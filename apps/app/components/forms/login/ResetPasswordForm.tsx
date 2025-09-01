@@ -1,7 +1,7 @@
 "use client";
 
-import { sendResetPasswordToken } from "@/actions/login/resetPassword";
-import { LoginFormsProps } from "@/app/login/page";
+import { resetPassword } from "@/actions/login/resetPassword";
+import { signInUser } from "@/actions/login/signin-user";
 import {
   ResetPasswordFormType,
   resetPasswordFormSchema,
@@ -20,28 +20,35 @@ import {
 import { Input } from "@ezlegin/ui/components/ui/input";
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle } from "lucide-react";
+import { Check, CheckCircle } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-const ResetPasswordForm = ({ setLoginStep }: LoginFormsProps) => {
+interface Props {
+  token: string;
+  email: string;
+}
+
+const ResetPasswordForm = ({ token, email }: Props) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
-  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [isPasswordReset, setIsPasswordReset] = useState(false);
 
   const form = useForm<ResetPasswordFormType>({
     mode: "onChange",
     resolver: zodResolver(resetPasswordFormSchema),
     defaultValues: {
-      email: "",
+      newPassword: "",
+      confirmPassword: "",
     },
   });
 
-  const onResetPassword = async ({ email }: ResetPasswordFormType) => {
+  const onResetPassword = async (data: ResetPasswordFormType) => {
     setLoading(true);
 
-    const res = await sendResetPasswordToken(email);
+    const res = await resetPassword({ data, email, token });
 
     if (res.error) {
       toast.error(res.error);
@@ -49,51 +56,115 @@ const ResetPasswordForm = ({ setLoginStep }: LoginFormsProps) => {
       return;
     }
 
-    if (res.success) {
+    if (res.success && res.newPassword) {
       toast.success(res.success);
-      setIsEmailSent(true);
+      setIsPasswordReset(true);
+      const signInRes = await signInUser({ email, password: data.newPassword });
+
+      if (signInRes.error) {
+        toast.error(signInRes.error);
+        setLoading(false);
+        return;
+      }
+
+      if (signInRes.success) {
+        toast.success(signInRes.success);
+        redirect("/panel");
+      }
     }
 
     setLoading(false);
   };
 
   return (
-    <div className="space-y-8">
-      <div className="text-center space-y-1">
-        <CardTitle>
-          <h3 className="font-medium">🔒 Reset Your Password</h3>
-        </CardTitle>
-        <CardDescription className="text-xs">
-          Please enter your Email to Identify you.
-        </CardDescription>
-      </div>
-
+    <div className="space-y-8 w-[350px]">
       <Form {...form}>
         <form
           className="space-y-4"
           onSubmit={form.handleSubmit(onResetPassword)}
         >
-          {isEmailSent ? (
+          {isPasswordReset ? (
             <div className="flex flex-col justify-center items-center gap-3">
               <div className="bg-green-500/20 border-green-500/60 border text-green-500 p-6 rounded-full ">
                 <CheckCircle size={80} />
               </div>
 
-              <p className="text-sm">
-                Reset Link Sent To {form.getValues("email")}
-              </p>
+              <p className="text-sm">Password has been Reset Successfully.</p>
             </div>
           ) : (
             <>
+              <CardTitle>
+                <h3 className="font-medium">🔒 Let's Reset Your Password</h3>
+              </CardTitle>
+              <CardDescription className="text-xs">
+                Please enter your New Password.
+              </CardDescription>
+
               <FormField
                 control={form.control}
-                name="email"
+                name="newPassword"
+                render={({ field }) => {
+                  const password = field.value || "";
+
+                  const checks = [
+                    {
+                      label: "At least 8 characters",
+                      valid: password.length >= 8,
+                    },
+                    {
+                      label: "At least one uppercase letter",
+                      valid: /[A-Z]/.test(password),
+                    },
+                    {
+                      label: "At least one lowercase letter",
+                      valid: /[a-z]/.test(password),
+                    },
+                    {
+                      label: "At least one number",
+                      valid: /\d/.test(password),
+                    },
+                  ];
+
+                  return (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="********"
+                          type="password"
+                          {...field}
+                        />
+                      </FormControl>
+                      {/* <FormMessage /> */}
+
+                      <div className="mt-2 space-y-1">
+                        {checks.map((check, i) => (
+                          <p
+                            key={i}
+                            className={`flex items-center gap-2 text-xs ${
+                              check.valid
+                                ? "text-green-500"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            <Check size={14} /> {check.label}
+                          </p>
+                        ))}
+                      </div>
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
                       <Input
-                        type="email"
+                        type="password"
                         placeholder="test@example.com"
                         {...field}
                       />
@@ -104,24 +175,19 @@ const ResetPasswordForm = ({ setLoginStep }: LoginFormsProps) => {
               />
 
               <Button
-                disabled={!form.formState.isValid || loading}
+                disabled={
+                  !form.formState.isValid ||
+                  loading ||
+                  form.watch("newPassword") !== form.watch("confirmPassword")
+                }
                 className="w-full flex gap-2"
                 type="submit"
               >
                 {<Loader loading={loading} />}
-                Send Reset Link
+                Reset Password
               </Button>
             </>
           )}
-
-          <Button
-            variant={isEmailSent ? "outline" : "ghost"}
-            onClick={() => setLoginStep("INPUT")}
-            className="w-full flex gap-2"
-            type="submit"
-          >
-            Return
-          </Button>
         </form>
       </Form>
     </div>

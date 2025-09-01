@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticator } from "@/actions/login/authenticator";
+import { signInUser } from "@/actions/login/signin-user";
 import { LoginFormsProps } from "@/app/login/page";
 import OAuthSignInForm from "@/components/sign-in";
 import { LoginFormType, loginFormSchema } from "@/lib/validationSchema";
@@ -42,7 +42,7 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
   const onSignIn = async ({ email, password }: LoginFormType) => {
     setLoading(true);
 
-    const res = await authenticator({ email, password });
+    const res = await signInUser({ email, password });
 
     if (res.error) {
       toast.error(res.error);

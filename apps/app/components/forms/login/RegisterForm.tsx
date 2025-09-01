@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticator } from "@/actions/login/authenticator";
+import { signInUser } from "@/actions/login/signin-user";
 import { registerUser } from "@/actions/user";
 import { LoginFormsProps } from "@/app/login/page";
 import OAuthSignInForm from "@/components/sign-in";
@@ -64,7 +64,7 @@ const RegisterForm = ({
       return;
     }
 
-    const auth = await authenticator({
+    const auth = await signInUser({
       email: data.email,
       password: data.password,
     });
@@ -167,7 +167,7 @@ const RegisterForm = ({
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    {/* <FormMessage /> */}
 
                     <div className="mt-2 space-y-1">
                       {checks.map((check, i) => (

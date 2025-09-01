@@ -4,7 +4,7 @@ import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 import { useState } from "react";
 import InputForm from "./InputForm";
 import RegisterForm from "./RegisterForm";
-import ResetPasswordForm from "./ResetPasswordForm";
+import ResetPasswordInputForm from "./ResetPasswordInputForm";
 
 interface Props {
   redirectTo?: string;
@@ -29,7 +29,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
         {loginStep === "INPUT" && <InputForm setLoginStep={setLoginStep} />}
 
         {loginStep === "FORGOTPASSWORD" && (
-          <ResetPasswordForm setLoginStep={setLoginStep} />
+          <ResetPasswordInputForm setLoginStep={setLoginStep} />
         )}
 
         {loginStep === "PREREGISTER" && (

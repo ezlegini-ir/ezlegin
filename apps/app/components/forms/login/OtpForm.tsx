@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticator } from "@/actions/login/authenticator";
+import { signInUser } from "@/actions/login/signin-user";
 import { verifyOtp } from "@/actions/login/verify-otp";
 import { LoginFormsProps } from "@/app/login/page";
 import { OtpType, otpSchema } from "@/lib/validationSchema";
@@ -97,7 +97,7 @@ const OtpForm = ({
     if (isNewUser) {
       setLoginStep("REGISTER");
     } else {
-      const auth = await authenticator(identifier);
+      const auth = await signInUser(identifier);
 
       if (auth?.error) {
         toast.error(auth.error);

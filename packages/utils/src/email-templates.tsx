@@ -137,7 +137,13 @@ export const renderOtpEmail = (otp: string) =>
 
 //! ----------------------------------------------------------
 
-const ResetPasswordEmail = ({ token }: { token: string }) => {
+const ResetPasswordEmail = ({
+  token,
+  email,
+}: {
+  token: string;
+  email: string;
+}) => {
   return (
     <Html lang="en" dir="ltr">
       <Head />
@@ -159,7 +165,7 @@ const ResetPasswordEmail = ({ token }: { token: string }) => {
             }}
           >
             <Button
-              href={`${process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "http://localhost:3000"}/reset-password?token=${token}`}
+              href={`${process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "http://localhost:3000"}/login/reset-password?token=${token}&email=${email}`}
               style={buttonStyles}
             >
               Reset Your Password
@@ -191,8 +197,8 @@ const ResetPasswordEmail = ({ token }: { token: string }) => {
   );
 };
 
-export const renderResetPasswordEmail = (token: string) =>
-  render(<ResetPasswordEmail token={token} />, { pretty: true });
+export const renderResetPasswordEmail = (token: string, email: string) =>
+  render(<ResetPasswordEmail token={token} email={email} />, { pretty: true });
 
 //! ----------------------------------------------------------
 

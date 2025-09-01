@@ -65,7 +65,7 @@ export const sendOtpEmail = async (email: string, userId?: number) => {
 
 export const sendResetPasswordEmail = async (email: string, token: string) => {
   try {
-    const emailHtml = await renderResetPasswordEmail(token);
+    const emailHtml = await renderResetPasswordEmail(token, email);
 
     await sendEmail({
       subject: `🔒 Reset Password | Ezlegin`,

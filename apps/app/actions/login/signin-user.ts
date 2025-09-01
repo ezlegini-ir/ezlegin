@@ -3,7 +3,7 @@
 import { signIn } from "@ezlegin/auth";
 import type { AuthError as _AuthError } from "next-auth";
 
-export const authenticator = async ({
+export const signInUser = async ({
   email,
   password,
 }: {
