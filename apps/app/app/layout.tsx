@@ -1,8 +1,16 @@
 import "@ezlegin/ui/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import "./fonts.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -11,20 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      style={{ fontFamily: "KalamehWebFaNum" }}
-      lang="fa"
-      dir="rtl"
-      className="antialiased custom-scrollbar"
+      lang="en"
+      className={`antialiased custom-scrollbar ${inter.variable}`}
     >
       <GoogleAnalytics gaId={process.env.GA_MEASUREMENT_ID!} />
       <body>
         {children}
-        <Toaster
-          theme="system"
-          position="top-right"
-          richColors
-          style={{ fontFamily: "KalamehWebFaNum" }}
-        />
+        <Toaster theme="system" position="top-right" richColors />
       </body>
     </html>
   );
@@ -32,10 +33,10 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   title: {
-    default: "آی‌گرافیکال",
-    template: "%s - آی‌گرافیکال",
+    default: "Ezlegin",
+    template: "%s - Ezlegin",
   },
-  description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
+  description: "Ezlegin: Design Without Limits",
   icons: {
     icon: "/favicon.svg",
   },
@@ -51,29 +52,29 @@ export const metadata: Metadata = {
     "طراحی لوگو",
     "گرافیک دیزاین",
   ],
-  authors: [{ name: "iGraphical", url: process.env.NEXT_PUBLIC_BASE_URL }],
-  creator: "iGraphical",
-  publisher: "iGraphical",
+  authors: [{ name: "Ezlegin", url: process.env.NEXT_PUBLIC_BASE_URL }],
+  creator: "Ezlegin",
+  publisher: "Ezlegin",
   openGraph: {
-    title: "آی‌گرافیکال",
-    description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
+    title: "Ezlegin",
+    description: "Ezlegin: Design Without Limits",
     url: process.env.NEXT_PUBLIC_BASE_URL,
-    siteName: "iGraphical",
-    locale: "fa_IR",
+    siteName: "Ezlegin",
+    locale: "en",
     type: "website",
     images: [
       {
         url: "/og-cover.png",
         width: 1200,
         height: 630,
-        alt: "iGraphical",
+        alt: "Ezlegin",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "آی‌گرافیکال",
-    description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
+    title: "Ezlegin",
+    description: "Ezlegin: Design Without Limits",
     images: ["/og-cover.png"],
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),

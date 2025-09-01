@@ -1,6 +1,13 @@
 "use client";
 
-import { Image, User } from "@ezlegin/database";
+import { User } from "@ezlegin/database";
+import { Button } from "@ezlegin/ui/components/ui/button";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@ezlegin/ui/components/ui/dropdown-menu";
 import { DropdownMenu, DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
 import {
   ChevronDown,
@@ -10,22 +17,12 @@ import {
   TvMinimalPlay,
   User as UserIcon,
 } from "lucide-react";
-import { Button } from "@ezlegin/ui/components/ui/button";
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@ezlegin/ui/components/ui/dropdown-menu";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import Avatar from "./Avatar";
 
-interface UserType extends User {
-  image: Image | null;
-}
 interface Props {
-  user: UserType;
+  user: User;
 }
 
 const UserBar = ({ user }: Props) => {
@@ -33,8 +30,8 @@ const UserBar = ({ user }: Props) => {
     <DropdownMenu dir="rtl">
       <DropdownMenuTrigger asChild className="min-w-[175px]">
         <Button variant={"outline"}>
-          <Avatar src={user?.image?.url} size={26} />
-          {user?.fullName}
+          <Avatar src={user?.image} size={26} />
+          {user?.name}
           <ChevronDown className="text-slate-500" />
         </Button>
       </DropdownMenuTrigger>

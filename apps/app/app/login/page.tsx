@@ -1,8 +1,4 @@
 import LoginForm from "@/components/forms/login/LoginForm";
-import SignIn from "@/components/sign-in";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
-import { Card } from "@ezlegin/ui/components/ui/card";
-import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
 export interface LoginFormsProps {
@@ -17,15 +13,14 @@ export interface LoginFormsProps {
 
 const page = () => {
   return (
-    <div className="mt-5 md:mt-20 w-[350px] mx-auto flex flex-col items-center space-y-5">
-      <Link href={"/"}>
-        <IgraphLogo />
-      </Link>
-      <Card className="w-full">
+    <div className="w-full flex gap-3  h-full">
+      <div className="w-8/12 bg-background rounded-xl flex items-center justify-center">
         <LoginForm />
-      </Card>
+      </div>
 
-      <SignIn />
+      <div className="w-5/12  bg-red-500 text-background relative rounded-xl">
+        hi
+      </div>
     </div>
   );
 };

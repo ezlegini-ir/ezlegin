@@ -6,7 +6,7 @@ import { database } from "@ezlegin/database";
 export const getUserByIdentifier = async (phoneOrEmail: string) => {
   return await database.user.findFirst({
     where: {
-      OR: [{ phone: phoneOrEmail }, { email: phoneOrEmail }],
+      OR: [{ email: phoneOrEmail }],
     },
   });
 };
@@ -18,7 +18,6 @@ export const getUserById = async (id: number) => {
       id,
     },
     include: {
-      image: true,
       wallet: true,
     },
   });

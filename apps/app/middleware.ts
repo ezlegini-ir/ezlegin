@@ -13,9 +13,12 @@ export async function middleware(req: NextRequest) {
     nextUrl.pathname.startsWith(route)
   );
 
-  const isAuthRoute = ["/login"].some((route) =>
-    nextUrl.pathname.startsWith(route)
-  );
+  const isAuthRoute = nextUrl.pathname.startsWith("/api/auth/");
+  const isLoginRoute = nextUrl.pathname.startsWith("/login");
+
+  if (isAuthRoute) {
+    return NextResponse.next();
+  }
 
   if (!isLoggedIn && isPrivateRoute && !isAuthRoute) {
     const returnUrl = nextUrl.pathname + nextUrl.search;
@@ -25,7 +28,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (isLoggedIn && isAuthRoute) {
+  if (isLoggedIn && isLoginRoute) {
     return NextResponse.redirect(new URL("/panel", nextUrl));
   }
 

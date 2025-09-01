@@ -1,18 +1,14 @@
 import { getCartByUserId } from "@/data/cart";
 import { getSessionUser } from "@/data/user";
-import { Cart, Image, User } from "@ezlegin/database";
+import { Cart, User } from "@ezlegin/database";
 import NavBarContent from "./NavBarContent";
-
-export interface UserType extends User {
-  image: Image | null;
-}
 
 export interface CartType extends Cart {
   _count: { cartItem: number };
 }
 
 export interface NavbarProps {
-  user: UserType | undefined | null;
+  user: User | undefined | null;
   isThereItemsInCart: Boolean;
 }
 

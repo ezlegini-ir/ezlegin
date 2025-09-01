@@ -179,8 +179,6 @@
 /*! ------------- GENERAL ------------- */
 
 pre {
-  font-family: "KalamehWebFaNum";
-  line-height: 1.7 !important;
   background-color: transparent !important;
   color: #000 !important;
   font-size: 1rem;
@@ -189,13 +187,11 @@ pre {
   overflow-wrap: break-word;
 }
 
-@layer utilities {
-  .en-digits {
-    font-family: "KalamehWeb", "sans-serif";
-    direction: ltr;
-    unicode-bidi: plaintext;
-  }
+body {
+  font-family: var(--font-inter), sans-serif;
+}
 
+@layer utilities {
   ::selection {
     background-color: #f0a748;
     color: white;

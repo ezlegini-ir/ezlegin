@@ -11,13 +11,15 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.10.0",
     "@ezlegin/auth": "*",
-    "@ezlegin/editor": "*",
     "@ezlegin/database": "*",
+    "@ezlegin/editor": "*",
     "@ezlegin/ui": "*",
     "@ezlegin/utils": "*",
+    "@hookform/resolvers": "^3.10.0",
     "@next/third-parties": "^15.2.4",
+    "@auth/prisma-adapter": "^2.10.0",
+    "@prisma/client": "^6.15.0",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.6.0",

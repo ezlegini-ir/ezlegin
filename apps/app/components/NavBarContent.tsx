@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CartType, UserType } from "./NavBar";
+import { CartType } from "./NavBar";
 import SmallNavBar from "./SmallNavBar";
 import WideNavBar from "./WideNavBar";
+import { User } from "@ezlegin/database";
 
 interface Props {
   isWide: boolean;
-  user: UserType | null | undefined;
+  user: User | null | undefined;
   cart: CartType | null | undefined;
 }
 

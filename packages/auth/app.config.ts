@@ -1,6 +1,7 @@
 import Credentials from "next-auth/providers/credentials";
 import { NextAuthConfig } from "next-auth";
 import { getUserById, getUserByIdentifier } from "./data/user";
+import Google from "next-auth/providers/google";
 
 export default {
   pages: {
@@ -23,6 +24,7 @@ export default {
     },
   },
   providers: [
+    Google,
     Credentials({
       id: "user-login",
       name: "User Login",

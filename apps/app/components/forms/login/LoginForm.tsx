@@ -1,10 +1,10 @@
 "use client";
 
+import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 import { useState } from "react";
 import InputForm from "./InputForm";
 import OtpForm from "./OtpForm";
 import RegisterForm from "./RegisterForm";
-import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 
 interface Props {
   redirectTo?: string;
@@ -20,7 +20,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
   const [isNewUser, setIsNewUser] = useState(false);
 
   return (
-    <>
+    <div className="w-[350px] mx-auto">
       <RecaptchaWrapper
         recaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
       >
@@ -49,7 +49,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
           onSuccess={onSuccess}
         />
       )}
-    </>
+    </div>
   );
 };
 

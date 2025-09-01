@@ -1,4 +1,3 @@
-import DecorativeImage from "@ezlegin/ui/components/DecorativeImage";
 import { Metadata } from "next";
 
 export default function PanelLayout({
@@ -8,18 +7,15 @@ export default function PanelLayout({
 }) {
   return (
     <div
-      className={`max-w-screen-xl mx-auto p-3 grid grid-cols-1 grid-rows-[auto_1fr_auto] min-h-screen`}
+      className={`p-3 grid grid-cols-1 grid-rows-[auto_1fr_auto] h-screen bg-gray-950`}
     >
-      <main className="relative">
-        <DecorativeImage />
-        {children}
-      </main>
+      <main className="w-full h-full max-w-screen-xl mx-auto">{children}</main>
     </div>
   );
 }
 
 export const metadata: Metadata = {
-  title: `🔏 ورود یا ثبت نام`,
+  title: `🔏 Login Page`,
   description:
-    "ورود یا ثبت‌نام در آی‌گرافیکال به شما امکان دسترسی به دوره‌ها، ذخیره پیشرفت، دریافت گواهی و ارتباط مستقیم با مدرسین را می‌دهد.",
+    "Login to your account to access exclusive features and personalized content on our platform. Enter your credentials below to get started.",
 };
