@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import MobileNavbar from "@/components/MobileNavbar";
 import NavBar from "@/components/NavBar";
 import SquarePattern from "@/components/SquarePattern";
-import DecorativeImage from "@ezlegin/ui/components/DecorativeImage";
 import NotifBar from "@ezlegin/ui/components/NotifBar";
 
 export default async function HomeLayout({
@@ -21,15 +20,14 @@ export default async function HomeLayout({
           <NotifBar />
           <NavBar />
         </div>
-        <main className="relative">
-          <DecorativeImage />
-          <div className="absolute -right-40 -top-72 h-[800px] w-[800px] bg-blue-950/70 rounded-full blur-[100px] " />
-          <div className="absolute -right-16 -top-80 h-[400px] w-[400px] bg-blue-900/80 rounded-full blur-[100px] " />
+        <main className="relative z-10">
+          <div className="absolute -right-40 -top-72 h-[800px] w-[800px] bg-blue-950/50 rounded-full blur-[100px]" />
+          <div className="absolute -right-16 -top-80 h-[400px] w-[400px] bg-blue-900/60 rounded-full blur-[100px]" />
           {children}
           <FloatingBanner />
           <MobileNavbar />
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

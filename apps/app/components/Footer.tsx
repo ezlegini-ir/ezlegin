@@ -1,25 +1,21 @@
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
-import { Button } from "@ezlegin/ui/components/ui/button";
+import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { Copyright } from "lucide-react";
 import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="mt-20">
-      <div className="flex justify-between md:items-center items-start border-b border-t py-6">
-        <div className="space-y-4">
-          <Link href={"/"}>
-            <EzleginLogoSquare />
-          </Link>
-
-          <ul className="flex flex-wrap gap-5">
+    <div className="pt-20 space-y-2">
+      <div className="flex justify-between md:items-center items-start">
+        <div className="flex justify-between w-full">
+          <ul className="flex flex-wrap gap-10">
             {menuItems.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-black text-sm">
-                  <Button className="text-slate-500" variant={"ghost"}>
-                    {item.label}
-                  </Button>
+                <Link
+                  href={item.href}
+                  className="text-muted-foreground hover:text-foreground text-sm"
+                >
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -27,38 +23,22 @@ const Footer = () => {
 
           <SocialsIcon />
         </div>
-
-        <a
-          className="w-[90px] h-[120px] rounded-sm overflow-hidden bg-slate-50"
-          referrerPolicy="origin"
-          target="_blank"
-          href="https://trustseal.enamad.ir/?id=214895&Code=1Wgxc21JlxfhD1Coppnv"
-        >
-          <img
-            referrerPolicy="origin"
-            data-code="1Wgxc21JlxfhD1Coppnv"
-            src="https://trustseal.enamad.ir/logo.aspx?id=214895&Code=1Wgxc21JlxfhD1Coppnv"
-            alt="e-namad"
-            className="cursor-pointer"
-          />
-        </a>
       </div>
 
-      <div className="text-xs md:text-sm md:flex-row flex-col items-center gap-1 text-gray-500 pt-3  flex justify-between">
+      <Separator />
+
+      <div className="text-xs md:flex-row flex-col items-center gap-1 text-muted-foreground flex justify-between">
         <p>
-          مطالعه{" "}
-          <Link
-            href={"/terms-and-conditions"}
-            className="underline text-primary"
-          >
-            قوانین و حریم شخصی
+          Read{" "}
+          <Link href={"/terms-and-conditions"} className="underline">
+            Terms and Privacy Policy
           </Link>{" "}
-          آی‌گرافیکال
+          of Ezlegin.com
         </p>
 
-        <p className="flex gap-2">
+        <p className="flex items-center gap-2">
           <Copyright size={18} />
-          تمامی حقوق برای شرکت آی‌گرافیکال محفوظ می باشد!
+          All rights reserved for Ezlegin.com
         </p>
       </div>
     </div>
@@ -66,10 +46,10 @@ const Footer = () => {
 };
 
 const menuItems = [
-  { label: "صفحه اصلی", href: "/" },
-  { label: "تماس با ما", href: "/contact" },
-  { label: "سوالات متداول", href: "/faq" },
-  { label: "مدرسین", href: "/tutors" },
+  { label: "Home", href: "/" },
+  { label: "Contact", href: "/contact" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Privacy Policy", href: "/terms-and-conditions" },
 ];
 
 export default Footer;

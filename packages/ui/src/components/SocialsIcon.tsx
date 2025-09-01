@@ -1,26 +1,23 @@
-import { Instagram, Send, Youtube } from "lucide-react";
+import { Youtube } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 const SocialsIcon = () => {
   return (
-    <ul className="flex gap-3 items-center text-gray-400">
-      {socials.map((social) => (
-        <li key={social.href}>
-          <Link href={social.href}>{social.icon}</Link>
-        </li>
-      ))}
-    </ul>
+    <div className="flex items-center gap-3">
+      <p className="text-muted-foreground text-xs">Join Us:</p>
+      <ul className="flex gap-3 items-center text-muted-foreground">
+        {socials.map((social) => (
+          <li key={social.href}>
+            <Link href={social.href}>{social.icon}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
 const socials = [
-  {
-    href: "https://instagram.com/igraphical.ir",
-    icon: <Instagram size={20} />,
-  },
-  { href: "https://youtube.com/c/@igraphical", icon: <Youtube size={23} /> },
-  { href: "https://t.me/igraphical", icon: <Send size={20} /> },
+  { href: "https://youtube.com/@ezlegin", icon: <Youtube size={23} /> },
 ];
 
 export default SocialsIcon;
