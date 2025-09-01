@@ -4,7 +4,7 @@
 @tailwind utilities;
 @config "../tailwind.config.ts"
 
-
+@custom-variant dark (&:is(.dark *));
 
 @layer base {
   * {
@@ -123,9 +123,6 @@
   }
   p {
     line-height: 1.8 !important;
-  }
-  a {
-    @apply hover:text-blue-700;
   }
 
   .bg-gold {

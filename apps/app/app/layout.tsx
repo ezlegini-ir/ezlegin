@@ -1,7 +1,7 @@
 import "@ezlegin/ui/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./fonts.css";
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`antialiased custom-scrollbar ${inter.variable}`}
+      className={`antialiased custom-scrollbar dark ${inter.variable}`}
     >
       <GoogleAnalytics gaId={process.env.GA_MEASUREMENT_ID!} />
       <body>

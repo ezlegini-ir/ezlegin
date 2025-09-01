@@ -1,10 +1,10 @@
 import Avatar from "@ezlegin/ui/components/Avatar";
 import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { ShoppingCart, User } from "lucide-react";
+import { User } from "lucide-react";
 import Link from "next/link";
-import { NavbarProps } from "./NavBar";
 import { usePathname } from "next/navigation";
+import { NavbarProps } from "./NavBar";
 
 const SmallNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
   const pathName = usePathname();
@@ -18,20 +18,11 @@ const SmallNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
         </Link>
 
         <div className="flex gap-2 text-gray-500">
-          <Link href={"/cart"} className="relative">
-            <Button variant={"outline"} size={"icon"}>
-              <ShoppingCart className="scale-125" />
-            </Button>
-            {isThereItemsInCart && (
-              <div className="h-2.5 animate-pulse w-2.5 rounded-full bg-red-500 z-10 absolute top-0 right-0 m-1" />
-            )}
-          </Link>
-
           {user ? (
             <Link href={"/panel"}>
               <Button variant={"outline"}>
-                <Avatar src={user.image?.url} size={25} />
-                {user.fullName}
+                <Avatar src={user.image} size={25} />
+                {user.name}
               </Button>
             </Link>
           ) : (

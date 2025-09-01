@@ -33,7 +33,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="w-8/12 bg-background rounded-xl flex items-center justify-center">
+      <div className="w-8/12 bg-background rounded-xl flex items-center justify-center border">
         <LoginForm />
       </div>
     </div>

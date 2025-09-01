@@ -27,6 +27,7 @@ export const purse = "/purse.png";
 export const wallet = "/wallet.png";
 export const cart = "/cart.svg";
 export const googleLogo = "/google-logo.svg";
+export const squarePattern = "/square-pattern.svg";
 
 // VIDEOS
 export const video = "/video.mp4";
