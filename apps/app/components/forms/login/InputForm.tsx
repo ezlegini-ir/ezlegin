@@ -63,7 +63,7 @@ const InputForm = ({
   };
 
   return (
-    <div className="space-y-6 ">
+    <div className="space-y-8">
       <div className="text-center space-y-1">
         <CardTitle>
           <h3 className="font-medium">Welcome back to Ezlegin!</h3>
@@ -88,9 +88,23 @@ const InputForm = ({
             name="phoneOrEmail"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input dir="ltr" className="en-digits" {...field} />
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phoneOrEmail"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,17 +117,27 @@ const InputForm = ({
             type="submit"
           >
             {<Loader loading={loading} />}
-            Continue
+            Sign In
           </Button>
 
-          <Button
-            variant={"secondary"}
-            onClick={() => router.back()}
-            className="w-full"
-            type="button"
-          >
-            Return
-          </Button>
+          <div className="flex gap-3">
+            <Button
+              variant={"outline"}
+              onClick={() => router.back()}
+              className="w-full"
+              type="button"
+            >
+              Create Account
+            </Button>
+            <Button
+              variant={"ghost"}
+              onClick={() => router.back()}
+              className="w-full"
+              type="button"
+            >
+              Forgot Password?
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

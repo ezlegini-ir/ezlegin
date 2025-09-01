@@ -5,15 +5,22 @@ interface Props {
   height?: number;
   inputProps?: any;
   className?: string;
+  darkMode?: boolean;
 }
 
-const IgraphLogo = ({ inputProps, className, width, height }: Props) => {
+const EzleginLogo = ({
+  inputProps,
+  className,
+  width,
+  height,
+  darkMode,
+}: Props) => {
   return (
     <Image
-      src={"/igraph-logo.svg"}
-      alt={"iGraph"}
+      src={darkMode ? "/ezlegin-logo-dark.svg" : "/ezlegin-logo-light.svg"}
+      alt={"Ezlegin!"}
       width={width || 142}
-      height={height || 44}
+      height={height || 30}
       draggable={false}
       {...inputProps}
       className={className}
@@ -21,4 +28,4 @@ const IgraphLogo = ({ inputProps, className, width, height }: Props) => {
   );
 };
 
-export default IgraphLogo;
+export default EzleginLogo;

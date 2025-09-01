@@ -1,5 +1,5 @@
 import Link from "next/link";
-import IgraphLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
 
 const SimpleFooter = () => {
@@ -7,7 +7,7 @@ const SimpleFooter = () => {
     <div>
       <div className="py-3 border-b border-t flex justify-between items-center">
         <Link href={"/"}>
-          <IgraphLogoSquare size={40} />
+          <EzleginLogoSquare size={40} />
         </Link>
 
         <SocialsIcon />

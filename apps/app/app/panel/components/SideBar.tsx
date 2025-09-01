@@ -3,7 +3,7 @@
 import { loginPageRoute } from "@/middleware";
 import { Image, User } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import EzleginLogo from "@ezlegin/ui/components/IgraphLogo";
 import {
   Sidebar,
   SidebarContent,
@@ -48,7 +48,7 @@ export function SideBar({ user }: Props) {
     >
       <SidebarHeader className="p-4 space-y-8">
         <Link href={"/"}>
-          <IgraphLogo />
+          <EzleginLogo />
         </Link>
 
         <div className="flex justify-between items-center">

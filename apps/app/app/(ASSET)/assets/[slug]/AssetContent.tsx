@@ -5,7 +5,7 @@ import LoginForm from "@/components/forms/login/LoginForm";
 import { getSessionUser } from "@/data/user";
 import { placeHolder } from "@/public";
 import { Asset, Image as ImageType } from "@ezlegin/database";
-import IgraphLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
@@ -71,7 +71,7 @@ const AssetContent = ({ asset }: Props) => {
     <div className="flex flex-col gap-10 items-center">
       <div className="flex justify-between items-center gap-4 flex-wrap w-full">
         <div className="flex gap-3 items-center">
-          <IgraphLogoSquare />
+          <EzleginLogoSquare />
           <div>
             <h1 className="text-xl">{asset.title}</h1>
             <span className="text-sm text-muted-foreground"> آی گرافیکال</span>

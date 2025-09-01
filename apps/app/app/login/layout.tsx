@@ -6,9 +6,7 @@ export default function PanelLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={`p-3 grid grid-cols-1 grid-rows-[auto_1fr_auto] h-screen bg-gray-950`}
-    >
+    <div className={`p-3 h-screen bg-gray-950`}>
       <main className="w-full h-full max-w-screen-xl mx-auto">{children}</main>
     </div>
   );

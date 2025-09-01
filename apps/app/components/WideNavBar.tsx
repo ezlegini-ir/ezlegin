@@ -1,4 +1,4 @@
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import EzleginLogo from "@ezlegin/ui/components/IgraphLogo";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import UserBar from "@ezlegin/ui/components/UserBar";
 import { ShoppingCart } from "lucide-react";
@@ -9,7 +9,7 @@ const WideNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
   return (
     <div className="flex justify-between items-center">
       <Link href={"/"}>
-        <IgraphLogo width={142} />
+        <EzleginLogo width={142} />
       </Link>
       <ul className="flex gap-14 text-gray-700">
         {menuItems.map((item, index) => (

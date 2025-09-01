@@ -1,5 +1,5 @@
 import Avatar from "@ezlegin/ui/components/Avatar";
-import IgraphLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const SmallNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
     <div className="px-2">
       <div className="flex justify-between">
         <Link href={"/"}>
-          <IgraphLogoSquare size={48} />
+          <EzleginLogoSquare size={48} />
         </Link>
 
         <div className="flex gap-2 text-gray-500">

@@ -1,6 +1,6 @@
 import Slider from "@/components/Slider";
 import { database } from "@ezlegin/database";
-import IgraphLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Brush, MousePointer2, Pipette, Type } from "lucide-react";
@@ -34,7 +34,7 @@ const LandingPage = async () => {
         </div>
 
         <div className="text-center flex flex-col gap-5 items-center sm:pt-28  z-10">
-          <IgraphLogoSquare size={90} />
+          <EzleginLogoSquare size={90} />
           <h1 className=" md:mt-16 text-4xl leading-[60px] md:leading-none">
             آی‌گرافیکال: جایی که{" "}
             <span className="bg-primary text-white px-1 ">خلاقیت</span> جان

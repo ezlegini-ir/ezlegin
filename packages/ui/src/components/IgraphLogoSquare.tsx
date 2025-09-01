@@ -5,10 +5,10 @@ interface Props {
   inputProps?: any;
 }
 
-const IgraphLogoSquare = ({ size, inputProps }: Props) => {
+const EzleginLogoSquare = ({ size, inputProps }: Props) => {
   return (
     <Image
-      src={"/igraph-logo-card.svg"}
+      src={"/ezlegin-logo-square.svg"}
       alt={"iGraphical"}
       width={size || 50}
       height={size || 50}
@@ -21,4 +21,4 @@ const IgraphLogoSquare = ({ size, inputProps }: Props) => {
   );
 };
 
-export default IgraphLogoSquare;
+export default EzleginLogoSquare;

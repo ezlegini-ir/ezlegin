@@ -1,4 +1,4 @@
-import IgraphLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Copyright } from "lucide-react";
@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="flex justify-between md:items-center items-start border-b border-t py-6">
         <div className="space-y-4">
           <Link href={"/"}>
-            <IgraphLogoSquare />
+            <EzleginLogoSquare />
           </Link>
 
           <ul className="flex flex-wrap gap-5">
