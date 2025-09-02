@@ -27,6 +27,7 @@ export const wallet = "/wallet.png";
 export const cart = "/cart.svg";
 export const googleLogo = "/google-logo.svg";
 export const squarePattern = "/square-pattern.svg";
+export const alirezaEzlegini = "/alireza-ezlegini.png";
 
 // VIDEOS
 export const video = "/video.mp4";
