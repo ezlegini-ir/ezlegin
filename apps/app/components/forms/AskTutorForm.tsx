@@ -75,12 +75,12 @@ const AskTutorForm = ({
       const maxSize = 5 * 1024 * 1024;
 
       if (!allowedFormats.includes(file.type)) {
-        toast.error("این فرمت مجاز نمی‌باشد!");
+        toast.error("This format is not allowed!");
         return;
       }
 
       if (file.size > maxSize) {
-        toast.error("حداکثر حجم فایل 5 مگابایت می‌باشد!");
+        toast.error("Maximum file size is 5 MB!");
         return;
       }
 
@@ -119,11 +119,11 @@ const AskTutorForm = ({
   const statuses = status ? (
     status === "PENDING" ? (
       <Badge className="text-[10px]" variant={"orange"}>
-        در انتظار پاسخ
+        Waiting for response
       </Badge>
     ) : (
       <Badge className="text-[10px]" variant={"green"}>
-        پاسخ داده شده
+        Answered
       </Badge>
     )
   ) : null;
@@ -131,13 +131,13 @@ const AskTutorForm = ({
   return (
     <div className="card space-y-3">
       <div className="flex justify-between items-center w-full">
-        <p className="font-semibold text-base">پرسش از مدرس</p>
+        <p className="font-semibold text-base">Ask the Tutor</p>
         <div className="flex items-center gap-3">
           <Button
             disabled={!askTutorId}
             onClick={() => {
               router.refresh();
-              toast.success("پیام ها به روز شدند.");
+              toast.success("Messages updated.");
             }}
             variant="link"
             size="icon"
@@ -157,7 +157,7 @@ const AskTutorForm = ({
               <FormItem>
                 <FormControl>
                   <Textarea
-                    placeholder="سوال خود را در یک پیام بنویسید"
+                    placeholder="Write your question in one message"
                     {...field}
                     className="h-[100px]"
                   />
@@ -202,10 +202,10 @@ const AskTutorForm = ({
                         />
                         <p className="flex flex-col">
                           <span className="text-xs text-gray-400 font-normal">
-                            حداکثر 5 مگابایت
+                            Maximum 5 MB
                           </span>
                           <span className="text-xs text-gray-400 font-normal">
-                            عکس یا .zip
+                            Image or .zip
                           </span>
                         </p>
                       </div>
@@ -232,7 +232,7 @@ const AskTutorForm = ({
               type="submit"
             >
               {<Loader loading={loading} />}
-              ارسال پیام
+              Send Message
             </Button>
           </div>
         </form>

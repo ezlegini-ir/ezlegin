@@ -46,7 +46,7 @@ const LastCourses = async () => {
         </Link>
       </div>
 
-      <Tabs defaultValue="all" className="space-y-6" dir="rtl">
+      <Tabs defaultValue="all" className="space-y-6">
         <TabsList className="gap-2 bg-transparent flex-wrap h-full">
           <TabsTrigger
             className="rounded-full px-5 data-[state=active]:bg-primary data-[state=active]:text-white"

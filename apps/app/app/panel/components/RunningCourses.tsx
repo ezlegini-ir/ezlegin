@@ -28,14 +28,12 @@ interface Props {
 const RunningCourses = ({ runningCourses, showBtn }: Props) => {
   return (
     <CardBox
-      title="دوره های در جریان"
-      btn={
-        showBtn ? { href: "/panel/courses", title: "مشاهده همه" } : undefined
-      }
+      title="Running Courses"
+      btn={showBtn ? { href: "/panel/courses", title: "View All" } : undefined}
     >
       {runningCourses.length === 0 ? (
         <div className="py-20 text-gray-500 flex justify-center text-sm">
-          شما دوره در جریانی ندارید.
+          You Have No Running Courses.
         </div>
       ) : (
         runningCourses.map((course, index) => {

@@ -10,12 +10,12 @@ const badgeVariants = cva(
         default:
           "border-transparent bg-primary text-primary-foreground  hover:bg-primary/80",
         green:
-          "border-[1px] border-green-600 bg-green-100 text-green-800 hover:bg-green-200",
-        red: "border-[1px] border-red-600 bg-red-100 text-red-800 hover:bg-red-200",
-        blue: "border-[1px] border-blue-400 bg-blue-50 text-blue-800 hover:bg-blue-200",
-        gray: "border-[1px] border-slate-400 bg-slate-50 text-gray-800 hover:bg-gray-200",
+          "border-[1px] border-green-500/50 bg-green-500/20 text-green-500 hover:bg-green-500/30",
+        red: "border-[1px] border-red-500/50 bg-red-500/20 text-red-500 hover:bg-red-500/30",
+        blue: "border-[1px] border-blue-500/50 bg-blue-500/20 text-blue-500 hover:bg-blue-500/30",
+        gray: "border-[1px] border-slate-500/50 bg-slate-500/20 text-gray-400 hover:bg-gray-500/30",
         orange:
-          "border-[1px] border-orange-400 bg-orange-50 text-orange-800 hover:bg-orange-100",
+          "border-[1px] border-orange-500/50 bg-orange-500/20 text-orange-500 hover:bg-orange-500/30",
 
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",

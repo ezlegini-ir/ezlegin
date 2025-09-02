@@ -36,9 +36,7 @@ const renderRows = (contact: ContactType) => {
       <TableCell>{contact.fullName}</TableCell>
       <TableCell className="hidden lg:table-cell">{contact.email}</TableCell>
       <TableCell className="hidden xl:table-cell">{contact.phone}</TableCell>
-      <TableCell className="text-center" dir="rtl">
-        {contact.subject}
-      </TableCell>
+      <TableCell className="text-center">{contact.subject}</TableCell>
       <TableCell className="text-center hidden xl:table-cell">
         {formatMiladiDate(contact.createdAt)}
       </TableCell>

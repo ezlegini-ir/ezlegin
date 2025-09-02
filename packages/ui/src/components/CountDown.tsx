@@ -33,9 +33,7 @@ const CountdownTimer = ({ minute, progressBar = false }: Props) => {
       {secondsLeft > 0 ? (
         <div className="flex justify-between items-center">
           <span>زمان باقی مانده</span>
-          <span dir="rtl" className="text-primary">
-            {secondsLeft} ثانیه
-          </span>
+          <span className="text-primary">{secondsLeft} ثانیه</span>
         </div>
       ) : (
         <Badge variant={"red"} className="font-medium p-1.5">

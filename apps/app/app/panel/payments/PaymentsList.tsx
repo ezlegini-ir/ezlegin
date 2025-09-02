@@ -1,3 +1,11 @@
+import { placeHolder } from "@/public";
+import {
+  Course,
+  Enrollment,
+  Image as ImageType,
+  Payment,
+} from "@ezlegin/database";
+import CardBox from "@ezlegin/ui/components/CardBox";
 import Table from "@ezlegin/ui/components/Table";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 import {
@@ -7,17 +15,9 @@ import {
   DialogTrigger,
 } from "@ezlegin/ui/components/ui/dialog";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
-import {
-  Course,
-  Enrollment,
-  Image as ImageType,
-  Payment,
-} from "@ezlegin/database";
+import { formatDate } from "date-fns";
 import { Eye } from "lucide-react";
-import CardBox from "@ezlegin/ui/components/CardBox";
 import Image from "next/image";
-import { placeHolder } from "@/public";
-import { formatJalaliDate } from "@ezlegin/utils";
 
 interface PaymentType extends Payment {
   enrollment: (Enrollment & { course: Course & { image: ImageType | null } })[];
@@ -40,28 +40,28 @@ const PaymentsList = ({ payments }: Props) => {
         className="w-[90px] text-nowrap flex justify-center font-medium"
         variant={"green"}
       >
-        موفق
+        Successful
       </Badge>
     ) : pending ? (
       <Badge
         className="w-[90px] text-nowrap flex justify-center font-medium"
         variant={"orange"}
       >
-        در انتظار پرداخت
+        Awaiting Payment
       </Badge>
     ) : canceled ? (
       <Badge
         className="w-[90px] text-nowrap flex justify-center font-medium"
         variant={"gray"}
       >
-        لغو شده
+        Canceled
       </Badge>
     ) : (
       <Badge
         className="w-[90px] text-nowrap flex justify-center font-medium"
         variant={"red"}
       >
-        ناموفق
+        Unsuccessful
       </Badge>
     );
 
@@ -69,29 +69,31 @@ const PaymentsList = ({ payments }: Props) => {
       <TableRow key={payment.id}>
         <TableCell>{payment.id}</TableCell>
         <TableCell>
-          {formatJalaliDate(payment.createdAt, { withTime: true })}
+          {formatDate(payment.createdAt, "yyyy/MM/dd - HH:mm:ss")}
         </TableCell>
         <TableCell>{status}</TableCell>
-        <TableCell>{payment.discountAmount?.toLocaleString("en-US")}</TableCell>
-        <TableCell className="py-4">
-          {payment.total.toLocaleString("en-US")}
+        <TableCell className="text-center">
+          ${payment.discountAmount?.toLocaleString("en-US")}
+        </TableCell>
+        <TableCell className="py-4 text-center">
+          ${payment.total.toLocaleString("en-US")}
         </TableCell>
         <TableCell className="text-left py-2">
           <Dialog>
-            <DialogTrigger>
-              <Eye
-                size={33}
-                className="text-gray-500 group-hover:text-primary scale-90 bg-slate-100 p-2 rounded-full"
-              />
+            <DialogTrigger className="w-full">
+              <div className="flex justify-end">
+                <Eye
+                  size={33}
+                  className="text-foreground hover:text-primary scale-90 bg-muted p-2 rounded-full"
+                />
+              </div>
             </DialogTrigger>
             <DialogContent>
-              <DialogTitle className="text-base">
-                دوره های خریداری شده
-              </DialogTitle>
+              <DialogTitle className="text-base">Purchased Courses</DialogTitle>
               {courses.map((course, index) => (
                 <div
                   key={index}
-                  className="bg-slate-100 p-2 rounded-sm flex items-center gap-2 mb-3"
+                  className="bg-muted p-2 rounded-sm flex items-center gap-2 mb-3"
                 >
                   <Image
                     alt=""
@@ -111,24 +113,24 @@ const PaymentsList = ({ payments }: Props) => {
   };
 
   return (
-    <CardBox title="پرداخت ها" className="min-h-[350px]">
+    <CardBox title="Payments" className="min-h-[350px]">
       <Table
         columns={columns}
         data={payments}
         renderRows={renderRows}
-        noDataMessage="شما تاکنون پرداختی نداشته اید"
+        noDataMessage="You have not made any payments yet"
       />
     </CardBox>
   );
 };
 
 const columns = [
-  { label: "شناسه پرداخت", className: "text-right" },
-  { label: "تاریخ  ایجاد", className: "text-right" },
-  { label: "وضعیت", className: "text-right" },
-  { label: "تخفیف (تومان)", className: "text-right" },
-  { label: "مبلغ (تومان)", className: "text-right" },
-  { label: "دوره ها", className: "text-left" },
+  { label: "Payment ID", className: "" },
+  { label: "Creation Date", className: "" },
+  { label: "Status", className: "" },
+  { label: "Discount", className: "text-center" },
+  { label: "Amount", className: "text-center" },
+  { label: "Courses", className: "text-right" },
 ];
 
 export default PaymentsList;

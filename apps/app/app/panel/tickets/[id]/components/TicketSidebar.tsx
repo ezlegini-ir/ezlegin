@@ -1,11 +1,8 @@
 "use client";
 
+import { closeTicket } from "@/actions/ticket";
 import CardBox from "@/app/panel/components/CardBox";
-import React from "react";
-import TicketStatus from "../../components/TicketStatus";
-import { Separator } from "@ezlegin/ui/components/ui/separator";
-import { Button } from "@ezlegin/ui/components/ui/button";
-import Link from "next/link";
+import { Ticket, TicketDepartment } from "@ezlegin/database";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,11 +14,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@ezlegin/ui/components/ui/alert-dialog";
-import { Ticket, TicketDepartment } from "@ezlegin/database";
-import { closeTicket } from "@/actions/ticket";
-import { toast } from "sonner";
+import { Button } from "@ezlegin/ui/components/ui/button";
+import { Separator } from "@ezlegin/ui/components/ui/separator";
+import { formatMiladiDate } from "@ezlegin/utils";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { formatJalaliDate } from "@ezlegin/utils";
+import { toast } from "sonner";
+import TicketStatus from "../../components/TicketStatus";
 
 interface Props {
   ticket: Ticket;
@@ -48,43 +47,39 @@ const TicketSidebar = ({ ticket }: Props) => {
   const getDepartmentName = (department: TicketDepartment) => {
     switch (department) {
       case "COURSE":
-        return "آموزش";
+        return "Education";
       case "FINANCE":
-        return "مالی";
+        return "Finance";
       case "SUGGEST":
-        return "پیشنهادات و انتقادات";
+        return "Suggestions and Criticisms";
       case "TECHNICAL":
-        return "فنی";
+        return "Technical";
     }
   };
 
   return (
-    <CardBox title="خلاصه">
+    <CardBox title="Summary">
       <div className="space-y-2">
-        <div className="text-gray-500 text-sm">وضعیت</div>
-        <TicketStatus wide type={ticket.status} className="p-3" />
+        <div className="text-foreground text-sm">Status</div>
+        <TicketStatus wide type={ticket.status} className="p-3 text-sm" />
         <Separator />
       </div>
 
       <div className="space-y-2">
-        <div className="text-gray-500 text-sm">موضوع</div>
+        <div className="text-foreground text-sm">Subject</div>
         <div>{ticket.subject}</div>
         <Separator />
       </div>
 
       <div className="space-y-2">
-        <div className="">واحد</div>
+        <div className="text-foreground text-sm">Department</div>
         <div>{getDepartmentName(ticket.department)}</div>
         <Separator />
       </div>
 
       <div className="space-y-2">
-        <div className="text-gray-500 text-sm">زمان ایجاد</div>
-        <div>
-          {formatJalaliDate(ticket.createdAt, {
-            withTime: true,
-          })}
-        </div>
+        <div className="text-foreground text-sm">Created At</div>
+        <div>{formatMiladiDate(ticket.createdAt)}</div>
         <Separator />
       </div>
 
@@ -93,21 +88,21 @@ const TicketSidebar = ({ ticket }: Props) => {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant={"lightBlue"} className="w-full">
-                ممنون، مشکلم حل شد.
+                Thanks, my problem is solved.
               </Button>
             </AlertDialogTrigger>
 
-            <AlertDialogContent dir="rtl">
+            <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>مطمئن هستید؟</AlertDialogTitle>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  آیا مطمئن هستید که این تیکت را به عنوان حل‌شده می‌بندید؟
+                  Are you sure you want to close this ticket as solved?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter className="gap-0 sm:gap-2">
-                <AlertDialogCancel>بازگشت</AlertDialogCancel>
+                <AlertDialogCancel>Back</AlertDialogCancel>
                 <AlertDialogAction onClick={onCloseTicket}>
-                  بله، بستن تیکت
+                  Yes, close the ticket
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -116,7 +111,7 @@ const TicketSidebar = ({ ticket }: Props) => {
         <div>
           <Link href={"/panel/tickets"}>
             <Button className="w-full" variant={"secondary"}>
-              بازگشت
+              Back
             </Button>
           </Link>
         </div>

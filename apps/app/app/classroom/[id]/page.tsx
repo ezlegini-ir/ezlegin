@@ -28,9 +28,7 @@ const getClassroom = cache(async (id: string) => {
     include: {
       askTutor: {
         include: {
-          user: {
-            include: { image: true },
-          },
+          user: true,
           tutor: {
             include: { image: true },
           },
@@ -85,28 +83,29 @@ const page = async ({ params }: Props) => {
     <div>
       <div className="space-y-3 max-w-screen-xl mx-auto">
         <BreadCrumb
-          finalStep="کلاس درس"
-          steps={[{ label: "دوره ها", href: "/panel/courses" }]}
+          finalStep="Classroom"
+          steps={[{ label: "Courses", href: "/panel/courses" }]}
         />
         <ClassroomContent classroom={classroom} />
       </div>
 
-      <Dialog open={!user.nationalId}>
-        <DialogTrigger dir="rtl" />
+      <Dialog open={!user.emailVerified}>
+        <DialogTrigger />
 
-        <DialogContent dir="rtl">
+        <DialogContent>
           <DialogHeader className="space-y-3">
             <DialogTitle className="text-center flex flex-col items-center gap-3">
               <OctagonMinus className="text-destructive" size={60} />
-              لطفا ابتدا کد ملی خود را ذخیره کنید.
+              Please verify your email first.
             </DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground text-center">
-              برای صدور مدرک پایان دوره، ثبت کد ملی ضروری است. لطفاً با مراجعه
-              به بخش پروفایل، کد ملی خود را وارد و ذخیره کنید.
+              Email verification is required for issuing the course completion
+              certificate. Please go to your profile, enter your email, and
+              verify it.
             </DialogDescription>
 
             <Link href={"/panel/profile"}>
-              <Button className="w-full">پروفایل من</Button>
+              <Button className="w-full">My Profile</Button>
             </Link>
           </DialogHeader>
         </DialogContent>

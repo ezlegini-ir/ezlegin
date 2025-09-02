@@ -1,5 +1,5 @@
 import Avatar from "@ezlegin/ui/components/Avatar";
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { User } from "lucide-react";
 import Link from "next/link";

@@ -1,5 +1,5 @@
 import LoginForm from "@/components/forms/login/LoginForm";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import IgraphLogo from "@ezlegin/ui/components/EzleginLogo";
 import Link from "next/link";
 
 const page = async () => {

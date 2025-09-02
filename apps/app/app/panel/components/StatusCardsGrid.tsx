@@ -30,9 +30,9 @@ const StatusCardsGrid = async () => {
 
   const statusData = [
     {
-      title: "درصد پیشرفت",
-      trigger: `${completedCourses} از ${enrolledCourses} دوره`,
-      subTitle: `${leftToComplete} دوره باقی‌مانده`,
+      title: "Progress",
+      trigger: `${completedCourses} / ${enrolledCourses} Courses`,
+      subTitle: `${leftToComplete} Remaining Courses`,
       chart: (
         <RadialProgress
           count={completedCourses}
@@ -42,9 +42,9 @@ const StatusCardsGrid = async () => {
       ),
     },
     {
-      title: "مدرک صادر شده",
-      trigger: `${submittedCertificates} مدرک`,
-      subTitle: ` در بین ${enrolledCourses} دوره`,
+      title: "Certifications",
+      trigger: `${submittedCertificates} Certified`,
+      subTitle: `Out of ${enrolledCourses} Courses`,
 
       chart: (
         <RadialProgress
@@ -55,9 +55,9 @@ const StatusCardsGrid = async () => {
       ),
     },
     {
-      title: "تیکت حل شده",
-      trigger: `${solvedTickets} از ${totalTickets}`,
-      subTitle: `${pendingTickes} تیکت در انتظار`,
+      title: "Solved Tickets",
+      trigger: `${solvedTickets} From ${totalTickets}`,
+      subTitle: `${pendingTickes} Tickets Pending`,
       chart: (
         <RadialProgress
           count={solvedTickets}

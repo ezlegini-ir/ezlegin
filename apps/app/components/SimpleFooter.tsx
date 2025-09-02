@@ -1,5 +1,5 @@
 import Link from "next/link";
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
 
 const SimpleFooter = () => {

@@ -295,10 +295,7 @@ const CouponForm = ({ type, coupon }: Props) => {
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent
-                    className="w-auto p-0 en-digits"
-                    align="start"
-                  >
+                  <PopoverContent className="w-auto p-0 " align="start">
                     <Calendar
                       mode="range"
                       selected={field.value as DateRange}
@@ -326,7 +323,7 @@ const CouponForm = ({ type, coupon }: Props) => {
               <FormItem>
                 <FormLabel>Summery</FormLabel>
                 <FormControl>
-                  <Textarea dir="rtl" {...field} />
+                  <Textarea {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

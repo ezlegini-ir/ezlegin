@@ -115,7 +115,7 @@ const AssetForm = ({ type, asset }: Props) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input dir="rtl" className="text-left" {...field} />
+                  <Input className="text-left" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -130,7 +130,7 @@ const AssetForm = ({ type, asset }: Props) => {
                 <FormItem>
                   <FormLabel>Url</FormLabel>
                   <FormControl>
-                    <Input dir="rtl" className="text-left" {...field} />
+                    <Input className="text-left" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -13,7 +13,7 @@ export default async function Layout({
 }) {
   await authenticateSession();
   return (
-    <div className="en-digits">
+    <div className="">
       <SidebarProvider>
         <DashboardSidebar />
 

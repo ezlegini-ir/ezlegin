@@ -1,14 +1,13 @@
+import { Ticket } from "@ezlegin/database";
 import Filter from "@ezlegin/ui/components/Filter";
+import Pagination from "@ezlegin/ui/components/Pagination";
 import Table from "@ezlegin/ui/components/Table";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
-import { Ticket } from "@ezlegin/database";
+import { formatMiladiDate, globalPageSize } from "@ezlegin/utils";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 import CardBox from "../../components/CardBox";
 import TicketStatus from "./TicketStatus";
-import Pagination from "@ezlegin/ui/components/Pagination";
-import { globalPageSize } from "@ezlegin/utils";
-import { formatJalaliDate } from "@ezlegin/utils";
 
 interface Props {
   tickets: Ticket[];
@@ -18,23 +17,23 @@ interface Props {
 const TicketsList = async ({ tickets, ticketsCount }: Props) => {
   return (
     <CardBox
-      title="تیکت ها"
-      btn={{ title: "ارسال تیکت", href: "/panel/tickets/new" }}
+      title="Tickets"
+      btn={{ title: "Submit Ticket", href: "/panel/tickets/new" }}
     >
       <div className="flex justify-between">
         <Filter
           name="time"
-          placeholder="جدید ترین"
-          options={[{ label: "قدیمی ترین", value: "oldest" }]}
+          placeholder="Newest"
+          options={[{ label: "Oldest", value: "oldest" }]}
         />
 
         <Filter
           name="status"
-          placeholder="همه وضعیت‌ها"
+          placeholder="All Statuses"
           options={[
-            { label: "در انتظار پاسخ", value: "PENDING" },
-            { label: "پاسخ داده شده", value: "REPLIED" },
-            { label: "بسته شده", value: "CLOSED" },
+            { label: "Pending", value: "PENDING" },
+            { label: "Replied", value: "REPLIED" },
+            { label: "Closed", value: "CLOSED" },
           ]}
         />
       </div>
@@ -43,7 +42,7 @@ const TicketsList = async ({ tickets, ticketsCount }: Props) => {
         <Table
           columns={columns}
           data={tickets}
-          noDataMessage="تیکتی وجود ندارد."
+          noDataMessage="No tickets available."
           renderRows={renderRows}
         />
         <Pagination pageSize={globalPageSize} totalItems={ticketsCount} />
@@ -63,7 +62,7 @@ const renderRows = (ticket: Ticket) => {
         <TicketStatus type={ticket.status} />
       </TableCell>
       <TableCell className="hidden md:table-cell text-center">
-        {formatJalaliDate(ticket.createdAt, { withTime: true })}
+        {formatMiladiDate(ticket.createdAt)}
       </TableCell>
       <TableCell className="text-left py-4 hidden lg:table-cell">
         <Link href={`/panel/tickets/${ticket.id}`} className="flex justify-end">
@@ -75,11 +74,11 @@ const renderRows = (ticket: Ticket) => {
 };
 
 const columns = [
-  { label: "شناسه", className: "w-[120px] text-right" },
-  { label: "موضوع", className: "text-right" },
-  { label: "وضعیت", className: "text-center" },
-  { label: "تاریخ", className: "w-[200px] hidden md:table-cell text-center" },
-  { label: "مشاهده", className: "text-left hidden lg:table-cell" },
+  { label: "ID", className: "w-[120px] text-left" },
+  { label: "Subject", className: "text-left" },
+  { label: "Status", className: "text-center" },
+  { label: "Date", className: "w-[200px] hidden md:table-cell text-center" },
+  { label: "View", className: "text-left hidden lg:table-cell" },
 ];
 
 export default TicketsList;

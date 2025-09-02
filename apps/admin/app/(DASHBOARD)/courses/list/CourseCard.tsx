@@ -45,7 +45,7 @@ const CourseCard = ({ course, enrollment }: Props) => {
         )}
       </div>
 
-      <div dir="rtl" className="space-y-1 flex justify-between">
+      <div className="space-y-1 flex justify-between">
         <h5>{course.title}</h5>
         <div className="flex gap-1 items-center">
           <span className="font-medium text-sm">{rating}</span>

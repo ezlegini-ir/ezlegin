@@ -9,5 +9,5 @@ const page = () => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "تیکت جدید",
+  title: "New Ticket",
 };

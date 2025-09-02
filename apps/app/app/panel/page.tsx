@@ -72,15 +72,14 @@ const page = async () => {
         <div className="card px-4 flex flex-col lg:flex-row gap-3 items-center justify-between">
           <div className="flex flex-col gap-1">
             <span className="text-primary font-medium text-sm">
-              موجودی کیف پول
+              Wallet Balance
             </span>
-            <span className="font-medium text-lg">
-              {formatPriceBy3Digits(wallet?.balance || 0)}{" "}
-              <span className="text-gray-500 text-sm">تومان</span>
+            <span className="font-medium text-xl">
+              ${formatPriceBy3Digits(wallet?.balance || 0)}
             </span>
           </div>
           <Image
-            alt="کیف پول"
+            alt="Wallet"
             src={walletPic}
             width={75}
             height={75}

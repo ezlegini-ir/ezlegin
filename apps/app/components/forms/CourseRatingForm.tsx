@@ -28,6 +28,7 @@ import {
 } from "@ezlegin/ui/components/ui/form";
 import Loader from "@ezlegin/ui/components/Loader";
 import Rating from "@ezlegin/ui/components/Rating";
+import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 interface Props {
   userId: number;
   courseId: number;
@@ -72,17 +73,18 @@ const CourseRatingForm = ({ userId, courseId }: Props) => {
       <DialogTrigger>
         <div className="bg-secondary flex gap-2 items-center text-xs p-2 px-3 rounded-sm text-nowrap">
           <Star size={15} />
-          ثبت امتیاز
+          Submit Rating
         </div>
       </DialogTrigger>
 
       <DialogContent>
         <div className="text-center">
-          <DialogTitle className="text-lg ">امتیاز شما به این دوره</DialogTitle>
+          <DialogTitle className="text-lg ">
+            Your rating for this course
+          </DialogTitle>
           <DialogDescription className="flex gap-1 items-center justify-center">
             <TriangleAlert size={17} className="text-red-400" />
-            مقادیر زیر بعدا قابل تغییر نمی باشند. لطفا با دقت اقدام به ثبت
-            نمایید
+            The values below cannot be changed later. Please submit carefully.
           </DialogDescription>
         </div>
 
@@ -103,10 +105,10 @@ const CourseRatingForm = ({ userId, courseId }: Props) => {
                 <FormItem>
                   <FormControl>
                     {rating && (
-                      <textarea
+                      <Textarea
                         {...field}
                         className="block w-full min-h-[100px] border rounded-md p-3 focus:border-blue-500 focus:ring-0.5 focus:ring-blue-500 focus:outline-none"
-                        placeholder="نظر شما درباره این دوره..."
+                        placeholder="Your opinion about this course..."
                       />
                     )}
                   </FormControl>
@@ -121,7 +123,7 @@ const CourseRatingForm = ({ userId, courseId }: Props) => {
               className="w-full"
             >
               <Loader loading={form.formState.isSubmitting} />
-              ثبت امتیاز
+              Submit Rating
             </Button>
           </form>
         </Form>

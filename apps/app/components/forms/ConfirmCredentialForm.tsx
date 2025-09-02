@@ -110,7 +110,7 @@ const ConfirmCredentialForm = ({
                     >
                       <InputOTPGroup
                         autoFocus
-                        className="w-full en-digits flex justify-center "
+                        className="w-full  flex justify-center "
                       >
                         <InputOTPSlot index={0} />
                         <InputOTPSlot index={1} />

@@ -18,9 +18,7 @@ const getTicket = cache(async (id: string) => {
         orderBy: { createdAt: "desc" },
         include: {
           attachment: true,
-          user: {
-            include: { image: true },
-          },
+          user: true,
         },
       },
     },
@@ -37,8 +35,8 @@ const page = async ({ params }: Props) => {
   return (
     <div className="space-y-3">
       <div className="md:hidden flex justify-between">
-        <Button>ممنون، مشکلم حل شد</Button>
-        <Button variant={"secondary"}>بازکشت</Button>
+        <Button>Thanks, my issue is resolved</Button>
+        <Button variant={"secondary"}>Back</Button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-8 gap-3">
@@ -66,6 +64,6 @@ export async function generateMetadata({
   if (!ticket) return {};
 
   return {
-    title: `${ticket.subject} - تیکت‌ها`,
+    title: `${ticket.subject} - Tickets`,
   };
 }

@@ -54,5 +54,5 @@ const page = async () => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "دوره‌های من",
+  title: "My Courses",
 };

@@ -17,7 +17,7 @@ const Rating = ({
   const [hover, setHover] = useState(0);
 
   return (
-    <div className="flex flex-row-reverse">
+    <div className="flex">
       {Array.from({ length: maxStars }, (_, index) => {
         const starValue = index + 1;
         return (

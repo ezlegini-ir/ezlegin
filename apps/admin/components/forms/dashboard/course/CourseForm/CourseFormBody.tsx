@@ -141,7 +141,6 @@ const CourseFormBody = ({ form, type, course }: Props) => {
                   <FormLabel>Summery</FormLabel>
                   <FormControl>
                     <Textarea
-                      dir="rtl"
                       {...field}
                       className="min-h-[150px] leading-loose"
                     />
@@ -160,7 +159,6 @@ const CourseFormBody = ({ form, type, course }: Props) => {
                 <FormLabel>Audience</FormLabel>
                 <FormControl>
                   <Textarea
-                    dir="rtl"
                     {...field}
                     className="min-h-[100px] leading-loose"
                   />
@@ -177,7 +175,6 @@ const CourseFormBody = ({ form, type, course }: Props) => {
                 <FormLabel>Course Needs</FormLabel>
                 <FormControl>
                   <Textarea
-                    dir="rtl"
                     {...field}
                     className="min-h-[100px] leading-loose"
                   />
@@ -195,7 +192,6 @@ const CourseFormBody = ({ form, type, course }: Props) => {
                   <FormLabel>Job Market</FormLabel>
                   <FormControl>
                     <Textarea
-                      dir="rtl"
                       {...field}
                       className="min-h-[100px] leading-loose"
                     />

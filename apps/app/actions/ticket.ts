@@ -60,7 +60,10 @@ export const createTicket = async (data: TicketFormType, userId: number) => {
     //* Send Sms to Admin
     await sendNewTicketCreationSms(adminData.phone);
 
-    return { success: "تیکت شما با موفقیت ارسال شد", data: newTicket };
+    return {
+      success: "Your ticket has been successfully submitted",
+      data: newTicket,
+    };
   } catch (error) {
     return { error: String(error) };
   }
@@ -130,7 +133,7 @@ export const sendTicketMessage = async (
       });
     }
 
-    return { success: "پیام شما با موفقیت ارسال شد" };
+    return { success: "Your message has been sent successfully" };
   } catch (error) {
     return { error: String(error) };
   }
@@ -153,7 +156,7 @@ export const closeTicket = async (ticketId: number) => {
       },
     });
 
-    return { success: "تیکت بسته شد. برای باز شدن مجدد پیامی ارسال کنید" };
+    return { success: "Ticket has been closed. Send a message to reopen." };
   } catch (error) {
     return { error: String(error) };
   }

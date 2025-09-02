@@ -10,6 +10,7 @@ import {
 } from "@ezlegin/database";
 import { Download } from "lucide-react";
 import Link from "next/link";
+import { formatDate } from "date-fns";
 
 interface AskTutorMessageType extends AskTutorMessages {
   attachment: File | null;
@@ -17,7 +18,7 @@ interface AskTutorMessageType extends AskTutorMessages {
 
 interface Props {
   messages: AskTutorMessageType[] | undefined;
-  user: (User & { image: ImageType | null }) | undefined;
+  user: User | undefined;
   tutor: (Tutor & { image: ImageType | null }) | undefined;
 }
 
@@ -30,7 +31,7 @@ const AskTutorChat = ({ messages, tutor, user }: Props) => {
         <div key={index} className="space-y-3 text-sm">
           <div
             className={`card group relative ${
-              message?.senderType === "USER" && "bg-slate-100"
+              message?.senderType === "USER" && "bg-muted"
             }`}
           >
             <div className="w-full space-y-3">
@@ -38,20 +39,17 @@ const AskTutorChat = ({ messages, tutor, user }: Props) => {
                 {message?.senderType === "TUTOR" ? (
                   <Avatar src={tutor?.image?.url} />
                 ) : (
-                  <Avatar src={user?.image?.url} />
+                  <Avatar src={user?.image} />
                 )}
 
                 <div className="flex flex-col">
                   <span>
                     {message?.senderType === "TUTOR"
                       ? tutor?.displayName
-                      : user?.fullName}
+                      : user?.name}
                   </span>
-                  <span className="text-xs text-slate-400">
-                    {formatJalaliDate(message?.createdAt, {
-                      useMonthName: false,
-                      withTime: true,
-                    })}
+                  <span className="text-[10px] text-slate-400">
+                    {formatDate(message?.createdAt, "yyyy/MM/dd - HH:mm")}
                   </span>
                 </div>
               </div>
@@ -60,11 +58,11 @@ const AskTutorChat = ({ messages, tutor, user }: Props) => {
 
             {message?.attachment && (
               <div className="space-y-2">
-                <hr className="border-dashed border-slate-300" />
+                <hr className="border-dashed border-muted-foreground/50" />
                 <Link
                   target="_blank"
                   href={message.attachment.url}
-                  className="flex justify-end gap-2 items-center text-nowrap text-xs text-gray-500"
+                  className="flex justify-end gap-2 items-center text-nowrap text-xs text-muted-foreground"
                 >
                   <span title={message.attachment.fileName}>
                     {truncateFileName(message.attachment.fileName, 30)}

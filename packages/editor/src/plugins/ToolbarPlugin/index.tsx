@@ -54,7 +54,7 @@ import {
 } from "lexical";
 import { Dispatch, useCallback, useEffect, useState } from "react";
 
-import { igraphLogo } from "@/public";
+import { ezleginLogo } from "@/public";
 import {
   blockTypeToBlockName,
   useToolbarState,
@@ -851,7 +851,7 @@ export default function ToolbarPlugin({
               onClick={() =>
                 insertGifOnClick({
                   altText: "Cat typing on a laptop",
-                  src: igraphLogo,
+                  src: ezleginLogo,
                 })
               }
               className="item"

@@ -27,10 +27,7 @@ const renderRows = (data: { page: string; href: string; views: number }) => {
   return (
     <TableRow className="text-xs text-gray-500 odd:bg-slate-50" key={data.href}>
       <TableCell>
-        <Link
-          dir="rtl"
-          href={`${process.env.NEXT_PUBLIC_BASE_URL}/${data.href}`}
-        >
+        <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/${data.href}`}>
           {data.page.length > 45 ? data.page.slice(0, 45) + "...." : data.page}
         </Link>{" "}
       </TableCell>

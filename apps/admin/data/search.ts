@@ -5,14 +5,7 @@ import { database, Prisma } from "@ezlegin/database";
 export const searchUsers = async (query: string) => {
   const where: Prisma.UserWhereInput = query
     ? {
-        OR: [
-          { email: { contains: query } },
-          { phone: { contains: query } },
-          { firstName: { contains: query } },
-          { lastName: { contains: query } },
-          { fullName: { contains: query } },
-          { nationalId: { contains: query } },
-        ],
+        OR: [{ email: { contains: query } }, { name: { contains: query } }],
       }
     : {};
 

@@ -27,11 +27,13 @@ interface Props {
 
 const UserBar = ({ user }: Props) => {
   return (
-    <DropdownMenu dir="rtl">
-      <DropdownMenuTrigger asChild className="min-w-[175px]">
-        <Button variant={"outline"}>
-          <Avatar src={user?.image} size={26} />
-          {user?.name}
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild className="min-w-[175px] px-2">
+        <Button variant={"outline"} className="justify-between">
+          <div className="flex gap-2 items-center">
+            <Avatar src={user?.image} size={26} />
+            {user?.name}
+          </div>
           <ChevronDown className="text-slate-500" />
         </Button>
       </DropdownMenuTrigger>
@@ -57,7 +59,7 @@ const UserBar = ({ user }: Props) => {
           className="text-slate-500 cursor-pointer"
         >
           <LogOut className="text-destructive" />
-          <span>خروج</span>
+          <span>Sign Out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -65,10 +67,10 @@ const UserBar = ({ user }: Props) => {
 };
 
 const menuItems = [
-  { label: "داشبورد", href: "/panel", icon: PanelRight },
-  { label: "دوره‌های من", href: "/panel/courses", icon: TvMinimalPlay },
-  { label: "پشتیبانی", href: "/panel/tickets", icon: Headset },
-  { label: "پروفایل", href: "/panel/profile", icon: UserIcon },
+  { label: "Dashboard", href: "/panel", icon: PanelRight },
+  { label: "Courses", href: "/panel/courses", icon: TvMinimalPlay },
+  { label: "Tickets", href: "/panel/tickets", icon: Headset },
+  { label: "Profile", href: "/panel/profile", icon: UserIcon },
 ];
 
 export default UserBar;

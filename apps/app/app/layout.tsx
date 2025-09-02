@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`antialiased custom-scrollbar dark ${inter.variable}`}
+      className={`antialiased custom-scrollbar dark bg-slate-950 ${inter.variable}`}
     >
       <GoogleAnalytics gaId={process.env.GA_MEASUREMENT_ID!} />
       <body>

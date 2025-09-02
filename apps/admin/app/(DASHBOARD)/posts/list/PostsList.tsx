@@ -60,7 +60,7 @@ const renderRows = async (post: PostType) => {
             height={65}
             className="rounded-sm aspect-video object-cover hidden lg:block bg-muted"
           />
-          <span dir="rtl">{post.title}</span>
+          <span>{post.title}</span>
         </Link>
       </TableCell>
       <TableCell className="text-center hidden xl:table-cell">
@@ -74,7 +74,7 @@ const renderRows = async (post: PostType) => {
           {post.status}
         </Badge>
       </TableCell>
-      <TableCell className="text-center" dir="rtl">
+      <TableCell className="text-center">
         {post.categories &&
           post.categories
             ?.map((item) => item.category.name)

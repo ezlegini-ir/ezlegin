@@ -109,9 +109,7 @@ const OtpForm = ({ setLoginStep, identifier }: Props) => {
 
         <div>
           Please Provide code sent to{" "}
-          <span className="font-semibold en-digits">
-            {identifier?.toLowerCase()}
-          </span>
+          <span className="font-semibold ">{identifier?.toLowerCase()}</span>
         </div>
       </div>
 
@@ -131,7 +129,7 @@ const OtpForm = ({ setLoginStep, identifier }: Props) => {
                   >
                     <InputOTPGroup
                       autoFocus
-                      className="w-full en-digits flex justify-center "
+                      className="w-full  flex justify-center "
                     >
                       <InputOTPSlot index={0} />
                       <InputOTPSlot index={1} />

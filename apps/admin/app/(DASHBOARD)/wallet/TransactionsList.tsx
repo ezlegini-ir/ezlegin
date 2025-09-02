@@ -63,12 +63,10 @@ const renderRows = (trans: WalletTransactionType) => {
         {decrement && "-"}
         {formatPrice(trans.amount)}
       </TableCell>
-      <TableCell className="text-center capitalize" dir="rtl">
+      <TableCell className="text-center capitalize">
         {trans.type.toLowerCase().slice(0, 2)}
       </TableCell>
-      <TableCell className="text-center" dir="rtl">
-        {trans.description}
-      </TableCell>
+      <TableCell className="text-center">{trans.description}</TableCell>
     </TableRow>
   );
 };

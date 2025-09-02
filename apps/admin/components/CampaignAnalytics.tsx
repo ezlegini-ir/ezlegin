@@ -152,7 +152,7 @@ const CampaignAnalytics = ({ campaign, isReady, conversionRate }: Props) => {
       {/* Message */}
       <div>
         <h6 className="text-sm font-medium">Message</h6>
-        <Textarea dir="rtl" defaultValue={campaign.message} disabled />
+        <Textarea defaultValue={campaign.message} disabled />
       </div>
 
       {/* Campaign Info */}

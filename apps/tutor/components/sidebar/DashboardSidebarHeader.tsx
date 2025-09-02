@@ -1,5 +1,5 @@
 import Avatar from "@ezlegin/ui/components/Avatar";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import IgraphLogo from "@ezlegin/ui/components/EzleginLogo";
 import { SidebarHeader } from "@ezlegin/ui/components/ui/sidebar";
 import { getSessionTutor } from "@/data/tutor";
 import Link from "next/link";

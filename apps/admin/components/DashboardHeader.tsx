@@ -11,7 +11,7 @@ import { loginPageRoute } from "@/middleware";
 
 const AdminDashboardHeader = async () => {
   const sessionUser = await getSessionAdmin();
-  if (!sessionUser) redirect(loginPageRoute);
+  // if (!sessionUser) redirect(loginPageRoute);
   const onlineUsers = (await getOnlineUsers()).data;
 
   const pendingTicketsCount = await database.ticket.count({

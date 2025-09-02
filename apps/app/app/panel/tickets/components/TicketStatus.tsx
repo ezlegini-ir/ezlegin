@@ -15,17 +15,12 @@ const TicketStatus = ({
 
   return (
     <Badge
-      className={`font-normal flex justify-center ${
+      className={`font-normal text-xs flex justify-center ${
         wide ? "w-full" : "max-w-[100px]"
       } ${className}`}
       variant={pending ? "orange" : answered ? "green" : "gray"}
     >
-      <div className="md:hidden">
-        {pending ? "انتظار" : answered ? "پاسخ" : "بسته"}
-      </div>
-      <div className="hidden md:block">
-        {pending ? "در انتظار پاسخ" : answered ? "پاسخ داده شده" : "بسته شده"}
-      </div>
+      <div>{pending ? "Pending" : answered ? "Replied" : "Closed"}</div>
     </Badge>
   );
 };

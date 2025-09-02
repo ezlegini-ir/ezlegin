@@ -23,7 +23,7 @@ const RangeSelector = ({ timeRange, setTimeRange }: Props) => {
       >
         <SelectValue placeholder="Last 3 months" />
       </SelectTrigger>
-      <SelectContent className="rounded-xl en-digits">
+      <SelectContent className="rounded-xl ">
         <SelectItem value={"90"} className="rounded-md">
           Last 3 months
         </SelectItem>

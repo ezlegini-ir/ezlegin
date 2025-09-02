@@ -10,7 +10,7 @@ const ViewButton = ({ href }: { href?: string }) => {
         variant={"secondary"}
         className="rounded-full h-8 w-8 group"
       >
-        <Eye className="text-gray-500 group-hover:text-primary scale-90" />
+        <Eye className="text-foreground group-hover:text-primary scale-90" />
       </Button>
     </Link>
   );

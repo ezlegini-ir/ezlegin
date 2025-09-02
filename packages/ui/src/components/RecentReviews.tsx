@@ -33,7 +33,6 @@ const renderRows = (review: ReviewType) => {
         {review.content}
         <span className="flex items-center gap-1">
           <Link
-            dir="rtl"
             className="text-primary/60"
             href={`/courses/${review.course.id}`}
           >

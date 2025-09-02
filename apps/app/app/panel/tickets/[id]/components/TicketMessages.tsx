@@ -1,7 +1,8 @@
 import { igraphLogoCard } from "@/public";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { formatJalaliDate, truncateFileName } from "@ezlegin/utils";
+import { truncateFileName } from "@ezlegin/utils";
+import { formatDate } from "date-fns";
 import { Download } from "lucide-react";
 import Image from "next/image";
 import { TicketMessagesProps } from "./TicketChat";
@@ -12,44 +13,42 @@ const TicketMessages = ({ messages }: TicketMessagesProps) => {
       {messages?.map((message, index) => (
         <div key={index} className="space-y-3 text-sm">
           <div
-            className={`card p-4 group relative ${
-              message.senderType === "USER" && "bg-slate-100"
+            className={`card p-4 group relative space-y-3 ${
+              message.senderType === "USER" && "bg-muted"
             }`}
           >
-            <div className="w-full">
+            <div className="w-full space-y-2">
               <div className="flex items-center gap-2">
                 {message.senderType === "ADMIN" ? (
                   <Image alt="" src={igraphLogoCard} width={40} height={40} />
                 ) : (
-                  <Avatar src={message.user?.image?.url} />
+                  <Avatar src={message.user?.image} />
                 )}
 
-                <div className="flex flex-col">
+                <div className="flex flex-col text-muted-foreground">
                   <span>
                     {message.senderType === "ADMIN"
-                      ? "آی‌گرافیکال"
-                      : message.user?.fullName}
+                      ? "Ezlegin"
+                      : message.user?.name}
                   </span>
-                  <span className="text-xs text-gray-400 en-digits">
-                    {formatJalaliDate(message.createdAt, {
-                      useMonthName: false,
-                      withTime: true,
-                    })}
+                  <span className="text-[10px] ">
+                    {formatDate(
+                      new Date(message.createdAt),
+                      "yyyy/MM/dd - HH:mm"
+                    )}
                   </span>
                 </div>
               </div>
-              <pre className="text-black bg-transparent text-sm">
-                {message.message}
-              </pre>
+              <pre className="text-sm">{message.message}</pre>
             </div>
             {message.attachment && (
               <div className="space-y-2">
-                <hr className="border-dashed border-slate-300" />
+                <hr className="border-dashed border-muted-foreground/50" />
                 <a
                   rel="noopener noreferrer"
                   target="_blank"
                   href={message.attachment.url}
-                  className="flex justify-end gap-2 items-center text-nowrap text-xs text-gray-500"
+                  className="flex justify-end gap-2 items-center text-nowrap text-xs text-muted-foreground"
                 >
                   <span title={message.attachment.fileName}>
                     {truncateFileName(message.attachment.fileName, 30)}

@@ -20,7 +20,7 @@ const Table = ({ columns, data, renderRows, noDataMessage }: Props) => {
     <>
       <MyTable>
         <TableHeader>
-          <TableRow className="text-gray-500 text-sm text-left bg-slate-50">
+          <TableRow className="text-gray-500 text-sm text-left bg-muted">
             {columns.map((column, index) => (
               <TableHead
                 key={index}

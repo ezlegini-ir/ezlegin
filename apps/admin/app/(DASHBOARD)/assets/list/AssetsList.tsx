@@ -55,7 +55,7 @@ const renderRows = async (asset: AssetType) => {
             height={65}
             className="rounded-sm aspect-video object-cover hidden lg:block bg-muted"
           />
-          <span dir="rtl">{asset.title}</span>
+          <span>{asset.title}</span>
         </Link>
       </TableCell>
 

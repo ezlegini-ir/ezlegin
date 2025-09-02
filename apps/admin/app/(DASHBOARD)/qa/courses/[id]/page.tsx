@@ -112,10 +112,7 @@ const QaCard = ({ qa }: QaProps) => {
         <span>{qa?.user.fullName}</span>
       </div>
 
-      <div
-        dir="rtl"
-        className="p-2 px-3 bg-slate-50 border rounded-md text-sm w-full text-gray-500"
-      >
+      <div className="p-2 px-3 bg-slate-50 border rounded-md text-sm w-full text-gray-500">
         {qa?.messages?.[0]?.message.slice(0, 50)}...
       </div>
 

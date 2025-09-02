@@ -1,17 +1,18 @@
 import LoginForm from "@/components/forms/login/LoginForm";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import EzleginLogo from "@ezlegin/ui/components/EzleginLogo";
+import { Card } from "@ezlegin/ui/components/ui/card";
 import Link from "next/link";
 
 const page = () => {
   return (
     <div className="flex flex-col gap-5 items-center">
       <Link href={"#"}>
-        <IgraphLogo />
+        <EzleginLogo lightMode />
       </Link>
 
-      <div className="card p-5 w-full space-y-3">
+      <Card className="p-5 w-full space-y-3">
         <LoginForm />
-      </div>
+      </Card>
     </div>
   );
 };

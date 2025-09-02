@@ -1,5 +1,5 @@
 import LoginForm, { LoginSteps } from "@/components/forms/login/LoginForm";
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
@@ -17,7 +17,7 @@ export interface LoginFormsProps {
 const page = () => {
   return (
     <div className="w-full flex gap-3  h-full">
-      <div className="w-5/12  bg-gray-950 text-background relative rounded-xl overflow-hidden flex items-end justify-center pb-10">
+      <div className="w-5/12 text-background relative rounded-xl overflow-hidden flex items-end justify-center pb-10">
         <div className="absolute -right-96 -top-52 h-[800px] w-[800px] bg-blue-950/70 rounded-full blur-[100px] " />
         <div className="absolute -right-40 -top-40 h-[400px] w-[400px] bg-blue-900/80 rounded-full blur-[100px] " />
 

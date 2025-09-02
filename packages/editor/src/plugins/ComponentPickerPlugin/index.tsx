@@ -36,7 +36,7 @@ import {
 import { useCallback, useMemo, useState } from "react";
 import * as ReactDOM from "react-dom";
 
-import { igraphLogo } from "@/public";
+import { ezleginLogo } from "@/public";
 import useModal from "../../hooks/useModal";
 import { EmbedConfigs } from "../AutoEmbedPlugin";
 import { INSERT_COLLAPSIBLE_COMMAND } from "../CollapsiblePlugin";
@@ -271,7 +271,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
       onSelect: () =>
         editor.dispatchCommand(INSERT_IMAGE_COMMAND, {
           altText: "Cat typing on a laptop",
-          src: igraphLogo,
+          src: ezleginLogo,
         }),
     }),
     new ComponentPickerOption("Image", {

@@ -47,7 +47,7 @@ const DeleteButton = ({
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={onDelete}
-            className="bg-red-500 hover:bg-red-600"
+            className="bg-destructive hover:bg-red-600"
           >
             <Loader loading={loading} />
             Delete

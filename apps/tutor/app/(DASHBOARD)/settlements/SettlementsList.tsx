@@ -55,7 +55,7 @@ const renderRows = (settlement: SettlementType) => {
         {formatPrice(settlement.amount)}
       </TableCell>
 
-      <TableCell dir="rtl" className="text-center">
+      <TableCell className="text-center">
         {settlement.paidAt ? (
           formatJalaliDate(settlement.paidAt, { withTime: true })
         ) : (
@@ -110,7 +110,7 @@ const SettlementContent = ({ settlement }: { settlement: SettlementType }) => {
         </li>
 
         <Separator />
-        <div className="space-y-1.5 text-right" dir="rtl">
+        <div className="space-y-1.5 text-right">
           <h4>نکات قابل توجه:</h4>
           <ul className="list-disc list-inside text-gray-500">
             <span className="font-semibold text-black">

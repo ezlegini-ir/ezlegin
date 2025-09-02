@@ -6,29 +6,29 @@ import CardBox from "../../components/CardBox";
 
 const FaqBanner = () => {
   return (
-    <CardBox title="ارسال تیکت" className="h-full">
+    <CardBox title="Submit Ticket" className="h-full">
       <div className="flex flex-col gap-3 justify-center items-center py-10">
         <Headset size={90} className="text-slate-400" />
 
         <div className="text-center">
           <p>
-            با مراجعه به صفحه
+            By visiting the
             <span className="text-primary font-semibold">
               {" "}
-              "سوالات متداول"{" "}
+              "Frequently Asked Questions"{" "}
             </span>
-            می توانید به سرعت مشکل خود را حل کنید!
+            page, you can quickly solve your problem!
           </p>
         </div>
 
         <div className="flex gap-3">
           <Link href={"/faq"}>
-            <Button>سوالات متداول</Button>
+            <Button>Frequently Asked Questions</Button>
           </Link>
           <Link href={"/panel/tickets/new"}>
             <Button variant={"secondary"}>
               <Plus />
-              تیکت جدید
+              New Ticket
             </Button>
           </Link>
         </div>

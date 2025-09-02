@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@ezlegin/ui/components/ui/select";
 import { allowedFomatsForUplaod } from "@/data/utils";
+import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 
 const TicketForm = () => {
   // HOOKS
@@ -58,13 +59,13 @@ const TicketForm = () => {
       const maxSize = 5 * 1024 * 1024;
 
       if (!allowedFormats.includes(file.type)) {
-        toast.error("این فرمت مجاز نمی‌باشد!");
+        toast.error("This format is not allowed!");
         e.target.value = "";
         return;
       }
 
       if (file.size > maxSize) {
-        toast.error("حداکثر حجم فایل 5 مگابایت می‌باشد!");
+        toast.error("Maximum file size is 5 MB!");
         e.target.value = "";
         return;
       }
@@ -95,7 +96,7 @@ const TicketForm = () => {
   };
 
   return (
-    <CardBox title="ارسال تیکت جدید">
+    <CardBox title="Send New Ticket">
       <Form {...form}>
         <form className="space-y-3 " onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-3">
@@ -104,7 +105,7 @@ const TicketForm = () => {
               name="subject"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>موضوع</FormLabel>
+                  <FormLabel>Subject</FormLabel>
                   <FormControl>
                     <Input className="md:w-[350px]" {...field} />
                   </FormControl>
@@ -118,24 +119,23 @@ const TicketForm = () => {
               name="department"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>واحد</FormLabel>
+                  <FormLabel>Department</FormLabel>
                   <FormControl>
                     <Select
-                      dir="rtl"
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl className="md:w-[350px]">
                         <SelectTrigger>
-                          <SelectValue placeholder="فنی" />
+                          <SelectValue placeholder="Technical" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="TECHNICAL">فنی</SelectItem>
-                        <SelectItem value="FINANCE">مالی</SelectItem>
-                        <SelectItem value="COURSE">آموزش</SelectItem>
+                        <SelectItem value="TECHNICAL">Technical</SelectItem>
+                        <SelectItem value="FINANCE">Finance</SelectItem>
+                        <SelectItem value="COURSE">Education</SelectItem>
                         <SelectItem value="SUGGEST">
-                          پیشنهادات و انتقادات
+                          Suggestions and Criticisms
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -151,12 +151,12 @@ const TicketForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>پیغام</FormLabel>
+                <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <textarea
+                  <Textarea
+                    className="min-h-[200px]"
                     {...field}
-                    className="block w-full min-h-[160px] border rounded-md p-3 focus:border-blue-500 focus:ring-0.5 focus:ring-blue-500 focus:outline-none"
-                    placeholder="لطفا پیام خود را در این قسمت بنویسید"
+                    placeholder="Please write your message here"
                   />
                 </FormControl>
                 <FormMessage />
@@ -196,10 +196,10 @@ const TicketForm = () => {
                       />
                       <p className="flex flex-col">
                         <span className="text-xs text-gray-400 font-normal">
-                          حداکثر 5 مگابایت
+                          Maximum 5 MB
                         </span>
                         <span className="text-xs text-gray-400 font-normal">
-                          عکس یا .zip
+                          Image or .zip
                         </span>
                       </p>
                     </div>
@@ -225,7 +225,7 @@ const TicketForm = () => {
             type="submit"
           >
             {<Loader loading={loading} />}
-            ارسال پیام
+            Send Message
           </Button>
         </form>
       </Form>

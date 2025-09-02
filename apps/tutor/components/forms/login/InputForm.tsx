@@ -81,7 +81,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
               <FormItem>
                 <FormLabel>Phone or Email</FormLabel>
                 <FormControl>
-                  <Input className="en-digits" {...field} />
+                  <Input className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +95,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" className="en-digits" {...field} />
+                  <Input type="password" className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -48,7 +48,7 @@ const Filter: React.FC<SelectProps> = ({
   }, [currentQuery]);
 
   return (
-    <UiSelect dir="rtl" value={value} onValueChange={handleChange}>
+    <UiSelect value={value} onValueChange={handleChange}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>

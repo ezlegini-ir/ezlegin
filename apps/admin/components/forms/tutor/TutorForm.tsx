@@ -157,7 +157,7 @@ const TutorForm = ({ type, tutor }: Props) => {
               <FormItem className="w-full">
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input className="en-digits" {...field} />
+                  <Input className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -171,7 +171,7 @@ const TutorForm = ({ type, tutor }: Props) => {
               <FormItem className="w-full">
                 <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input maxLength={11} className="en-digits" {...field} />
+                  <Input maxLength={11} className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -233,7 +233,7 @@ const TutorForm = ({ type, tutor }: Props) => {
               <FormItem>
                 <FormLabel>Bio</FormLabel>
                 <FormControl>
-                  <Textarea className="h-48" dir="rtl" {...field} />
+                  <Textarea className="h-48" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -247,7 +247,7 @@ const TutorForm = ({ type, tutor }: Props) => {
               <FormItem>
                 <FormLabel>Titles</FormLabel>
                 <FormControl>
-                  <Textarea className="h-28" dir="rtl" {...field} />
+                  <Textarea className="h-28" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

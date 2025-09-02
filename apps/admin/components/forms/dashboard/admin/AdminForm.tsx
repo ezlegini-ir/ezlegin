@@ -147,7 +147,7 @@ const AdminForm = ({ type, admin }: Props) => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className="en-digits" {...field} />
+                <Input className="" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -161,7 +161,7 @@ const AdminForm = ({ type, admin }: Props) => {
             <FormItem>
               <FormLabel>Phone</FormLabel>
               <FormControl>
-                <Input maxLength={11} className="en-digits" {...field} />
+                <Input maxLength={11} className="" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -11,7 +11,7 @@ const EditButton = ({ href = "" }: { href?: string }) => {
         variant={"secondary"}
         className="rounded-full h-8 w-8 group"
       >
-        <PencilIcon className="text-gray-500 group-hover:text-primary scale-90" />
+        <PencilIcon className="text-muted-foreground group-hover:text-primary scale-90" />
       </Button>
     </Link>
   );

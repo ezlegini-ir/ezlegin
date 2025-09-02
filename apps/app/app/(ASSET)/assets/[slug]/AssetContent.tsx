@@ -5,7 +5,7 @@ import LoginForm from "@/components/forms/login/LoginForm";
 import { getSessionUser } from "@/data/user";
 import { placeHolder } from "@/public";
 import { Asset, Image as ImageType } from "@ezlegin/database";
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {

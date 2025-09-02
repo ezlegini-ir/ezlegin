@@ -11,10 +11,10 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  await authenticateSession();
+  // await authenticateSession();
 
   return (
-    <div className="en-digits">
+    <div className="">
       <SidebarProvider>
         <DashboardSidebar />
 

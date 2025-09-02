@@ -49,5 +49,5 @@ const page = async ({ searchParams }: Props) => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "پشتیبانی",
+  title: "Tickets",
 };

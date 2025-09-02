@@ -183,7 +183,7 @@ const WalletForm = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea dir="rtl" {...field} />
+                  <Textarea {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

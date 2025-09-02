@@ -204,7 +204,7 @@ const CommentForm = ({ type, comment }: Props) => {
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "pl-3 text-left font-normal en-digits",
+                        "pl-3 text-left font-normal ",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -219,7 +219,7 @@ const CommentForm = ({ type, comment }: Props) => {
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0" align="start">
                   <Calendar
-                    className="en-digits"
+                    className=""
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}

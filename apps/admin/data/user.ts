@@ -18,7 +18,6 @@ export const getUserById = async (id: number) => {
       id,
     },
     include: {
-      image: true,
       wallet: true,
     },
   });

@@ -57,11 +57,9 @@ export default async function Layout({
   );
 }
 
-// SEO
 export const metadata: Metadata = {
   title: {
-    default: "حساب کاربری",
-    template: "%s - حساب کاربری",
+    default: "User Panel",
+    template: "%s - User Panel",
   },
-  description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
 };

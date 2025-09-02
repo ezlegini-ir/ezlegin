@@ -48,7 +48,7 @@ const CurriculumsList = ({
 
   return (
     <div className="sticky top-20 right-0 space-y-3">
-      <CardBox title="درس‌ها" className="h-min">
+      <CardBox title="Sessions" className="h-min">
         <Accordion
           value={activeSection}
           onValueChange={(val) => setActiveSection(val)}
@@ -72,27 +72,27 @@ const CurriculumsList = ({
               </AccordionTrigger>
 
               <AccordionContent>
-                <ul className="text-slate-500 border-t pt-2">
+                <ul className="text-slate-500 space-y-0.5 border-t pt-2">
                   {curriculum.lessons.map((lesson, idx) => (
                     <li
                       key={idx}
-                      className={`flex justify-between items-center text-[13px] cursor-pointer hover:bg-slate-50 py-2 px-1.5 rounded-sm ${
+                      className={`flex justify-between items-center text-[13px] cursor-pointer hover:bg-primary/10 py-2 px-1.5 rounded-sm ${
                         currentLesson.id === lesson.id && "bg-primary/10"
                       }`}
                       onClick={() => onLessonSelect(lesson)}
                     >
                       <div className="flex items-center gap-2">
                         {lesson.type === "VIDEO" ? (
-                          <div className="bg-primary p-1.5 rounded-full border-2 border-blue-200">
-                            <Video size={14} className="text-white" />
+                          <div className="bg-primary p-1.5 rounded-full border border-blue-300">
+                            <Video size={15} className="text-white" />
                           </div>
                         ) : lesson.type === "ASSET" ? (
-                          <div className="bg-orange-400 p-1.5 rounded-full border-2 border-orange-200">
-                            <Download size={14} className="text-white" />
+                          <div className="bg-orange-500/50 p-1.5 rounded-full border border-orange-500/50">
+                            <Download size={15} className="text-white" />
                           </div>
                         ) : (
-                          <div className="bg-slate-100 p-1.5 rounded-full border-2 border-slate-100">
-                            <File size={14} />
+                          <div className="bg-muted text-foreground p-1.5 rounded-full border border-slate-200">
+                            <File size={15} />
                           </div>
                         )}
                         {lesson.type === "VIDEO" && <span>{idx + 1}.</span>}

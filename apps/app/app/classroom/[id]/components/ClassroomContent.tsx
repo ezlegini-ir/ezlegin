@@ -49,7 +49,7 @@ interface EnrollmentType extends Enrollment {
 }
 
 interface AsktutorType extends AskTutor {
-  user: User & { image: MyImageType };
+  user: User;
   tutor: Tutor & { image: MyImageType };
   messages: AskTutorMessageType[] | undefined;
 }
@@ -116,7 +116,7 @@ const ClassroomContent = ({ classroom }: Props) => {
 
         <div className="flex items-center gap-2">
           <span className="text-nowrap text-sm text-muted-foreground">
-            پیشرفت:
+            Progress:
           </span>
           <Progress value={classroom.enrollment.progress} />
           <span className="text-nowrap text-sm text-muted-foreground">

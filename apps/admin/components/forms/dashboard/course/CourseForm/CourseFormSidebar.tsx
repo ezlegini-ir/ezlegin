@@ -242,10 +242,7 @@ const CourseFormSidebar = ({
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent
-                        className="w-auto p-0 en-digits"
-                        align="start"
-                      >
+                      <PopoverContent className="w-auto p-0 " align="start">
                         <Calendar
                           mode="single"
                           onSelect={field.onChange}
@@ -317,7 +314,7 @@ const CourseFormSidebar = ({
             name="basePrice"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Base Price (T)</FormLabel>
+                <FormLabel>Base Price ($)</FormLabel>
                 <FormControl>
                   <Input
                     min={0}
@@ -455,10 +452,7 @@ const CourseFormSidebar = ({
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent
-                            className="w-auto p-0 en-digits"
-                            align="start"
-                          >
+                          <PopoverContent className="w-auto p-0 " align="start">
                             <Calendar
                               mode="range"
                               selected={field.value as DateRange}

@@ -92,10 +92,7 @@ const TicketCard = ({ ticket }: { ticket: TicketType }) => {
         </div>
       </div>
 
-      <p
-        dir="rtl"
-        className="bg-slate-50 border p-3 px-6 text-xs rounded-sm text-gray-500  flex-col gap-2 hidden lg:flex"
-      >
+      <p className="bg-slate-50 border p-3 px-6 text-xs rounded-sm text-gray-500  flex-col gap-2 hidden lg:flex">
         <span className="font-semibold text-base text-primary">
           {ticket.subject}
         </span>

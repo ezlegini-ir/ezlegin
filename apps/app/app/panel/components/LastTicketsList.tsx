@@ -21,7 +21,7 @@ const LastTicketsList = ({ tickets }: { tickets: Ticket[] }) => {
             className="font-normal"
             variant={pending ? "orange" : replied ? "green" : "gray"}
           >
-            {pending ? "انتظار" : replied ? "پاسخ" : "بسته"}
+            {pending ? "Pending" : replied ? "Replied" : "Closed"}
           </Badge>
         </TableCell>
       </TableRow>
@@ -30,8 +30,8 @@ const LastTicketsList = ({ tickets }: { tickets: Ticket[] }) => {
 
   return (
     <CardBox
-      title="آخرین تیکت‌ها"
-      btn={{ title: "مشاهده همه", href: "/panel/tickets" }}
+      title="Last Tickets"
+      btn={{ title: "View All", href: "/panel/tickets" }}
       className="min-h-[330px] p-0"
     >
       <div>
@@ -39,7 +39,7 @@ const LastTicketsList = ({ tickets }: { tickets: Ticket[] }) => {
           columns={columns}
           data={tickets}
           renderRows={renderRows}
-          noDataMessage="تاکنون پیامی ارسال نکرده اید"
+          noDataMessage="You have not submitted ticket so far."
         />
       </div>
     </CardBox>
@@ -47,8 +47,8 @@ const LastTicketsList = ({ tickets }: { tickets: Ticket[] }) => {
 };
 
 const columns = [
-  { label: "عنوان", className: "text-right w-4/6 text-xs" },
-  { label: "وضعیت", className: "text-xs text-left" },
+  { label: "Title", className: "text-left w-4/6 text-xs" },
+  { label: "Status", className: "text-xs text-right" },
 ];
 
 export default LastTicketsList;

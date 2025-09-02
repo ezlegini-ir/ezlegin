@@ -35,9 +35,9 @@ export function formatPrice(
   options?: { noValuePlaceholder?: string; showNumber?: boolean }
 ) {
   if (!price)
-    return options?.showNumber ? 0 + " t" : options?.noValuePlaceholder || "--";
+    return options?.showNumber ? "$" + 0 : options?.noValuePlaceholder || "--";
 
-  return price.toLocaleString("en-US") + " t";
+  return "$" + price.toLocaleString("en-US");
 }
 
 //! --------------------------------------------------

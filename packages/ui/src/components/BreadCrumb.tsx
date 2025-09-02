@@ -20,7 +20,7 @@ const BreadCrumb = ({ steps, finalStep }: Props) => {
       <BreadcrumbList className="text-xs">
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
-            <Link href={"/"}>خانه</Link>
+            <Link href={"/"}>Home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

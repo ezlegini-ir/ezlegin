@@ -58,7 +58,6 @@ const CurriculumSectionsForm: React.FC<SectionProps> = ({
             <FormItem className="w-full">
               <FormControl>
                 <Input
-                  dir="rtl"
                   className="text-left text-gray-700"
                   placeholder="Lesson Title"
                   {...field}
@@ -210,7 +209,6 @@ const CurriculumSectionsForm: React.FC<SectionProps> = ({
                   </div>
 
                   <Input
-                    dir="rtl"
                     className="text-left"
                     placeholder="Section Title"
                     {...field}

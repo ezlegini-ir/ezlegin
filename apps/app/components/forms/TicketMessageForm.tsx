@@ -53,13 +53,13 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
       const maxSize = 5 * 1024 * 1024;
 
       if (!allowedFormats.includes(file.type)) {
-        toast.error("این فرمت مجاز نمی‌باشد!");
+        toast.error("This format is not allowed!");
         e.target.value = "";
         return;
       }
 
       if (file.size > maxSize) {
-        toast.error("حداکثر حجم فایل 5 مگابایت می‌باشد!");
+        toast.error("Maximum file size is 5 MB!");
         e.target.value = "";
         return;
       }
@@ -92,7 +92,7 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
   };
 
   return (
-    <CardBox title="ارسال پیام جدید">
+    <CardBox title="Send New Message">
       <Form {...form}>
         <form className="space-y-3 " onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
@@ -100,12 +100,12 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>پیغام</FormLabel>
+                <FormLabel>Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="لطفا پیام خود را در این قسمت بنویسید"
+                    placeholder="Please write your message here"
                     {...field}
-                    className="min-h-[110px]"
+                    className="min-h-[125px]"
                   />
                 </FormControl>
                 <FormMessage />
@@ -121,7 +121,7 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
                 <FormItem>
                   {fileName ? (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-muted-foreground">
                         {truncateFileName(fileName)}
                       </span>
                       <Button
@@ -141,17 +141,17 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
                       htmlFor="file-upload"
                       className="cursor-pointer flex items-center gap-2"
                     >
-                      <div className="flex gap-1 items-center">
+                      <div className="flex gap-1 items-center text-muted-foreground group">
                         <Link
                           size={24}
-                          className="text-gray-400 hover:text-blue-500 transition pt-1"
+                          className="group-hover:text-primary transition pt-1"
                         />
                         <p className="flex flex-col">
-                          <span className="text-xs text-gray-400 font-normal">
-                            حداکثر 5 مگابایت
+                          <span className="text-xs  font-normal">
+                            Maximum 5 MB
                           </span>
-                          <span className="text-xs text-gray-400 font-normal">
-                            عکس یا .zip
+                          <span className="text-xs  font-normal">
+                            Image or .zip
                           </span>
                         </p>
                       </div>
@@ -177,7 +177,7 @@ const TicketMessageForm = ({ ticketId }: { ticketId: number }) => {
               type="submit"
             >
               {<Loader loading={loading} />}
-              ارسال پیام
+              Send Message
             </Button>
           </div>
         </form>

@@ -38,7 +38,7 @@ const SearchUsers = ({
       onSelect={(user) =>
         user ? field.onChange(user.id) : field.onChange(undefined)
       }
-      getItemLabel={(user) => `${user.fullName} - ${user.email.toLowerCase()}`}
+      getItemLabel={(user) => `${user.name} - ${user.email.toLowerCase()}`}
       defaultItem={defaultUser}
     />
   );

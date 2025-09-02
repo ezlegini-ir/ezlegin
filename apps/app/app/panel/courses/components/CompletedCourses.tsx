@@ -84,6 +84,7 @@ const CompletedCourses = async () => {
         </TableCell>
         <TableCell>
           <a
+            className="flex flex-col items-center"
             rel="noopener noreferrer"
             target="_blank"
             href={
@@ -104,13 +105,13 @@ const CompletedCourses = async () => {
             >
               <div className="flex flex-col items-center gap-1">
                 <Download className="scale-110" />
-                {!isCertificateAllowedToDownload && (
-                  <span className="text-xs text-destructive opacity-100">
-                    ثبت امتیاز برای دانلود مدرک الزامی است.
-                  </span>
-                )}
               </div>
             </Button>
+            {!isCertificateAllowedToDownload && (
+              <span className="text-xs text-destructive opacity-100 whitespace-pre-line text-center">
+                Rating is required to download the certificate.
+              </span>
+            )}
           </a>
         </TableCell>
         <TableCell>
@@ -148,22 +149,22 @@ const CompletedCourses = async () => {
   };
 
   return (
-    <CardBox title="دوره های تکمیل شده">
+    <CardBox title="Completed Courses">
       <Table
         columns={columns}
         data={completedCourses}
         renderRows={renderRows}
-        noDataMessage="تاکنون دوره تکمیل شده ای نداشته اید."
+        noDataMessage="You have not completed any courses yet."
       />
     </CardBox>
   );
 };
 
 const columns = [
-  { label: "دوره", className: "text-right" },
-  { label: "مدرس", className: "hidden md:table-cell text-right" },
-  { label: "مدرک", className: "text-right" },
-  { label: "امتیاز شما", className: "text-left" },
+  { label: "Course", className: "text-left" },
+  { label: "Tutor", className: "hidden md:table-cell text-left" },
+  { label: "Certificate", className: "text-center" },
+  { label: "Your Rating", className: "text-right" },
 ];
 
 export default CompletedCourses;

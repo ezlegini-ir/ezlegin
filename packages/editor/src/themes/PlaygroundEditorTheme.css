@@ -492,8 +492,8 @@
   background-size: cover;
   position: absolute;
 }
-.PlaygroundEditorTheme__listItemUnchecked[dir="rtl"]:before,
-.PlaygroundEditorTheme__listItemChecked[dir="rtl"]:before {
+.PlaygroundEditorTheme__listItemUnchecked[dir="ltr"]:before,
+.PlaygroundEditorTheme__listItemChecked[dir="ltr"]:before {
   left: auto;
   right: 0;
 }

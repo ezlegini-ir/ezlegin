@@ -122,15 +122,12 @@ const ContactForm = ({ contact }: { contact: ContactType }) => {
 
   return (
     <div className="space-y-6">
-      <div className="card w-full text-right text-sm" dir="rtl">
-        {contact.message}
-      </div>
+      <div className="card w-full text-right text-sm">{contact.message}</div>
 
       {contact.ContactResponse && (
         <Badge
           variant={"green"}
           className="text-sm w-full block text-right font-normal"
-          dir="rtl"
         >
           <pre className="bg-transparent text-green-800">
             {contact.ContactResponse?.message}
@@ -153,11 +150,7 @@ const ContactForm = ({ contact }: { contact: ContactType }) => {
                       <FormItem>
                         <FormLabel>Send Message</FormLabel>
                         <FormControl>
-                          <Textarea
-                            dir="rtl"
-                            placeholder="Type Response"
-                            {...field}
-                          />
+                          <Textarea placeholder="Type Response" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>

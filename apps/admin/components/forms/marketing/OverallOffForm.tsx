@@ -214,10 +214,7 @@ const OverallOffForm = ({ overallOff }: Props) => {
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent
-                    className="w-auto p-0 en-digits"
-                    align="start"
-                  >
+                  <PopoverContent className="w-auto p-0 " align="start">
                     <Calendar
                       mode="range"
                       selected={field.value as DateRange}

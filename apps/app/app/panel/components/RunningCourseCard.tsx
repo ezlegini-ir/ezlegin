@@ -1,7 +1,7 @@
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Progress } from "@ezlegin/ui/components/ui/progress";
 import { placeHolder } from "@/public";
-import { MoveLeft } from "lucide-react";
+import { MoveLeft, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -43,8 +43,8 @@ const RunningCourseCard = ({
 
           <div className="hidden md:flex gap-2 h-min items-center">
             <Link href={classroomUrl}>
-              <Button variant={"secondary"} size={"sm"} className="h-7">
-                کلاس درس <MoveLeft />
+              <Button variant={"lightBlue"} size={"sm"} className="h-7">
+                Classroom <MoveRight />
               </Button>
             </Link>
           </div>
@@ -60,10 +60,10 @@ const RunningCourseCard = ({
               <div className="space-x-2">
                 <span>%{progress?.toFixed()}</span>
                 {/* <span>-</span> */}
-                {/* <span dir="rtl">{completedLessons} جلسه</span> */}
+                {/* <span >{completedLessons} sessions</span> */}
               </div>
 
-              <div dir="rtl">{remainingLessons} جلسه مانده</div>
+              <div>{remainingLessons} sessions left</div>
             </div>
           </div>
         )}

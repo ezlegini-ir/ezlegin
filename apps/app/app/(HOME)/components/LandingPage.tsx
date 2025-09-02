@@ -1,6 +1,6 @@
 import Slider from "@/components/Slider";
 import { database } from "@ezlegin/database";
-import EzleginLogoSquare from "@ezlegin/ui/components/IgraphLogoSquare";
+import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import SocialsIcon from "@ezlegin/ui/components/SocialsIcon";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Brush, MousePointer2, Pipette, Type } from "lucide-react";

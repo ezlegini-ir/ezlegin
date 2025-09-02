@@ -65,7 +65,7 @@ const StudentReviewCard = ({
   review: ReviewType;
 }) => {
   return (
-    <div className="card py-4 space-y-2" dir="rtl">
+    <div className="card py-4 space-y-2">
       <div className="flex gap-5">
         <div className="relative">
           <Image

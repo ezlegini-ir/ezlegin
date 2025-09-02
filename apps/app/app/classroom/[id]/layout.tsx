@@ -1,7 +1,6 @@
 import NavBar from "@/components/NavBar";
 import SimpleFooter from "@/components/SimpleFooter";
 import { authenticateSession } from "@/lib/auth";
-import DecorativeImage from "@ezlegin/ui/components/DecorativeImage";
 import NotifBar from "@ezlegin/ui/components/NotifBar";
 import { Metadata } from "next";
 
@@ -20,10 +19,7 @@ export default async function PanelLayout({
         <NotifBar />
         <NavBar />
       </div>
-      <main className="relative py-6 lg:py-10">
-        <DecorativeImage />
-        {children}
-      </main>
+      <main className="relative py-6 lg:py-10">{children}</main>
       <SimpleFooter />
     </div>
   );
@@ -31,8 +27,8 @@ export default async function PanelLayout({
 
 export const metadata: Metadata = {
   title: {
-    default: "کلاس درس",
-    template: "%s - کلاس درس",
+    default: "Classroom",
+    template: "%s - Classroom",
   },
-  description: "کلاس درس آی گرافیکال، جایی که مهارت آموزشی شکل می گیرد.",
+  description: "Ezlegin Classroom, where educational skills are shaped.",
 };

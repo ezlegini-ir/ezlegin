@@ -97,7 +97,6 @@ const NotifBarForm = ({ notifBar }: Props) => {
                     <FormControl>
                       <Input
                         style={{ backgroundColor: bgColor, color: textColor }}
-                        dir="rtl"
                         className="text-center"
                         placeholder="Enter content"
                         {...field}

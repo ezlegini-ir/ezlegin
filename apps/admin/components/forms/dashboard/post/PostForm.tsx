@@ -172,7 +172,7 @@ const PostForm = ({ type, post, categories, authors }: Props) => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input dir="rtl" className="text-left" {...field} />
+                  <Input className="text-left" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -187,7 +187,7 @@ const PostForm = ({ type, post, categories, authors }: Props) => {
                 <FormItem>
                   <FormLabel>Url</FormLabel>
                   <FormControl>
-                    <Input dir="rtl" className="text-left" {...field} />
+                    <Input className="text-left" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

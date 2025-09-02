@@ -154,7 +154,7 @@ const CampaignForm = ({ type, coupon: campaign }: Props) => {
               <FormItem
                 className={`w-full ${isUpdateType && "pointer-events-none"}`}
               >
-                <FormLabel>Sell Goal (T) - (Optional)</FormLabel>
+                <FormLabel>Sell Goal ($) - (Optional)</FormLabel>
                 <Input
                   min={0}
                   type="number"
@@ -192,7 +192,7 @@ const CampaignForm = ({ type, coupon: campaign }: Props) => {
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea dir="rtl" {...field} />
+                  <Textarea {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -232,10 +232,7 @@ const CampaignForm = ({ type, coupon: campaign }: Props) => {
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent
-                    className="w-auto p-0 en-digits"
-                    align="start"
-                  >
+                  <PopoverContent className="w-auto p-0 " align="start">
                     <Calendar
                       mode="range"
                       selected={field.value as DateRange}

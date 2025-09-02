@@ -147,7 +147,7 @@ const QaChat = ({ qa }: Props) => {
                 <FormItem>
                   <FormLabel>Message</FormLabel>
                   <FormControl>
-                    <Textarea dir="rtl" className="min-h-[170px]" {...field} />
+                    <Textarea className="min-h-[170px]" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -224,10 +224,7 @@ const QaChat = ({ qa }: Props) => {
               </Button>
             </div>
 
-            <div
-              className="py-3 space-y-3 max-h-[750px] overflow-auto"
-              dir="rtl"
-            >
+            <div className="py-3 space-y-3 max-h-[750px] overflow-auto">
               {qa.messages &&
                 qa.messages.map((message, index) => (
                   <div key={index} className="space-y-3 text-sm">
@@ -249,7 +246,7 @@ const QaChat = ({ qa }: Props) => {
                                 ? qa.tutor.displayName
                                 : qa.user.fullName}
                             </span>
-                            <span className="text-xs text-gray-400 en-digits">
+                            <span className="text-xs text-gray-400 ">
                               {formatJalaliDate(message.createdAt, {
                                 useMonthName: false,
                                 withTime: true,
@@ -299,7 +296,7 @@ const QaChat = ({ qa }: Props) => {
               <div className="flex justify-between text-gray-500 text-xs">
                 <p className="flex flex-col">
                   <span>Created At</span>
-                  <span dir="rtl" className="text-sm">
+                  <span className="text-sm">
                     {formatJalaliDate(qa?.createdAt, { withTime: true })}
                   </span>
                 </p>
@@ -308,7 +305,7 @@ const QaChat = ({ qa }: Props) => {
                 </div>
                 <p className="flex flex-col text-right">
                   <span>Last Update</span>
-                  <span dir="rtl" className="text-sm">
+                  <span className="text-sm">
                     {formatJalaliDate(qa?.updatedAt, { withTime: true })}
                   </span>
                 </p>

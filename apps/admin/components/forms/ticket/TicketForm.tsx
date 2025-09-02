@@ -40,7 +40,7 @@ import {
   ticketDepartment,
   ticketStatus,
 } from "@/lib/validationSchema";
-import { igraphLogoCard } from "@/public";
+import { ezleginLogoSquare } from "@/public";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   File,
@@ -213,7 +213,7 @@ const TicketForm = ({ type, ticket }: Props) => {
                 <FormItem>
                   <FormLabel>Message</FormLabel>
                   <FormControl>
-                    <Textarea dir="rtl" className="min-h-[170px]" {...field} />
+                    <Textarea className="min-h-[170px]" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -298,10 +298,7 @@ const TicketForm = ({ type, ticket }: Props) => {
             {ticket?.messages && ticket.messages.length > 0 && <Separator />}
 
             {isUpdateType && (
-              <div
-                className="py-3 space-y-3 max-h-[750px] overflow-auto"
-                dir="rtl"
-              >
+              <div className="py-3 space-y-3 max-h-[750px] overflow-auto">
                 {ticket?.messages?.map((message, index) => (
                   <div key={index} className="space-y-3 text-sm">
                     <div
@@ -323,7 +320,7 @@ const TicketForm = ({ type, ticket }: Props) => {
                           {message.senderType === "ADMIN" ? (
                             <Image
                               alt=""
-                              src={igraphLogoCard}
+                              src={ezleginLogoSquare}
                               width={40}
                               height={40}
                             />
@@ -336,7 +333,7 @@ const TicketForm = ({ type, ticket }: Props) => {
                                 ? "آی‌گرافیکال"
                                 : message.user?.fullName}
                             </span>
-                            <span className="text-xs text-gray-500 en-digits">
+                            <span className="text-xs text-gray-500 ">
                               {formatMiladiDate(message.createdAt)}
                             </span>
                           </div>

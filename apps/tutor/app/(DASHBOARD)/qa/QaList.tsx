@@ -58,10 +58,10 @@ const renderRows = (qa: QaType) => {
         </div>
       </TableCell>
 
-      <TableCell dir="rtl" className="text-left hidden lg:table-cell">
+      <TableCell className="text-left hidden lg:table-cell">
         {smartformatJalaliDate(qa.createdAt)}
       </TableCell>
-      <TableCell dir="rtl" className="text-left">
+      <TableCell className="text-left">
         {smartformatJalaliDate(qa.updatedAt)}
       </TableCell>
 

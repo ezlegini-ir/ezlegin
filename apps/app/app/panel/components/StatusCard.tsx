@@ -13,7 +13,7 @@ interface Props {
 const StatusCard = ({ status }: Props) => {
   return (
     <div className="card flex flex-col lg:flex-row  gap-3 justify-between items-center px-4">
-      <div className="text-center lg:text-right">
+      <div className="text-center lg:text-left">
         <CardDescription className="text-xs">{status.title}</CardDescription>
         <div>
           <p className="text-xl font-semibold">{status.trigger}</p>

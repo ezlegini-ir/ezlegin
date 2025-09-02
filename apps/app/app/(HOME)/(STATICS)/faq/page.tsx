@@ -13,15 +13,15 @@ const Faq = () => {
   return (
     <div className="max-w-2xl mx-auto">
       <PageTitle
-        title="سوالات متداول"
-        description="چنانچه سوالی دارید می‌توانید در این صفحه به پاسخ خود برسید"
+        title="Frequently Asked Questions"
+        description="If you have a question, you can find your answer on this page."
       />
 
       <Accordion className="mb-12" type="single" collapsible>
         {faqItems.map((item, index) => (
           <AccordionItem key={index} value={index.toString()}>
             <AccordionTrigger className="text-sm">{item.q}</AccordionTrigger>
-            <AccordionContent className="text-gray-500">
+            <AccordionContent className="text-muted-foreground">
               {item.a}
             </AccordionContent>
           </AccordionItem>
@@ -29,12 +29,13 @@ const Faq = () => {
       </Accordion>
 
       <div className="flex justify-between items-center">
-        <p className="text-sm text-gray-500">
-          در صورتی که پاسخ سوال خود را نیافتید، با پشتیبانی در ارتباط باشید
+        <p className="text-sm text-muted-foreground">
+          If you did not find the answer to your question, please contact
+          support.
         </p>
         <Link href={"/panel/tickets/new"}>
           <Button variant={"secondary"} size={"sm"}>
-            ارسال پیام
+            Send Message
           </Button>
         </Link>
       </div>
@@ -44,43 +45,43 @@ const Faq = () => {
 
 const faqItems = [
   {
-    q: "چگونه می‌توانم ویدیوها را دانلود کنم؟",
-    a: "به منظور رعایت قوانین کپی‌رایت و جلوگیری از انتشار غیرمجاز دوره‌های آی‌گرافیکال در فضای مجازی، امکان دانلود ویدیوها برای کاربران فراهم نیست. شما می‌توانید تمامی ویدیوها را به صورت آنلاین از طریق حساب کاربری خود مشاهده نمایید.",
+    q: "How can I download the videos?",
+    a: "To comply with copyright laws and prevent unauthorized distribution of Ezlegin courses, downloading videos is not available for users. You can watch all videos online through your account.",
   },
   {
-    q: "چگونه می‌توانم مدرک پایان دوره را دریافت کنم؟",
-    a: "پس از تکمیل صد درصدی دوره، مدرک پایان دوره از طریق بخش «حساب کاربری > دوره‌ها > دوره های تکیمل شده» قابل دانلود خواهد بود.",
+    q: "How can I receive the course completion certificate?",
+    a: "After completing 100% of the course, the completion certificate will be available for download via 'Account > Courses > Completed Courses'.",
   },
   {
-    q: "چگونه می‌توانم به ویدیوهای دوره دسترسی داشته باشم؟",
-    a: "با ورود به حساب کاربری خود و مراجعه به بخش «دوره‌ها»، می‌توانید دوره مورد نظر را انتخاب کرده و از طریق کلاس درس به محتوای آموزشی و ویدیوها دسترسی پیدا کنید.",
+    q: "How can I access the course videos?",
+    a: "By logging into your account and going to the 'Courses' section, you can select your desired course and access educational content and videos through the classroom.",
   },
   {
-    q: "چطور می‌توانم سؤالات خود را از مدرس بپرسم؟",
-    a: "پس از ورود به کلاس درس از طریق حساب کاربری > دوره‌ها، می‌توانید سؤالات خود را مطرح کنید و از مدرسین آی‌گرافیکال پاسخ دریافت نمایید.",
+    q: "How can I ask questions to the instructor?",
+    a: "After entering the classroom via Account > Courses, you can ask your questions and receive answers from Ezlegin instructors.",
   },
   {
-    q: "مدت زمان پاسخ‌گویی مدرس چقدر است؟",
-    a: "حداکثر زمان پاسخ‌گویی مدرسین، ۴۸ ساعت کاری پس از ثبت پرسش شما خواهد بود.",
+    q: "How long does it take for the instructor to respond?",
+    a: "The maximum response time from instructors is 48 business hours after you submit your question.",
   },
   {
-    q: "آیا دسترسی من به ویدیوها محدودیت زمانی دارد؟",
-    a: "خیر، دسترسی شما به محتوای دوره‌ها به صورت مادام‌العمر فعال خواهد بود. تنها کافی‌ست از طریق حساب کاربری خود به بخش «دوره‌ها» مراجعه نمایید.",
+    q: "Is my access to the videos time-limited?",
+    a: "No, your access to course content is lifetime. You just need to go to the 'Courses' section through your account.",
   },
   {
-    q: "پس از اتمام دوره چه مدرکی ارائه می‌شود؟",
-    a: "با پایان موفقیت‌آمیز دوره، گواهی رسمی مدرسه آی‌گرافیکال به صورت اختصاصی برای شما صادر و از طریق حساب کاربری قابل دریافت خواهد بود.",
+    q: "What certificate is provided after completing the course?",
+    a: "Upon successful completion of the course, an official Ezlegin School certificate will be issued exclusively for you and can be received via your account.",
   },
   {
-    q: "آیا امکان خرید اقساطی دوره‌ها وجود دارد؟",
-    a: " به زودی امکان خرید اقساطی برای برخی دوره‌ها فراهم خواهد شد. اطلاعات تکمیلی به‌زودی در دسترس قرار خواهد گرفت.",
+    q: "Is installment purchase of courses available?",
+    a: "Installment purchase for some courses will be available soon. More information will be provided shortly.",
   },
 ];
 
 export default Faq;
 
 export const metadata: Metadata = {
-  title: "سوالات متداول",
+  title: "Frequently Asked Questions",
   description:
-    "  سوالات متداول درباره خدمات، حساب کاربری، پرداخت‌ها و پشتیبانی. پاسخ سریع به رایج‌ترین پرسش‌های کاربران.",
+    "Frequently asked questions about services, accounts, payments, and support. Quick answers to the most common user questions.",
 };

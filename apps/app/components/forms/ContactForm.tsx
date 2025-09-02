@@ -85,7 +85,7 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel>شماره تماس</FormLabel>
                 <FormControl>
-                  <Input maxLength={11} className="en-digits" {...field} />
+                  <Input maxLength={11} className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -99,7 +99,7 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel>ایمیل</FormLabel>
                 <FormControl>
-                  <Input className="en-digits" {...field} />
+                  <Input className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

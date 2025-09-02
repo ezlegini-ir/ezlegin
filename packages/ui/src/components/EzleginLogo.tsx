@@ -5,7 +5,7 @@ interface Props {
   height?: number;
   inputProps?: any;
   className?: string;
-  darkMode?: boolean;
+  lightMode?: boolean;
 }
 
 const EzleginLogo = ({
@@ -13,11 +13,11 @@ const EzleginLogo = ({
   className,
   width,
   height,
-  darkMode,
+  lightMode,
 }: Props) => {
   return (
     <Image
-      src={darkMode ? "/ezlegin-logo-dark.svg" : "/ezlegin-logo-light.svg"}
+      src={lightMode ? "/ezlegin-logo-light.svg" : "/ezlegin-logo-dark.svg"}
       alt={"Ezlegin!"}
       width={width || 142}
       height={height || 30}

@@ -1,5 +1,5 @@
 // LOGOS
-export { default as igraphLogo } from "./igraph-logo.svg";
+export { default as igraphLogo } from "./ezlegin-logo.svg";
 
 // NONE-EXISTING PHOTOS
 export const avatar = "/avatar.svg";

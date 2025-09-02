@@ -1,5 +1,5 @@
 import Avatar from "@ezlegin/ui/components/Avatar";
-import IgraphLogo from "@ezlegin/ui/components/IgraphLogo";
+import IgraphLogo from "@ezlegin/ui/components/EzleginLogo";
 import { SidebarHeader } from "@ezlegin/ui/components/ui/sidebar";
 import { getSessionAdmin } from "@/data/admin";
 import Link from "next/link";
@@ -10,7 +10,7 @@ const DashboardSidebarHeader = async () => {
   return (
     <SidebarHeader dir="ltr" className="p-4 space-y-8">
       <Link href={"/"}>
-        <IgraphLogo />
+        <IgraphLogo lightMode width={120} height={26} />
       </Link>
 
       <div className="bg-slate-100 p-3 px-2 rounded-sm border-dashed border-slate-400/60 border-[1px] flex gap-2 items-center">

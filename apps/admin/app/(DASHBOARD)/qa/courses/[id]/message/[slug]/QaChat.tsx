@@ -27,7 +27,7 @@ interface Props {
 
 const QaChat = ({ qa }: Props) => {
   return (
-    <div className="py-3 space-y-3" dir="rtl">
+    <div className="py-3 space-y-3">
       {qa?.messages?.map((message, index) => (
         <div key={index} className="space-y-3 text-sm">
           <div

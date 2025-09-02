@@ -46,11 +46,7 @@ const renderRows = (comment: CommentType) => {
         </Link>
       </TableCell>
       <TableCell className="text-right">
-        <Link
-          dir="rtl"
-          className="text-primary/60"
-          href={`/posts/${comment.post.id}`}
-        >
+        <Link className="text-primary/60" href={`/posts/${comment.post.id}`}>
           {comment.post.title}
         </Link>
       </TableCell>

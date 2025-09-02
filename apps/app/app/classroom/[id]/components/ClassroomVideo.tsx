@@ -40,7 +40,7 @@ const ClassroomVideo = ({
     const res = await createLessonProgress(currentLesson.id, classroomId);
 
     if (res.error) {
-      toast.error("خطا! لطفا مجدد تلاش کنید.");
+      toast.error("Error! Please try again.");
       setLoading(false);
       return;
     }
@@ -105,7 +105,7 @@ const ClassroomVideo = ({
         )}
         <div className="flex justify-between items-center">
           <p className="text-sm font-medium text-gray-500">
-            جلسه: {currentLesson.title}
+            Session: {currentLesson.title}
           </p>
           <div className="flex gap-2">
             <Button
@@ -117,12 +117,12 @@ const ClassroomVideo = ({
               {completed ? (
                 <span className="flex items-center gap-1">
                   <Check />
-                  تکمیل شده
+                  Completed
                 </span>
               ) : isLastLesson ? (
-                "اتمام دوره و صدور مدرک"
+                "Finish course & get certificate"
               ) : (
-                "تکمیل و جلسه بعد"
+                "Complete & next lesson"
               )}
             </Button>
           </div>

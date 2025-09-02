@@ -1,11 +1,11 @@
 import TicketMessageForm from "@/components/forms/TicketMessageForm";
+import { File, TicketMessage, User } from "@ezlegin/database";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import TicketMessages from "./TicketMessages";
-import { File, Image, TicketMessage, User } from "@ezlegin/database";
 
 export interface TicketMessagesProps {
   messages: (TicketMessage & {
-    user: (User & { image: Image | null }) | null;
+    user: User | null;
     attachment: File | null;
   })[];
 }

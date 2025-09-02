@@ -78,7 +78,7 @@ const Header = () => {
 
 const OtpEmail = ({ otp }: OtpEmailProps) => {
   return (
-    <Html lang="fa" dir="rtl">
+    <Html lang="fa">
       <Head />
       <Preview>🔒 کد تایید شما: {otp}</Preview>
       <Body style={bodyStyles}>
@@ -210,7 +210,7 @@ const FinishCourseEmail = ({
   courseTitle: string;
 }) => {
   return (
-    <Html lang="fa" dir="rtl">
+    <Html lang="fa">
       <Head />
       <Preview>🎉 تبریک {fullName} عزیز!</Preview>
       <Body style={bodyStyles}>
@@ -274,7 +274,7 @@ const SuccessPaymentEmail = (data: {
   const { fullName, payment } = data;
 
   return (
-    <Html lang="fa" dir="rtl">
+    <Html lang="fa">
       <Head />
       <Preview>🔹 ثبت نام شما در دوره آی‌گرافیکال موفق بود!</Preview>
       <Body style={bodyStyles}>
@@ -357,7 +357,7 @@ const SuccessPaymentEmailToAdmin = (data: {
   const { fullName, payment } = data;
 
   return (
-    <Html lang="fa" dir="rtl">
+    <Html lang="fa">
       <Head />
       <Preview>🔹 ثبت نام جدید</Preview>
       <Body style={bodyStyles}>

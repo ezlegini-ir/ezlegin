@@ -155,7 +155,7 @@ const UserProfileForm = ({ user }: Props) => {
               <FormItem>
                 <FormLabel>نام</FormLabel>
                 <FormControl>
-                  <Input className="en-digits" {...field} />
+                  <Input className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -169,7 +169,7 @@ const UserProfileForm = ({ user }: Props) => {
               <FormItem>
                 <FormLabel>نام خانوادگی</FormLabel>
                 <FormControl>
-                  <Input className="en-digits" {...field} />
+                  <Input className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -219,7 +219,7 @@ const UserProfileForm = ({ user }: Props) => {
                 <FormControl>
                   <Input
                     disabled={user.emailVerified}
-                    className="en-digits"
+                    className=""
                     {...field}
                   />
                 </FormControl>

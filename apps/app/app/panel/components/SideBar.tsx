@@ -1,9 +1,9 @@
 "use client";
 
 import { loginPageRoute } from "@/middleware";
-import { Image, User } from "@ezlegin/database";
+import { User } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
-import EzleginLogo from "@ezlegin/ui/components/IgraphLogo";
+import EzleginLogo from "@ezlegin/ui/components/EzleginLogo";
 import {
   Sidebar,
   SidebarContent,
@@ -23,18 +23,13 @@ import {
   PanelRight,
   Pencil,
   TvMinimalPlay,
-  User as UserIcon,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
 
-interface UserType extends User {
-  image: Image | null;
-}
-
 interface Props {
-  user: UserType | null | undefined;
+  user: User | null | undefined;
 }
 export function SideBar({ user }: Props) {
   if (!user) return redirect(loginPageRoute);
@@ -42,21 +37,18 @@ export function SideBar({ user }: Props) {
   const pathName = usePathname();
 
   return (
-    <Sidebar
-      side="right"
-      className="p-2 border-dashed border-gray-300 bg-background"
-    >
+    <Sidebar className="p-2 border-dashed border-muted bg-background">
       <SidebarHeader className="p-4 space-y-8">
         <Link href={"/"}>
-          <EzleginLogo />
+          <EzleginLogo width={120} />
         </Link>
 
         <div className="flex justify-between items-center">
           <div className="flex gap-2 items-center">
-            <Avatar src={user.image?.url} />
+            <Avatar src={user.image} />
             <div className="flex flex-col">
-              <span className="font-medium text-gray-600">{user.fullName}</span>
-              <span className="text-xs text-gray-400">{user.phone}</span>
+              <span className="font-medium text-gray-600">{user.name}</span>
+              <span className="text-xs text-gray-400">{user.email}</span>
             </div>
           </div>
 
@@ -68,7 +60,7 @@ export function SideBar({ user }: Props) {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>منو کاربری</SidebarGroupLabel>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {contentMenu.map((item, index) => (
@@ -76,7 +68,7 @@ export function SideBar({ user }: Props) {
                   <SidebarMenuButton size={"lg"} asChild>
                     <Link
                       href={item.href}
-                      className={` ${pathName === item.href ? "bg-slate-100 text-primary" : "hover:bg-slate-100/70"}`}
+                      className={` ${pathName === item.href ? "bg-slate-900 text-primary" : "hover:bg-slate-900"}`}
                     >
                       <item.icon />
                       <span>{item.title}</span>
@@ -91,7 +83,7 @@ export function SideBar({ user }: Props) {
 
       <SidebarFooter>
         <SidebarMenu className="mb-5">
-          {footerMenu.map((item) => (
+          {/* {footerMenu.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link href={item.href}>
@@ -100,13 +92,13 @@ export function SideBar({ user }: Props) {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          ))}
+          ))} */}
 
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <div className="cursor-pointer" onClick={() => signOut()}>
                 <LogOut />
-                <span>خروج از حساب</span>
+                <span>Log Out</span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -119,32 +111,32 @@ export function SideBar({ user }: Props) {
 // CONTENT MENI ITEMS
 const contentMenu = [
   {
-    title: "داشبورد",
+    title: "Dashboard",
     href: "/panel",
     icon: PanelRight,
   },
   {
-    title: "دوره‌ها",
+    title: "Courses",
     href: "/panel/courses",
     icon: TvMinimalPlay,
   },
   {
-    title: "پشتیبانی",
+    title: "Tickets",
     href: "/panel/tickets",
     icon: Headset,
   },
   {
-    title: "پرداخت‌ها",
+    title: "Payments",
     href: "/panel/payments",
     icon: CreditCard,
   },
 ];
 
 // FOOTER MENU ITEMS
-const footerMenu = [
-  {
-    title: "پروفایل",
-    href: "/panel/profile",
-    icon: UserIcon,
-  },
-];
+// const footerMenu = [
+//   {
+//     title: "My Profile",
+//     href: "/panel/profile",
+//     icon: UserIcon,
+//   },
+// ];

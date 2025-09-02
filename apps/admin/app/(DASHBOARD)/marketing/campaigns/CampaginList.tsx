@@ -44,9 +44,7 @@ const renderRows = (campaign: CampaignType) => {
 
   return (
     <TableRow key={campaign.id} className="odd:bg-slate-50">
-      <TableCell dir="rtl" className="text-left">
-        {campaign.title}
-      </TableCell>
+      <TableCell className="text-left">{campaign.title}</TableCell>
 
       <TableCell className="text-center">
         {formatDate(campaign.startAt, "yyyy/MM/dd")} -{" "}
@@ -88,7 +86,7 @@ const renderRows = (campaign: CampaignType) => {
           </div>
           <DialogContent>
             <DialogHeader className="space-y-6">
-              <DialogTitle dir="rtl" className="text-right pr-3">
+              <DialogTitle className="text-right pr-3">
                 {campaign.title}
               </DialogTitle>
               <CampaignAnalytics
