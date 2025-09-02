@@ -45,7 +45,7 @@ export default async function Layout({
           <div className="flex items-center gap-3 mb-5">
             <NotifBar />
 
-            <div className="hidden lg:block mr-auto">
+            <div className="hidden lg:block ml-auto">
               <UserBar user={user!} />
             </div>
           </div>

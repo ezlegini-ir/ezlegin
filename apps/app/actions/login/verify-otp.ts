@@ -1,59 +1,46 @@
 "use server";
 
 import { database } from "@ezlegin/database";
-import { detectInputType, isHumanOrNot } from "@ezlegin/utils";
+import { isHumanOrNot } from "@ezlegin/utils";
 import bcrypt from "bcryptjs";
 
 export const verifyOtp = async (
   otp: string,
-  identifier: string,
+  email: string,
   recaptchaToken?: string
 ) => {
   try {
-    if (recaptchaToken) await isHumanOrNot(recaptchaToken, "FA");
+    if (recaptchaToken) await isHumanOrNot(recaptchaToken);
 
-    // OTP LOOK UP
     const existingOtp = await database.otp.findFirst({
       where: {
-        identifier,
+        email,
       },
     });
 
-    // CHECK EXISTANCE
-    if (!existingOtp) return { error: "کد وارد شده معتبر نمی باشد !" };
+    if (!existingOtp) return { error: "The entered code is not valid!" };
 
-    // CHECK EXPIRATION
     const hasExpired = existingOtp.expires < new Date();
     if (hasExpired) {
-      return { error: `کد تایید منقضی شده است` };
+      return { error: `The verification code has expired` };
     }
 
-    // CHECK OTP
     const isValidOtp = await bcrypt.compare(otp, existingOtp.otpCode);
-    if (!isValidOtp) return { error: "کد وارد شده معتبر نمی باشد" };
+    if (!isValidOtp) return { error: "The entered code is not valid" };
 
-    // DELETE OTP
     const deletedOtp = await database.otp.delete({
       where: {
-        identifier: existingOtp.identifier,
+        email: existingOtp.email,
       },
       include: { user: true },
     });
 
-    if (deletedOtp.user) {
-      const type = detectInputType(identifier);
+    await database.user.update({
+      where: { id: deletedOtp.user?.id },
+      data: { emailVerified: new Date(), email },
+    });
 
-      await database.user.update({
-        where: { id: deletedOtp.user.id },
-        data: {
-          ...(type === "email"
-            ? { emailVerified: true, email: identifier }
-            : { phoneVerified: true, phone: identifier }),
-        },
-      });
-    }
-
-    return { success: "احراز هویت موفق بود!" };
+    return { success: "Authentication was successful!" };
   } catch (error) {
     return { error: String(error) };
   }

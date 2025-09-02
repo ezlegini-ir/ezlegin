@@ -1,35 +1,20 @@
 "use server";
 
-import { getUserByIdentifier } from "@/data/user";
-import { LoginFormType } from "@/lib/validationSchema";
-import {
-  convertPersianDigitsToEnglish,
-  detectInputType,
-  sendOtpEmail,
-  sendOtpSms,
-} from "@ezlegin/utils";
+import { getUserByEmail } from "@/data/user";
+import { sendOtpEmail } from "@ezlegin/utils";
 
-export async function sendOtp(
-  data: LoginFormType & { recaptchaToken?: string; userId?: number }
-) {
-  const { phoneOrEmail } = data;
-
-  // DETECT INPUT TYPE
-  const inputType = detectInputType(phoneOrEmail);
-
+export async function sendOtp({
+  email,
+  userId,
+}: {
+  email: string;
+  recaptchaToken?: string;
+  userId: number;
+}) {
   try {
-    // LOOK UP
-    const existingUser = await getUserByIdentifier(
-      inputType === "phone"
-        ? convertPersianDigitsToEnglish(phoneOrEmail)
-        : phoneOrEmail
-    );
+    const existingUser = await getUserByEmail(email);
 
-    if (inputType === "phone") {
-      await sendOtpSms(phoneOrEmail, data.userId);
-    } else {
-      await sendOtpEmail(phoneOrEmail, data.userId);
-    }
+    await sendOtpEmail(email, userId);
 
     return { isNewUser: !!!existingUser };
   } catch (error) {

@@ -28,11 +28,11 @@ import { toast } from "sonner";
 import Flex from "@ezlegin/ui/components/Flex";
 
 const ConfirmCredentialForm = ({
-  identifier,
+  email,
   setOpenOtpForm,
 }: {
   userId: number;
-  identifier: string;
+  email: string;
   setOpenOtpForm: Dispatch<SetStateAction<boolean>>;
 }) => {
   // HOOKS
@@ -52,13 +52,13 @@ const ConfirmCredentialForm = ({
     setLoading(true);
 
     if (failedAttempts >= 3) {
-      toast.warning("بیش از حد مجاز! لطفا مجددا اقدام نمایید.");
+      toast.warning("Too many attempts, Please try again later.");
       setLoading(false);
       setOpenOtpForm(false);
       return;
     }
 
-    const res = await verifyOtp(data.otp, identifier);
+    const res = await verifyOtp(data.otp, email);
 
     if (res.error) {
       toast.error(res.error);
@@ -70,7 +70,7 @@ const ConfirmCredentialForm = ({
 
     setFailedAttempts(0);
 
-    toast.success("احراز هویت با موفقیت انجام شد!");
+    toast.success("Email Verification Successfull!");
     router.refresh();
     setOpenOtpForm(false);
   };
@@ -79,7 +79,7 @@ const ConfirmCredentialForm = ({
 
   useEffect(() => {
     const autoSubmit = async () => {
-      if (otpValue.length === 6) {
+      if (otpValue.length === 5) {
         await onSubmit({ otp: otpValue });
       }
     };
@@ -90,7 +90,7 @@ const ConfirmCredentialForm = ({
   return (
     <>
       <Flex className="justify-center mb-3">
-        <CardDescription>لطفا کد ارسال شده را وارد کنید.</CardDescription>
+        <CardDescription>Please Insert Verification Code.</CardDescription>
       </Flex>
 
       <div>
@@ -104,7 +104,7 @@ const ConfirmCredentialForm = ({
                   <FormControl>
                     <InputOTP
                       autoFocus
-                      maxLength={6}
+                      maxLength={5}
                       {...field}
                       pattern={REGEXP_ONLY_DIGITS}
                     >
@@ -117,7 +117,6 @@ const ConfirmCredentialForm = ({
                         <InputOTPSlot index={2} />
                         <InputOTPSlot index={3} />
                         <InputOTPSlot index={4} />
-                        <InputOTPSlot index={5} />
                       </InputOTPGroup>
                     </InputOTP>
                   </FormControl>
@@ -135,7 +134,7 @@ const ConfirmCredentialForm = ({
                 type="submit"
               >
                 {<Loader loading={loading} />}
-                تایید
+                Verify Code
               </Button>
             </div>
           </form>

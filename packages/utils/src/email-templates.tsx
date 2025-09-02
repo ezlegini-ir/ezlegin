@@ -80,13 +80,13 @@ const OtpEmail = ({ otp }: OtpEmailProps) => {
   return (
     <Html lang="fa">
       <Head />
-      <Preview>🔒 کد تایید شما: {otp}</Preview>
+      <Preview>🔒 verification code: {otp}</Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
-            کاربر عزیز، برای ورود یا تأیید هویت، لطفاً از کد زیر استفاده کنید:
+          <Text style={{ fontSize: "18px", color: "#333" }}>
+            Dear user, to verify your identity, please use the code below:
           </Text>
           <Text
             style={{
@@ -103,28 +103,27 @@ const OtpEmail = ({ otp }: OtpEmailProps) => {
           </Text>
 
           <Button href="https://igraphical.ir/login" style={buttonStyles}>
-            ورود به حساب کاربری
+            Log in to your account
           </Button>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Text style={{ color: "#6b7280", direction: "rtl" }}>
-            این کد به دلایل امنیتی فقط برای مدت محدودی معتبر است. لطفاً هرچه
-            سریع‌تر اقدام نمایید.
+          <Text style={{ color: "#6b7280" }}>
+            For security reasons, this code is only valid for a limited time.
+            Please act as soon as possible.
           </Text>
-          <Text style={{ color: "#6b7280", direction: "rtl" }}>
-            اگر شما این درخواست را ارسال نکرده‌اید، می‌توانید این ایمیل را
-            نادیده بگیرید.
+          <Text style={{ color: "#6b7280" }}>
+            If you did not make this request, you can safely ignore this email.
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Text style={{ fontSize: "12px", color: "#888", direction: "rtl" }}>
-            اگر سوالی دارید، با ما از طریق support@igraphical.ir در تماس باشید.
+          <Text style={{ fontSize: "12px", color: "#888" }}>
+            If you have any questions, contact us at support@igraphical.ir.
           </Text>
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            iGraphical.ir
+            Ezlegin.com
           </Link>
         </Container>
       </Body>
@@ -217,20 +216,20 @@ const FinishCourseEmail = ({
         <Header />
 
         <Container style={containerStyles}>
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             {fullName} عزیز، 🎉تبریک می گوییم!
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             🔹 شما با موفقیت <strong>{courseTitle}</strong> را به اتمام رساندید.
             این یک دستاورد بزرگ است!
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             نظرات ارزشمند شما به ما کمک خواهد کرد تا کیفیت دوره‌های آموزشی خود
             را بهبود بخشیم.
           </Text>
@@ -281,11 +280,11 @@ const SuccessPaymentEmail = (data: {
         <Header />
 
         <Container style={containerStyles}>
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             {fullName} عزیز،
           </Text>
 
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             از اعتماد شما به آی‌گرافیکال سپاس‌گزاریم 🌟
             <br />
             پرداخت شما به مبلغ{" "}
@@ -301,7 +300,6 @@ const SuccessPaymentEmail = (data: {
               style={{
                 fontSize: "18px",
                 color: "#333",
-                direction: "rtl",
               }}
             >
               🎓 {course.title}
@@ -323,7 +321,6 @@ const SuccessPaymentEmail = (data: {
             style={{
               fontSize: "14px",
               color: "#888",
-              direction: "rtl",
               textAlign: "center",
             }}
           >
@@ -364,11 +361,11 @@ const SuccessPaymentEmailToAdmin = (data: {
         <Header />
 
         <Container style={containerStyles}>
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             کاربر: {fullName}
           </Text>
 
-          <Text style={{ fontSize: "18px", color: "#333", direction: "rtl" }}>
+          <Text style={{ fontSize: "18px", color: "#333" }}>
             پرداخت به مبلغ{" "}
             <strong>{payment.total.toLocaleString("en-US")} تومان</strong> با
             موفقیت انجام شد و ثبت‌نام در دوره‌های زیر تکمیل گردید:
@@ -382,7 +379,6 @@ const SuccessPaymentEmailToAdmin = (data: {
               style={{
                 fontSize: "18px",
                 color: "#333",
-                direction: "rtl",
               }}
             >
               🎓 {course.title}

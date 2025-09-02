@@ -77,28 +77,11 @@ export type ResetPasswordFormType = z.infer<typeof resetPasswordFormSchema>;
 // --------------
 
 export const profileFormSchema = z.object({
-  image: z.instanceof(File).optional(),
-  firstName: z
-    .string()
-    .min(3, { message: "حداقل 3 حرف" })
-    .regex(/^[\u0600-\u06FF\s]+$/, "فقط حروف فارسی مجاز است")
-    .trim(),
-  lastName: z
-    .string()
-    .min(3, { message: "حداقل 3 حرف" })
-    .regex(/^[\u0600-\u06FF\s]+$/, "فقط حروف فارسی مجاز است")
-    .trim(),
-  phone: z
-    .string()
-    .min(1, { message: requiredText })
-    .min(11, "شماره تماس باید  11 رقم باشد و با صفر شروع شود")
-    .regex(/^0[0-9]{10,14}$/, "شماره باید با 0 شروع شود و فقط عدد باشد")
-    .trim(),
+  name: z.string().min(3, { message: "At least 3 characters" }).trim(),
   email: z
     .string()
     .min(1, { message: requiredText })
-    .email({ message: "ایمیل نامعتبر است" }),
-  nationalId: z.string().min(1, { message: requiredText }).max(10),
+    .email({ message: "Invalid email address" }),
 });
 export type ProfileFormType = z.infer<typeof profileFormSchema>;
 

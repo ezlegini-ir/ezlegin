@@ -1,8 +1,7 @@
 // LOGOS
 export { default as ezleginLogo } from "./ezlegin-logo-dark.svg";
-export { default as igraphLogoIcon } from "./igraph-logo-icon.svg";
-export { default as igraphLogoCard } from "./igraph-logo-card.svg";
-export { default as igraphLogoLayDown } from "./igraph-logo-laydown.svg";
+export { default as ezleginLogoIcon } from "./ezlegin-logo-icon.svg";
+export { default as ezleginLogoSquare } from "./ezlegin-logo-square.svg";
 
 // NONE-EXISTING PHOTOS
 export const avatar = "/avatar.svg";

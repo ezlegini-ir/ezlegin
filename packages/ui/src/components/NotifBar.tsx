@@ -32,7 +32,7 @@ const NotifBar = async () => {
               variant={"gold"}
               size={"sm"}
             >
-              کلیک کنید
+              Click Now
             </Button>
           )}
         </Link>

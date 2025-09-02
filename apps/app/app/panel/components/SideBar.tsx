@@ -23,6 +23,7 @@ import {
   PanelRight,
   Pencil,
   TvMinimalPlay,
+  UserIcon,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
@@ -83,7 +84,7 @@ export function SideBar({ user }: Props) {
 
       <SidebarFooter>
         <SidebarMenu className="mb-5">
-          {/* {footerMenu.map((item) => (
+          {footerMenu.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link href={item.href}>
@@ -92,7 +93,7 @@ export function SideBar({ user }: Props) {
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
-          ))} */}
+          ))}
 
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
@@ -133,10 +134,10 @@ const contentMenu = [
 ];
 
 // FOOTER MENU ITEMS
-// const footerMenu = [
-//   {
-//     title: "My Profile",
-//     href: "/panel/profile",
-//     icon: UserIcon,
-//   },
-// ];
+const footerMenu = [
+  {
+    title: "My Profile",
+    href: "/panel/profile",
+    icon: UserIcon,
+  },
+];

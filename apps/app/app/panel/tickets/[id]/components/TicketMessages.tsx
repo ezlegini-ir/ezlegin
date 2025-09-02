@@ -1,4 +1,4 @@
-import { igraphLogoCard } from "@/public";
+import { ezleginLogoSquare } from "@/public";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { truncateFileName } from "@ezlegin/utils";
@@ -20,7 +20,12 @@ const TicketMessages = ({ messages }: TicketMessagesProps) => {
             <div className="w-full space-y-2">
               <div className="flex items-center gap-2">
                 {message.senderType === "ADMIN" ? (
-                  <Image alt="" src={igraphLogoCard} width={40} height={40} />
+                  <Image
+                    alt=""
+                    src={ezleginLogoSquare}
+                    width={40}
+                    height={40}
+                  />
                 ) : (
                   <Avatar src={message.user?.image} />
                 )}

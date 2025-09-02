@@ -44,13 +44,13 @@ export const sendEmail = async ({
 
 //! -------------------------------------------------------------------
 
-export const sendOtpEmail = async (email: string, userId?: number) => {
+export const sendOtpEmail = async (email: string, userId: number) => {
   try {
     const { plainOtp } = await generateEmailOtp(email, userId);
     const emailHtml = await renderOtpEmail(plainOtp);
 
     await sendEmail({
-      subject: `🔒 کد تایید: ${plainOtp}`,
+      subject: `🔒 Verification Code: ${plainOtp}`,
       to: email,
       html: emailHtml,
     });

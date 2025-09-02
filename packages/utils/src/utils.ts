@@ -153,15 +153,11 @@ export async function verifyRecaptcha(token: string): Promise<boolean> {
   return data.success && data.score > 0.5;
 }
 
-export async function isHumanOrNot(token: string, lang: "FA" | "EN") {
+export async function isHumanOrNot(token: string) {
   const isHuman = await verifyRecaptcha(token);
 
   if (!isHuman) {
-    throw new Error(
-      lang === "EN"
-        ? "You've Noticed as a Bot, Please Try Again later..."
-        : "شما ربات تشخیص داده شدید. لطفا مجددا یا بعدا اقدام کنید."
-    );
+    throw new Error("You've Noticed as a Bot, Please Try Again later...");
   }
 }
 

@@ -3,14 +3,6 @@
 import { auth } from "@ezlegin/auth";
 import { database } from "@ezlegin/database";
 
-export const getUserByIdentifier = async (phoneOrEmail: string) => {
-  return await database.user.findFirst({
-    where: {
-      OR: [{ email: phoneOrEmail }],
-    },
-  });
-};
-
 export const getUserById = async (id: number) => {
   if (!id) return;
   return await database.user.findUnique({

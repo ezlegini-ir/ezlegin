@@ -112,15 +112,15 @@ enum AdminRole {
 
 //! Login ---------------------------------------------------------
 model Otp {
-  id         String   @id @default(cuid())
-  identifier String   @unique
-  otpCode    String
-  type       OtpType
-  expires    DateTime
-  user       User?    @relation(fields: [userId], references: [id])
-  userId     Int?
+  id      String   @id @default(cuid())
+  email   String   @unique
+  otpCode String
+  type    OtpType
+  expires DateTime
+  user    User?    @relation(fields: [userId], references: [id])
+  userId  Int?
 
-  @@unique([identifier, otpCode])
+  @@unique([email, otpCode])
   @@map("otp")
 }
 
