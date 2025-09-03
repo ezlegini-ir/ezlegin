@@ -43,7 +43,6 @@ const TutorForm = ({ type, tutor }: Props) => {
     mode: "onBlur",
     defaultValues: {
       name: tutor?.name || "",
-      displayName: tutor?.displayName || "",
       password: "",
       email: tutor?.email || "",
       phone: tutor?.phone || "",
@@ -114,20 +113,6 @@ const TutorForm = ({ type, tutor }: Props) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="displayName"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Display Name</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>

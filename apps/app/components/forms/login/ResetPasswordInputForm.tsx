@@ -93,6 +93,7 @@ const ResetPasswordInputForm = ({ setLoginStep }: LoginFormsProps) => {
                     <FormLabel>Email Address</FormLabel>
                     <FormControl>
                       <Input
+                        autoFocus
                         type="email"
                         placeholder="test@example.com"
                         {...field}

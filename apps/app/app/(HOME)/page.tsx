@@ -8,11 +8,10 @@ import Link from "next/link";
 
 // Adjust these values if you want different pricing/codes
 const FULL_PRICE = 149;
-const PROMO_PRICE = 99;
 
 export default function CourseLanding() {
   return (
-    <section className="w-full  flex items-center justify-center mt-20">
+    <section className="w-full  flex items-center justify-center">
       <div className="relative w-full mx-auto">
         {/* Decorative blobs */}
         <div className="pointer-events-none absolute left-0 top-36 h-[320px] w-[320px] bg-violet-700/20 rounded-full blur-[80px]" />
@@ -24,7 +23,7 @@ export default function CourseLanding() {
 
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
               Ezlegin —{" "}
-              <span className="text-indigo-500">Design Without Limits</span>
+              <span className="text-indigo-400">Design Without Limits</span>
             </h1>
 
             <p className="text-muted-foreground mb-6 max-w-xl">
@@ -36,23 +35,23 @@ export default function CourseLanding() {
 
             {/* Price card */}
             <Card className="w-full mb-6">
-              <CardContent className="p-5 flex items-center justify-between gap-4">
+              <CardContent className="p-5 flex items-center justify-between">
                 <div>
                   <div className="text-sm text-muted-foreground">
-                    Full course price
+                    Course Price
                   </div>
                   <div className="flex items-baseline gap-3">
-                    <div className="text-sm line-through text-muted-foreground">
+                    {/* <div className="line-through text-muted-foreground">
                       ${FULL_PRICE}
-                    </div>
-                    <div className="text-2xl font-bold">${PROMO_PRICE}</div>
+                    </div> */}
+                    <div className="text-2xl font-bold">${FULL_PRICE}</div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">
+                  {/* <p className="text-xs text-muted-foreground mt-1">
                     One-time payment · Lifetime access · Figma files included
-                  </p>
+                  </p> */}
                 </div>
                 <div className="flex flex-col gap-3">
-                  <Link href="/course">
+                  <Link href="/courses/ui-design-course">
                     <Button size="lg">Course Page</Button>
                   </Link>
                 </div>
@@ -110,10 +109,10 @@ export default function CourseLanding() {
               </div>
 
               {/* Social proof row */}
-              <div className="mt-6 grid grid-cols-3 gap-2 text-xs text-muted-foreground h-12">
+              <div className="mt-6 grid grid-cols-3 gap-2 text-sm text-muted-foreground h-12">
                 <Card className="flex justify-center items-center gap-2 h-full">
                   <Star className="text-yellow-500" size={18} />
-                  4.9/5 <div className="text-xs">Rating</div>
+                  4.9/5 <div>Rating</div>
                 </Card>
                 <Card className="flex justify-center items-center gap-2 h-full">
                   <User className="text-primary" size={18} />

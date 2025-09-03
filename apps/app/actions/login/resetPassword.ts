@@ -69,6 +69,7 @@ export const resetPassword = async ({
       where: {
         user: { email },
       },
+      include: { user: true },
     });
 
     if (!existingToken) throw new Error("Invalid Reset Password Token");
@@ -88,6 +89,9 @@ export const resetPassword = async ({
       where: { id: existingToken.userId },
       data: {
         password: hashedPassword,
+        emailVerified: existingToken.user.emailVerified
+          ? existingToken.user.emailVerified
+          : new Date(),
       },
     });
 

@@ -26,7 +26,7 @@ export interface CurriculumsProps {
 const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-3">محتوای این دوره:</h2>
+      <h2 className="text-lg font-semibold mb-3">Curriculum:</h2>
       <Accordion
         type="single"
         collapsible
@@ -39,23 +39,25 @@ const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
             value={curriculum.id.toString()}
             className="border p-1 px-5 rounded-lg bg-background"
           >
-            <AccordionTrigger className="font-semibold flex items-center justify-between">
-              <span className="text-sm">{curriculum.sectionTitle}</span>
-              <div className="flex gap-4 mr-auto ml-4">
-                <span className="text-xs font-normal text-slate-500">
-                  {curriculum.lessons.length} درس
-                </span>
-                <span className="text-xs font-normal space-x-3 text-slate-500">
-                  {curriculum.lessons.reduce(
-                    (acc, curr) => acc + (curr.duration || 0),
-                    0
-                  )}{" "}
-                  دقیقه
-                </span>
+            <AccordionTrigger className="font-semibold hover:no-underline flex items-center justify-between w-full">
+              <div className="flex items-center justify-between w-full">
+                <span className="text-sm">{curriculum.sectionTitle}</span>
+                <div className="flex gap-4 mr-5 ml-4">
+                  <span className="text-xs font-normal text-muted-foreground">
+                    {curriculum.lessons.length} Lessons
+                  </span>
+                  <span className="text-xs font-normal space-x-3 text-muted-foreground">
+                    {curriculum.lessons.reduce(
+                      (acc, curr) => acc + (curr.duration || 0),
+                      0
+                    )}{" "}
+                    Min
+                  </span>
+                </div>
               </div>
             </AccordionTrigger>
             <AccordionContent>
-              <ul className="space-y-5 text-slate-500">
+              <ul className="space-y-5 text-muted-foreground">
                 {curriculum.lessons.map((lesson, index) => (
                   <li key={index} className="flex justify-between items-center">
                     <span className="flex gap-2 items-center">
@@ -72,7 +74,7 @@ const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
                       <Dialog>
                         <DialogTrigger asChild>
                           <Badge variant={"blue"} className="cursor-pointer">
-                            نمایش
+                            Preview
                           </Badge>
                         </DialogTrigger>
                         <DialogContent className="p-0 border-none max-w-[900px] aspect-video rounded-sm">

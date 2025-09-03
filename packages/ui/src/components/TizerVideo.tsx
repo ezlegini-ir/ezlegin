@@ -15,7 +15,7 @@ const TizerVideo = ({ url }: { url: string }) => {
   const playerRef = useRef(null);
 
   return (
-    <div className="relative overflow-hidden w-full max-w-2xl mx-auto rounded-lg aspect-video">
+    <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-lg aspect-video">
       {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
 
       <ReactPlayer

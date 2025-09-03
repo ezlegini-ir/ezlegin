@@ -8,7 +8,7 @@ import { Image, Review, User } from "@ezlegin/database";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export interface ReviewType extends Review {
-  user: User & { image: Image | null };
+  user: User;
 }
 interface Props {
   reviews: ReviewType[];
@@ -34,7 +34,7 @@ const CourseReviews = ({ reviews }: Props) => {
   return (
     reviews.length > 0 && (
       <div>
-        <h2 className="text-lg font-semibold mb-3">نظرات دانش آموزان:</h2>
+        <h2 className="text-lg font-semibold mb-3">Students Said:</h2>
 
         <Masonry
           breakpointCols={{ default: 2, 1024: 1 }}
@@ -54,7 +54,7 @@ const CourseReviews = ({ reviews }: Props) => {
               variant="dark"
               onClick={handleLoadMore}
             >
-              مشاهده بیشتر
+              View More
             </Button>
           </div>
         )}

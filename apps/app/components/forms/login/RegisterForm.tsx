@@ -107,7 +107,7 @@ const RegisterForm = ({
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input autoFocus placeholder="John Doe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -162,6 +162,7 @@ const RegisterForm = ({
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
+                        autoComplete="off"
                         placeholder="********"
                         type="password"
                         {...field}

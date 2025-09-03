@@ -11,13 +11,13 @@ export default {
   },
   trustHost: true,
   events: {
-    async createUser({ user }) {
-      await database.user.update({
-        where: { id: +user.id! },
-        data: {
-          emailVerified: new Date(),
-        },
-      });
+    async signIn({ user, account, profile }) {
+      if (account?.provider === "google" && !user.image && profile?.picture) {
+        await database.user.update({
+          where: { id: +user.id! },
+          data: { image: profile.picture },
+        });
+      }
     },
   },
   callbacks: {
@@ -36,7 +36,7 @@ export default {
     },
   },
   providers: [
-    Google,
+    Google({ allowDangerousEmailAccountLinking: true }),
     Credentials({
       id: "user-login",
       name: "User Login",

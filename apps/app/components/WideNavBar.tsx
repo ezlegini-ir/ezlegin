@@ -14,7 +14,7 @@ const WideNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
 
       {!user ? (
         <Link href={"/panel"}>
-          <Button>
+          <Button variant={"outline"}>
             <User /> User Panel
           </Button>
         </Link>

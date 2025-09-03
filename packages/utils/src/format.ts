@@ -3,12 +3,12 @@ import { formatDistance, differenceInHours, format } from "date-fns";
 
 export function formatDuration(minutes: number): string {
   if (minutes < 60) {
-    return `${minutes} دقیقه`;
+    return `${minutes} min`;
   } else {
     const hours = minutes / 60;
     const roundedHours = Math.round(hours * 2) / 2;
 
-    return `${roundedHours} ساعت`;
+    return `${roundedHours} hrs`;
   }
 }
 

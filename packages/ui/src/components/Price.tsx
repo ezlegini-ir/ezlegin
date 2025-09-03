@@ -1,11 +1,9 @@
-import { Discount } from "@ezlegin/database";
-import React from "react";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 
 interface Props {
   basePrice: number;
   price: number;
-  discount: Discount | null;
+  discount: Boolean;
 }
 
 const Price = ({ basePrice, price, discount }: Props) => {
@@ -15,27 +13,26 @@ const Price = ({ basePrice, price, discount }: Props) => {
         <>
           {price ? (
             <div>
-              <span className="text-primary font-semibold tracking-wider text-lg">
-                {price.toLocaleString("en-US")}
-              </span>
-              <span className="text-slate-400 text-xs mr-1">تومان</span>
+              <div>
+                <div className="text-xs text-muted-foreground">
+                  Course Price
+                </div>
+                <div className="text-2xl font-bold">${price}</div>
+              </div>
             </div>
           ) : (
-            <Badge variant={"green"}>رایگان</Badge>
+            <Badge variant={"green"}>$0 - Free</Badge>
           )}
         </>
       ) : (
-        <div className="w-full flex items-center">
-          <div className="relative flex gap-2">
-            <span className="text-slate-400 tracking-wider text-lg relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-red-500 before:top-1/2 before:left-0 before:-rotate-6">
-              {basePrice.toLocaleString("en-US")}
+        <div className="">
+          <div className="text-xs text-muted-foreground">Course Price</div>
+          <div className="flex items-end gap-2">
+            <span className="text-muted-foreground relative before:absolute before:content-[''] before:w-full before:h-[2px] before:bg-red-500 before:top-1/2 before:left-0 before:-rotate-6">
+              ${basePrice}
             </span>
-
-            <span className="text-primary font-semibold tracking-wider text-lg">
-              {price.toLocaleString("en-US")}
-            </span>
+            <div className="text-2xl font-bold">${price}</div>
           </div>
-          <span className="text-slate-400 text-xs mr-1">تومان</span>
         </div>
       )}
     </>

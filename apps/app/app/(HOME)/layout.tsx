@@ -20,7 +20,7 @@ export default async function HomeLayout({
           <NotifBar />
           <NavBar />
         </div>
-        <main className="relative">
+        <main className="relative pt-16">
           <div className="absolute -right-40 -top-72 h-[800px] w-[800px] bg-blue-950/50 rounded-full blur-[100px]" />
           <div className="absolute -right-16 -top-80 h-[400px] w-[400px] bg-blue-900/60 rounded-full blur-[100px]" />
           {children}

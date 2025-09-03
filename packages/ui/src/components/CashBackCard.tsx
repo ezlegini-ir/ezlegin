@@ -15,18 +15,19 @@ const CashBackCard = ({ price }: { price: number }) => {
     <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger className="w-full">
-          <Badge className="w-full bg-green-50 text-green-500 font-medium py-2 flex  hover:bg-green-50 justify-between">
+          <Badge
+            variant={"green"}
+            className="w-full font-medium text-sm py-2 flex items-center justify-between"
+          >
             <span className="flex items-center gap-1.5">
-              <Banknote size={20} />
-              برگشت به کیف پول:
+              <Banknote size={22} />
+              Cashback:
             </span>
-            <span>{cashBackAmount.toLocaleString("en-US")} تومان</span>
+            <span>${cashBackAmount.toLocaleString("en-US")}</span>
           </Badge>
         </TooltipTrigger>
-        <TooltipContent className="bg-slate-500 text-background">
-          <p>
-            به ازای هر 100 هزار تومان پرداخت = 10 هزار تومان برگشت به کیف پول
-          </p>
+        <TooltipContent className="bg-muted text-foreground">
+          <p>For every $100 paid = $5 cashback to your wallet</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

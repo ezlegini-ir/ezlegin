@@ -130,6 +130,7 @@ const ResetPasswordForm = ({ token, email }: Props) => {
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
+                          autoComplete="off"
                           placeholder="********"
                           type="password"
                           {...field}
@@ -164,6 +165,7 @@ const ResetPasswordForm = ({ token, email }: Props) => {
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
                       <Input
+                        autoComplete="off"
                         type="password"
                         placeholder="test@example.com"
                         {...field}

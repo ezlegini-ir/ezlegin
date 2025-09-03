@@ -322,7 +322,6 @@ export type StudentFormType = z.infer<typeof studentFormSchema>;
 //! TUTOR FORM
 export const tutorFormSchema = z.object({
   name: z.string().min(1),
-  displayName: z.string().min(1),
   email: z.string().min(1),
   slug: z.string().min(1),
   phone: z.string().min(1),

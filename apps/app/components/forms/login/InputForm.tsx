@@ -86,7 +86,7 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="test@example.com" {...field} />
+                  <Input autoFocus placeholder="test@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -22,6 +22,10 @@ export const verifyOtp = async (
 
     const hasExpired = existingOtp.expires < new Date();
     if (hasExpired) {
+      await database.otp.delete({
+        where: { email },
+      });
+
       return { error: `The verification code has expired` };
     }
 

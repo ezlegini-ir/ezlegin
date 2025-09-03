@@ -90,7 +90,9 @@ const ConfirmCredentialForm = ({
   return (
     <>
       <Flex className="justify-center mb-3">
-        <CardDescription>Please Insert Verification Code.</CardDescription>
+        <CardDescription>
+          Please insert verification code sent to your email.
+        </CardDescription>
       </Flex>
 
       <div>

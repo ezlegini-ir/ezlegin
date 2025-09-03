@@ -1,8 +1,8 @@
-import Avatar from "@ezlegin/ui/components/Avatar";
 import { avatar } from "@/public";
+import Avatar from "@ezlegin/ui/components/Avatar";
+import { formatDate } from "date-fns";
 import { Star } from "lucide-react";
 import { ReviewType } from "./CourseReviews";
-import { formatJalaliDate } from "@ezlegin/utils";
 
 interface Props {
   review: ReviewType;
@@ -13,10 +13,10 @@ const ReviewCard = ({ review }: Props) => {
     <div className="border rounded-lg p-5 space-y-3 h-min mb-3">
       <p className=" text-sm">{review.content}</p>
       <div className="flex gap-2">
-        <Avatar src={review.user.image?.url || avatar} />
+        <Avatar src={review.user.image || avatar} />
 
         <div>
-          <span className="text-sm font-medium">{review.user.fullName}</span>
+          <span className="text-sm font-medium">{review.user.name}</span>
 
           <div className="flex gap-4 text-gray-400 text-[10px] font-medium">
             <span className="flex gap-1 items-center ">
@@ -25,7 +25,7 @@ const ReviewCard = ({ review }: Props) => {
             </span>
 
             <span className="flex gap-1 items-center ">
-              {formatJalaliDate(review.createdAt, { useMonthName: false })}
+              {formatDate(review.createdAt, "yyyy/MM/dd")}
             </span>
           </div>
         </div>

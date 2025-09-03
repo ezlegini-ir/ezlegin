@@ -21,9 +21,7 @@ const CourseExercise = ({ exercises, courseTitle }: Props) => {
   return (
     exercises && (
       <div>
-        <h2 className="text-lg font-semibold mb-3">
-          تمرینات و بخش هایی از این دوره:
-        </h2>
+        <h2 className="text-lg font-semibold mb-3">Moments and Exercises:</h2>
 
         <ScrollArea className="rounded-md h-96 lg:h-full">
           <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3 p-2 px-4">
@@ -52,7 +50,7 @@ const CourseExercise = ({ exercises, courseTitle }: Props) => {
                     className="rounded-lg bg-muted-foreground"
                   />
                   <DialogTitle className="text-gray-400 text-sm font-medium">
-                    نمونه ای از تمرینات یا بخشی از این دوره
+                    A Moement or a sample exercises in this course
                   </DialogTitle>
                 </DialogContent>
               </Dialog>

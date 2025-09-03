@@ -24,6 +24,9 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
       },
       {
+        hostname: "dl.igraphical.ir",
+      },
+      {
         hostname: "lh3.googleusercontent.com",
       },
     ],

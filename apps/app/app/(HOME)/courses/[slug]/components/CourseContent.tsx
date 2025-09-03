@@ -30,7 +30,7 @@ export interface CourseType extends Course {
   tutor: (Tutor & { image: ImageType | null }) | null;
   image: ImageType | null;
   learn: Learn[];
-  review: (Review & { user: User & { image: ImageType | null } })[];
+  review: (Review & { user: User })[];
   category: CourseCategory | null;
   prerequisite: Prerequisite[];
   discount: Discount | null;
