@@ -41,8 +41,7 @@ export default async function PanelLayout({
 
 export const metadata: Metadata = {
   title: {
-    default: "سبد خرید",
-    template: "%s - آی‌گرافیکال",
+    default: "Cart",
+    template: "%s - Ezlegin",
   },
-  description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
 };

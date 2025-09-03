@@ -313,7 +313,7 @@ export const verifyQuickPayment = async (
         updatedPayment.user.phone
       );
 
-      return { success: "پرداخت موفق!", refId: res.data.ref_id };
+      return { success: "Payment Successfull!", refId: res.data.ref_id };
     } else {
       await database.quickCart.delete({
         where: { authority },

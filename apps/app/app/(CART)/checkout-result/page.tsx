@@ -17,6 +17,5 @@ const page = async ({ searchParams }: Props) => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "تایید تراکنش",
-  description: "آی‌گرافیکال: جایی که خلاقیت جان می‌گیرد!",
+  title: "Payment Confirm",
 };

@@ -96,7 +96,7 @@ const ClassroomContent = ({ classroom }: Props) => {
     <div className="grid grid-cols-12 gap-3 w-full">
       <div className="col-span-12 md:col-span-5 lg:col-span-6 xl:col-span-4 space-y-5">
         <Badge
-          className="w-full p-2 gap-3 text-right justify-start text-sm hover:bg-blue-50"
+          className="w-full p-2 gap-3 justify-start text-sm"
           variant={"blue"}
         >
           <Image
@@ -109,7 +109,7 @@ const ClassroomContent = ({ classroom }: Props) => {
           <div className="flex flex-col">
             <span>{classroom.enrollment.course.title}</span>
             <span className="text-xs text-muted-foreground font-medium">
-              {classroom.askTutor?.tutor.displayName}
+              {classroom.askTutor?.tutor.name}
             </span>
           </div>
         </Badge>

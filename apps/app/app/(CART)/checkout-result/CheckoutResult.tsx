@@ -55,33 +55,33 @@ const CheckoutResult = ({ authority, status, type }: Props) => {
   return (
     <div className="card max-w-[350px] mx-auto flex flex-col justify-center items-center space-y-3 w-full pt-5">
       {pending ? (
-        <Loader2 className="animate-spin text-blue-400" size={65} />
+        <Loader2 className="animate-spin text-primary" size={65} />
       ) : successStatus ? (
         <CircleCheckBig className="text-green-500" size={65} />
       ) : (
-        <CircleX className="text-red-500" size={65} />
+        <CircleX className="text-destructive" size={65} />
       )}
 
       <div className="text-center">
         <div className="font-medium flex flex-col gap-1">
-          {error ? error : success ? success : "در حال بررسی"}
+          {error ? error : success ? success : "Processing..."}
           {error && (
             <div className="text-gray-500 text-sm flex flex-col gap-2">
-              <span className="text-black">لطفا مجددا تلاش کنید</span>
+              <span className="text-foreground">Please try again</span>
               <Separator />
-              در صورت کسر مبلغ از حساب شما، این مبلغ حداکثر تا 72 ساعت آینده به
-              حساب شما واریز خواهد شد.
+              If the amount was deducted from your account, it will be refunded
+              within 72 hours.
             </div>
           )}
         </div>
         {pending && (
-          <p className="text-sm text-gray-500">لطفا از این صفحه خارج نشوید!</p>
+          <p className="text-sm text-muted">Please don’t leave this page!</p>
         )}
       </div>
 
       {successStatus && (
-        <div className="flex gap-8 text-xs text-gray-500">
-          <p>شناسه پرداخت: {refId}</p>
+        <div className="flex gap-8 text-xs text-muted">
+          <p>Payment ID: {refId}</p>
         </div>
       )}
 
@@ -89,7 +89,7 @@ const CheckoutResult = ({ authority, status, type }: Props) => {
         {!fail && (
           <Link href={"/panel/courses"}>
             <Button disabled={pending} className="w-full">
-              دوره های من
+              My Courses
             </Button>
           </Link>
         )}
@@ -97,7 +97,7 @@ const CheckoutResult = ({ authority, status, type }: Props) => {
         <div>
           <Link href={"/panel/payments"}>
             <Button variant={"secondary"} disabled={pending} className="w-full">
-              لیست پرداخت‌ها
+              Payment History
             </Button>
           </Link>
         </div>
