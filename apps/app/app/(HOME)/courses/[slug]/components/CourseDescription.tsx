@@ -1,29 +1,19 @@
 "use client";
 
-import React from "react";
 import ReadOnlyEditor from "@ezlegin/editor/ReadOnlyEditor";
-import CourseAudienceItems from "./CourseAudience";
+import React from "react";
 
 interface CourseDescriptionProps {
-  content: string; // Your stored Lexical JSON string
-  courseDescriptionItems: {
-    audience: string;
-    needs: string;
-    bazaar: string;
-  };
+  content: string;
 }
 
-const CourseDescription: React.FC<CourseDescriptionProps> = ({
-  content,
-  courseDescriptionItems,
-}) => {
+const CourseDescription: React.FC<CourseDescriptionProps> = ({ content }) => {
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-semibold">درباره این دوره:</h2>
-      <div className="card p-5">
+      <h3 className="text-xl font-semibold mb-3">About this course</h3>
+      <div>
         <ReadOnlyEditor content={content} />
       </div>
-      <CourseAudienceItems courseContentItems={courseDescriptionItems} />
     </div>
   );
 };

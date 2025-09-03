@@ -152,9 +152,9 @@
 
 pre {
   background-color: transparent !important;
-  font-family: "Inter";
-  color: #fafafa !important;
+  font-family: var(--font-inter) !important;
   font-size: 1rem;
+  line-height: 1.4;
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;

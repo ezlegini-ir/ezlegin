@@ -1,17 +1,16 @@
 "use client";
 
-import React from "react";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import PlaygroundNodes from "./nodes/PlaygroundNodes";
-import PlaygroundEditorTheme from "./themes/PlaygroundEditorTheme";
 import { HeadingNode } from "@lexical/rich-text";
 import { CourseBannerNode } from "./nodes/CourseBannerNode";
+import PlaygroundNodes from "./nodes/PlaygroundNodes";
 import ReplacePrintPostPlugin from "./plugins/ReplacePrintPostPlugin/ReplacePrintPostPlugin";
+import PlaygroundEditorTheme from "./themes/PlaygroundEditorTheme";
 
 let headingCounter = 0;
 

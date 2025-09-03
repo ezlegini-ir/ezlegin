@@ -1,31 +1,32 @@
+import { Badge } from "@ezlegin/ui/components/ui/badge";
+import { Card } from "@ezlegin/ui/components/ui/card";
+import { LucideIcon, Users } from "lucide-react";
 import React from "react";
+
+export interface courseContentItemsType {
+  title: string;
+  content: string;
+  icon: LucideIcon;
+}
+
 interface Props {
-  courseContentItems: {
-    audience: string;
-    needs: string;
-    bazaar: string;
-  };
+  courseContentItems: courseContentItemsType[];
 }
 
 const CourseAudienceItems = ({ courseContentItems }: Props) => {
   return (
-    <div className="space-y-3">
-      <div className="card space-y-3">
-        <h3 className="text-base text-primary">مخاطبین دوره</h3>
-        <p>{courseContentItems.audience}</p>
-      </div>
-
-      <div className="lg:flex gap-3 space-y-3 lg:space-y-0">
-        <div className="card space-y-2 lg:w-1/2 h-min">
-          <h3 className="text-base text-primary">ملزومات دوره</h3>
-          <pre>{courseContentItems.needs}</pre>
-        </div>
-
-        <div className="card space-y-2 lg:w-1/2 h-min">
-          <h3 className="text-base text-primary">بازار کار</h3>
-          <p>{courseContentItems.bazaar}</p>
-        </div>
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {courseContentItems?.map((item, idx) => (
+        <Card key={idx} className="p-5 space-y-2">
+          <div className="flex items-center gap-3">
+            <Badge variant={"blue"} className="w-9 h-9 rounded-full p-2">
+              <item.icon />
+            </Badge>
+            <h4 className="font-semibold">{item.title}</h4>
+          </div>
+          <pre className="text-muted-foreground">{item.content}</pre>
+        </Card>
+      ))}
     </div>
   );
 };

@@ -34,7 +34,7 @@ const TizerVideo = ({ url }: { url: string }) => {
           className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-10 group"
           onClick={() => setPlaying(true)}
         >
-          <div className="bg-black opacity-70 rounded-full flex items-center justify-center gap-2 px-6 py-3 shadow-lg group-hover:scale-[1.02] transition">
+          <div className="bg-black border border-muted-foreground hover:opacity-80 opacity-70 rounded-full flex items-center justify-center gap-2 px-6 py-3 shadow-lg group-hover:scale-[1.02] transition">
             <Play size={19} />
             <span>Play Teaser</span>
           </div>

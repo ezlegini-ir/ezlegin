@@ -44,7 +44,9 @@ const TicketMessages = ({ messages }: TicketMessagesProps) => {
                   </span>
                 </div>
               </div>
-              <pre className="text-sm">{message.message}</pre>
+              <pre style={{ fontFamily: "Inter" }} className="text-sm">
+                {message.message}
+              </pre>
             </div>
             {message.attachment && (
               <div className="space-y-2">
