@@ -26,7 +26,7 @@ export interface CurriculumsProps {
 const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-3">Curriculum:</h2>
+      <h2 className="text-lg font-semibold mb-3">Course Curriculum:</h2>
       <Accordion
         type="single"
         collapsible

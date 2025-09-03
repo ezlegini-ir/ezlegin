@@ -91,7 +91,7 @@ const page = async ({ params, searchParams }: Props) => {
         <div className="col-span-3">
           <CourseSidebar course={course} />
         </div>
-        <div className="col-span-9 space-y-20">
+        <div className="col-span-9 space-y-24">
           <CourseDescription content={course.description} />
 
           <CourseAudienceItems courseContentItems={courseContentItems} />
