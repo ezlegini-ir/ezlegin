@@ -30,9 +30,9 @@ const CourseTutor = ({ tutor }: Props) => {
             <div>
               <h3 className="text-foreground mb-1 text-2xl">{tutor.name}</h3>
               <div className="flex gap-2 items-stretch">
-                <pre className="text-muted-foreground text-xs p-0">
+                <p className="text-muted-foreground text-xs p-0">
                   {tutor.titles}
-                </pre>
+                </p>
               </div>
             </div>
 

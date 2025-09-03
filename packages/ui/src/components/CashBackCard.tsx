@@ -27,7 +27,7 @@ const CashBackCard = ({ price }: { price: number }) => {
           </Badge>
         </TooltipTrigger>
         <TooltipContent className="bg-muted text-foreground">
-          <p>For every $100 paid = $5 cashback to your wallet</p>
+          <p>For every $99 paid = $5 cashback to your wallet</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

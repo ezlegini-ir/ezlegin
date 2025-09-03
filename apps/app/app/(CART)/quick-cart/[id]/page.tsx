@@ -1,8 +1,9 @@
-import Avatar from "@ezlegin/ui/components/Avatar";
 import QuickCartCheckoutForm from "@/components/forms/QuickCartCheckoutForm";
 import { getSessionUser } from "@/data/user";
-import { database } from "@ezlegin/database";
 import { placeHolder } from "@/public";
+import { database } from "@ezlegin/database";
+import Avatar from "@ezlegin/ui/components/Avatar";
+import { truncateName } from "@ezlegin/utils";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -34,22 +35,24 @@ const page = async ({ params }: Props) => {
   });
 
   return (
-    <div className="card max-w-sm mx-auto  space-y-6">
+    <div className="card max-w-md mx-auto  space-y-6">
       <div className="flex items-center gap-2 card">
         <Image
-          alt=""
+          alt={course.title}
           src={course?.image?.url || placeHolder}
           width={90}
           height={90}
-          className="rounded-sm aspect-video object-cover"
+          className="rounded-sm aspect-video object-cover bg-muted"
         />
 
         <div>
-          <p className="font-medium">{course?.title}</p>
+          <p className="font-medium">
+            {truncateName({ name: course.title, maxLength: 30 })}
+          </p>
           <div className="flex gap-1 items-center">
             <Avatar src={course?.tutor?.image?.url} size={20} />
             <span className="font-normal text-xs text-slate-500">
-              {course?.tutor?.displayName}
+              {course?.tutor?.name}
             </span>
           </div>
         </div>

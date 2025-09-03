@@ -20,6 +20,17 @@ export function truncateFileName(name: string, maxLength = 20) {
   return baseName.slice(0, 10) + "....." + baseName.slice(-10) + extension;
 }
 
+export function truncateName({
+  name,
+  maxLength,
+}: {
+  name: string;
+  maxLength: number;
+}): string {
+  if (name.length <= maxLength) return name;
+  return name.slice(0, maxLength) + "...";
+}
+
 //! --------------------------------------------------
 
 export function aggregateByDay<T>(
@@ -97,7 +108,7 @@ export function cashBackCalculator(price: number): number {
   if (!price) return 0;
 
   // For every 100,000 Tomans, returns 10,000 Tomans
-  const x = Math.floor(price / 100);
+  const x = Math.floor(price / 99);
   return x < 0 ? 0 : x * 5;
 }
 

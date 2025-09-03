@@ -104,7 +104,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
       setCouponAmount(0);
       form.reset();
 
-      toast.warning("کد تخفیف حذف شد");
+      toast.warning("Discount code removed");
       if (useWallet && usedWalletAmount > 0) {
         const usedWalletAmount = Math.min(initialCartTotal, walletBalance);
         setUsedWalletAmount(usedWalletAmount);
@@ -119,7 +119,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     // COUPON CHECK ---------------
     const existingCoupon = await getCouponByCode(form_DiscountCode);
     if (!existingCoupon) {
-      toast.error("کد تخفیف نا معتبر می باشد!");
+      toast.error("Invalid discount code!");
       setApplyDiscountLoading(false);
       return;
     }
@@ -149,7 +149,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     if (existingCoupon.to) {
       const isExpired = existingCoupon.to < new Date();
       if (isExpired) {
-        toast.error("این کد تخفیف منقضی شده است.");
+        toast.error("This discount code has expired.");
         setApplyDiscountLoading(false);
         return;
       }
@@ -157,7 +157,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     if (existingCoupon.from) {
       const isNotStarted = existingCoupon.from > new Date();
       if (isNotStarted) {
-        toast.error("زمان این کد تخفیف شروع نشده است.");
+        toast.error("This discount code is not active yet.");
         setApplyDiscountLoading(false);
         return;
       }
@@ -167,7 +167,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     if (existingCoupon.limit) {
       const isReachedToLimit = existingCoupon.used === existingCoupon.limit;
       if (isReachedToLimit) {
-        toast.error("این کد تخفیف به سقف مجاز استفاده رسیده است");
+        toast.error("This discount code has reached its usage limit.");
         setApplyDiscountLoading(false);
         return;
       }
@@ -182,7 +182,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
       if (existingCoupon.courseInclude.length > 0) {
         const courseIncludeIds = existingCoupon.courseInclude.map((c) => c.id);
         if (!courseIncludeIds.includes(course.id)) {
-          toast.error("این کد تخفیف برای این دوره مجاز نمی باشد");
+          toast.error("This discount code is not valid for this course.");
           setApplyDiscountLoading(false);
           return;
         }
@@ -193,7 +193,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
       if (existingCoupon.courseExclude.length > 0) {
         const courseExcludeIds = existingCoupon.courseExclude.map((c) => c.id);
         if (courseExcludeIds.includes(course.id)) {
-          toast.error("این کد تخفیف برای این دوره مجاز نمی باشد");
+          toast.error("This discount code is not valid for this course.");
           setApplyDiscountLoading(false);
           return;
         }
@@ -204,7 +204,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     }
 
     setApplyDiscountLoading(false);
-    toast.success("کد تخفیف با موفقیت اعمال شد.");
+    toast.success("Discount code applied successfully.");
   };
 
   //! ON SUBMIT  ---------------------------
@@ -245,67 +245,58 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
     <div className="space-y-5">
       <div className="space-y-3">
         <div className="flex text-nowrap items-center gap-2 text-sm font-medium">
-          <span>قیمت دوره</span>
+          <span>Course price</span>
           <div className="w-full">
             <Separator />
           </div>
-          <div>
-            {formatPriceBy3Digits(course.basePrice)}
-            <span className="text-gray-500 text-xs mr-1">تومان</span>
-          </div>
+          <div>${course.basePrice}</div>
         </div>
 
         {discountAmount > 0 && (
-          <div className="flex text-nowrap items-center gap-2 text-sm text-slate-400">
-            <span>تخفیف دوره</span>
+          <div className="flex text-nowrap items-center gap-2 text-sm text-muted-foreground">
+            <span>Course discount</span>
             <div className="w-full">
               <Separator />
             </div>
-            <div>
-              {formatPriceBy3Digits(discountAmount)}-{" "}
-              <span className="text-xs">تومان</span>
-            </div>
+            <div>- ${formatPriceBy3Digits(discountAmount)}</div>
           </div>
         )}
 
         {couponAmount > 0 && (
-          <div className="flex text-nowrap items-center gap-2 text-sm text-slate-400">
-            <span>کسر کد تخفیف</span>
+          <div className="flex text-nowrap items-center gap-2 text-sm text-muted-foreground">
+            <span>Discount code deduction</span>
             <div className="w-full">
               <Separator />
             </div>
-            <div>
-              {formatPriceBy3Digits(couponAmount)}-{" "}
-              <span className="text-xs">تومان</span>
-            </div>
+            <div>- ${formatPriceBy3Digits(couponAmount)}</div>
           </div>
         )}
 
         {usedWalletAmount > 0 && (
-          <div className="flex text-nowrap items-center gap-2 text-sm text-slate-400">
-            <span>کسر کیف پول</span>
+          <div className="flex text-nowrap items-center gap-2 text-sm text-muted-foreground">
+            <span>Wallet deduction</span>
             <div className="w-full">
               <Separator />
             </div>
-            <div>
-              {formatPriceBy3Digits(usedWalletAmount)}-{" "}
-              <span className="text-xs">تومان</span>
-            </div>
+            <div>- ${formatPriceBy3Digits(usedWalletAmount)}</div>
           </div>
         )}
 
         {/* //! PURCHASE BUTTON */}
         <div className="space-y-3">
-          <Button disabled={loading} className="w-full" onClick={onPayment}>
+          <Button
+            size={"lg"}
+            disabled={loading}
+            className="w-full font-medium text-base"
+            onClick={onPayment}
+          >
             <Loader loading={loading} />
             {loading ? (
-              "در حال انتقال"
+              "Redirecting..."
             ) : cartTotal > 0 ? (
-              <span className="flex">
-                پرداخت {formatPriceBy3Digits(cartTotal)} تومان
-              </span>
+              <span className="flex">Pay ${cartTotal}</span>
             ) : (
-              <span className="flex">تکمیل ثبت نام</span>
+              <span className="flex">Complete registration</span>
             )}
           </Button>
 
@@ -316,7 +307,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
       {walletBalance > 0 && initialCartTotal !== 0 && (
         <Badge
           variant={useWallet ? "blue" : "gray"}
-          className={`flex justify-between items-center text-sm font-medium py-3 hover:bg-slate-50 
+          className={`flex justify-between items-center text-sm font-medium py-3 hover:bg-muted
             ${
               cartTotal === 0 &&
               coupon &&
@@ -326,9 +317,9 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
             `}
         >
           <div className="flex flex-col gap-1">
-            <span>استفاده از کیف پول</span>
+            <span>Use wallet</span>
             <span className="text-xs">
-              موجودی: {formatPriceBy3Digits(walletBalance)} تومان
+              Balance: ${formatPriceBy3Digits(walletBalance)}
             </span>
           </div>
 
@@ -352,9 +343,10 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
                   <FormItem>
                     <FormControl>
                       <Input
+                        autoFocus
                         disabled={!!coupon}
-                        className="border-slate-300 relative pl-20 font-medium tracking-wide bg-white"
-                        placeholder="کد تخفیف"
+                        className="relative pr-20 font-medium tracking-wide"
+                        placeholder="Discount code"
                         {...field}
                         autoComplete="off"
                       />
@@ -365,7 +357,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
 
               <Button
                 disabled={!form.formState.isValid || applyDiscountLoading}
-                className="absolute px-4 inset-y-0 h-7 left-1 my-auto text-black"
+                className="absolute px-4 inset-y-0 h-7 right-1 my-auto rounded-sm"
                 type="submit"
                 size={"sm"}
                 variant={"secondary"}
@@ -374,12 +366,12 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
                 {coupon ? (
                   <span className="flex gap-1">
                     <X />
-                    حذف
+                    Remove
                   </span>
                 ) : applyDiscountLoading ? (
-                  "در حال بررسی"
+                  "Checking..."
                 ) : (
-                  "بــررســی"
+                  "Apply"
                 )}
               </Button>
             </>

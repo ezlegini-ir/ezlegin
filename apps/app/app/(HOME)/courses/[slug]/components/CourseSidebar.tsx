@@ -40,7 +40,7 @@ const CourseSidebar = async ({ course }: Props) => {
 
   const courseIncludes: CourseIncludesTypes[] = [
     {
-      label: `${duration}+ hrs content`,
+      label: `${duration}+ content`,
       icon: TvMinimalPlay,
       iconColor: "text-primary",
     },
@@ -60,7 +60,7 @@ const CourseSidebar = async ({ course }: Props) => {
       iconColor: "text-cyan-400",
     },
     {
-      label: `MessageCircle`,
+      label: `Direct chat with tutor`,
       icon: MessageCircle,
       iconColor: "text-pink-400",
     },
