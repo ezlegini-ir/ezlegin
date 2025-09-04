@@ -7,6 +7,7 @@ import CourseTitle from "./components/CourseTitle";
 import Instractor from "./components/Instractor";
 import LearningPath from "./components/LearningPath";
 import PromiseSection from "./components/PromiseSection";
+import ReviewsSection from "./components/ReviewsSection";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -73,6 +74,8 @@ const page = async ({ searchParams }: Props) => {
       <Instractor />
 
       <PromiseSection />
+
+      <ReviewsSection />
     </div>
   );
 };
