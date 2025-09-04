@@ -1,14 +1,13 @@
 "use server";
 
+import { adminData } from "@/data/adminData";
 import { database, User, Wallet } from "@ezlegin/database";
 import {
   cashBackCalculator,
   sendSuccessPaymentEmail,
   sendSuccessPaymentEmailToAdmin,
-  sendSuccessPaymentSms,
 } from "@ezlegin/utils";
 import { InitiatePurchase, verifyPurchase } from "./zarinPal";
-import { adminData } from "@/data/adminData";
 
 //* CREATE PAYMENT -------------------------------------------------------
 
@@ -42,19 +41,19 @@ export const createQuickPayment = async (data: QuickPaymentDataType) => {
       where: { code: discountCode },
     });
     if (discountCode && !existingCoupon)
-      return { error: "کد تخفیف معتبر نمی باشد" };
+      return { error: "Discount code is not valid" };
 
     const existingCourse = await database.course.findFirst({
       where: { id: courseId },
     });
-    if (!existingCourse) return { error: "این دوره معتبر نمی باشد" };
+    if (!existingCourse) return { error: "This course is not valid" };
 
     const existingEnrollment = await database.enrollment.findFirst({
       where: { userId: user.id, courseId },
     });
 
     if (existingEnrollment)
-      return { error: "شما قبلا در این دوره ثبت نام کرده اید" };
+      return { error: "You have already enrolled in this course." };
 
     const newPayment = await database.payment.create({
       data: {
@@ -118,11 +117,11 @@ export const createQuickPayment = async (data: QuickPaymentDataType) => {
           },
         });
       } else {
-        return { error: "مشکلی در پرداخت رخ داد. دقایقی بعد مجددا تلاش کنید" };
+        return { error: "Something Happened, Please try again later." };
       }
 
       return {
-        success: "به صفحه پرداخت هدایت می شوید...",
+        success: "Redirecting to payment gateway...",
         paymentUrl: res?.data?.paymentUrl,
       };
     } else {
@@ -137,7 +136,8 @@ export const createQuickPayment = async (data: QuickPaymentDataType) => {
                   create: {
                     amount: newPayment.walletUsedAmount,
                     type: "DECREMENT",
-                    description: "کسر کیف پول جهت خرید دوره",
+                    description:
+                      "Deduction of wallet due to purchasing a course.",
                   },
                 }
               : undefined,
@@ -157,25 +157,19 @@ export const createQuickPayment = async (data: QuickPaymentDataType) => {
       //* Send Email
       await sendSuccessPaymentEmail(
         newPayment.user.email,
-        newPayment.user.fullName,
+        newPayment.user.name,
         newPayment
       );
 
       //* Send Email To Admin
       await sendSuccessPaymentEmailToAdmin(
         adminData.email,
-        newPayment.user.fullName,
+        newPayment.user.name,
         newPayment
       );
 
-      //* Send Sms
-      await sendSuccessPaymentSms(
-        newPayment.user.firstName,
-        newPayment.user.phone
-      );
-
       return {
-        success: "در حال انتقال به کلاس درس...",
+        success: "Redirecting to Classroom...",
         redirectUrl: `/classroom/${newPayment.enrollment[0]?.classroom?.id}`,
       };
     }
@@ -195,7 +189,7 @@ export const verifyQuickPayment = async (
       where: { authority },
     });
 
-    if (!existingQuickCart) return { error: "کد مرجع معتبر نمی باشد" };
+    if (!existingQuickCart) return { error: "Payment Token is not valid" };
 
     const res = await verifyPurchase(
       authority,
@@ -247,7 +241,7 @@ export const verifyQuickPayment = async (
               create: {
                 amount: cashbackAmount,
                 type: "INCREMENT",
-                description: "شارژ کیف پول جهت خرید دوره",
+                description: "Charge wallet due to purchasing a course.",
               },
             },
           },
@@ -258,7 +252,7 @@ export const verifyQuickPayment = async (
               create: {
                 amount: cashbackAmount,
                 type: "INCREMENT",
-                description: "شارژ کیف پول جهت خرید دوره",
+                description: "Charge wallet due to purchasing a course.",
               },
             },
           },
@@ -275,7 +269,8 @@ export const verifyQuickPayment = async (
                     create: {
                       amount: updatedPayment.walletUsedAmount,
                       type: "DECREMENT",
-                      description: "کسر کیف پول جهت خرید دوره",
+                      description:
+                        "Deduction of wallet due to purchasing a course.",
                     },
                   }
                 : undefined,
@@ -296,21 +291,15 @@ export const verifyQuickPayment = async (
       //* Send Email
       await sendSuccessPaymentEmail(
         updatedPayment.user.email,
-        updatedPayment.user.fullName,
+        updatedPayment.user.name,
         updatedPayment
       );
 
       //* Send Email To Admin
       await sendSuccessPaymentEmailToAdmin(
         adminData.email,
-        updatedPayment.user.fullName,
+        updatedPayment.user.name,
         updatedPayment
-      );
-
-      //* Send Sms
-      await sendSuccessPaymentSms(
-        updatedPayment.user.firstName,
-        updatedPayment.user.phone
       );
 
       return { success: "Payment Successfull!", refId: res.data.ref_id };
@@ -325,7 +314,7 @@ export const verifyQuickPayment = async (
         },
       });
 
-      return { error: "پرداخت ناموفق" };
+      return { error: "Payment Failed!" };
     }
   } catch (error) {
     return { error: String(error) };

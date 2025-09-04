@@ -9,7 +9,7 @@ export const verifyCertificate = async (
   recaptchaToken: string
 ) => {
   try {
-    await isHumanOrNot(recaptchaToken, "FA");
+    await isHumanOrNot(recaptchaToken);
 
     const normalizedSerial = convertPersianDigitsToEnglish(serial);
 
@@ -27,11 +27,13 @@ export const verifyCertificate = async (
 
     if (certificate) {
       return {
-        success: "این مدرک مورد تایید آی‌گرافیکال می باشد",
+        success: "This Certificate is valid and registered in our system.",
         certificate,
       };
     } else {
-      return { error: "این مدرک در سیستم مدارک آی‌گرافیکال ثبت نگردیده است." };
+      return {
+        error: "This Certificate is not valid and registered in our system. ",
+      };
     }
   } catch (error) {
     return { error: String(error) };

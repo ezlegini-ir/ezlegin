@@ -14,7 +14,8 @@ export const createReview = async (
     const existingReview = await database.review.findFirst({
       where: { userId, courseId },
     });
-    if (existingReview) return { error: "شما قبلا نظر ثبت کرده اید" };
+    if (existingReview)
+      return { error: "You have already submitted a review." };
 
     await database.review.create({
       data: {
@@ -25,7 +26,7 @@ export const createReview = async (
       },
     });
 
-    return { success: "ضمن تشکر، نظر شما ثبت شد" };
+    return { success: "Thanks, Your review has been submitted." };
   } catch (error) {
     return { error: String(error) };
   }

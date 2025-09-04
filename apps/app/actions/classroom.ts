@@ -41,7 +41,7 @@ export const createLessonProgress = async (
         },
       });
 
-      if (!existingClassroom) return { error: "کلاس درس یافت نشد" };
+      if (!existingClassroom) return { error: "Classroom Not Found." };
 
       await tx.lessonProgress.create({
         data: {
@@ -95,13 +95,13 @@ export const createLessonProgress = async (
         });
 
         return {
-          success: "تبریک! شما با موفقیت این دوره را به اتمام رساندید.",
+          success: "Congratulations! You completed the course successfully.",
           isLastLesson: true,
-          enrollment: existingClassroom.enrollment, // Return for further processing
+          enrollment: existingClassroom.enrollment,
         };
       } else {
         return {
-          success: "موفق باشید! پیش به سوی درس بعدی...",
+          success: "Good Job! Lesson marked as completed.",
           isLastLesson: false,
         };
       }
@@ -112,7 +112,7 @@ export const createLessonProgress = async (
       const serialNumber = await generateUniqueSerial();
 
       const user = await getSessionUser();
-      if (!user) throw new Error("کاربر یافت نشد. لطفا مجددا وارد شوید.");
+      if (!user) throw new Error("User not found. please log in again.");
 
       const updatedClassroom = await database.classRoom.update({
         where: { id: classroomId },
@@ -126,7 +126,7 @@ export const createLessonProgress = async (
         include: { enrollment: { include: { course: true } } },
       });
       if (!updatedClassroom)
-        throw new Error("دوره یافت نشد. لطفا مجددا تلاش کنید.");
+        throw new Error("Course Not Found. Please try again later.");
 
       const existingCertificate = await database.certificate.findFirst({
         where: {
@@ -175,12 +175,10 @@ export const createLessonProgress = async (
           },
         });
 
-        await sendFinishCourseSms(user.firstName, user.phone);
-
         await sendFinishCourseEmail(
           user.email,
           result.enrollment.course.title,
-          user.fullName
+          user.name
         );
       }
     }

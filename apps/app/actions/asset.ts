@@ -14,6 +14,6 @@ export const addDownloadCount = async (assetId: number) => {
     return { success: "Download Count incremented Successfully." };
   } catch (error) {
     console.log(error);
-    return { error: "مشکلی پیش آمد، لطفا دوباره تلاش کنید." };
+    return { error: "Something Happended. Please Try again Later." };
   }
 };

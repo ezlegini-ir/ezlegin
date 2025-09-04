@@ -12,13 +12,13 @@ export const createComment = async (
 
   try {
     if (recaptchaToken) {
-      await isHumanOrNot(recaptchaToken, "FA");
+      await isHumanOrNot(recaptchaToken);
     }
 
     const existingPost = await database.post.findFirst({
       where: { id: postId },
     });
-    if (!existingPost) throw new Error("این پست یافت نشد");
+    if (!existingPost) throw new Error("This Post Doesn't Exist anymore.");
 
     const existingUser = await database.user.findFirst({
       where: { id: userId },
@@ -29,11 +29,11 @@ export const createComment = async (
         content,
         authorId: userId || null,
         postId,
-        fullName: existingUser ? existingUser.fullName : fullName,
+        fullName: existingUser ? existingUser.name : fullName,
       },
     });
 
-    return { success: "دیدگاه شما با موفقیت ارسال شد." };
+    return { success: "Your Comment has been sent successfully!" };
   } catch (error) {
     return { error: String(error) };
   }

@@ -50,9 +50,9 @@ export const deleteImage = async (public_id: string) => {
       result: "ok";
     };
 
-    if (res.result !== "ok") return { error: "عملیات ناموفق" };
+    if (res.result !== "ok") return { error: "Operatino Unsuccessful" };
 
-    return { success: "تصویر با موفقیت حذف شد!" };
+    return { success: "Image Deleted Successfully!" };
   } catch (error) {
     return { error: String(error) };
   }

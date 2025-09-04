@@ -24,7 +24,6 @@ export async function InitiatePurchase(
           : "http://localhost:3000"
       }/checkout-result${query}`,
       description: `Payment For User ${user.id} | Payment Id: ${paymentId}`,
-      mobile: user.phone,
       email: user.email,
     })) as {
       data: {

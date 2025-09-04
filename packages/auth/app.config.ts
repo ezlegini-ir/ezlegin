@@ -8,6 +8,7 @@ import { getUserById } from "./data/user";
 export default {
   pages: {
     signIn: "/login",
+    error: "/auth/error",
   },
   trustHost: true,
   events: {

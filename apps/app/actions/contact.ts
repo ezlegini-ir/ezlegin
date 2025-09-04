@@ -10,7 +10,7 @@ export const createContact = async (
 ) => {
   const { email, fullName, message, phone, subject } = data;
   try {
-    await isHumanOrNot(recaptchaToken, "FA");
+    await isHumanOrNot(recaptchaToken);
 
     await database.contact.create({
       data: {
@@ -24,7 +24,7 @@ export const createContact = async (
 
     return {
       success:
-        "با موفقیت ارسال شد. پاسخ شما حداکثر طی 12 ساعت آینده از طریق ایمیل ارسال خواهد شد.",
+        "Sent successfully! Response time is usually within 24 hours via email.",
     };
   } catch (error) {
     return { error: String(error) };

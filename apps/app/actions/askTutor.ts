@@ -91,7 +91,7 @@ export const createAskTutor = async (
     //* SEND SMS TO TUTOR
     await sendNewQaCreationSms(tutor?.phone!);
 
-    return { success: "پیام شما با موفقیت ارسال شد!" };
+    return { success: "Your message has been sent successfully!" };
   } catch (error) {
     return { error: String(error) };
   }

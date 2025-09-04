@@ -7,6 +7,7 @@ export { default as ezleginLogoSquare } from "./ezlegin-logo-square.svg";
 export const avatar = "/avatar.svg";
 export const placeHolder = "/placeholder.svg";
 export const notFound = "/not-found.svg";
+export const authErrorScreen = "/auth-error-screen.svg";
 export const sliderPlaceholder = "/slider-placeholder.svg";
 export const tutorPlaceholder = "/tutor-placeholder.png";
 
@@ -42,3 +43,4 @@ export const sketchVideo = "/sketch.mp4";
 export const alirezaEzlegini = "/alireza-ezlegini.png";
 export const alirezaEzlegniPen = "/alireza-ezlegini-pen.png";
 export const alirezaEzlegniPodcast = "/alireza-ezlegini-podcast.png";
+export const alirezaEzlegniPointing = "/alireza-ezlegini-pointing.png";
