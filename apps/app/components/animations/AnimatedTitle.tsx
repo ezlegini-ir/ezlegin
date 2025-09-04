@@ -7,6 +7,7 @@ interface AnimatedTitleProps {
   subtitle?: string;
   highlight?: string;
   duration?: number;
+  textDir?: "LEFT" | "RIGHT" | "CENTER";
 }
 
 const AnimatedTitle = ({
@@ -14,17 +15,20 @@ const AnimatedTitle = ({
   highlight,
   subtitle,
   duration = 0.5,
+  textDir = "CENTER",
 }: AnimatedTitleProps) => {
   return (
-    <div className="flex flex-col items-center gap-2 text-center">
+    <div
+      className={`flex flex-col items-center gap-2 ${textDir === "LEFT" ? "text-left" : textDir === "RIGHT" ? "text-right" : "text-center"}`}
+    >
       <motion.div
-        className="w-fit"
+        className="w-full"
         initial={{ scale: 0, opacity: 0, y: 40 }}
         whileInView={{ scale: 1, opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration }}
       >
-        <h2 className="text-3xl">
+        <h2 className="text-3xl w-full">
           {highlight ? (
             <>
               {title.split(highlight)[0]}

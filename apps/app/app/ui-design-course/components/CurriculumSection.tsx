@@ -35,7 +35,7 @@ const CurriculumSection = ({ curriculum }: Props) => {
           {courseInfo.map((item, idx) => (
             <Card key={idx} className="p-3 text-sm">
               <div className="flex items-center gap-3">
-                {<item.icon size={20} />}
+                {<item.icon size={20} className="text-indigo-400" />}
                 {item.text}
               </div>
             </Card>

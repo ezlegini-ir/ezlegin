@@ -10,6 +10,7 @@ import Instractor from "./components/Instractor";
 import LearningPath from "./components/LearningPath";
 import PromiseSection from "./components/PromiseSection";
 import ReviewsSection from "./components/ReviewsSection";
+import VoiceoverSection from "./components/VoiceoverSection";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -80,6 +81,8 @@ const page = async ({ searchParams }: Props) => {
       <ReviewsSection />
 
       <CurriculumSection curriculum={course.curriculum} />
+
+      <VoiceoverSection />
 
       <CourseImpactSection />
     </div>
