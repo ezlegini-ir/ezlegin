@@ -15,7 +15,7 @@ import {
 import { Curriculum, Lesson } from "@ezlegin/database";
 import { Download, File, Lock, Video } from "lucide-react";
 
-interface CurriculumType extends Curriculum {
+export interface CurriculumType extends Curriculum {
   lessons: Lesson[];
 }
 
@@ -26,7 +26,7 @@ export interface CurriculumsProps {
 const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
   return (
     <div>
-      <h2 className="text-lg font-semibold mb-3">Course Curriculum:</h2>
+      {/* <h2 className="text-lg font-semibold mb-3">Course Curriculum:</h2> */}
       <Accordion
         type="single"
         collapsible

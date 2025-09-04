@@ -3,7 +3,9 @@ import { getSessionUser } from "@/data/user";
 import { database } from "@ezlegin/database";
 import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 import { notFound } from "next/navigation";
+import CourseImpactSection from "./components/CourseImpactSection";
 import CourseTitle from "./components/CourseTitle";
+import CurriculumSection from "./components/CurriculumSection";
 import Instractor from "./components/Instractor";
 import LearningPath from "./components/LearningPath";
 import PromiseSection from "./components/PromiseSection";
@@ -76,6 +78,10 @@ const page = async ({ searchParams }: Props) => {
       <PromiseSection />
 
       <ReviewsSection />
+
+      <CurriculumSection curriculum={course.curriculum} />
+
+      <CourseImpactSection />
     </div>
   );
 };

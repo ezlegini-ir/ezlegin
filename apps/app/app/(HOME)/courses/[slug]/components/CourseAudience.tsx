@@ -1,11 +1,10 @@
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 import { Card } from "@ezlegin/ui/components/ui/card";
-import { LucideIcon, Users } from "lucide-react";
-import React from "react";
+import { LucideIcon } from "lucide-react";
 
 export interface courseContentItemsType {
   title: string;
-  content: string;
+  content: string[];
   icon: LucideIcon;
 }
 
@@ -24,7 +23,11 @@ const CourseAudienceItems = ({ courseContentItems }: Props) => {
             </Badge>
             <h4 className="font-semibold">{item.title}</h4>
           </div>
-          <pre className="text-muted-foreground">{item.content}</pre>
+          <ul className="text-muted-foreground list-disc list-inside">
+            {item.content.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
         </Card>
       ))}
     </div>
