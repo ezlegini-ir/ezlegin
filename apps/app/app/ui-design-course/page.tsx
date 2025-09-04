@@ -1,12 +1,10 @@
 import WideNavBar from "@/components/WideNavBar";
 import { getSessionUser } from "@/data/user";
-import { squarePatternSquare } from "@/public";
 import { database } from "@ezlegin/database";
 import TizerVideo from "@ezlegin/ui/components/TizerVideo";
-import { Card } from "@ezlegin/ui/components/ui/card";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import CourseTitle from "../(HOME)/courses/[slug]/components/CourseTitle";
+import CourseTitle from "./components/CourseTitle";
+import LearningPath from "./components/LearningPath";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -68,64 +66,9 @@ const page = async ({ searchParams }: Props) => {
         <TizerVideo url="https://dl.igraphical.ir/Courses/ui-design/tizer.mp4" />
       </div>
 
-      <div className="relative w-full h-screen p-10">
-        <div className="pointer-events-none absolute -left-36 top-36 h-[420px] w-[420px] bg-violet-700/20 rounded-full blur-[120px]" />
-        <div className="pointer-events-none absolute -left-36 top-36 h-[420px] w-[420px] bg-violet-700/20 rounded-full blur-[120px]" />
-        <Image
-          alt=""
-          src={squarePatternSquare}
-          width={320}
-          height={320}
-          className="opacity-10 absolute left-0 top-0 scale-125 pointer-events-none select-none"
-        />
-
-        <div className="pointer-events-none absolute -right-36 bottom-0 h-[420px] w-[420px] bg-green-700/20 rounded-full blur-[120px]" />
-        <Image
-          alt=""
-          src={squarePatternSquare}
-          width={320}
-          height={320}
-          className="opacity-10 absolute right-0 bottom-0 scale-125 pointer-events-none select-none"
-        />
-
-        <div className="space-y-20">
-          <h2 className="text-center">
-            What is <span className="title-gradient">Our Journey</span> in This
-            Course?
-          </h2>
-
-          <div className="flex items-center gap-4 w-screen overflow-scroll">
-            {roadMap.map((step, idx) => (
-              <Card className="p-5 w-[350px]" key={idx}>
-                <div className="relative flex items-center h-10">
-                  <div className="h-10 w-10 bg-primary/20 rounded-full absolute top-0 left-0" />
-                  <span className="pl-2">Step {idx + 1}</span>
-                </div>
-                <p>{step}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
+      <LearningPath />
     </div>
   );
 };
-
-const roadMap = [
-  "Start Learning",
-  "Foundations of Product Design",
-  "UI Design Fundamentals",
-  "Color Theory",
-  "Structuring UI",
-  "Building Style Guide",
-  "Design Systems",
-  "Designing Application",
-  "Designing Website",
-  "Responsive Design",
-  "Prototyping & Interactions",
-  "Paid Figma",
-  "Figma Files",
-  "You Made It",
-];
 
 export default page;

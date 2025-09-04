@@ -1,5 +1,5 @@
 import React from "react";
-import CourseTitle from "./CourseTitle";
+import CourseTitle from "../../../../ui-design-course/components/CourseTitle";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import { CourseCategory, Review } from "@ezlegin/database";

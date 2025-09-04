@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="pt-20 space-y-2">
+    <div className="pt-20 space-y-2 w-full max-w-screen-xl mx-auto pb-4">
       <div className="flex justify-between md:items-center items-start">
         <div className="flex justify-between w-full">
           <ul className="flex flex-wrap gap-10">

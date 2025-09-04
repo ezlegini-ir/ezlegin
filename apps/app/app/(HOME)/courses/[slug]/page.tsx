@@ -15,7 +15,7 @@ import CourseTutor from "./components/CourseInstructor";
 import CourseLearnsInCourse from "./components/CourseLearnsInCourse";
 import CourseReviews from "./components/CourseReviews";
 import CourseExercise from "./components/CourseSamples";
-import CourseTitle from "./components/CourseTitle";
+import CourseTitle from "../../../ui-design-course/components/CourseTitle";
 
 interface Props {
   params: Promise<{ slug: string }>;
