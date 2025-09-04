@@ -70,7 +70,7 @@ const CourseRegisterButton = ({
               <Button
                 size={"lg"}
                 variant={isPresale ? "dark" : "default"}
-                className="w-full"
+                className="w-full  bg-gradient-to-r from-indigo-400  to-indigo-600"
               >
                 <UserRoundPlus size={20} />
                 {isPresale ? "Preenroll" : "Enroll Now"}

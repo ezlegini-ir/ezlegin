@@ -42,9 +42,11 @@ const VoiceoverSection = () => {
             ))}
           </div>
 
-          <Button variant={"gold"}>
-            Enroll Now <ArrowDown />
-          </Button>
+          <a href="#enroll">
+            <Button variant={"gold"}>
+              Enroll Now <ArrowDown />
+            </Button>
+          </a>
         </div>
       </div>
     </div>
@@ -56,7 +58,7 @@ export default VoiceoverSection;
 const voiceoverSection = {
   title: "All Recorded with Voiceovers",
   subtitle:
-    "All lessons are recorded with scripted voiceovers, paired with motion graphics for clearer, more effective learning.",
+    "All lessons are recorded with scripted voiceovers, paired with motion graphics and Screen Records for clearer, more effective learning.",
   benefits: [
     {
       title: "Clear & Structured",

@@ -51,7 +51,7 @@ export default function CourseLanding() {
                   </p> */}
                 </div>
                 <div className="flex flex-col gap-3">
-                  <Link href="/courses/ui-design-course">
+                  <Link href="/ui-design-course">
                     <Button size="lg">Course Page</Button>
                   </Link>
                 </div>

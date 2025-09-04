@@ -1,10 +1,4 @@
-import {
-  Course,
-  Enrollment,
-  Image as ImageType,
-  Payment,
-  User,
-} from "@ezlegin/database";
+import { Course, Enrollment, Payment, User } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import Pagination from "@ezlegin/ui/components/Pagination";
 import Table from "@ezlegin/ui/components/Table";
@@ -20,7 +14,7 @@ import Link from "next/link";
 import EnrollmentPreview from "./EnrollmentPreview";
 
 export interface EnrollmentType extends Enrollment {
-  user: User & { image: ImageType | null };
+  user: User;
   course: Course;
   payment: Payment | null;
 }
@@ -55,8 +49,8 @@ const renderRows = (enrollment: EnrollmentType) => {
           href={`/students?search=${enrollment.user.email}`}
           className="flex gap-2 items-center"
         >
-          <Avatar src={enrollment.user.image?.url} size={34} />
-          {enrollment.user.fullName}
+          <Avatar src={enrollment.user.image} size={34} />
+          {enrollment.user.name}
         </Link>
       </TableCell>
 

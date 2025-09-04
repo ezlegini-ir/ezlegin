@@ -6,6 +6,7 @@ import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { useLoading } from "@ezlegin/utils";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export default function OAuthSignInForm({
   type,
@@ -13,10 +14,12 @@ export default function OAuthSignInForm({
   type?: "SIGNIN" | "SIGNUP";
 }) {
   const { loading, setLoading } = useLoading();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const onSignIn = async () => {
     setLoading(true);
-    await GoogleOAuthSignIn();
+    await GoogleOAuthSignIn({ callbackUrl });
   };
 
   return (

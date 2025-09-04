@@ -1,3 +1,4 @@
+import { Card } from "@ezlegin/ui/components/ui/card";
 import { LucideIcon } from "lucide-react";
 
 export interface CourseIncludesTypes {
@@ -13,11 +14,13 @@ interface Props {
 const CourseIncludes = ({ courseIncludes }: Props) => {
   return (
     <div>
-      <ul className=" text-sm text-muted-foreground space-y-2.5">
+      <ul className="grid grid-cols-2 gap-3 text-sm text-muted-foreground">
         {courseIncludes.map((item, index) => (
-          <li key={index} className="flex gap-3 items-center">
-            <item.icon size={18} className={item.iconColor} />
-            {item.label}
+          <li key={index}>
+            <Card className="p-3 w-full flex gap-3 items-center">
+              <item.icon size={18} className={item.iconColor} />
+              {item.label}
+            </Card>
           </li>
         ))}
       </ul>

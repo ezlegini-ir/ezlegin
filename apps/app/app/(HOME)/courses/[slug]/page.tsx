@@ -1,4 +1,4 @@
-import CourseSidebar from "@/app/(HOME)/courses/[slug]/components/CourseSidebar";
+import CourseRegister from "@/app/(HOME)/courses/[slug]/components/CourseSidebar";
 import { database } from "@ezlegin/database";
 import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 import { extractSummaryFromLexical } from "@ezlegin/utils";
@@ -70,17 +70,6 @@ const page = async ({ params, searchParams }: Props) => {
 
   if (!course) return notFound();
 
-  const courseContentItems: courseContentItemsType[] = [
-    { title: "Who is this course for?", content: course.audience, icon: Users },
-    { title: "Course needs", content: course.audience, icon: CheckCircle },
-    { title: "Job market", content: course.jobMarket, icon: Briefcase },
-    {
-      title: "Prerequisites",
-      content: course.prerequisite.map((p) => p.value).join(" - "),
-      icon: BookOpen,
-    },
-  ];
-
   return (
     <div className="flex flex-col gap-16 justify-center">
       <CourseTitle title="" summery="" />
@@ -89,12 +78,12 @@ const page = async ({ params, searchParams }: Props) => {
 
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-3">
-          <CourseSidebar course={course} />
+          <CourseRegister course={course} />
         </div>
         <div className="col-span-9 space-y-24">
           <CourseDescription content={course.description} />
 
-          <CourseAudienceItems courseContentItems={courseContentItems} />
+          <CourseAudienceItems courseContentItems={[]} />
 
           <CourseLearnsInCourse
             learnsInCourse={course.learn.map((l) => l.value)}

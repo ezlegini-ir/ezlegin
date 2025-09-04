@@ -61,10 +61,12 @@ const LearningPath = () => {
               You Made It!
             </Badge>
 
-            <Button variant={"outline"} className="max-w-sm w-full">
-              Enroll Now
-              <ArrowDown />
-            </Button>
+            <a href="#enroll" className="max-w-sm w-full">
+              <Button variant={"outline"} className="w-full">
+                Enroll Now
+                <ArrowDown />
+              </Button>
+            </a>
           </div>
         </div>
       </div>

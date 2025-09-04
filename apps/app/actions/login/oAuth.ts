@@ -2,6 +2,12 @@
 
 import { signIn } from "@ezlegin/auth";
 
-export const GoogleOAuthSignIn = async () => {
-  await signIn("google");
+export const GoogleOAuthSignIn = async ({
+  callbackUrl,
+}: {
+  callbackUrl: string | null;
+}) => {
+  await signIn("google", {
+    redirectTo: callbackUrl || "/panel",
+  });
 };

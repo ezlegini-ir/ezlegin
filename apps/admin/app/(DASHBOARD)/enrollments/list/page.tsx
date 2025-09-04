@@ -42,9 +42,7 @@ const page = async ({ searchParams }: Props) => {
     where,
     include: {
       payment: true,
-      user: {
-        include: { image: true },
-      },
+      user: true,
       course: true,
     },
     orderBy: { id: "desc" },

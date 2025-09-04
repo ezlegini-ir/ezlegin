@@ -42,9 +42,11 @@ const PromiseSection = () => {
             <p>"See? I meant it when I said A Complete Course! 😎"</p>
           </div>
 
-          <Button variant={"gold"}>
-            Enroll Now <ArrowDown />
-          </Button>
+          <a href="#enroll">
+            <Button variant={"gold"}>
+              Enroll Now <ArrowDown />
+            </Button>
+          </a>
         </div>
       </div>
     </div>
