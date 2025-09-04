@@ -60,7 +60,7 @@ export const createPayment = async (data: PaymentFormType) => {
               create: {
                 amount: cashbackAmount,
                 type: "INCREMENT",
-                description: "شارژ کیف پول جهت خرید دوره",
+                description: "Charge Wallet due to course purchase",
                 paymentId: newerPayment.id,
               },
             },
@@ -72,7 +72,7 @@ export const createPayment = async (data: PaymentFormType) => {
               create: {
                 amount: cashbackAmount,
                 type: "INCREMENT",
-                description: "شارژ کیف پول جهت خرید دوره",
+                description: "Charge Wallet due to course purchase",
                 paymentId: newerPayment.id,
               },
             },
@@ -90,7 +90,7 @@ export const createPayment = async (data: PaymentFormType) => {
               create: {
                 amount: payment.usedWalletAmount,
                 type: "DECREMENT",
-                description: "کسر کیف پول جهت خرید دوره",
+                description: "Deduction of Wallet due to course purchase",
                 paymentId: newerPayment.id,
               },
             },

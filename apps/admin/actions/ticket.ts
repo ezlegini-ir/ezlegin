@@ -2,11 +2,7 @@
 
 import { TicketFormType } from "@/lib/validationSchema";
 import { database, File as FileType } from "@ezlegin/database";
-import {
-  deleteManyCloudFiles,
-  sendNewTicketResponseSms,
-  uploadCloudFile,
-} from "@ezlegin/utils";
+import { deleteManyCloudFiles, uploadCloudFile } from "@ezlegin/utils";
 import { UploadApiResponse } from "cloudinary";
 
 //* CREATE ---------------------------------------------------------
@@ -135,9 +131,6 @@ export const sendTicketMessage = async (
         },
       });
     }
-
-    //* Send Sms to user
-    await sendNewTicketResponseSms(existingTicket.user.phone);
 
     return { success: "Message Sent Seccessfully" };
   } catch (error) {

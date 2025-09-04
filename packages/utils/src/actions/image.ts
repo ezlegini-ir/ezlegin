@@ -50,9 +50,34 @@ export const deleteImage = async (public_id: string) => {
       result: "ok";
     };
 
-    if (res.result !== "ok") return { error: "عملیات ناموفق" };
+    if (res.result !== "ok") return { error: "Operation Failed" };
 
     return { success: "تصویر با موفقیت حذف شد!" };
+  } catch (error) {
+    return { error: String(error) };
+  }
+};
+
+//! DELETE ------------------------------------------------------------
+
+export const deleteUserImage = async (userId: number) => {
+  try {
+    await database.user.update({
+      where: { id: userId },
+      data: { image: null },
+    });
+
+    const deletedImage = await database.image.delete({
+      where: { userId },
+    });
+
+    const res = (await deleteCloudFile(deletedImage.public_id)) as {
+      result: "ok";
+    };
+
+    if (res.result !== "ok") return { error: "Operation Failed" };
+
+    return { success: "User Image Removed Successfully!" };
   } catch (error) {
     return { error: String(error) };
   }

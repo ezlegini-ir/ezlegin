@@ -21,8 +21,8 @@ export const createCampaign = async (data: CampaignFormType) => {
       return { error: "Coupon URL should be unique." };
     }
 
-    const students = await database.user.findMany({ select: { phone: true } });
-    const numbers = students.map((s) => s.phone).filter(Boolean);
+    const students = await database.user.findMany({ select: { email: true } });
+    const numbers = students.map((s) => s.email).filter(Boolean);
 
     const sentMessages = await sendArraySms({
       numbers,

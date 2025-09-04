@@ -6,8 +6,7 @@ import ExcelJS from "exceljs";
 export async function fullUserExport(): Promise<string> {
   const users = await database.user.findMany({
     select: {
-      fullName: true,
-      phone: true,
+      name: true,
       email: true,
     },
   });
@@ -55,8 +54,7 @@ export async function customUserExport({
       id: { in: usersIds },
     },
     select: {
-      fullName: true,
-      phone: true,
+      name: true,
       email: true,
     },
   });
@@ -65,8 +63,7 @@ export async function customUserExport({
   const worksheet = workbook.addWorksheet("Users");
 
   worksheet.columns = [
-    { header: "Full Name", key: "fullName", width: 30 },
-    { header: "Phone", key: "phone", width: 30 },
+    { header: "Full Name", key: "name", width: 30 },
     { header: "Email", key: "email", width: 30 },
   ];
 

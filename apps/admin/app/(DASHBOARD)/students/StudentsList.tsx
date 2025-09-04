@@ -1,6 +1,7 @@
+import StudentForm from "@/components/forms/user/StudentForm";
+import { User } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import EditButton from "@ezlegin/ui/components/EditButton";
-import StudentForm from "@/components/forms/user/StudentForm";
 import Pagination from "@ezlegin/ui/components/Pagination";
 import Table from "@ezlegin/ui/components/Table";
 import {
@@ -11,13 +12,10 @@ import {
   DialogTrigger,
 } from "@ezlegin/ui/components/ui/dialog";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
-import { Image as ImageType, User } from "@ezlegin/database";
 import { formatDistance } from "date-fns";
 
-export type UserType = User & { image: ImageType | null };
-
 interface Props {
-  students: UserType[];
+  students: User[];
   totalStudents: number;
   pageSize: number;
 }
@@ -31,19 +29,17 @@ const StudentsList = async ({ students, totalStudents, pageSize }: Props) => {
   );
 };
 
-const renderRows = (student: UserType) => {
+const renderRows = (student: User) => {
   return (
     <TableRow key={student.id} className="odd:bg-slate-50">
       <TableCell>
         <div className="flex items-center gap-2">
-          <Avatar src={student.image?.url} size={35} />
-          {student.fullName}
+          <Avatar src={student.image} size={35} />
+          {student.name}
         </div>
       </TableCell>
       <TableCell className="text-center">{student.email}</TableCell>
-      <TableCell className="text-center hidden xl:table-cell">
-        {student.phone}
-      </TableCell>
+
       <TableCell className="text-center hidden xl:table-cell">
         {formatDistance(student.joinedAt, new Date(), { addSuffix: true })}
       </TableCell>
@@ -68,7 +64,6 @@ const renderRows = (student: UserType) => {
 const columns = [
   { label: "Name", className: "" },
   { label: "Email", className: "text-center" },
-  { label: "Phone", className: "text-center  hidden xl:table-cell" },
   { label: "Student From", className: "text-center hidden xl:table-cell" },
   {
     label: "Actions",

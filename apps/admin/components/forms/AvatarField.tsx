@@ -1,6 +1,5 @@
 "use client";
 
-import { deleteImage } from "@ezlegin/utils";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
   FormControl,
@@ -10,21 +9,23 @@ import {
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
+import { deleteUserImage } from "@ezlegin/utils";
 // import { avatar } from "@/public";
+import { avatar } from "@/public";
+import Loader from "@ezlegin/ui/components/Loader";
+import { useLoading } from "@ezlegin/utils";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
-import { useLoading } from "@ezlegin/utils";
-import Loader from "@ezlegin/ui/components/Loader";
-import { avatar } from "@/public";
 
 interface Props {
   control: any;
   imagePreview?: string;
   setValue: any;
-  public_id?: string;
+  image?: string | null;
+  userId?: number;
   setImagePreview: Dispatch<SetStateAction<string | undefined>>;
 }
 
@@ -33,7 +34,8 @@ const AvatarField = ({
   imagePreview,
   setImagePreview,
   setValue,
-  public_id,
+  image,
+  userId,
 }: Props) => {
   //HOOKS
   const router = useRouter();
@@ -74,12 +76,12 @@ const AvatarField = ({
   };
 
   const handleImageRemove = async () => {
-    if (!public_id) {
+    if (!image || !userId) {
       setImagePreview(undefined);
     } else {
       setLoading(true);
 
-      const res = await deleteImage(public_id);
+      const res = await deleteUserImage(userId);
 
       if (res.error) {
         toast.error(res.error);

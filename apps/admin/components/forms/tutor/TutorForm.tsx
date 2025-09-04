@@ -104,7 +104,7 @@ const TutorForm = ({ type, tutor }: Props) => {
             setImagePreview={setImagePreview}
             setValue={form.setValue}
             imagePreview={imagePreview}
-            public_id={tutor?.image?.public_id}
+            image={tutor?.image?.public_id}
           />
 
           <FormField

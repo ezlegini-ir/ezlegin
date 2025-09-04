@@ -3,13 +3,13 @@
 import { getUserById } from "@/data/user";
 import { studentFormSchema, StudentFormType } from "@/lib/validationSchema";
 import { database } from "@ezlegin/database";
-import { deleteCloudFile, uploadCloudFile } from "@ezlegin/utils";
+import { uploadCloudFile } from "@ezlegin/utils";
 import { UploadApiResponse } from "cloudinary";
 
 //* CREATE ------------------------------------------------------------
 
 export async function createUser(data: StudentFormType) {
-  const { email, firstName, lastName, nationalId, phone, image } = data;
+  const { email, name, image } = data;
 
   try {
     //  FORM VALIDATION
@@ -19,34 +19,23 @@ export async function createUser(data: StudentFormType) {
     // USER LOOKUP
     const existingUser = await database.user.findFirst({
       where: {
-        OR: [{ email }, { nationalId }, { phone }],
+        email,
       },
     });
 
     if (existingUser && existingUser.email === email)
-      return { error: "با این ایمیل کاربری از قبل وجود دارد." };
-
-    if (existingUser && existingUser.phone === phone)
-      return { error: "با این شماره تماس کاربری از قبل وجود دارد." };
-
-    if (existingUser && existingUser.nationalId === nationalId)
-      return { error: "با این کد ملی کاربری از قبل وجود دارد." };
+      return { error: "There is already a user with this email." };
 
     // CREATE USER
     const newUser = await database.user.create({
       data: {
         email: email.toLowerCase(),
-        firstName,
-        lastName,
-        nationalId: nationalId || "0000000000",
-        phone,
-        fullName: `${firstName} ${lastName}`,
+        name,
       },
     });
 
     if (image && image instanceof File) {
       const buffer = Buffer.from(await image.arrayBuffer());
-
       const { secure_url, public_id, format, bytes } = (await uploadCloudFile(
         buffer,
         {
@@ -54,6 +43,11 @@ export async function createUser(data: StudentFormType) {
           resource_type: "image",
         }
       )) as UploadApiResponse;
+
+      await database.user.update({
+        where: { id: newUser.id },
+        data: { image: secure_url },
+      });
 
       // CREATE IMAGE
       await database.image.create({
@@ -81,7 +75,7 @@ export async function createUser(data: StudentFormType) {
 //? UPDATE ------------------------------------------------------------
 
 export const updateUser = async (data: StudentFormType, id: number) => {
-  const { email, firstName, lastName, phone, nationalId, image } = data;
+  const { email, name, image } = data;
 
   try {
     const existingStudent = await getUserById(id);
@@ -90,9 +84,6 @@ export const updateUser = async (data: StudentFormType, id: number) => {
     if (id !== existingStudent.id) {
       if (existingStudent && existingStudent.email === email)
         return { error: "User with this Email Already Exists." };
-
-      if (existingStudent && existingStudent.phone === phone)
-        return { error: "User with this Phone Already Exists." };
     }
 
     const updatedUser = await database.user.update({
@@ -100,15 +91,9 @@ export const updateUser = async (data: StudentFormType, id: number) => {
         id,
       },
       data: {
-        firstName,
-        lastName,
-        fullName: `${firstName} ${lastName}`,
-        nationalId,
-        id,
+        name,
         email,
-        phone,
       },
-      include: { image: true },
     });
 
     if (image && image instanceof File) {
@@ -122,11 +107,15 @@ export const updateUser = async (data: StudentFormType, id: number) => {
         }
       )) as UploadApiResponse;
 
-      if (updatedUser.image) await deleteCloudFile(updatedUser.image.public_id);
+      await database.user.update({
+        where: { id: updatedUser.id },
+        data: { image: secure_url },
+      });
 
       await database.image.upsert({
         where: { userId: updatedUser.id },
         update: {
+          userId: updatedUser.id,
           url: secure_url,
           type: "USER",
           public_id,
@@ -163,12 +152,9 @@ export const deleteUser = async (id: number) => {
 
     const deletedUser = await database.user.delete({
       where: { id },
-      include: { image: true },
     });
 
-    if (!deletedUser) return { error: "Could not remove admin" };
-
-    if (deletedUser.image) await deleteCloudFile(deletedUser.image?.public_id);
+    if (!deletedUser) return { error: "Could not remove User" };
 
     return { success: "Deleted Successfully" };
   } catch (error) {

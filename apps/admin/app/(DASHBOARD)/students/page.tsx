@@ -19,23 +19,11 @@ const page = async ({ searchParams }: Props) => {
   const { page, search } = await searchParams;
   const { skip, take } = pagination(page);
 
-  const where = search
-    ? {
-        OR: [
-          { email: { contains: search } },
-          { phone: { contains: search } },
-          { firstName: { contains: search } },
-          { lastName: { contains: search } },
-          { fullName: { contains: search } },
-          { nationalId: { contains: search } },
-        ],
-      }
-    : {};
+  const where = search ? { email: { contains: search } } : {};
 
   const students = await database.user.findMany({
     where,
     orderBy: { id: "desc" },
-    include: { image: true },
 
     skip,
     take,

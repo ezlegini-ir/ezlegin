@@ -108,7 +108,7 @@ const AdminForm = ({ type, admin }: Props) => {
           control={form.control}
           imagePreview={imagePreview}
           setImagePreview={setImagePreview}
-          public_id={admin?.image?.public_id}
+          image={admin?.image?.public_id}
           setValue={form.setValue}
         />
 

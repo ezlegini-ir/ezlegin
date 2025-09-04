@@ -1,7 +1,9 @@
 "use client";
 
 import { createUser, deleteUser, updateUser } from "@/actions/user";
-import { UserType } from "@/app/(DASHBOARD)/students/StudentsList";
+import AvatarField from "@/components/forms/AvatarField";
+import { StudentFormType, studentFormSchema } from "@/lib/validationSchema";
+import { User } from "@ezlegin/database";
 import DeleteButton from "@ezlegin/ui/components/DeleteButton";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
@@ -14,17 +16,14 @@ import {
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
-import { useImagePreview } from "@ezlegin/utils";
-import { StudentFormType, studentFormSchema } from "@/lib/validationSchema";
+import { useImagePreview, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoading } from "@ezlegin/utils";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import AvatarField from "@/components/forms/AvatarField";
 
 interface Props {
-  user?: UserType;
+  user?: User;
   type: "NEW" | "UPDATE";
 }
 
@@ -32,7 +31,9 @@ const StudentForm = ({ type, user }: Props) => {
   // HOOKS
   const router = useRouter();
   const { loading, setLoading } = useLoading();
-  const { imagePreview, setImagePreview } = useImagePreview(user?.image?.url);
+  const { imagePreview, setImagePreview } = useImagePreview(
+    user?.image ?? undefined
+  );
 
   const isUpdateType = type === "UPDATE";
 
@@ -41,10 +42,7 @@ const StudentForm = ({ type, user }: Props) => {
     mode: "onSubmit",
     defaultValues: {
       email: user?.email || "",
-      firstName: user?.firstName || "",
-      lastName: user?.lastName || "",
-      nationalId: user?.nationalId || "",
-      phone: user?.phone || "09",
+      name: user?.name || "",
     },
   });
 
@@ -95,13 +93,14 @@ const StudentForm = ({ type, user }: Props) => {
           control={form.control}
           imagePreview={imagePreview}
           setImagePreview={setImagePreview}
-          public_id={user?.image?.public_id}
+          image={user?.image}
           setValue={form.setValue}
+          userId={user?.id}
         />
 
         <FormField
           control={form.control}
-          name="firstName"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>First Name</FormLabel>
@@ -112,19 +111,7 @@ const StudentForm = ({ type, user }: Props) => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="lastName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Last Name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <FormField
           control={form.control}
           name="email"
@@ -132,33 +119,7 @@ const StudentForm = ({ type, user }: Props) => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone</FormLabel>
-              <FormControl>
-                <Input maxLength={11} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="nationalId"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>National Id</FormLabel>
-              <FormControl>
-                <Input maxLength={10} {...field} />
+                <Input type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -310,11 +310,8 @@ export type TicketFormType = z.infer<typeof TicketFormSchema>;
 
 //! STUDENT FORM
 export const studentFormSchema = z.object({
-  firstName: z.string().min(1),
-  lastName: z.string().min(1),
+  name: z.string().min(1).trim(),
   email: z.string().email(),
-  phone: z.string().min(11),
-  nationalId: z.string().min(10).max(10).optional(),
   image,
 });
 export type StudentFormType = z.infer<typeof studentFormSchema>;

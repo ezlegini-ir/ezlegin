@@ -31,7 +31,7 @@ export const sendContactResponse = async (options: {
     const html = `<pre>${message}</pre>`;
     const emailRes = await sendEmail({
       to: email,
-      subject: "پاسخ به پیام",
+      subject: "Response to your message",
       html,
     });
 

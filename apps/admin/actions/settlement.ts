@@ -79,7 +79,7 @@ export const updateSettlement = async (
       },
     });
 
-    //TODO: SEND SMS TO TUTOR
+    //TODO: SEND EMAIl TO TUTOR
 
     return { success: "Status of Settlement Updated Successfully" };
   } catch (error) {
