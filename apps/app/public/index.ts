@@ -29,6 +29,7 @@ export const googleLogo = "/google-logo.svg";
 export const squarePattern = "/square-pattern.svg";
 export const squarePatternSquare = "/square-pattern-square.svg";
 export const alirezaEzlegini = "/alireza-ezlegini.png";
+export const alirezaEzlegniPen = "/alireza-ezlegini-pen.png";
 export const figmaLogo = "/figma-logo.svg";
 export const figmaCursor = "/figma-cursor.svg";
 

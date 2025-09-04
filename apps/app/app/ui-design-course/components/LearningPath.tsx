@@ -1,14 +1,14 @@
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { squarePatternSquare } from "@/public";
+import { Badge } from "@ezlegin/ui/components/ui/badge";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { ArrowDown, Plus } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import LearningPathCards from "./LearningPathCards";
-import { Badge } from "@ezlegin/ui/components/ui/badge";
 
 const LearningPath = () => {
   return (
-    <div className="relative w-full p-28 border-b border-muted">
+    <div className="relative w-full p-28 ">
       <div className="pointer-events-none absolute -left-36 top-36 h-[420px] w-[420px] bg-violet-700/40 rounded-full blur-[120px]" />
 
       <Image

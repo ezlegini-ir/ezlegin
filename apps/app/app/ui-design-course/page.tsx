@@ -5,6 +5,8 @@ import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 import { notFound } from "next/navigation";
 import CourseTitle from "./components/CourseTitle";
 import LearningPath from "./components/LearningPath";
+import AnimatedTitle from "@/components/animations/AnimatedTitle";
+import Instractor from "./components/Instractor";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -67,6 +69,8 @@ const page = async ({ searchParams }: Props) => {
       </div>
 
       <LearningPath />
+
+      <Instractor />
     </div>
   );
 };
