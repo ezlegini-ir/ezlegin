@@ -12,6 +12,8 @@ import PromiseSection from "./components/PromiseSection";
 import ReviewsSection from "./components/ReviewsSection";
 import VoiceoverSection from "./components/VoiceoverSection";
 import PurchaseSection from "./components/PurchaseSection";
+import FAQSection from "./components/FAQSection";
+import MotiviationSection from "./components/MotiviationSection";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -88,6 +90,10 @@ const page = async ({ searchParams }: Props) => {
       <CourseImpactSection />
 
       <PurchaseSection course={course} />
+
+      <FAQSection />
+
+      <MotiviationSection />
     </div>
   );
 };

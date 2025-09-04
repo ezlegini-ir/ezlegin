@@ -21,7 +21,7 @@ const CashBackCard = ({ price }: { price: number }) => {
           >
             <span className="flex items-center gap-1.5">
               <Banknote size={22} />
-              Cashback:
+              Cashback to wallet:
             </span>
             <span>${cashBackAmount.toLocaleString("en-US")}</span>
           </Badge>
