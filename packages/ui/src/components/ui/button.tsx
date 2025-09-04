@@ -11,7 +11,7 @@ const buttonVariants = cva(
         default:
           "bg-primary text-primary-foreground shadow hover:bg-primary/90",
         dark: "bg-slate-800 text-primary-foreground shadow hover:bg-slate-900",
-        gold: "bg-slate-800 text-primary-foreground shadow hover:bg-slate-900 bg-gold",
+        gold: "bg-slate-800 text-orange-900 shadow hover:bg-slate-900 bg-gold",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         lightRed:

@@ -34,4 +34,4 @@ export const figmaLogo = "/figma-logo.svg";
 export const figmaCursor = "/figma-cursor.svg";
 
 // VIDEOS
-export const video = "/video.mp4";
+export const sketchVideo = "/sketch.mp4";
