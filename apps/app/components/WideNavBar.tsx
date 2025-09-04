@@ -5,7 +5,7 @@ import Link from "next/link";
 import { NavbarProps } from "./NavBar";
 import { User } from "lucide-react";
 
-const WideNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
+const WideNavBar = ({ user }: NavbarProps) => {
   return (
     <div className="flex justify-between items-center">
       <Link href={"/"}>

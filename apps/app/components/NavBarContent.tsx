@@ -1,18 +1,16 @@
 "use client";
 
+import { User } from "@ezlegin/database";
 import { useEffect, useState } from "react";
-import { CartType } from "./NavBar";
 import SmallNavBar from "./SmallNavBar";
 import WideNavBar from "./WideNavBar";
-import { User } from "@ezlegin/database";
 
 interface Props {
   isWide: boolean;
   user: User | null | undefined;
-  cart: CartType | null | undefined;
 }
 
-const NavBarContent = ({ isWide, user, cart }: Props) => {
+const NavBarContent = ({ isWide, user }: Props) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -31,17 +29,7 @@ const NavBarContent = ({ isWide, user, cart }: Props) => {
   return (
     <div className={navClass}>
       <div className="w-full max-w-screen-xl mx-auto">
-        {isWide ? (
-          <WideNavBar
-            user={user}
-            isThereItemsInCart={(cart?._count.cartItem || 0) > 0}
-          />
-        ) : (
-          <SmallNavBar
-            user={user}
-            isThereItemsInCart={(cart?._count.cartItem || 0) > 0}
-          />
-        )}
+        {isWide ? <WideNavBar user={user} /> : <SmallNavBar user={user} />}
       </div>
     </div>
   );

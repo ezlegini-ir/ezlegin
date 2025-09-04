@@ -143,6 +143,11 @@
   .card {
     @apply bg-background border border-muted rounded-lg p-4;
   }
+
+  .title-gradient {
+    @apply bg-gradient-to-r from-indigo-400  to-indigo-600 bg-clip-text text-transparent;
+  }
+
   .photo-frame {
     @apply bg-slate-50 border border-dashed p-1 hover:shadow-lg hover:shadow-slate-200 transition-shadow;
   }

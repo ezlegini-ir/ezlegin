@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 import { Play } from "lucide-react";
 import dynamic from "next/dynamic";
-import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
+import { useRef, useState } from "react";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   ssr: false,

@@ -32,7 +32,8 @@
   "name": "igraphical",
   "version": "0.1.0",
   "dependencies": {
-    "@prisma/client": "^6.6.0"
+    "@prisma/client": "^6.6.0",
+    "framer-motion": "^12.23.12"
   },
   "packageManager": "npm@11.3.0",
   "workspaces": [
