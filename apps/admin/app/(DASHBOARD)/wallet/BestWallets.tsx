@@ -1,12 +1,11 @@
+import { User, Wallet } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import { formatPrice } from "@ezlegin/utils";
-import { Image, User, Wallet } from "@ezlegin/database";
 import { formatDistance } from "date-fns";
 import Link from "next/link";
-import React from "react";
 
 interface WalletType extends Wallet {
-  user: User & { image: Image | null };
+  user: User;
 }
 
 interface Props {
@@ -27,9 +26,9 @@ const BestWallets = ({ bestWallets }: Props) => {
               href={`/students?search=${item.user.email}`}
               className="flex gap-3 items-center"
             >
-              <Avatar src={item.user.image?.url} />
+              <Avatar src={item.user.image} />
               <div className="flex flex-col">
-                <span>{item.user.fullName}</span>
+                <span>{item.user.name}</span>
                 <span className="text-xs text-gray-500">
                   Joined{" "}
                   {formatDistance(item.user.joinedAt, new Date(), {

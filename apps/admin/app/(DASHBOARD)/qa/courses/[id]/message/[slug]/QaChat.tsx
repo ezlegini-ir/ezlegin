@@ -16,7 +16,7 @@ import Link from "next/link";
 
 interface QaType extends AskTutor {
   tutor: Tutor & { image: ImageType | null };
-  user: User & { image: ImageType | null };
+  user: User;
   messages: (AskTutorMessages & { attachment: File | null })[] | null;
   course: Course;
 }
@@ -40,15 +40,15 @@ const QaChat = ({ qa }: Props) => {
                 <Avatar
                   src={
                     message.senderType === "USER"
-                      ? qa.user.image?.url
+                      ? qa.user.image
                       : qa.tutor.image?.url
                   }
                 />
                 <div>
                   <p>
                     {message.senderType === "USER"
-                      ? qa.user.fullName
-                      : qa.tutor.displayName}
+                      ? qa.user.name
+                      : qa.tutor.name}
                   </p>
                   <span dir="ltr" className="text-xs text-gray-500">
                     {formatMiladiDate(message.createdAt)}

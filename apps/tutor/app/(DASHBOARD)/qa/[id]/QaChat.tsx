@@ -40,7 +40,7 @@ import { ControllerRenderProps, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 interface QaType extends AskTutor {
-  user: User & { image: ImageType | null };
+  user: User;
   tutor: Tutor & { image: ImageType | null };
   course: Course & { image: ImageType | null };
   messages: (AskTutorMessages & { attachment: File | null })[];
@@ -238,13 +238,13 @@ const QaChat = ({ qa }: Props) => {
                           {message.senderType === "TUTOR" ? (
                             <Avatar src={qa.tutor.image?.url} />
                           ) : (
-                            <Avatar src={qa.user.image?.url} />
+                            <Avatar src={qa.user.image} />
                           )}
                           <div className="flex flex-col">
                             <span>
                               {message.senderType === "TUTOR"
-                                ? qa.tutor.displayName
-                                : qa.user.fullName}
+                                ? qa.tutor.name
+                                : qa.user.name}
                             </span>
                             <span className="text-xs text-gray-400 ">
                               {formatJalaliDate(message.createdAt, {
@@ -316,8 +316,8 @@ const QaChat = ({ qa }: Props) => {
               <ul className="text-sm text-gray-500">
                 <li className="flex justify-between items-center">
                   <span className="flex gap-2 items-center">
-                    <Avatar src={qa.user.image?.url} />
-                    {qa?.user.fullName}
+                    <Avatar src={qa.user.image} />
+                    {qa?.user.name}
                   </span>
                 </li>
               </ul>

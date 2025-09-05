@@ -27,12 +27,7 @@ const page = async ({ params, searchParams }: Props) => {
     courseId: +id,
     user: search
       ? {
-          OR: [
-            { fullName: { contains: search } },
-            { phone: { contains: search } },
-            { nationalId: { contains: search } },
-            { email: { contains: search } },
-          ],
+          email: { contains: search },
         }
       : undefined,
   };
@@ -42,11 +37,7 @@ const page = async ({ params, searchParams }: Props) => {
   const qa = await database.askTutor.findMany({
     where,
     include: {
-      user: {
-        include: {
-          image: true,
-        },
-      },
+      user: true,
       tutor: {
         include: {
           image: true,
@@ -84,7 +75,7 @@ export default page;
 
 export interface QaType extends AskTutor {
   tutor: Tutor & { image: ImageType | null };
-  user: User & { image: ImageType | null };
+  user: User;
   messages: AskTutorMessages[] | null;
 }
 
@@ -103,16 +94,16 @@ const QaCard = ({ qa }: QaProps) => {
         <div className="w-full border" />
 
         <div className="border-4 rounded-full">
-          <Avatar src={qa?.user.image?.url} size={100} />
+          <Avatar src={qa?.user.image} size={100} />
         </div>
       </div>
 
       <div className="flex justify-between text-gray-500 text-sm">
-        <span>{qa?.tutor.displayName}</span>
-        <span>{qa?.user.fullName}</span>
+        <span>{qa?.tutor.name}</span>
+        <span>{qa?.user.name}</span>
       </div>
 
-      <div className="p-2 px-3 bg-slate-50 border rounded-md text-sm w-full text-gray-500">
+      <div className="p-2 px-3 bg-slate-50 border rounded-md text-sm w-full text-muted-foreground">
         {qa?.messages?.[0]?.message.slice(0, 50)}...
       </div>
 

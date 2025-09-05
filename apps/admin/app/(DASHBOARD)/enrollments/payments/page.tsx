@@ -16,12 +16,7 @@ const page = async ({ searchParams }: Props) => {
   const where: Prisma.PaymentWhereInput = {
     user: search
       ? {
-          OR: [
-            { fullName: { contains: search } },
-            { email: { contains: search } },
-            { phone: { contains: search } },
-            { nationalId: { contains: search } },
-          ],
+          OR: [{ name: { contains: search } }, { email: { contains: search } }],
         }
       : undefined,
     status: status ? (status as PaymentStatus) : undefined,
@@ -31,11 +26,7 @@ const page = async ({ searchParams }: Props) => {
   const payments = await database.payment.findMany({
     where,
     include: {
-      user: {
-        include: {
-          image: true,
-        },
-      },
+      user: true,
       enrollment: {
         include: {
           course: {

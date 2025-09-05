@@ -24,17 +24,15 @@ const page = async ({ searchParams }: Props) => {
         ? {
             user: {
               OR: [
-                { fullName: { contains: search } },
+                { name: { contains: search } },
                 { email: { contains: search } },
-                { nationalId: { contains: search } },
-                { phone: { contains: search } },
               ],
             },
           }
         : {},
       status ? { status: status as EnrollmentStatus } : {},
       isFree ? (isFree === "yes" ? { price: 0 } : { price: { not: 0 } }) : {},
-    ].filter(Boolean), // Remove undefined values
+    ].filter(Boolean),
   };
 
   const { skip, take } = pagination(page);

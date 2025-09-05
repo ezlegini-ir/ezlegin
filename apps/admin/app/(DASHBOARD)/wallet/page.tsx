@@ -21,9 +21,7 @@ const page = async ({ searchParams }: Props) => {
     OR: search
       ? [
           { wallet: { user: { email: { contains: search } } } },
-          { wallet: { user: { phone: { contains: search } } } },
-          { wallet: { user: { nationalId: { contains: search } } } },
-          { wallet: { user: { fullName: { contains: search } } } },
+          { wallet: { user: { name: { contains: search } } } },
         ]
       : undefined,
   };
@@ -50,7 +48,7 @@ const page = async ({ searchParams }: Props) => {
 
   const bestWallets = await database.wallet.findMany({
     include: {
-      user: { include: { image: true } },
+      user: true,
     },
     orderBy: {
       balance: "desc",

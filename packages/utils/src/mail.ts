@@ -90,7 +90,7 @@ export const sendSuccessPaymentEmail = async (
 
   await sendEmail({
     to: email,
-    subject: `✅ ثبت نام موفق!`,
+    subject: `✅ Success Enrollment!`,
     html: emailHtml,
   });
 };
@@ -106,7 +106,7 @@ export const sendSuccessPaymentEmailToAdmin = async (
 
   await sendEmail({
     to: email,
-    subject: `✅ ثبت نام موفق!`,
+    subject: `✅ Success Enrollment!!`,
     html: emailHtml,
   });
 };
@@ -122,7 +122,7 @@ export const sendFinishCourseEmail = async (
 
   await sendEmail({
     to: email,
-    subject: `🎉 تبریک اتمام دوره!`,
+    subject: `🎉 Course Finished!`,
     html: emailHtml,
   });
 };

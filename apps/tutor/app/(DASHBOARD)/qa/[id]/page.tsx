@@ -13,7 +13,7 @@ const page = async ({ params }: Props) => {
   const qa = await database.askTutor.findFirst({
     where: { id: +id },
     include: {
-      user: { include: { image: true } },
+      user: true,
       tutor: { include: { image: true } },
       course: { include: { image: true } },
       messages: {

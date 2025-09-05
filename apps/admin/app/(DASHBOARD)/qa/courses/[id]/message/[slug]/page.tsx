@@ -16,9 +16,7 @@ const page = async ({ params }: Props) => {
     where: { id: +slug },
     include: {
       course: true,
-      user: {
-        include: { image: true },
-      },
+      user: true,
       tutor: {
         include: { image: true },
       },
@@ -40,13 +38,13 @@ const page = async ({ params }: Props) => {
         <span>{qa.course.title}</span>
       </div>
 
-      <ul className="text-sm text-gray-500 space-y-3">
+      <ul className="text-sm text-muted-foreground space-y-3">
         <li className="flex justify-between ">
           <span>Created At</span>
           <span>{formatMiladiDate(qa.createdAt)}</span>
         </li>
         <Separator />
-        <li className="flex justify-between text-gray-500">
+        <li className="flex justify-between text-muted-foreground">
           <span>Last Update</span>
           <span>{formatMiladiDate(qa.messages[0].createdAt)}</span>
         </li>

@@ -23,12 +23,7 @@ const page = async ({ searchParams }: Props) => {
     status: status || undefined,
     user: search
       ? {
-          OR: [
-            { fullName: { contains: search } },
-            { phone: { contains: search } },
-            { nationalId: { contains: search } },
-            { email: { contains: search } },
-          ],
+          OR: [{ name: { contains: search } }, { email: { contains: search } }],
         }
       : undefined,
   };
@@ -37,9 +32,7 @@ const page = async ({ searchParams }: Props) => {
   const tickets = await database.askTutor.findMany({
     where,
     include: {
-      user: {
-        include: { image: true },
-      },
+      user: true,
       course: {
         include: { image: true },
       },

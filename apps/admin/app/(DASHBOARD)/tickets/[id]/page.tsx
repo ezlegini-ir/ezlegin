@@ -16,18 +16,10 @@ const page = async ({ params }: Props) => {
         orderBy: { createdAt: "desc" },
         include: {
           attachment: true,
-          user: {
-            include: {
-              image: true,
-            },
-          },
+          user: true,
         },
       },
-      user: {
-        include: {
-          image: true,
-        },
-      },
+      user: true,
     },
   });
 

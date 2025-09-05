@@ -25,12 +25,7 @@ const page = async ({ searchParams }: Props) => {
     status: status || undefined,
     user: search
       ? {
-          OR: [
-            { fullName: { contains: search } },
-            { phone: { contains: search } },
-            { nationalId: { contains: search } },
-            { email: { contains: search } },
-          ],
+          OR: [{ email: { contains: search } }, { name: { contains: search } }],
         }
       : undefined,
   };
@@ -42,18 +37,10 @@ const page = async ({ searchParams }: Props) => {
       messages: {
         include: {
           attachment: true,
-          user: {
-            include: {
-              image: true,
-            },
-          },
+          user: true,
         },
       },
-      user: {
-        include: {
-          image: true,
-        },
-      },
+      user: true,
     },
     orderBy: { id: "desc" },
 

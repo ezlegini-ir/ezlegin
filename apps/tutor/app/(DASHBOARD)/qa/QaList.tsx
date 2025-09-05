@@ -10,7 +10,7 @@ import { AskTutor, Course, Image as ImageType, User } from "@ezlegin/database";
 import Image from "next/image";
 
 interface QaType extends AskTutor {
-  user: User & { image: ImageType | null };
+  user: User;
   course: Course & { image: ImageType | null };
 }
 
@@ -40,8 +40,8 @@ const renderRows = (qa: QaType) => {
     <TableRow key={qa.id} className="odd:bg-slate-50">
       <TableCell>
         <div className="flex items-center gap-3">
-          <Avatar src={qa.user.image?.url} />
-          {qa.user.fullName}
+          <Avatar src={qa.user.image} />
+          {qa.user.name}
         </div>
       </TableCell>
 

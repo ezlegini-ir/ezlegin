@@ -58,9 +58,9 @@ const TicketCard = ({ ticket }: { ticket: TicketType }) => {
     <div className="card group space-y-4">
       <div className="flex flex-col lg:flex-row gap-5 justify-between lg:items-center">
         <div className="flex items-center gap-2">
-          <Avatar src={ticket.user.image?.url} />
+          <Avatar src={ticket.user.image} />
           <div className="flex flex-col gap-0">
-            <p className="w-full h-6">{ticket.user.fullName}</p>
+            <p className="w-full h-6">{ticket.user.name}</p>
             <div className="flex gap-2">
               <p className="text-xs text-gray-500">
                 <span className="font-semibold">Created At:</span>{" "}

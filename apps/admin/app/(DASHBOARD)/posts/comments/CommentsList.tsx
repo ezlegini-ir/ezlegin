@@ -45,7 +45,7 @@ const renderRows = (comment: CommentType) => {
         {comment.author ? (
           <Link href={`/students?search=${comment.author?.email}`}>
             <p className="flex flex-col items-center">
-              <span>{comment.author.fullName}</span>
+              <span>{comment.author.name}</span>
               <span>{comment.author.email}</span>
             </p>
           </Link>

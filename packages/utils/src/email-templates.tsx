@@ -54,13 +54,14 @@ const Header = () => {
   return (
     <Container
       style={{
-        backgroundColor: "#526eff",
+        background: "linear-gradient(to right, #818cf8, #4f46e5)",
         padding: "20px",
         paddingTop: "27px",
         paddingBottom: "27px",
         borderTopLeftRadius: "10px",
         borderTopRightRadius: "10px",
         textAlign: "center",
+        color: "#fff",
       }}
     >
       <Img
@@ -102,7 +103,7 @@ const OtpEmail = ({ otp }: OtpEmailProps) => {
             </span>
           </Text>
 
-          <Button href="https://igraphical.ir/login" style={buttonStyles}>
+          <Button href="https://ezlegin.com/login" style={buttonStyles}>
             Log in to your account
           </Button>
 
@@ -119,7 +120,7 @@ const OtpEmail = ({ otp }: OtpEmailProps) => {
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
           <Text style={{ fontSize: "12px", color: "#888" }}>
-            If you have any questions, contact us at support@igraphical.ir.
+            If you have any questions, contact us at ezlegin.com@gmail.com
           </Text>
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
@@ -209,42 +210,39 @@ const FinishCourseEmail = ({
   courseTitle: string;
 }) => {
   return (
-    <Html lang="fa">
+    <Html lang="en">
       <Head />
-      <Preview>🎉 تبریک {fullName} عزیز!</Preview>
+      <Preview>🎉 Congratulations dear {fullName}!</Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            {fullName} عزیز، 🎉تبریک می گوییم!
+            Dear {fullName}, 🎉 Congratulations!
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            🔹 شما با موفقیت <strong>{courseTitle}</strong> را به اتمام رساندید.
-            این یک دستاورد بزرگ است!
+            🔹 You have successfully completed <strong>"{courseTitle}"</strong>{" "}
+            Course. This is a big achievement!
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            نظرات ارزشمند شما به ما کمک خواهد کرد تا کیفیت دوره‌های آموزشی خود
-            را بهبود بخشیم.
+            Your valuable feedback will help us improve the quality of our
+            courses.
           </Text>
 
-          <Button
-            href="https://igraphical.ir/panel/courses"
-            style={buttonStyles}
-          >
-            ثبت امتیاز و دانلود مدرک
+          <Button href="https://ezlegin.com/panel/courses" style={buttonStyles}>
+            Rate & Download Certificate
           </Button>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            iGraphical.ir
+            Ezlegin.com
           </Link>
         </Container>
       </Body>
@@ -273,23 +271,22 @@ const SuccessPaymentEmail = (data: {
   const { fullName, payment } = data;
 
   return (
-    <Html lang="fa">
+    <Html lang="en">
       <Head />
-      <Preview>🔹 ثبت نام شما در دوره آی‌گرافیکال موفق بود!</Preview>
+      <Preview>🔹 Your registration in Ezlegin course was successful!</Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            {fullName} عزیز،
+            Dear {fullName},
           </Text>
 
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            از اعتماد شما به آی‌گرافیکال سپاس‌گزاریم 🌟
+            Thank you for trusting Ezlegin 🌟
             <br />
-            پرداخت شما به مبلغ{" "}
-            <strong>{payment.total.toLocaleString("en-US")} تومان</strong> با
-            موفقیت انجام شد و ثبت‌نام در دوره‌های زیر تکمیل گردید:
+            Your payment of <strong>${payment.total}</strong> was successful,
+            and your registration in the following course has been completed:
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
@@ -308,11 +305,8 @@ const SuccessPaymentEmail = (data: {
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Button
-            href="https://igraphical.ir/panel/courses"
-            style={buttonStyles}
-          >
-            ورود به پنل و مشاهده دوره‌ها
+          <Button href="https://ezlegin.com/panel/courses" style={buttonStyles}>
+            Go to Panel & View Courses
           </Button>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
@@ -324,12 +318,12 @@ const SuccessPaymentEmail = (data: {
               textAlign: "center",
             }}
           >
-            هر زمان که نیاز به پشتیبانی داشتید، از طریق سایت یا پنل کاربری با ما
-            در ارتباط باشید.
+            Whenever you need support, feel free to reach us via the website or
+            your user panel.
           </Text>
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            iGraphical.ir
+            Ezlegin.com
           </Link>
         </Container>
       </Body>
@@ -354,21 +348,21 @@ const SuccessPaymentEmailToAdmin = (data: {
   const { fullName, payment } = data;
 
   return (
-    <Html lang="fa">
+    <Html lang="en">
       <Head />
-      <Preview>🔹 ثبت نام جدید</Preview>
+      <Preview>🔹 New Enrollment</Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            کاربر: {fullName}
+            User: {fullName}
           </Text>
 
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            پرداخت به مبلغ{" "}
-            <strong>{payment.total.toLocaleString("en-US")} تومان</strong> با
-            موفقیت انجام شد و ثبت‌نام در دوره‌های زیر تکمیل گردید:
+            A payment of <strong>${payment.total}</strong> was successfully
+            completed, and registration in the following courses has been
+            finalized:
           </Text>
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
@@ -388,7 +382,7 @@ const SuccessPaymentEmailToAdmin = (data: {
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            iGraphical.ir
+            Ezlegin.com
           </Link>
         </Container>
       </Body>

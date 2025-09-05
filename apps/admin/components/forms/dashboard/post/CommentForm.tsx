@@ -159,7 +159,7 @@ const CommentForm = ({ type, comment }: Props) => {
                 onSelect={(user) =>
                   user ? field.onChange(user.id) : field.onChange(undefined)
                 }
-                getItemLabel={(user) => `${user.fullName} - ${user.email}`}
+                getItemLabel={(user) => `${user.name} - ${user.email}`}
                 defaultItem={defaultUser}
               />
 

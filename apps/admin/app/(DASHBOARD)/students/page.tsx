@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@ezlegin/ui/components/ui/dialog";
-import { database } from "@ezlegin/database";
+import { database, Prisma } from "@ezlegin/database";
 import StudentsList from "./StudentsList";
 import { globalPageSize, pagination } from "@ezlegin/utils";
 interface Props {
@@ -19,10 +19,14 @@ const page = async ({ searchParams }: Props) => {
   const { page, search } = await searchParams;
   const { skip, take } = pagination(page);
 
-  const where = search ? { email: { contains: search } } : {};
+  const where: Prisma.UserWhereInput = search
+    ? { OR: [{ email: { contains: search } }, { name: { contains: search } }] }
+    : {};
 
   const students = await database.user.findMany({
-    where,
+    where: {
+      OR: [],
+    },
     orderBy: { id: "desc" },
 
     skip,

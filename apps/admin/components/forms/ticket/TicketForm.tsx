@@ -7,6 +7,15 @@ import {
   sendTicketMessage,
   updateTicket,
 } from "@/actions/ticket";
+import SearchUsers from "@/components/SearchUsers";
+import {
+  TicketFormSchema,
+  TicketFormType,
+  ticketDepartment,
+  ticketStatus,
+} from "@/lib/validationSchema";
+import { ezleginLogoSquare } from "@/public";
+import { File, Ticket, TicketMessage, User } from "@ezlegin/database";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import CardBox from "@ezlegin/ui/components/CardBox";
 import DeleteButton from "@ezlegin/ui/components/DeleteButton";
@@ -30,39 +39,26 @@ import {
 } from "@ezlegin/ui/components/ui/select";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { Textarea } from "@ezlegin/ui/components/ui/textarea";
-import { useFileName } from "@ezlegin/utils";
-import { useLoading } from "@ezlegin/utils";
-import { formatMiladiDate } from "@ezlegin/utils";
-import { truncateFileName as truncateName } from "@ezlegin/utils";
 import {
-  TicketFormSchema,
-  TicketFormType,
-  ticketDepartment,
-  ticketStatus,
-} from "@/lib/validationSchema";
-import { ezleginLogoSquare } from "@/public";
+  formatMiladiDate,
+  truncateFileName as truncateName,
+  useFileName,
+  useLoading,
+} from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  File,
-  Image as ImageType,
-  Ticket,
-  TicketMessage,
-  User,
-} from "@ezlegin/database";
 import { Download, Link as LinkIcon, Send, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import SearchUsers from "@/components/SearchUsers";
 
 export interface TicketType extends Ticket {
   messages: (TicketMessage & {
-    user: (User & { image: ImageType | null }) | null;
+    user: User | null;
     attachment: File | null;
   })[];
-  user: User & { image: ImageType | null };
+  user: User;
 }
 
 interface Props {
@@ -325,13 +321,13 @@ const TicketForm = ({ type, ticket }: Props) => {
                               height={40}
                             />
                           ) : (
-                            <Avatar src={message.user?.image?.url} />
+                            <Avatar src={message.user?.image} />
                           )}
                           <div className="flex flex-col">
                             <span>
                               {message.senderType === "ADMIN"
                                 ? "آی‌گرافیکال"
-                                : message.user?.fullName}
+                                : message.user?.name}
                             </span>
                             <span className="text-xs text-gray-500 ">
                               {formatMiladiDate(message.createdAt)}
@@ -409,15 +405,11 @@ const TicketForm = ({ type, ticket }: Props) => {
               <ul className="text-xs text-gray-500">
                 <li className="flex justify-between">
                   <span>User</span>
-                  <span>{ticket?.user.fullName}</span>
+                  <span>{ticket?.user.name}</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Email</span>
                   <span>{ticket?.user.email}</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Phone</span>
-                  <span>{ticket?.user.phone}</span>
                 </li>
               </ul>
 

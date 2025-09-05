@@ -18,7 +18,7 @@ import Avatar from "@ezlegin/ui/components/Avatar";
 
 export interface PaymentType extends Payment {
   enrollment: (Enrollment & { course: Course & { image: ImageType | null } })[];
-  user: User & { image: ImageType | null };
+  user: User;
 }
 
 interface Props {
@@ -68,8 +68,7 @@ const renderRows = (payment: PaymentType) => {
           href={`/payments/${payment.id}`}
           className="flex items-center gap-2"
         >
-          <Avatar src={payment.user.image?.url} size={35} />{" "}
-          {payment.user.fullName}
+          <Avatar src={payment.user.image} size={35} /> {payment.user.name}
         </Link>
       </TableCell>
 
