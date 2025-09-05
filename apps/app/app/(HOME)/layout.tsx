@@ -22,7 +22,7 @@ export default async function HomeLayout({
           <NotifBar />
           <NavBar />
         </div>
-        <main className="pt-16">
+        <main className="pt-16 z-50">
           {children}
           <FloatingBanner />
           <MobileNavbar />

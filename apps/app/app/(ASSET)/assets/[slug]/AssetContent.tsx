@@ -20,7 +20,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@ezlegin/ui/components/ui/tooltip";
-import { formatJalaliDate, useLoading } from "@ezlegin/utils";
+import { useLoading } from "@ezlegin/utils";
+import { formatDate } from "date-fns";
 import { Download, Info } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -60,7 +61,7 @@ const AssetContent = ({ asset }: Props) => {
     }
 
     if (res.success) {
-      toast.success("هم اکنون دانلود آغاز می شود...");
+      toast.success("Donwload starts soon");
       window.location.href = asset.fileUrl;
       router.refresh();
       setLoading(false);
@@ -74,7 +75,10 @@ const AssetContent = ({ asset }: Props) => {
           <EzleginLogoSquare />
           <div>
             <h1 className="text-xl">{asset.title}</h1>
-            <span className="text-sm text-muted-foreground"> آی گرافیکال</span>
+            <span className="text-sm text-muted-foreground">
+              {" "}
+              Ezlegin Assets
+            </span>
           </div>
         </div>
         <div className="flex gap-5 items-center">
@@ -86,19 +90,19 @@ const AssetContent = ({ asset }: Props) => {
               <TooltipContent side="bottom">
                 <ul className="max-w-sm w-[200px] space-y-3 py-2 px-1">
                   <li className="flex justify-between">
-                    <span>فرمت:</span>
+                    <span>Format:</span>
                     <span dir="ltr">{asset.format}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span>حجم:</span>
+                    <span>Size:</span>
                     <span dir="ltr">{asset.fileSize} mb</span>
                   </li>
                   <li className="flex justify-between">
-                    <span>تاریخ انتشار:</span>
-                    <span>{formatJalaliDate(asset.createdAt)}</span>
+                    <span>Date Released:</span>
+                    <span>{formatDate(asset.createdAt, "yyyy/MM/dd")}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span>دانلود شده:</span>
+                    <span>Downloaded:</span>
                     <span>{asset.downloadCount}</span>
                   </li>
                 </ul>
@@ -113,7 +117,7 @@ const AssetContent = ({ asset }: Props) => {
             size={"lg"}
           >
             {loading ? <Loader /> : <Download className="scale-105" />}
-            دانلود رایگان
+            Free Download
           </Button>
         </div>
       </div>
@@ -133,14 +137,14 @@ const AssetContent = ({ asset }: Props) => {
         size={"lg"}
       >
         {loading ? <Loader /> : <Download className="scale-105" />}
-        دانلود رایگان
+        Free Download
       </Button>
 
       <Dialog open={showLoginModal} onOpenChange={setShowLoginModal}>
-        <DialogContent className="p-0 max-w-sm">
+        <DialogContent className="p-5 max-w-sm">
           <DialogHeader>
             <DialogTitle className="sr-only">
-              برای دانلود باید وارد شوید
+              You must be logged in to download the asset
             </DialogTitle>
           </DialogHeader>
           <LoginForm

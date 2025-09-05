@@ -32,7 +32,7 @@ const MotiviationSection = () => {
           <div>
             <p>Alireza Ezlegini</p>
             <p className="text-muted-foreground text-xs">
-              Senior Graphic Designer & Developer
+              Senior Web Designer & Developer
             </p>
           </div>
         </div>

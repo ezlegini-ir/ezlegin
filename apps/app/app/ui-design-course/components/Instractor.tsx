@@ -39,7 +39,7 @@ const Instractor = () => {
         <div>
           <h3 className="text-3xl text-orange-300">Alireza Ezlegini</h3>
           <p className="text-sm text-muted-foreground">
-            Senior Graphic Designer & Developer
+            Senior Web Designer & Developer
           </p>
         </div>
         <Card className="p-5 max-w-screen-lg mx-auto text-muted-foreground">

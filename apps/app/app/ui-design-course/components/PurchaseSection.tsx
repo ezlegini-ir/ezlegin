@@ -1,8 +1,8 @@
 import { CourseType } from "@/app/(HOME)/courses/[slug]/components/CourseContent";
 import CourseIncludes, {
   CourseIncludesTypes,
-} from "@/app/(HOME)/courses/[slug]/components/CourseIncludes";
-import CourseRegister from "@/app/(HOME)/courses/[slug]/components/CourseSidebar";
+} from "@/app/ui-design-course/components/CourseIncludes";
+import CourseRegister from "@/app/ui-design-course/components/CourseSidebar";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { squarePatternSquare } from "@/public";
 import { formatDuration } from "@ezlegin/utils";

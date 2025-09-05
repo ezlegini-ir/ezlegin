@@ -44,3 +44,4 @@ export const alirezaEzlegini = "/alireza-ezlegini.png";
 export const alirezaEzlegniPen = "/alireza-ezlegini-pen.png";
 export const alirezaEzlegniPodcast = "/alireza-ezlegini-podcast.png";
 export const alirezaEzlegniPointing = "/alireza-ezlegini-pointing.png";
+export const alirezaEzlegniLooking = "/alireza-ezlegini-looking.png";

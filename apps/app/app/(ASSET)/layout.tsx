@@ -1,7 +1,5 @@
 import SimpleFooter from "@/components/SimpleFooter";
-import { bgPattern } from "@/public";
 import NotifBar from "@ezlegin/ui/components/NotifBar";
-import Image from "next/image";
 
 export default async function Layout({
   children,
@@ -15,16 +13,7 @@ export default async function Layout({
       <div>
         <NotifBar />
       </div>
-      <main className="relative mt-20">
-        <Image
-          width={500}
-          height={500}
-          src={bgPattern}
-          alt=""
-          className="absolute -top-40 md:right-40 select-none pointer-events-none -z-10"
-        />
-        {children}
-      </main>
+      <main className="relative mt-20">{children}</main>
       <SimpleFooter />
     </div>
   );

@@ -1,6 +1,6 @@
 import CourseCurriculum, {
   CurriculumType,
-} from "@/app/(HOME)/courses/[slug]/components/CourseCurriculum";
+} from "@/app/ui-design-course/components/CourseCurriculum";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { Card } from "@ezlegin/ui/components/ui/card";
 import { FileText, Video } from "lucide-react";

@@ -8,6 +8,6 @@ export const GoogleOAuthSignIn = async ({
   callbackUrl: string | null;
 }) => {
   await signIn("google", {
-    redirectTo: callbackUrl || "/panel",
+    redirectTo: callbackUrl || undefined,
   });
 };

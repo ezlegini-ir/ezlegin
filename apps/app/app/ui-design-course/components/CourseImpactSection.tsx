@@ -1,4 +1,4 @@
-import CourseAudienceItems from "@/app/(HOME)/courses/[slug]/components/CourseAudience";
+import CourseAudienceItems from "@/app/ui-design-course/components/CourseAudience";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { BookOpen, Briefcase, CheckCircle, Users } from "lucide-react";
 
