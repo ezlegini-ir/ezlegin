@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 
 const ContactForm = () => {
   // HOOKS
@@ -27,7 +28,6 @@ const ContactForm = () => {
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       fullName: "",
-      phone: "",
       email: "",
       message: "",
       subject: "",
@@ -39,7 +39,7 @@ const ContactForm = () => {
     setLoading(true);
 
     if (!executeRecaptcha) {
-      toast.error("ری‌کپچا لود نشده است. لطفا مجددا تلاش کنید");
+      toast.error("Recaptcha not yet available, please try again later.");
       setLoading(false);
       return;
     }
@@ -62,30 +62,16 @@ const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:grid-cols-1 lg:grid-cols-2">
           <FormField
             control={form.control}
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>نام و نام خانوادگی</FormLabel>
+                <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>شماره تماس</FormLabel>
-                <FormControl>
-                  <Input maxLength={11} className="" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,23 +83,9 @@ const ContactForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ایمیل</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input className="" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="subject"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>عنوان</FormLabel>
-                <FormControl>
-                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -123,15 +95,29 @@ const ContactForm = () => {
 
         <FormField
           control={form.control}
+          name="subject"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subject</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>پیام</FormLabel>
+              <FormLabel>Message</FormLabel>
               <FormControl>
-                <textarea
+                <Textarea
                   {...field}
                   className="block w-full min-h-[160px] border rounded-md p-3 focus:border-blue-500 focus:ring-0.5 focus:ring-blue-500 focus:outline-none"
-                  placeholder="لطفا پیام خود را در این قسمت بنویسید"
+                  placeholder="Please write your message here..."
                 />
               </FormControl>
               <FormMessage />
@@ -145,7 +131,7 @@ const ContactForm = () => {
           type="submit"
         >
           {<Loader loading={loading} />}
-          ارسال پیام
+          Send Message
         </Button>
       </form>
     </Form>

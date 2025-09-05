@@ -7,12 +7,12 @@ const Page = () => {
   return (
     <div className="max-w-4xl mx-auto">
       <PageTitle
-        title="قوانین و حریم شخصی آی‌گرافیکال"
-        description="با عضویت در سایت آی گرافیکال، شما قوانین و مقررات آی گرافیکال جهت استفاده از خدمات این سرویس را پذیرفته اید. لذا در ادامه به برخی از قوانین مهم آی گرافیکال اشاره می‌شود:"
+        title="Ezlegin Terms and Privacy Policy"
+        description="By registering on the Ezlegin website, you accept Ezlegin's terms and conditions for using the services of this platform. Below are some of the important rules of Ezlegin:"
       />
 
       <div className="space-y-3 mb-6 text-sm">
-        <Title title="قوانین" className="text-xl" />
+        <Title title="Rules" className="text-xl" />
         {rules.map((rule, index) => (
           <p className="card" key={index}>
             {rule}
@@ -21,7 +21,7 @@ const Page = () => {
       </div>
 
       <div className="space-y-3 text-sm">
-        <Title title="حریم شخصی کاربر" className="text-xl" />
+        <Title title="User Privacy" className="text-xl" />
         <div className="card text-sm">
           <pre className="text-sm"> {privacy}</pre>
         </div>
@@ -31,25 +31,25 @@ const Page = () => {
 };
 
 const rules = [
-  "هرگونه توزیع، کپی‌برداری، بازنشر، فروش یا بهره‌برداری تجاری از محتوای دوره‌ها و مطالب سایت آی‌گرافیکال، به هر شکل و در هر بستری ممنوع بوده و مشمول پیگرد قانونی خواهد بود.",
-  "با عضویت در وب‌سایت آی‌گرافیکال، کاربر متعهد می‌شود در صورت تخلف از قوانین سایت، آی‌گرافیکال مجاز به مسدودسازی دسترسی کاربر و پیگیری حقوقی از طریق مراجع قانونی و وکیل رسمی شرکت خواهد بود.",
-  "دسترسی به دوره‌ها صرفاً به‌صورت آنلاین امکان‌پذیر است و هرگونه دانلود، ضبط صفحه یا انتشار محتوای دوره‌ها از سوی کاربران غیرمجاز و ممنوع می‌باشد.",
-  "هر خرید انجام‌شده، صرفاً برای استفاده شخصی و انفرادی خریدار بوده و کاربر تحت هیچ شرایطی مجاز به اشتراک‌گذاری حساب کاربری خود حتی با اعضای خانواده نمی‌باشد.",
-  "کاربر با عضویت در سایت، رضایت خود را نسبت به عضویت در باشگاه پیامکی و دریافت اطلاع‌رسانی‌ها و پیامک‌های مرتبط اعلام می‌دارد.",
-  "مسئولیت صحت اطلاعات وارد شده از جمله نام، نام خانوادگی و کد ملی به عهده کاربر است. در صورت صدور گواهی با اطلاعات نادرست، آی‌گرافیکال مسئولیتی در قبال اصلاح یا صدور مجدد مدرک نخواهد داشت.",
-  "کاربر با ارسال نظر یا مشارکت در محتوای سایت، به آی‌گرافیکال اجازه می‌دهد تصویر پروفایل او به همراه نام نمایشی در سایت و شبکه‌های اجتماعی رسمی مجموعه منتشر شود.",
-  "هرگونه تلاش برای نفوذ، هک، دست‌کاری یا ایجاد اختلال در سیستم‌های فنی یا محتوای سایت، تخلف محسوب شده و پیگیری قضایی در پی خواهد داشت.",
-  "بازپرداخت وجه فقط در مواردی که نقص جدی در دسترسی یا کیفیت دوره‌ها از سوی آی‌گرافیکال اثبات شود، امکان‌پذیر است و بررسی آن منوط به نظر تیم پشتیبانی خواهد بود.",
-  "تمامی حقوق معنوی و مالکیت فکری دوره‌ها و محتوای ارائه‌شده متعلق به آی‌گرافیکال بوده و هرگونه استفاده خارج از چهارچوب‌های تعیین‌شده، نقض حقوق مؤلف محسوب می‌شود.",
+  "Any distribution, reproduction, redistribution, sale, or commercial exploitation of the course content and materials on the Ezlegin website, in any form or platform, is prohibited and will be subject to legal action.",
+  "By registering on the Ezlegin website, the user agrees that if they violate the website's rules, Ezlegin has the right to block the user's access and pursue legal action through official authorities and the company's lawyer.",
+  "Access to the courses is only available online, and any downloading, screen recording, or distribution of course content by users is prohibited and unauthorized.",
+  "Each purchase is solely for the personal and individual use of the buyer, and the user is not permitted under any circumstances to share their account, even with family members.",
+  "By registering on the site, the user consents to be part of the SMS club and to receive notifications and related messages from Ezlegin.",
+  "The responsibility for the accuracy of the entered information, including the name, surname, and national ID number, lies with the user. If a certificate is issued with incorrect information, Ezlegin will not be responsible for correcting or reissuing the document.",
+  "By submitting feedback or participating in the content on the site, the user gives Ezlegin permission to publish their profile picture and display name on the website and the official social media channels of the platform.",
+  "Any attempt to infiltrate, hack, manipulate, or disrupt the technical systems or content of the website will be considered a violation and will lead to legal action.",
+  "Refunds are only possible in cases where a serious flaw in access or quality of the courses is proven by Ezlegin, and the review will be based on the support team's decision.",
+  "All intellectual property rights and ownership of the courses and content provided belong to Ezlegin, and any use outside the established framework will be considered a violation of the author’s rights.",
 ];
 
-const privacy = `حریم خصوصی کاربران در سایت آی‌گرافیکال از بالاترین اولویت‌ها برخوردار است. ما متعهد هستیم تا اطلاعات شخصی کاربران را به‌طور کامل محافظت کرده و محیطی امن برای استفاده از خدمات سایت فراهم کنیم. به همین منظور، از فناوری‌های مختلف رمزنگاری برای انتقال داده‌ها میان کاربر و سرور استفاده می‌کنیم تا از دسترسی غیرمجاز جلوگیری شود.
+const privacy = `The privacy of users on the Ezlegin website is a top priority. We are committed to fully protecting users' personal information and providing a secure environment for using the site's services. To achieve this, we use various encryption technologies for transmitting data between the user and the server to prevent unauthorized access.
 
-اطلاعاتی که از کاربران دریافت می‌شود، صرفاً در راستای ارائه خدمات بهتر و دقیق‌تر مورد استفاده قرار می‌گیرد و هیچ‌گونه اطلاعات شخصی کاربران به اشخاص یا نهادهای ثالث منتقل یا فروخته نخواهد شد.
+The information we collect from users is used solely to provide better and more accurate services, and no personal information will be shared or sold to third parties.
 
-آی‌گرافیکال تنها اطلاعاتی را از شما درخواست می‌کند که برای انجام خدمات مورد نیاز است و هرگونه استفاده از اطلاعات کاربران خارج از چهارچوب این خدمات، برای آی‌گرافیکال غیرمجاز تلقی می‌شود.
+Ezlegin only requests information from you that is necessary for providing the required services, and any use of user information outside of the scope of these services is unauthorized by Ezlegin.
 
-ما همواره تلاش می‌کنیم تا با به‌روزرسانی زیرساخت‌های امنیتی، فضای مطمئن‌تری برای شما کاربران گرامی فراهم سازیم.`;
+We continually strive to create a safer environment for our valued users by updating our security infrastructure.`;
 
 export default Page;
 

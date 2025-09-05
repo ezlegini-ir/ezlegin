@@ -8,8 +8,8 @@ const page = () => {
   return (
     <div className="flex items-center flex-col gap-3">
       <PageTitle
-        title={"استعلام مدرک"}
-        description={"در این صفحه می توانید مدرک آی‌گرافیکال را استعلام کنید."}
+        title={"Certificate Verification"}
+        description={"On this page, you can verify your Ezlegin certificate."}
       />
 
       <RecaptchaWrapper
@@ -24,7 +24,7 @@ const page = () => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "استعلام مدرک",
+  title: "Certificate Verification",
   description:
-    "استعلام آنلاین مدرک دوره‌های گذرانده‌شده در آی‌گرافیکال. به‌سادگی و تنها با وارد کردن سریال مدرک اعتبار مدرک خود را بررسی کنید.",
+    "Online verification of certificates for completed courses at Ezlegin. Simply enter the certificate serial number to check its validity.",
 };

@@ -8,7 +8,7 @@ export const createContact = async (
   data: ContactFormType,
   recaptchaToken: string
 ) => {
-  const { email, fullName, message, phone, subject } = data;
+  const { email, fullName, message, subject } = data;
   try {
     await isHumanOrNot(recaptchaToken);
 
@@ -17,7 +17,6 @@ export const createContact = async (
         email,
         fullName,
         message,
-        phone,
         subject,
       },
     });

@@ -56,7 +56,7 @@ const CertificateVerifyForm = () => {
     setResult(undefined);
 
     if (!executeRecaptcha) {
-      toast.error("ری‌کپچا لود نشده است. لطفا مجددا تلاش کنید");
+      toast.error("Recaptcha not yet available. Please try again later.");
       setLoading(false);
       return;
     }
@@ -90,11 +90,9 @@ const CertificateVerifyForm = () => {
         {result === "VALID" ? (
           <div className="flex flex-col  justify-center items-center gap-3">
             <CheckCircle size={75} className="text-green-500" />
-            <span className="font-semibold">
-              این مدرک مورد تایید آی‌گرافیکال می باشد.
-            </span>
+            <span className="font-semibold">This certificate is valid!</span>
             <div className="card w-full text-gray-500 flex flex-col gap-3">
-              <span> دانش آموز: {certificate?.enrollment.user.fullName} </span>
+              <span> دانش آموز: {certificate?.enrollment.user.name} </span>
               <span> دوره: {certificate?.enrollment.course?.title} </span>
               <span>تاریخ اخذ: {formatJalaliDate(certificate?.issuedAt!)}</span>
             </div>
@@ -102,7 +100,7 @@ const CertificateVerifyForm = () => {
         ) : result === "INVALID" ? (
           <div className="flex flex-col justify-center items-center gap-3">
             <XCircle size={75} className="text-red-500" />
-            این مدرک در سیستم مدارک آی‌گرافیکال ثبت نشده است.
+            This certificate is not valid!
           </div>
         ) : null}
 
@@ -116,7 +114,7 @@ const CertificateVerifyForm = () => {
                   <FormControl>
                     <Input
                       maxLength={6}
-                      placeholder="شماره سریال 6 رقمی"
+                      placeholder="6-digit Certificate Serial Number"
                       {...field}
                     />
                   </FormControl>
@@ -129,19 +127,8 @@ const CertificateVerifyForm = () => {
               disabled={!form.formState.isValid || loading}
               type="submit"
             >
-              استعلام
+              Verify Certificate
             </Button>
-
-            {/* <div className="pt-8 text-center space-y-2">
-              <h4>توجه:</h4>
-              <div className="text-gray-500 text-sm">
-                تنها مدارکی که از تاریخ 4 اردیبهشت 1404 به بعد صادر شده باشند
-                قابلیت استعلام دارند.
-                <hr className="py-2" />
-                برای تاریخ های ماقبل، استعلام مدرک از طریق ایمیل
-                info@igraphical.ir مقدور می باشد.
-              </div>
-            </div> */}
           </div>
         )}
 
@@ -153,7 +140,7 @@ const CertificateVerifyForm = () => {
               type="button"
               className="w-full"
             >
-              بازگشت
+              Back
             </Button>
           </div>
         )}

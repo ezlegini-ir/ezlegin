@@ -764,7 +764,6 @@ enum TicketDepartment {
 model Contact {
   id              Int              @id @default(autoincrement())
   fullName        String
-  phone           String
   email           String
   subject         String
   status          ContactStatus    @default(PENDING)

@@ -49,7 +49,7 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "Contact", href: "/contact" },
   { label: "FAQ", href: "/faq" },
-  { label: "Privacy Policy", href: "/terms-and-conditions" },
+  { label: "Validate Certificate", href: "/verify-cert" },
 ];
 
 export default Footer;

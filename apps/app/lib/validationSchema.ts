@@ -101,10 +101,6 @@ export type PaymentFormType = z.infer<typeof paymentFormSchema>;
 //! CONTACT FORM
 export const contactFormSchema = z.object({
   fullName: z.string().min(1, { message: requiredText }),
-  phone: z
-    .string()
-    .min(1, { message: requiredText })
-    .min(10, { message: "شماره تماس باید 10 رقمی باشد" }),
   email: z.string().min(1, { message: requiredText }).email(),
   subject: z.string().min(1, { message: requiredText }),
   message: z.string().min(1, { message: requiredText }),
