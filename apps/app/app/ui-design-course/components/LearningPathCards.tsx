@@ -42,10 +42,10 @@ const LearningPathCards = () => {
 
                   <Image
                     alt={`Step ${idx + 1}`}
-                    src={roadMap[0].image}
-                    width={240}
-                    height={240}
-                    className={`${isEven ? "rounded-r-lg" : "rounded-l-lg"} object-cover`}
+                    src={step.image}
+                    width={600}
+                    height={600}
+                    className={`w-[255px] h-[255px] ${isEven ? "rounded-r-lg" : "rounded-l-lg"} object-cover border-2 border-muted ${isEven ? "border-l-0" : "border-r-0"} `}
                   />
                 </div>
               </Card>
@@ -64,19 +64,19 @@ const roadMap: { title: string; explains: string; image: string }[] = [
     title: "Foundations of Product Design",
     explains:
       "Learn what product design really means and how UI and UX come together in real projects.",
-    image: "/learningPath/img2.png",
+    image: "/learningPath/img1.png",
   },
   {
     title: "UI Design Fundamentals",
     explains:
       "Master the basics: typography, spacing, contrast, hierarchy, and Gestalt principles.",
-    image: "/learningPath/img3.png",
+    image: "/learningPath/img2.png",
   },
   {
     title: "Color Theory",
     explains:
       "Understand color psychology, build palettes, and ensure accessibility in your designs.",
-    image: "/learningPath/img4.png",
+    image: "/learningPath/img3.png",
   },
   {
     title: "Get to know Figma",
