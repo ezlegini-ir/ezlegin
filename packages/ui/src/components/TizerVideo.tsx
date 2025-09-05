@@ -4,6 +4,7 @@ import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 import { Play } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   ssr: false,
@@ -15,7 +16,12 @@ const TizerVideo = ({ url }: { url: string }) => {
   const playerRef = useRef(null);
 
   return (
-    <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-lg aspect-video">
+    <motion.div
+      initial={{ y: 70, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 1, duration: 0.4 }}
+      className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-lg aspect-video"
+    >
       {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
 
       <ReactPlayer
@@ -40,7 +46,7 @@ const TizerVideo = ({ url }: { url: string }) => {
           </div>
         </button>
       )}
-    </div>
+    </motion.div>
   );
 };
 

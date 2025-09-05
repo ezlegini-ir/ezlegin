@@ -23,7 +23,7 @@ export interface QuickPaymentDataType {
   useWalletAmount?: number;
 }
 
-export const createQuickPayment = async (data: QuickPaymentDataType) => {
+export const createPayment = async (data: QuickPaymentDataType) => {
   const {
     amount,
     courseId,
@@ -180,7 +180,7 @@ export const createQuickPayment = async (data: QuickPaymentDataType) => {
 
 //* VERIFY PAYMENT -------------------------------------------------------
 
-export const verifyQuickPayment = async (
+export const verifyPayment = async (
   authority: string,
   status: "OK" | "NOK"
 ) => {

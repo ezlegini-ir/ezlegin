@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  createQuickPayment,
-  QuickPaymentDataType,
-} from "@/actions/quickPayment";
+import { createPayment, QuickPaymentDataType } from "@/actions/quickPayment";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
   Form,
@@ -225,7 +222,7 @@ const QuickCartCheckoutForm = ({ course, wallet }: Props) => {
       useWalletAmount: useWallet ? usedWalletAmount : undefined,
     };
 
-    const res = await createQuickPayment(data);
+    const res = await createPayment(data);
     if (res.error) {
       toast.error(res.error);
       setLoading(false);

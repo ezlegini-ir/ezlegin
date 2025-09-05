@@ -69,11 +69,8 @@ const CourseRegisterButton = ({
             <Link className="w-full" href={`/quick-cart/${courseId}`}>
               <Button
                 size={"lg"}
-                variant={isPresale ? "dark" : "default"}
-                className="w-full bg-gradient-to-r 
-  from-indigo-400 to-indigo-600 
-  text-base
-  hover:shadow-[0_0_80px_rgba(99,102,241,0.5)] transition-all"
+                variant={isPresale ? "dark" : "indigo"}
+                className="w-full hover:shadow-[0_0_80px_rgba(99,102,241,0.5)] transition-all text-base"
               >
                 <UserRoundPlus className="scale-110" />
                 {isPresale ? "Preenroll" : "Enroll Now"}

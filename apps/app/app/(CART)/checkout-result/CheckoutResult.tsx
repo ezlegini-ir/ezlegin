@@ -1,7 +1,6 @@
 "use client";
 
-import { verifyPayment } from "@/actions/payment";
-import { verifyQuickPayment } from "@/actions/quickPayment";
+import { verifyPayment } from "@/actions/quickPayment";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import useError from "@/hooks/useError";
@@ -30,10 +29,7 @@ const CheckoutResult = ({ authority, status, type }: Props) => {
 
   useEffect(() => {
     const verifyCheckout = async () => {
-      const res =
-        type === "QUICK"
-          ? await verifyQuickPayment(authority, status)
-          : await verifyPayment(authority, status);
+      const res = await verifyPayment(authority, status);
 
       if (res.error) {
         setResult("FAIL");

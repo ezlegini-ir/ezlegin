@@ -20,12 +20,12 @@ const CourseTitle = ({
 
       <div className=" space-y-3  max-w-2xl mx-auto flex items-center flex-col text-center">
         <Badge variant={"blue"} className="w-fit">
-          Full Course · Project Based
+          🔥 2,500+ Students Enrolled
         </Badge>
         <motion.div
           initial={{ scale: 0, opacity: 0, y: 40 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <h1 className="text-3xl md:text-4xl font-extrabold">
             Complete{" "}
@@ -37,7 +37,7 @@ const CourseTitle = ({
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
         >
           <p className="mt-3 text-muted-foreground">{summery}</p>
         </motion.div>

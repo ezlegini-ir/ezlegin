@@ -1,19 +1,18 @@
 import WideNavBar from "@/components/WideNavBar";
 import { getSessionUser } from "@/data/user";
 import { database } from "@ezlegin/database";
-import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 import { notFound } from "next/navigation";
 import CourseImpactSection from "./components/CourseImpactSection";
-import CourseTitle from "./components/CourseTitle";
 import CurriculumSection from "./components/CurriculumSection";
+import FAQSection from "./components/FAQSection";
+import HeroLanding from "./components/HeroLanding";
 import Instractor from "./components/Instractor";
 import LearningPath from "./components/LearningPath";
+import MotiviationSection from "./components/MotiviationSection";
 import PromiseSection from "./components/PromiseSection";
+import PurchaseSection from "./components/PurchaseSection";
 import ReviewsSection from "./components/ReviewsSection";
 import VoiceoverSection from "./components/VoiceoverSection";
-import PurchaseSection from "./components/PurchaseSection";
-import FAQSection from "./components/FAQSection";
-import MotiviationSection from "./components/MotiviationSection";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -70,9 +69,7 @@ const page = async ({ searchParams }: Props) => {
           <WideNavBar user={user} />
         </div>
 
-        <CourseTitle title="UI Design" summery={course?.summary} />
-
-        <TizerVideo url="https://dl.igraphical.ir/Courses/ui-design/tizer.mp4" />
+        <HeroLanding courseSummary={course.summary} />
       </div>
 
       <LearningPath />
