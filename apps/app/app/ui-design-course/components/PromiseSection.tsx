@@ -23,7 +23,7 @@ const PromiseSection = () => {
           highlight="I Promise you"
         />
 
-        <div className="w-full md:w-2/3 space-y-3">
+        <div className="w-full md:w-2/3 mx-auto md:columns-2 space-y-3">
           {promises.map((item, index) => (
             <div key={index} className="flex items-center gap-3">
               <Badge
@@ -40,8 +40,8 @@ const PromiseSection = () => {
         </div>
 
         <div className="flex flex-col items-center gap-4">
-          <div className="flex gap-2 items-center">
-            <Avatar src={alirezaEzlegini} size={32} />
+          <div className="flex flex-col md:flex-row gap-2 items-center">
+            <Avatar src={alirezaEzlegini} size={35} />
             <p className="text-center md:text-left">
               "See? I meant it when I said A Complete Course! 😎"
             </p>

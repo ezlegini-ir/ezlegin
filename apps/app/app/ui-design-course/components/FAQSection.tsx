@@ -9,7 +9,7 @@ import React from "react";
 
 const FAQSection = () => {
   return (
-    <div className="p-28 space-y-16">
+    <div className="py-28 px-4 md:px-28 space-y-16">
       <AnimatedTitle
         title="Frequently Asked Questions (FAQ)"
         highlight="(FAQ)"
@@ -27,7 +27,7 @@ const FAQSection = () => {
             <AccordionItem key={index} value={(index + 1).toString()}>
               <AccordionTrigger
                 value={index}
-                className="text-base hover:no-underline"
+                className="text-base text-left hover:no-underline"
               >
                 {faq.q}
               </AccordionTrigger>

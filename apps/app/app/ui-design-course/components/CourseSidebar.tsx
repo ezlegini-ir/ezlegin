@@ -5,8 +5,8 @@ import { Button } from "@ezlegin/ui/components/ui/button";
 import { Card } from "@ezlegin/ui/components/ui/card";
 import { TvMinimalPlay } from "lucide-react";
 import Link from "next/link";
-import { CourseType } from "./CourseContent";
 import CourseRegisterButton from "./CourseRegisterButton";
+import { CourseType } from "./PurchaseSection";
 
 interface Props {
   course: CourseType;
@@ -41,15 +41,9 @@ const CourseRegister = async ({ course }: Props) => {
             <CourseRegisterButton
               isPresale={course.status === "PRESALE"}
               releaseDate={course.releaseDate}
-              classroomId={classroomId}
               isUserEnrolled={isUserEnrolled}
-              basePrice={course.basePrice}
-              discount={course.discount}
-              price={course.price}
               courseId={course.id}
             />
-
-            {/* <CashBackCard price={course.price} /> */}
           </div>
         ) : (
           <div>

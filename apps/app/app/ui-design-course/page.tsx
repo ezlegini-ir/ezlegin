@@ -85,9 +85,9 @@ const page = async ({ searchParams }: Props) => {
 
       <PurchaseSection course={course} />
 
-      {/* <FAQSection /> */}
+      <FAQSection />
 
-      {/* <MotiviationSection /> */}
+      <MotiviationSection />
     </div>
   );
 };

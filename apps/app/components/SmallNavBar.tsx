@@ -3,13 +3,9 @@ import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { User } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { NavbarProps } from "./NavBar";
 
 const SmallNavBar = ({ user }: NavbarProps) => {
-  const pathName = usePathname();
-  const showProfileButton = pathName.startsWith("/courses/");
-
   return (
     <div className="flex justify-between">
       <Link href={"/"}>
@@ -25,13 +21,12 @@ const SmallNavBar = ({ user }: NavbarProps) => {
             </Button>
           </Link>
         ) : (
-          showProfileButton && (
-            <Link href={"/panel"}>
-              <Button size={"icon"} variant={"outline"}>
-                <User className="scale-125" />
-              </Button>
-            </Link>
-          )
+          <Link href={"/panel"}>
+            <Button variant={"outline"}>
+              <User className="scale-125" />
+              User Panel
+            </Button>
+          </Link>
         )}
       </div>
     </div>

@@ -17,7 +17,7 @@ export default async function Layout({
         <div className="absolute -right-8 md:-right-16 -top-40 md:-top-80 h-[300px] md:h-[400px]  aspect-square bg-blue-900/60 rounded-full blur-[100px] transition-all" />
       </div>
       <div
-        className={`antialiased overflow-x-hidden mx-auto grid grid-rows-[auto_1fr_auto] min-h-screen dark`}
+        className={`pb-10 md:pb-0 antialiased overflow-x-hidden mx-auto grid grid-rows-[auto_1fr_auto] min-h-screen dark`}
       >
         <div className="text-right pr-60">
           <NotifBar />

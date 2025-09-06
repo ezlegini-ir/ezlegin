@@ -5,25 +5,35 @@ import React from "react";
 
 const MotiviationSection = () => {
   return (
-    <div className="p-28 max-w-screen-2xl mx-auto">
-      <div className="flex items-center gap-10">
-        <div className="w-1/3">
+    <div className="py-28 px-4 md:px-28 max-w-screen-2xl mx-auto">
+      <div className="flex flex-wrap md:flex-nowrap items-center md:gap-10">
+        <div className="md:w-1/3">
           <Image
             alt="Alireza Ezlegini"
             src={alirezaEzlegniPointing}
             width={400}
             height={400}
-            className="rounded-full mb-8"
+            className="mb-8"
           />
         </div>
 
-        <div className="space-y-6 w-2/3">
-          <AnimatedTitle
-            textDir="LEFT"
-            title="You Can Make it, As I did 14 years ago!"
-            highlight="You Can Make it"
-          />
-          <p className="text-muted-foreground">
+        <div className="space-y-6 md:w-2/3">
+          <div className="hidden md:block">
+            <AnimatedTitle
+              textDir="LEFT"
+              title="You Can Make it, As I did 14 years ago!"
+              highlight="You Can Make it"
+            />
+          </div>
+          <div className="md:hidden">
+            <AnimatedTitle
+              textDir="CENTER"
+              title="You Can Make it, As I did 14 years ago!"
+              highlight="You Can Make it"
+            />
+          </div>
+
+          <p className="text-muted-foreground md:text-left text-justify px-4 md:px-0">
             <span className="text-2xl">"</span>
             <span>{motivationText}</span>
             <span className="text-2xl">"</span>
