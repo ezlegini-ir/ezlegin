@@ -22,7 +22,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
   const [loginStep, setLoginStep] = useState<LoginSteps>("INPUT");
 
   return (
-    <div className="w-[350px] mx-auto">
+    <div className="md:w-[350px] mx-auto">
       <RecaptchaWrapper
         recaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
       >

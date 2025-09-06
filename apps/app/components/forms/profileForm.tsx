@@ -30,7 +30,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import ConfirmCredentialForm from "./ConfirmCredentialForm";
+import ConfirmEmailForm from "./ConfirmCredentialForm";
 
 interface Props {
   user: User;
@@ -93,6 +93,7 @@ const UserProfileForm = ({ user }: Props) => {
     }
 
     toast.success("Verification Code Sent.");
+
     setOpenOtpForm(true);
     setSendEmailOtpLoading(false);
   };
@@ -102,7 +103,7 @@ const UserProfileForm = ({ user }: Props) => {
       <Dialog open={openOtpForm} onOpenChange={setOpenOtpForm}>
         <DialogContent className="sm:max-w-sm">
           <DialogTitle />
-          <ConfirmCredentialForm
+          <ConfirmEmailForm
             userId={user.id}
             email={email}
             setOpenOtpForm={setOpenOtpForm}

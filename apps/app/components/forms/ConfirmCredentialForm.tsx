@@ -27,7 +27,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import Flex from "@ezlegin/ui/components/Flex";
 
-const ConfirmCredentialForm = ({
+const ConfirmEmailForm = ({
   email,
   setOpenOtpForm,
 }: {
@@ -146,4 +146,4 @@ const ConfirmCredentialForm = ({
   );
 };
 
-export default ConfirmCredentialForm;
+export default ConfirmEmailForm;

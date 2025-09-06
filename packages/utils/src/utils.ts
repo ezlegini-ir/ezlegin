@@ -168,7 +168,7 @@ export async function isHumanOrNot(token: string) {
   const isHuman = await verifyRecaptcha(token);
 
   if (!isHuman) {
-    throw new Error("You've Noticed as a Bot, Please Try Again later...");
+    throw new Error("You've Recognized as a Bot, Please Try Again later...");
   }
 }
 

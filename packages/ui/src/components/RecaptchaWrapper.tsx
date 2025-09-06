@@ -11,7 +11,10 @@ const RecaptchaWrapper = ({
   recaptchaKey: string;
 }) => {
   return (
-    <GoogleReCaptchaProvider reCaptchaKey={recaptchaKey}>
+    <GoogleReCaptchaProvider
+      container={{ parameters: { theme: "dark" } }}
+      reCaptchaKey={recaptchaKey}
+    >
       {children}
     </GoogleReCaptchaProvider>
   );

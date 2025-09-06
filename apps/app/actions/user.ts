@@ -22,7 +22,7 @@ export async function registerUser(data: RegisterUserFormType) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await database.user.create({
+    const newUser = await database.user.create({
       data: {
         email: email.toLowerCase(),
         name: fullName,
@@ -30,7 +30,7 @@ export async function registerUser(data: RegisterUserFormType) {
       },
     });
 
-    return { success: "User Created Successfully" };
+    return { success: "User Created Successfully", user: newUser };
   } catch (error) {
     return { error: "Error 500: " + error };
   }

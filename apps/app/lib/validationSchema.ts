@@ -15,7 +15,7 @@ export const loginFormSchema = z.object({
     .email({ message: "Invalid Email!" })
     .trim()
     .min(1, requiredText),
-  password: z.string().min(1, requiredText).trim(),
+  password: z.string().min(8).trim(),
 });
 export type LoginFormType = z.infer<typeof loginFormSchema>;
 

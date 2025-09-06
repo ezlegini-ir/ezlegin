@@ -6,7 +6,7 @@ export default function PanelLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`p-3 h-screen`}>
+    <div className={`p-4 h-screen`}>
       <main className="w-full h-full max-w-screen-xl mx-auto">{children}</main>
     </div>
   );

@@ -1,5 +1,7 @@
 import LoginForm, { LoginSteps } from "@/components/forms/login/LoginForm";
+import { User } from "@ezlegin/database";
 import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
+import { Card } from "@ezlegin/ui/components/ui/card";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 
@@ -12,12 +14,13 @@ export interface LoginFormsProps {
   isNewUser?: boolean;
   redirectTo?: string;
   onSuccess?: () => void;
+  setNewUser?: Dispatch<SetStateAction<User | undefined>>;
 }
 
-const page = () => {
+const page = async () => {
   return (
-    <div className="w-full flex gap-3  h-full">
-      <div className="w-5/12 text-background relative rounded-xl overflow-hidden flex items-end justify-center pb-10">
+    <div className="w-full flex justify-center gap-3  h-full">
+      <div className="hidden md:flex w-5/12 text-background relative rounded-xl overflow-hidden items-end justify-center pb-10">
         <div className="absolute -right-96 -top-52 h-[800px] w-[800px] bg-blue-950/70 rounded-full blur-[100px] " />
         <div className="absolute -right-40 -top-40 h-[400px] w-[400px] bg-blue-900/80 rounded-full blur-[100px] " />
 
@@ -36,9 +39,9 @@ const page = () => {
         </div>
       </div>
 
-      <div className="w-8/12 bg-background rounded-xl flex items-center justify-center border">
+      <Card className="md:w-8/12 bg-background rounded-xl flex items-center justify-center p-4">
         <LoginForm />
-      </div>
+      </Card>
     </div>
   );
 };

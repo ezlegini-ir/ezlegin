@@ -17,15 +17,23 @@ import {
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
-import { useLoading } from "@ezlegin/utils";
+import { isHumanOrNot, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useSearchParams } from "next/navigation";
+import {
+  redirect,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
+import { useEffect, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 const InputForm = ({ setLoginStep }: LoginFormsProps) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
+  const [failedAttempts, setFailedAttempts] = useState(0);
 
   const form = useForm<LoginFormType>({
     mode: "onChange",
@@ -36,17 +44,40 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
     },
   });
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
 
   const onSignIn = async ({ email, password }: LoginFormType) => {
     setLoading(true);
 
+    if (failedAttempts >= 3) {
+      toast.warning("Too many try, Please try agian later.");
+      setLoginStep("INPUT");
+      setLoading(false);
+      return;
+    }
+
+    let recaptchaToken: string | undefined = undefined;
+
+    if (failedAttempts >= 1) {
+      if (!executeRecaptcha) {
+        toast.error("reCAPTCHA is not ready, Please try again after a moment.");
+        setLoading(false);
+        return;
+      }
+
+      recaptchaToken = await executeRecaptcha("verify_otp");
+    }
+
+    if (recaptchaToken) await isHumanOrNot(recaptchaToken);
+
     const res = await signInUser({ email, password });
 
     if (res.error) {
       toast.error(res.error);
       setLoading(false);
+      setFailedAttempts((prev) => prev + 1);
       return;
     }
 
@@ -55,8 +86,25 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
       redirect(callbackUrl ? callbackUrl : "/panel");
     }
 
+    setFailedAttempts(0);
     setLoading(false);
   };
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const confirmEmail = searchParams.get("confirmEmail");
+
+    if (confirmEmail) {
+      const newQueryParams = new URLSearchParams(searchParams);
+      newQueryParams.delete("confirmEmail");
+
+      const newUrl = `${pathname}?${newQueryParams.toString()}`;
+
+      router.push(newUrl);
+    }
+  }, [pathname, searchParams, router]);
 
   return (
     <div className="space-y-8">
@@ -100,7 +148,12 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="********" {...field} />
+                  <Input
+                    autoComplete="off"
+                    type="password"
+                    placeholder="********"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

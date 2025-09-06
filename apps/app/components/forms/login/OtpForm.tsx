@@ -4,7 +4,6 @@ import { signInUser } from "@/actions/login/signin-user";
 import { verifyOtp } from "@/actions/login/verify-otp";
 import { LoginFormsProps } from "@/app/login/page";
 import { OtpType, otpSchema } from "@/lib/validationSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import CountdownTimer from "@ezlegin/ui/components/CountDown";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
@@ -27,6 +26,7 @@ import {
   InputOTPSlot,
 } from "@ezlegin/ui/components/ui/input-otp";
 import { useLoading } from "@ezlegin/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { CircleCheckBig } from "lucide-react";
 import { redirect, useSearchParams } from "next/navigation";
@@ -63,7 +63,7 @@ const OtpForm = ({
     if (!identifier) return;
 
     if (failedAttempts >= 3) {
-      toast.warning("بیش از حد مجاز! لطفا مجددا اقدام نمایید.");
+      toast.warning("Too many try, Please try agian later.");
       setLoginStep("INPUT");
       setLoading(false);
       return;
@@ -97,7 +97,7 @@ const OtpForm = ({
     if (isNewUser) {
       setLoginStep("REGISTER");
     } else {
-      const auth = await signInUser(identifier);
+      const auth = await signInUser({ email: identifier, password: "" });
 
       if (auth?.error) {
         toast.error(auth.error);
