@@ -26,7 +26,6 @@ export interface CurriculumsProps {
 const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
   return (
     <div>
-      {/* <h2 className="text-lg font-semibold mb-3">Course Curriculum:</h2> */}
       <Accordion
         type="single"
         collapsible
@@ -41,8 +40,10 @@ const CourseCurriculum = ({ curriculums }: CurriculumsProps) => {
           >
             <AccordionTrigger className="font-semibold hover:no-underline flex items-center justify-between w-full">
               <div className="flex items-center justify-between w-full">
-                <span className="text-sm">{curriculum.sectionTitle}</span>
-                <div className="flex gap-4 mr-5 ml-4">
+                <span className="text-sm text-left">
+                  {curriculum.sectionTitle}
+                </span>
+                <div className="gap-4 mr-5 ml-4 hidden md:flex">
                   <span className="text-xs font-normal text-muted-foreground">
                     {curriculum.lessons.length} Lessons
                   </span>

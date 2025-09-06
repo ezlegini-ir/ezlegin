@@ -23,7 +23,7 @@ const CurriculumSection = ({ curriculum }: Props) => {
   ];
 
   return (
-    <div className="mx-auto max-w-screen-xl space-y-20 p-28">
+    <div className="mx-auto max-w-screen-xl space-y-20 py-28 px-3 md:px-28">
       <div className="space-y-4">
         <AnimatedTitle
           title="Deep Look at Course Curriculum"

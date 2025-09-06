@@ -1,10 +1,25 @@
-import { CourseType } from "@/app/(HOME)/courses/[slug]/components/CourseContent";
 import CourseIncludes, {
   CourseIncludesTypes,
 } from "@/app/ui-design-course/components/CourseIncludes";
 import CourseRegister from "@/app/ui-design-course/components/CourseSidebar";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { squarePatternSquare } from "@/public";
+import {
+  ClassRoom,
+  Course,
+  CourseCategory,
+  Curriculum,
+  Discount,
+  Enrollment,
+  GalleryItem,
+  Image as ImageType,
+  Learn,
+  Lesson,
+  Prerequisite,
+  Review,
+  Tutor,
+  User,
+} from "@ezlegin/database";
 import { formatDuration } from "@ezlegin/utils";
 import {
   Award,
@@ -15,6 +30,19 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
+
+export interface CourseType extends Course {
+  enrollment: (Enrollment & { classroom: ClassRoom | null })[];
+  tutor: (Tutor & { image: ImageType | null }) | null;
+  image: ImageType | null;
+  learn: Learn[];
+  review: (Review & { user: User })[];
+  category: CourseCategory | null;
+  prerequisite: Prerequisite[];
+  discount: Discount | null;
+  curriculum: (Curriculum & { lessons: Lesson[] })[];
+  gallery: (GalleryItem & { image: ImageType[] }) | null;
+}
 
 interface Props {
   course: CourseType;
@@ -62,22 +90,25 @@ const PurchaseSection = ({ course }: Props) => {
   ];
 
   return (
-    <div id="enroll" className="py-28  border-b border-t border-muted relative">
-      <div className="pointer-events-none absolute -right-36 top-1/2 -translate-y-1/2 h-[420px] w-[420px] bg-indigo-500/30 rounded-full blur-[120px]" />
+    <div
+      id="enroll"
+      className="py-28 px-4 md:px-0 overflow-hidden  border-b border-t border-muted relative"
+    >
+      <div className="pointer-events-none absolute md:-right-36 md:top-1/2 md:-translate-y-1/2 -top-36 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto  h-[420px] w-[420px] bg-indigo-500/30 rounded-full blur-[120px]" />
       <Image
         alt=""
         src={squarePatternSquare}
         width={320}
         height={320}
-        className="opacity-10 absolute -right-36 top-1/2 -translate-y-1/2  scale-125 pointer-events-none select-none"
+        className="opacity-10 absolute md:-right-36 md:top-1/2 md:-translate-y-1/2 -top-36 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto scale-125 pointer-events-none select-none"
       />
-      <div className="pointer-events-none absolute -left-36 top-1/2 -translate-y-1/2 h-[420px] w-[420px] bg-indigo-500/30 rounded-full blur-[120px]" />
+      <div className="pointer-events-none absolute -left-36 top-1/2 -translate-y-1/2 hidden md:block h-[420px] w-[420px] bg-indigo-500/30 rounded-full blur-[120px]" />
       <Image
         alt=""
         src={squarePatternSquare}
         width={320}
         height={320}
-        className="opacity-10 absolute -left-36 top-1/2 -translate-y-1/2  scale-125 pointer-events-none select-none"
+        className="opacity-10 absolute -left-36 top-1/2 -translate-y-1/2  scale-125 pointer-events-none select-none hidden md:block"
       />
 
       <div className="mx-auto space-y-8">
@@ -114,23 +145,3 @@ const PurchaseSection = ({ course }: Props) => {
 };
 
 export default PurchaseSection;
-{
-  /* <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div className="space-y-4">
-              <Card className="p-5 flex items-center gap-3 border border-slate-800">
-                <div className="">⭐ 4.9/5</div>
-                <div className="text-sm text-muted-foreground">
-                  1,200 reviews
-                </div>
-              </Card>
-              <Card className="p-5 flex items-center gap-3 border border-slate-800">
-                <div className="">👥 2,500+</div>
-                <div className="text-sm text-muted-foreground">students</div>
-              </Card>
-            </div>
-          </div>
-          <div>
-          </div>
-        </div> */
-}

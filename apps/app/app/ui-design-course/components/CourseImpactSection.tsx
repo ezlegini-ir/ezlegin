@@ -4,7 +4,7 @@ import { BookOpen, Briefcase, CheckCircle, Users } from "lucide-react";
 
 const CourseImpactSection = () => {
   return (
-    <div className="space-y-20 p-28">
+    <div className="space-y-10 md:space-y-20 py-28 px-4 md:px-28">
       <AnimatedTitle
         title="Who, Why, What Next"
         highlight="What Next"

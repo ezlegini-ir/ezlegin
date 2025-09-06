@@ -8,7 +8,7 @@ import Image from "next/image";
 const VoiceoverSection = () => {
   return (
     <div className="py-28 max-w-screen-xl mx-auto">
-      <div className="grid grid-cols-1 items-center md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 items-center md:grid-cols-2 gap-10 md:gap-3">
         <div className="relative">
           <Image
             alt="Alireza Ezlegini"
@@ -19,15 +19,25 @@ const VoiceoverSection = () => {
 
           <div className="w-96 h-96 rounded-full blur-2xl absolute bg-indigo-500 opacity-15 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10" />
         </div>
-        <div className="space-y-6">
-          <AnimatedTitle
-            textDir="LEFT"
-            title={voiceoverSection.title}
-            highlight="Voiceovers"
-            subtitle={voiceoverSection.subtitle}
-          />
+        <div className="space-y-8 px-4 md:px-0">
+          <div className="hidden md:block">
+            <AnimatedTitle
+              textDir="LEFT"
+              title={voiceoverSection.title}
+              highlight="Voiceovers"
+              subtitle={voiceoverSection.subtitle}
+            />
+          </div>
+          <div className="md:hidden">
+            <AnimatedTitle
+              textDir="CENTER"
+              title={voiceoverSection.title}
+              highlight="Voiceovers"
+              subtitle={voiceoverSection.subtitle}
+            />
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-6">
             {voiceoverSection.benefits.map((item, index) => (
               <div key={index} className="mb-6 last:mb-0">
                 <Badge
@@ -42,11 +52,13 @@ const VoiceoverSection = () => {
             ))}
           </div>
 
-          <a href="#enroll">
-            <Button variant={"gold"}>
-              Enroll Now <ArrowDown />
-            </Button>
-          </a>
+          <div>
+            <a href="#enroll">
+              <Button className="w-full md:w-fit" variant={"gold"}>
+                Enroll Now <ArrowDown />
+              </Button>
+            </a>
+          </div>
         </div>
       </div>
     </div>

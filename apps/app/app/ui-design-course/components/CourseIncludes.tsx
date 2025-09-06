@@ -18,7 +18,10 @@ const CourseIncludes = ({ courseIncludes }: Props) => {
         {courseIncludes.map((item, index) => (
           <li key={index}>
             <Card className="p-3 w-full flex gap-3 items-center">
-              <item.icon size={18} className={item.iconColor} />
+              <item.icon
+                size={18}
+                className={`scale-125 md:scale-100 ${item.iconColor}`}
+              />
               {item.label}
             </Card>
           </li>

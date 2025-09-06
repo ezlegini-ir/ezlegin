@@ -77,13 +77,13 @@ const page = async ({ searchParams }: Props) => {
 
       <ReviewsSection />
 
-      {/* <CurriculumSection curriculum={course.curriculum} /> */}
+      <CurriculumSection curriculum={course.curriculum} />
 
-      {/* <VoiceoverSection /> */}
+      <VoiceoverSection />
 
-      {/* <CourseImpactSection /> */}
+      <CourseImpactSection />
 
-      {/* <PurchaseSection course={course} /> */}
+      <PurchaseSection course={course} />
 
       {/* <FAQSection /> */}
 
