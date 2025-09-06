@@ -19,6 +19,15 @@ export default {
           data: { image: profile.picture },
         });
       }
+
+      if (account?.provider === "google" && profile?.locale) {
+        const country = profile.locale.split("-")[1];
+
+        await database.user.update({
+          where: { id: +user.id! },
+          data: { country: country },
+        });
+      }
     },
   },
   callbacks: {

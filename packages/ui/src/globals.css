@@ -191,12 +191,12 @@ html > body[data-scroll-locked] {
 }
 .custom-scrollbar::-webkit-scrollbar-track {
   border-radius: 9999px;
-  background-color: #e5e7eb;
+  background-color: #414141;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
   border-radius: 9999px;
-  background-color: rgba(148, 163, 184, 0.7);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: #94a3b8;
+  background-color: rgba(255, 255, 255, 0.4);
 }

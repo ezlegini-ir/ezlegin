@@ -35,7 +35,7 @@ export const registerUserFormSchema = z.object({
     .string()
     .min(1, { message: "Email is required" })
     .email({ message: "Invalid email address" }),
-
+  country: z.string().min(1, "Country is required"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -78,6 +78,7 @@ export type ResetPasswordFormType = z.infer<typeof resetPasswordFormSchema>;
 
 export const profileFormSchema = z.object({
   name: z.string().min(3, { message: "At least 3 characters" }).trim(),
+  country: z.string().min(1, "Country is required"),
   email: z
     .string()
     .min(1, { message: requiredText })

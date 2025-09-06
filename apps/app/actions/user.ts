@@ -8,7 +8,7 @@ import bcrypt from "bcrypt";
 //* CREATE --------------------------------------------------------
 
 export async function registerUser(data: RegisterUserFormType) {
-  const { email, fullName, password } = data;
+  const { email, fullName, password, country } = data;
 
   try {
     const existingUser = await database.user.findFirst({
@@ -27,6 +27,7 @@ export async function registerUser(data: RegisterUserFormType) {
         email: email.toLowerCase(),
         name: fullName,
         password: hashedPassword,
+        country,
       },
     });
 
@@ -39,7 +40,7 @@ export async function registerUser(data: RegisterUserFormType) {
 //* UPDATE --------------------------------------------------------
 
 export const updateUserProfile = async (data: ProfileFormType, id: number) => {
-  const { email, name } = data;
+  const { email, name, country } = data;
 
   try {
     // USER LOOP UP
@@ -52,6 +53,7 @@ export const updateUserProfile = async (data: ProfileFormType, id: number) => {
         data: {
           name,
           email,
+          country,
         },
       });
 

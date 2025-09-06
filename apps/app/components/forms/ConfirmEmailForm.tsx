@@ -3,7 +3,7 @@
 import { verifyOtp } from "@/actions/login/verify-otp";
 import CountdownTimer from "@ezlegin/ui/components/CountDown";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { CardDescription } from "@ezlegin/ui/components/ui/card";
+import { CardDescription, CardTitle } from "@ezlegin/ui/components/ui/card";
 import {
   Form,
   FormControl,
@@ -89,9 +89,11 @@ const ConfirmEmailForm = ({
 
   return (
     <>
-      <Flex className="justify-center mb-3">
+      <Flex className="justify-center flex-col mb-3 text-center">
+        <CardTitle>Confirm Email</CardTitle>
         <CardDescription>
-          Please insert verification code sent to your email.
+          Please insert verification code sent to <br />
+          {email}
         </CardDescription>
       </Flex>
 

@@ -32,6 +32,7 @@ import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { CountrySelectInput } from "./CountrySelectInput";
 
 const RegisterForm = ({
   setLoginStep,
@@ -97,7 +98,7 @@ const RegisterForm = ({
       <CardContent className="p-0">
         <Form {...form}>
           <form
-            className="space-y-3"
+            className="space-y-5"
             onSubmit={form.handleSubmit(onRegisterUser)}
           >
             <FormField
@@ -125,6 +126,23 @@ const RegisterForm = ({
                       placeholder="test@example.com"
                       type="email"
                       {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-1">
+                  <FormLabel>Country</FormLabel>
+                  <FormControl>
+                    <CountrySelectInput
+                      value={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />

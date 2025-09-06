@@ -167,7 +167,7 @@ const ResetPasswordForm = ({ token, email }: Props) => {
                       <Input
                         autoComplete="off"
                         type="password"
-                        placeholder="test@example.com"
+                        placeholder="********"
                         {...field}
                       />
                     </FormControl>

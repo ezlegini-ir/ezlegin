@@ -30,7 +30,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import ConfirmEmailForm from "./ConfirmCredentialForm";
+import ConfirmEmailForm from "./ConfirmEmailForm";
 
 interface Props {
   user: User;
