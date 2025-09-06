@@ -71,23 +71,23 @@ const page = async ({ searchParams }: Props) => {
 
       <LearningPath />
 
-      {/* <Instractor />
+      <Instractor />
 
       <PromiseSection />
 
       <ReviewsSection />
 
-      <CurriculumSection curriculum={course.curriculum} />
+      {/* <CurriculumSection curriculum={course.curriculum} /> */}
 
-      <VoiceoverSection />
+      {/* <VoiceoverSection /> */}
 
-      <CourseImpactSection />
+      {/* <CourseImpactSection /> */}
 
-      <PurchaseSection course={course} />
+      {/* <PurchaseSection course={course} /> */}
 
-      <FAQSection />
+      {/* <FAQSection /> */}
 
-      <MotiviationSection /> */}
+      {/* <MotiviationSection /> */}
     </div>
   );
 };

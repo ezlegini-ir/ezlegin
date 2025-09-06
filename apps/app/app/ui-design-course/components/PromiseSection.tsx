@@ -7,23 +7,23 @@ import { ArrowDown, Check } from "lucide-react";
 
 const PromiseSection = () => {
   return (
-    <div className="relative w-full min-h-screen ">
+    <div className="relative w-full min-h-screen my-28 md:my-0">
       <video
         src={sketchVideo}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-15 bg-muted"
+        className="absolute inset-0 w-full h-full object-cover opacity-15 bg-muted hidden md:block"
       />
 
-      <div className="absolute inset-0 space-y-10 flex flex-col justify-center items-center">
+      <div className="absolute inset-0 flex flex-col justify-center items-center p-4 space-y-10 md:space-y-16">
         <AnimatedTitle
           title="I Promise you at the end of this course, you will:"
           highlight="I Promise you"
         />
 
-        <div className="md:columns-2  space-y-3">
+        <div className="w-full md:w-2/3 space-y-3">
           {promises.map((item, index) => (
             <div key={index} className="flex items-center gap-3">
               <Badge
@@ -32,19 +32,23 @@ const PromiseSection = () => {
               >
                 <Check strokeWidth={3} />
               </Badge>
-              <div className="text-muted-foreground">{item}</div>
+              <div className="text-muted-foreground text-sm md:text-base">
+                {item}
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="space-y-3 flex flex-col items-center">
+        <div className="flex flex-col items-center gap-4">
           <div className="flex gap-2 items-center">
-            <Avatar src={alirezaEzlegini} size={28} />
-            <p>"See? I meant it when I said A Complete Course! 😎"</p>
+            <Avatar src={alirezaEzlegini} size={32} />
+            <p className="text-center md:text-left">
+              "See? I meant it when I said A Complete Course! 😎"
+            </p>
           </div>
 
           <a href="#enroll">
-            <Button variant={"gold"}>
+            <Button variant="gold" className="flex items-center gap-2">
               Enroll Now <ArrowDown />
             </Button>
           </a>
@@ -72,5 +76,5 @@ const promises: string[] = [
   "Export assets and hand off projects professionally.",
   "Build a portfolio with real app and website projects.",
   "Gain confidence to work as a UI/UX designer locally or internationally.",
-  "Have Ability to work with development teams and understand their needs.",
+  "Have the ability to work with development teams and understand their needs.",
 ];

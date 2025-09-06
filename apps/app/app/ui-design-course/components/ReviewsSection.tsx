@@ -17,7 +17,7 @@ import React from "react";
 
 const ReviewsSection = () => {
   return (
-    <div className="p-28 space-y-16 relative">
+    <div className="px-4 md:px-28 py-28 space-y-16 relative">
       <div className="pointer-events-none absolute -right-36 top-1/2 -translate-y-1/2 h-[420px] w-[420px] bg-primary/30 rounded-full blur-[120px]" />
       <Image
         alt=""

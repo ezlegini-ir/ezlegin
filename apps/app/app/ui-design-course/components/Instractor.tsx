@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const Instractor = () => {
   return (
-    <div className="p-28 space-y-16">
+    <div className="px-4 md:px-28 p-28 space-y-16">
       <AnimatedTitle
         title="Gonna be your FRIEND in this journey"
         highlight="FRIEND"
@@ -42,7 +42,7 @@ const Instractor = () => {
             Senior Web Designer & Developer
           </p>
         </div>
-        <Card className="p-5 max-w-screen-lg mx-auto text-muted-foreground">
+        <Card className="p-5 max-w-screen-lg mx-auto text-muted-foreground text-sm">
           {bio}
         </Card>
 
