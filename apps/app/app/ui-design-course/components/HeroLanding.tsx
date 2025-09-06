@@ -10,7 +10,7 @@ interface Props {
 
 const HeroLanding = ({ courseSummary }: Props) => {
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 px-4">
       <div className="space-y-3 w-full">
         <CourseTitle title="UI Design" summery={courseSummary} />
         <div className="flex justify-center gap-3">

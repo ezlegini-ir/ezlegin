@@ -10,11 +10,11 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <SquarePattern />
       <div className="relative max-w-screen-xl mx-auto w-full">
-        <div className="absolute -right-40 -top-72 h-[800px] w-[800px] bg-blue-950/50 rounded-full blur-[100px]" />
-        <div className="absolute -right-16 -top-80 h-[400px] w-[400px] bg-blue-900/60 rounded-full blur-[100px]" />
+        <div className="absolute -right-20 md:-right-40 -top-32 md:-top-72 h-[500px] md:h-[800px] aspect-square bg-blue-950/50 rounded-full blur-[100px] transition-all" />
+        <div className="absolute -right-8 md:-right-16 -top-40 md:-top-80 h-[300px] md:h-[400px]  aspect-square bg-blue-900/60 rounded-full blur-[100px] transition-all" />
       </div>
       <div
         className={`antialiased overflow-x-hidden mx-auto grid grid-rows-[auto_1fr_auto] min-h-screen dark`}

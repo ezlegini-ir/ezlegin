@@ -6,34 +6,41 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const LearningPathCards = () => {
+  const getCardClasses = (isEven: boolean) => {
+    return isEven ? "md:pl-0 md:pr-0" : "pl-5 pr-5 md:pr-0";
+  };
+
+  const getImageClasses = (isEven: boolean) => {
+    return isEven
+      ? "md:rounded-r-lg md:rounded-t-none md:rounded-tr-lg md:border-l-0"
+      : "md:rounded-l-lg md:rounded-tr-none md:border-r-0";
+  };
+
   return (
-    <ul className="flex flex-col items-center gap-16 w-full">
+    <ul className="flex flex-col items-center gap-24 md:gap-16 w-full px-4">
       {roadMap.map((step, idx) => {
         const isEven = idx % 2 === 0;
+
         return (
           <li
             key={idx}
             className="w-full group max-w-screen-xl flex justify-start even:justify-end relative"
           >
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 100,
-              }}
+              initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.7 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-1/2 relative z-10 -mx-2"
+              className="md:w-1/2 relative z-10 -mx-2"
             >
               <Card
-                className={`bg-slate-900 space-y-8 p-5 py-3 ${isEven ? "pl-0" : "pr-0"}`}
+                className={`bg-slate-900 space-y-8 p-5 py-3 pb-0 md:pb-3 ${getCardClasses(isEven)}`}
               >
-                <div className="flex group-odd:flex-row-reverse items-center gap-5">
-                  <div className="space-y-1">
+                <div className="flex flex-wrap md:flex-nowrap group-odd:flex-row-reverse items-center justify-center gap-5">
+                  <div className={`space-y-1`}>
                     <span className="text-violet-500 text-sm font-semibold">
                       Step {idx + 1}
                     </span>
-
                     <h3 className="font-normal">{step.title}</h3>
                     <p className="text-sm text-muted-foreground">
                       {step.explains}
@@ -45,7 +52,7 @@ const LearningPathCards = () => {
                     src={step.image}
                     width={600}
                     height={600}
-                    className={`w-[255px] h-[255px] ${isEven ? "rounded-r-lg" : "rounded-l-lg"} object-cover border-2 border-muted ${isEven ? "border-l-0" : "border-r-0"} `}
+                    className={`md:w-[255px] rounded-t-lg aspect-square ${getImageClasses(isEven)} object-cover border-2 border-muted`}
                   />
                 </div>
               </Card>

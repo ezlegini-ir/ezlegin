@@ -1,5 +1,4 @@
-import WideNavBar from "@/components/WideNavBar";
-import { getSessionUser } from "@/data/user";
+import NavBar from "@/components/NavBar";
 import { database } from "@ezlegin/database";
 import { notFound } from "next/navigation";
 import CourseImpactSection from "./components/CourseImpactSection";
@@ -60,13 +59,11 @@ const page = async ({ searchParams }: Props) => {
 
   if (!course) notFound();
 
-  const user = await getSessionUser();
-
   return (
     <div>
-      <div className="space-y-20 h-screen border-b border-muted pt-4">
-        <div className="max-w-screen-xl mx-auto z-50">
-          <WideNavBar user={user} />
+      <div className="space-y-20 h-screen border-b border-muted">
+        <div className="max-w-screen-xl mx-auto p-4">
+          <NavBar />
         </div>
 
         <HeroLanding courseSummary={course.summary} />
@@ -74,7 +71,7 @@ const page = async ({ searchParams }: Props) => {
 
       <LearningPath />
 
-      <Instractor />
+      {/* <Instractor />
 
       <PromiseSection />
 
@@ -90,7 +87,7 @@ const page = async ({ searchParams }: Props) => {
 
       <FAQSection />
 
-      <MotiviationSection />
+      <MotiviationSection /> */}
     </div>
   );
 };

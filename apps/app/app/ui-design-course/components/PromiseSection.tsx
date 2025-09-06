@@ -13,6 +13,7 @@ const PromiseSection = () => {
         autoPlay
         loop
         muted
+        playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-15 bg-muted"
       />
 

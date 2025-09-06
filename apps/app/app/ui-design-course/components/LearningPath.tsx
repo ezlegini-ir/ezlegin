@@ -8,7 +8,7 @@ import LearningPathCards from "./LearningPathCards";
 
 const LearningPath = () => {
   return (
-    <div id="journey" className="relative w-full p-28 ">
+    <div id="journey" className="relative w-full px-4 md:px-28 p-28 ">
       <div className="pointer-events-none absolute -left-36 top-36 h-[420px] w-[420px] bg-violet-700/40 rounded-full blur-[120px]" />
 
       <Image
@@ -48,7 +48,7 @@ const LearningPath = () => {
 
         <div>
           <div className="flex justify-center">
-            <div className="border border-violet-500 p-3 rounded-md w-fit text-sm">
+            <div className="border border-violet-500 p-3 rounded-md w-fit text-sm text-center">
               You Start to Become a UI Design Expert!
             </div>
           </div>

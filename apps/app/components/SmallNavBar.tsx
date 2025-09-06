@@ -6,35 +6,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavbarProps } from "./NavBar";
 
-const SmallNavBar = ({ user, isThereItemsInCart }: NavbarProps) => {
+const SmallNavBar = ({ user }: NavbarProps) => {
   const pathName = usePathname();
   const showProfileButton = pathName.startsWith("/courses/");
 
   return (
-    <div className="px-2">
-      <div className="flex justify-between">
-        <Link href={"/"}>
-          <EzleginLogoSquare size={48} />
-        </Link>
+    <div className="flex justify-between">
+      <Link href={"/"}>
+        <EzleginLogoSquare size={48} />
+      </Link>
 
-        <div className="flex gap-2 text-gray-500">
-          {user ? (
+      <div className="flex gap-2 text-foreground">
+        {user ? (
+          <Link href={"/panel"}>
+            <Button variant={"outline"}>
+              <Avatar src={user.image} size={25} />
+              {user.name}
+            </Button>
+          </Link>
+        ) : (
+          showProfileButton && (
             <Link href={"/panel"}>
-              <Button variant={"outline"}>
-                <Avatar src={user.image} size={25} />
-                {user.name}
+              <Button size={"icon"} variant={"outline"}>
+                <User className="scale-125" />
               </Button>
             </Link>
-          ) : (
-            showProfileButton && (
-              <Link href={"/panel"}>
-                <Button size={"icon"} variant={"outline"}>
-                  <User className="scale-125" />
-                </Button>
-              </Link>
-            )
-          )}
-        </div>
+          )
+        )}
       </div>
     </div>
   );

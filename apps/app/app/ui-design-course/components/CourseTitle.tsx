@@ -13,12 +13,12 @@ const CourseTitle = ({
   summery: string;
 }) => {
   return (
-    <div className="relative px-14  w-fit mx-auto">
+    <div className="relative w-fit mx-auto">
       <div className="absolute left-0 top-0 w-20">
         <AnimatedFigmaLogo />
       </div>
 
-      <div className=" space-y-3  max-w-2xl mx-auto flex items-center flex-col text-center">
+      <div className=" space-y-3 max-w-2xl mx-auto flex items-center flex-col text-center">
         <Badge variant={"blue"} className="w-fit">
           🔥 2,500+ Students Enrolled
         </Badge>

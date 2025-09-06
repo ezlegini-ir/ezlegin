@@ -28,7 +28,7 @@ const page = () => {
 
           <SocialsIcon />
 
-          <div className="border rounded-sm p-3 text-sm text-gray-500 flex justify-between items-center">
+          <div className="border rounded-sm p-3 text-sm text-muted-foreground flex justify-between items-center">
             <h3 className="text-base font-medium flex gap-2 items-center">
               <Mail size={18} />
               Email
