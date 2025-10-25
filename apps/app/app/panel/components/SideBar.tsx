@@ -48,13 +48,15 @@ export function SideBar({ user }: Props) {
           <div className="flex gap-2 items-center">
             <Avatar src={user.image} />
             <div className="flex flex-col">
-              <span className="font-medium text-gray-600">{user.name}</span>
-              <span className="text-xs text-gray-400">{user.email}</span>
+              <span className="font-medium">{user.name}</span>
+              <span className="text-xs text-muted-foreground">
+                {user.email}
+              </span>
             </div>
           </div>
 
           <Link href={"/panel/profile"} className="p-1">
-            <Pencil size={14} className="text-gray-400" />
+            <Pencil size={14} className="text-muted-foreground" />
           </Link>
         </div>
       </SidebarHeader>

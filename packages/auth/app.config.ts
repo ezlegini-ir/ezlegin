@@ -13,6 +13,13 @@ export default {
   trustHost: true,
   events: {
     async signIn({ user, account, profile }) {
+      if (account?.provider === "google") {
+        await database.user.update({
+          where: { id: +user.id! },
+          data: { emailVerified: new Date() },
+        });
+      }
+
       if (account?.provider === "google" && !user.image && profile?.picture) {
         await database.user.update({
           where: { id: +user.id! },

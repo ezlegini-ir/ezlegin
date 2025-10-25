@@ -45,6 +45,7 @@ export const loginPageRoute = "/login";
 
 export const privateRoutes = [
   "/panel",
+  "/onboarding",
   "/api",
   "/cart",
   "/quick-cart",

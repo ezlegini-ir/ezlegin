@@ -11,15 +11,15 @@ datasource db {
 
 //! User Management  ---------------------------------------------------------
 model User {
-  id            Int       @id @default(autoincrement())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  joinedAt      DateTime  @default(now())
-  password      String?
-  image         String?
-  userImage     Image?
-  country       String?
+  id                  Int       @id @default(autoincrement())
+  name                String?
+  email               String    @unique
+  emailVerified       DateTime?
+  joinedAt            DateTime  @default(now())
+  password            String?
+  image               String?
+  country             String?
+  onboardingCompleted Boolean   @default(false)
 
   comments           Comment[]
   review             Review[]
@@ -115,18 +115,12 @@ model Otp {
   id      String   @id @default(cuid())
   email   String   @unique
   otpCode String
-  type    OtpType
   expires DateTime
   user    User?    @relation(fields: [userId], references: [id])
   userId  Int?
 
   @@unique([email, otpCode])
   @@map("otp")
-}
-
-enum OtpType {
-  SMS
-  EMAIL
 }
 
 //! Files ---------------------------------------------------------
@@ -155,8 +149,6 @@ model Image {
   floatingBannerId Int?            @unique
   asset            Asset?          @relation(fields: [assetId], references: [id], onDelete: Cascade)
   assetId          Int?            @unique
-  user             User?           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId           Int?            @unique
 
   @@map("image")
 }

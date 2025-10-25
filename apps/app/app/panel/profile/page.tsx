@@ -12,5 +12,5 @@ const page = async () => {
 export default page;
 
 export const metadata: Metadata = {
-  title: "پروفایل من",
+  title: "Profile",
 };

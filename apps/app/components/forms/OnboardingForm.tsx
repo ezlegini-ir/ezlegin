@@ -18,27 +18,50 @@ import {
 import { Input } from "@ezlegin/ui/components/ui/input";
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { CountrySelectInput } from "./login/CountrySelectInput";
+import { toast } from "sonner";
+import { compeleteOnboarding } from "@/actions/user";
+import { User, Wallet } from "@ezlegin/database";
 
-const OnboardingForm = () => {
+const OnboardingForm = ({
+  user,
+}: {
+  user?: (User & { wallet: Wallet | null }) | null;
+}) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
+  // CONSTS
 
   const form = useForm<OnboardingFormType>({
     mode: "onChange",
     resolver: zodResolver(onboardingFormSchema),
     defaultValues: {
-      fullName: "",
-      country: "",
+      fullName: user?.name || "",
+      country: "US",
     },
   });
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+  const redirectTo = searchParams.get("redirectTo");
 
   const onSubmit = async (data: OnboardingFormType) => {
     setLoading(true);
+
+    const res = await compeleteOnboarding(data);
+
+    if (res.error) {
+      toast.error(res.error);
+      setLoading(false);
+      return;
+    }
+
+    if (res.success) {
+      toast.success(res.success);
+      setLoading(false);
+      redirect(callbackUrl ? callbackUrl : redirectTo ? redirectTo : "/panel");
+    }
   };
 
   return (

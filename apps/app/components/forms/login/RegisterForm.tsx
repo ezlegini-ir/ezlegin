@@ -77,7 +77,13 @@ const RegisterForm = ({
       toast.success(auth.success);
       if (onSuccess) onSuccess();
 
-      redirect(callbackUrl ? callbackUrl : redirectTo ? redirectTo : "/panel");
+      redirect(
+        callbackUrl
+          ? `/onboarding?callbackUrl=${callbackUrl}`
+          : redirectTo
+            ? `/onboarding?redirectTo=${redirectTo}`
+            : "/onboarding"
+      );
     }
   };
 

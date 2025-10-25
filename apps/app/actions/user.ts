@@ -1,7 +1,11 @@
 "use server";
 
-import { getUserById } from "@/data/user";
-import { ProfileFormType, RegisterUserFormType } from "@/lib/validationSchema";
+import { getSessionUser, getUserById } from "@/data/user";
+import {
+  OnboardingFormType,
+  ProfileFormType,
+  RegisterUserFormType,
+} from "@/lib/validationSchema";
 import { database } from "@ezlegin/database";
 import bcrypt from "bcrypt";
 
@@ -29,6 +33,27 @@ export async function registerUser(data: RegisterUserFormType) {
     return { success: "User Created Successfully", user: newUser };
   } catch (error) {
     return { error: (error as Error).message };
+  }
+}
+
+export async function compeleteOnboarding(data: OnboardingFormType) {
+  const { fullName, country } = data;
+  try {
+    const user = await getSessionUser();
+    if (!user) return { error: "Unauthorized, Please login again." };
+
+    await database.user.update({
+      where: { id: user.id },
+      data: {
+        name: fullName,
+        country,
+        onboardingCompleted: true,
+      },
+    });
+
+    return { success: "Onboarding Completed Successfully" };
+  } catch (error) {
+    return { error: String(error) };
   }
 }
 

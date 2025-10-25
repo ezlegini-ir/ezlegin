@@ -31,6 +31,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import ConfirmEmailForm from "./ConfirmEmailForm";
+import { CountrySelectInput } from "./login/CountrySelectInput";
 
 interface Props {
   user: User;
@@ -50,7 +51,8 @@ const UserProfileForm = ({ user }: Props) => {
     mode: "onChange",
     defaultValues: {
       email: user.email,
-      name: user.name,
+      name: user.name || "",
+      country: user.country || "",
     },
   });
 
@@ -121,6 +123,23 @@ const UserProfileForm = ({ user }: Props) => {
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
                   <Input className="" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="country"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-1">
+                <FormLabel>Country</FormLabel>
+                <FormControl>
+                  <CountrySelectInput
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

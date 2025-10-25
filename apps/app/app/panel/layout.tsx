@@ -11,6 +11,7 @@ import UserBar from "@ezlegin/ui/components/UserBar";
 import { Home } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
@@ -19,6 +20,8 @@ export default async function Layout({
 }) {
   const user = await getSessionUser();
   await authenticateSession();
+
+  if (!user?.onboardingCompleted) redirect("/onboarding");
 
   return (
     <div>

@@ -29,7 +29,6 @@ export const generateEmailOtp = async (email: string, userId: number) => {
       expires,
       email,
       otpCode: hashedOTP,
-      type: "EMAIL",
       userId,
     },
   });

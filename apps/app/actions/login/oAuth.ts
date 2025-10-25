@@ -8,6 +8,8 @@ export const GoogleOAuthSignIn = async ({
   callbackUrl: string | null;
 }) => {
   await signIn("google", {
-    redirectTo: callbackUrl || undefined,
+    redirectTo: callbackUrl
+      ? `/onboarding?callbackUrl=${callbackUrl}`
+      : "/onboarding",
   });
 };
