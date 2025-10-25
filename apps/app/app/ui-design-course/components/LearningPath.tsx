@@ -1,9 +1,8 @@
+import AnimatedSquarePattern from "@/components/animations/AnimatedSquarePattern";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
-import { squarePatternSquare } from "@/public";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { ArrowDown } from "lucide-react";
-import Image from "next/image";
 import LearningPathCards from "./LearningPathCards";
 
 const LearningPath = () => {
@@ -11,31 +10,21 @@ const LearningPath = () => {
     <div id="journey" className="relative w-full px-4 md:px-28 p-28 ">
       <div className="pointer-events-none absolute -left-36 top-36 h-[420px] w-[420px] bg-violet-700/40 rounded-full blur-[120px]" />
 
-      <Image
-        alt=""
-        src={squarePatternSquare}
-        width={320}
-        height={320}
-        className="opacity-10 absolute left-0 top-0 scale-125 pointer-events-none select-none"
-      />
+      <AnimatedSquarePattern className="opacity-10 absolute left-0 top-0  pointer-events-none select-none" />
 
       <div className="pointer-events-none absolute -right-36 top-1/2 -translate-y-1/2 h-[420px] w-[420px] bg-primary/30 rounded-full blur-[120px]" />
-      <Image
-        alt=""
-        src={squarePatternSquare}
-        width={320}
-        height={320}
-        className="opacity-10 absolute -right-36 top-1/2 -translate-y-1/2  scale-125 pointer-events-none select-none"
-      />
+
+      <AnimatedSquarePattern className="opacity-10 absolute -right-36 top-1/2 -translate-y-1/2  pointer-events-none select-none" />
 
       <div className="pointer-events-none absolute -left-36 bottom-0 h-[420px] w-[420px] bg-green-700/40 rounded-full blur-[120px]" />
-      <Image
+      {/* <Image
         alt=""
         src={squarePatternSquare}
         width={320}
         height={320}
         className="opacity-10 absolute left-0 bottom-0 scale-125 pointer-events-none select-none"
-      />
+      /> */}
+      <AnimatedSquarePattern className="opacity-10 absolute left-0 bottom-0 pointer-events-none select-none" />
 
       <div className="space-y-28">
         <div className="flex flex-col items-center gap-4">

@@ -92,7 +92,7 @@ const reviews = [
     endLearning: "2022-10-01",
   },
   {
-    name: "Fateme Mirhosseini",
+    name: "Kiana Bazrafshan",
     picture: studentProfile3,
     rating: 5,
     review:

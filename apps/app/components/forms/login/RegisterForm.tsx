@@ -2,8 +2,6 @@
 
 import { signInUser } from "@/actions/login/signin-user";
 import { registerUser } from "@/actions/user";
-import { LoginFormsProps } from "@/app/login/page";
-import OAuthSignInForm from "@/components/sign-in";
 import {
   registerUserFormSchema,
   RegisterUserFormType,
@@ -32,7 +30,7 @@ import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { CountrySelectInput } from "./CountrySelectInput";
+import { LoginFormsProps } from "./LoginForm";
 
 const RegisterForm = ({
   setLoginStep,
@@ -46,7 +44,6 @@ const RegisterForm = ({
     mode: "onChange",
     resolver: zodResolver(registerUserFormSchema),
     defaultValues: {
-      fullName: "",
       email: "",
       password: "",
     },
@@ -103,46 +100,16 @@ const RegisterForm = ({
           >
             <FormField
               control={form.control}
-              name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Full Name</FormLabel>
-                  <FormControl>
-                    <Input autoFocus placeholder="John Doe" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
+                      autoFocus
                       placeholder="test@example.com"
                       type="email"
                       {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="country"
-              render={({ field }) => (
-                <FormItem className="flex flex-col gap-1">
-                  <FormLabel>Country</FormLabel>
-                  <FormControl>
-                    <CountrySelectInput
-                      value={field.value}
-                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />
@@ -232,8 +199,6 @@ const RegisterForm = ({
                 <Loader loading={loading} />
                 Create Account
               </Button>
-
-              <OAuthSignInForm type="SIGNUP" />
 
               <Button
                 onClick={() => setLoginStep("INPUT")}

@@ -1,7 +1,6 @@
 "use client";
 
 import { signInUser } from "@/actions/login/signin-user";
-import { LoginFormsProps } from "@/app/login/page";
 import OAuthSignInForm from "@/components/sign-in";
 import { LoginFormType, loginFormSchema } from "@/lib/validationSchema";
 import Loader from "@ezlegin/ui/components/Loader";
@@ -29,8 +28,13 @@ import { useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { LoginFormsProps } from "./LoginForm";
 
-const InputForm = ({ setLoginStep }: LoginFormsProps) => {
+const InputForm = ({
+  setLoginStep,
+  redirectTo,
+  onSuccess,
+}: LoginFormsProps) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
   const [failedAttempts, setFailedAttempts] = useState(0);
@@ -59,7 +63,6 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
     }
 
     let recaptchaToken: string | undefined = undefined;
-
     if (failedAttempts >= 1) {
       if (!executeRecaptcha) {
         toast.error("reCAPTCHA is not ready, Please try again after a moment.");
@@ -69,7 +72,6 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
 
       recaptchaToken = await executeRecaptcha("verify_otp");
     }
-
     if (recaptchaToken) await isHumanOrNot(recaptchaToken);
 
     const res = await signInUser({ email, password });
@@ -83,7 +85,8 @@ const InputForm = ({ setLoginStep }: LoginFormsProps) => {
 
     if (res.success) {
       toast.success(res.success);
-      redirect(callbackUrl ? callbackUrl : "/panel");
+      if (onSuccess) onSuccess();
+      redirect(callbackUrl ? callbackUrl : redirectTo ? redirectTo : "/panel");
     }
 
     setFailedAttempts(0);

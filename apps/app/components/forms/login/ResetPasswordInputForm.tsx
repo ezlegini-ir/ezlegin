@@ -1,7 +1,6 @@
 "use client";
 
 import { sendResetPasswordToken } from "@/actions/login/resetPassword";
-import { LoginFormsProps } from "@/app/login/page";
 import {
   ResetPasswordInputFormType,
   resetPasswordInputFormSchema,
@@ -24,6 +23,7 @@ import { CheckCircle } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { LoginFormsProps } from "./LoginForm";
 
 const ResetPasswordInputForm = ({ setLoginStep }: LoginFormsProps) => {
   // HOOKS

@@ -29,13 +29,10 @@ export type OtpType = z.infer<typeof otpSchema>;
 // --------------
 
 export const registerUserFormSchema = z.object({
-  fullName: z.string().min(2, { message: "Minimum 3 characters" }).trim(),
-
   email: z
     .string()
     .min(1, { message: "Email is required" })
     .email({ message: "Invalid email address" }),
-  country: z.string().min(1, "Country is required"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -44,6 +41,12 @@ export const registerUserFormSchema = z.object({
     .regex(/\d/, "At least one number"),
 });
 export type RegisterUserFormType = z.infer<typeof registerUserFormSchema>;
+
+export const onboardingFormSchema = z.object({
+  fullName: z.string().min(2, { message: "Minimum 3 characters" }).trim(),
+  country: z.string().min(1, "Country is required"),
+});
+export type OnboardingFormType = z.infer<typeof onboardingFormSchema>;
 
 // --------------
 

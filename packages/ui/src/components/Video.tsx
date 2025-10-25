@@ -7,10 +7,11 @@ import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 
 interface VideoProps {
   src: string;
+  subtitleSrc?: string;
   poster?: string;
 }
 
-const Video: React.FC<VideoProps> = ({ src, poster }) => {
+const Video: React.FC<VideoProps> = ({ src, poster, subtitleSrc }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,6 +32,17 @@ const Video: React.FC<VideoProps> = ({ src, poster }) => {
           type: "video/mp4",
         },
       ],
+      tracks: subtitleSrc
+        ? [
+            {
+              kind: "captions",
+              label: "English",
+              src: subtitleSrc,
+              srcLang: "en",
+              default: true,
+            },
+          ]
+        : [],
     },
     options: {
       speed: {
@@ -47,7 +59,7 @@ const Video: React.FC<VideoProps> = ({ src, poster }) => {
         "settings",
         "fullscreen",
       ],
-      settings: ["quality", "speed"],
+      settings: ["quality", "speed", "captions"],
       autoplay: false,
     },
   };
@@ -74,19 +86,3 @@ const Video: React.FC<VideoProps> = ({ src, poster }) => {
 };
 
 export default Video;
-
-// "use client";
-
-// import "plyr-react/plyr.css";
-
-// const Video = ({ src }: { src: string }) => {
-//   return (
-//     <div className="max-w-4xl mx-auto rounded-md overflow-hidden">
-//       <div className="relative aspect-video bg-black">
-//         <video src={src} controls className="aspect-video w-full" />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Video;

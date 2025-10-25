@@ -8,32 +8,27 @@ import bcrypt from "bcrypt";
 //* CREATE --------------------------------------------------------
 
 export async function registerUser(data: RegisterUserFormType) {
-  const { email, fullName, password, country } = data;
+  const { email, password } = data;
 
   try {
     const existingUser = await database.user.findFirst({
-      where: {
-        email,
-      },
+      where: { email },
     });
 
-    if (existingUser)
-      return { error: "A user with this email already exists." };
+    if (existingUser) throw new Error("A user with this email already exists.");
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await database.user.create({
       data: {
         email: email.toLowerCase(),
-        name: fullName,
         password: hashedPassword,
-        country,
       },
     });
 
     return { success: "User Created Successfully", user: newUser };
   } catch (error) {
-    return { error: "Error 500: " + error };
+    return { error: (error as Error).message };
   }
 }
 

@@ -1,14 +1,27 @@
 "use client";
 
 import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import InputForm from "./InputForm";
 import RegisterForm from "./RegisterForm";
 import ResetPasswordInputForm from "./ResetPasswordInputForm";
+import { User } from "@ezlegin/database";
 
 interface Props {
   redirectTo?: string;
   onSuccess?: () => void;
+}
+
+export interface LoginFormsProps {
+  setLoginStep: Dispatch<SetStateAction<LoginSteps>>;
+  loginStep?: LoginSteps;
+  setInputFormValue?: Dispatch<React.SetStateAction<string>>;
+  inputFormValue?: string;
+  setIsNewUser?: Dispatch<React.SetStateAction<boolean>>;
+  isNewUser?: boolean;
+  redirectTo?: string;
+  onSuccess?: () => void;
+  setNewUser?: Dispatch<SetStateAction<User | undefined>>;
 }
 
 export type LoginSteps =
@@ -26,7 +39,13 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
       <RecaptchaWrapper
         recaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
       >
-        {loginStep === "INPUT" && <InputForm setLoginStep={setLoginStep} />}
+        {loginStep === "INPUT" && (
+          <InputForm
+            setLoginStep={setLoginStep}
+            onSuccess={onSuccess}
+            redirectTo={redirectTo}
+          />
+        )}
 
         {loginStep === "FORGOTPASSWORD" && (
           <ResetPasswordInputForm setLoginStep={setLoginStep} />

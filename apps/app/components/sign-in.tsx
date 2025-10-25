@@ -8,11 +8,7 @@ import { useLoading } from "@ezlegin/utils";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-export default function OAuthSignInForm({
-  type,
-}: {
-  type?: "SIGNIN" | "SIGNUP";
-}) {
+export default function OAuthSignInForm() {
   const { loading, setLoading } = useLoading();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
@@ -31,7 +27,7 @@ export default function OAuthSignInForm({
       type="submit"
     >
       <Image alt="Google Logo" src={googleLogo} width={18} height={18} />
-      {type === "SIGNUP" ? "Sign Up with Google" : "Sign In with Google"}
+      Sign In / Sign Up with Google
       <Loader loading={loading} />
     </Button>
   );
