@@ -42,7 +42,7 @@ export const registerUserFormSchema = z.object({
 });
 export type RegisterUserFormType = z.infer<typeof registerUserFormSchema>;
 
-export const onboardingFormSchema = z.object({
+export const personalInfoFormSchema = z.object({
   fullName: z.string().min(2, { message: "Minimum 3 characters" }).trim(),
   country: z.string().min(1, "Country is required"),
   phoneNumber: z
@@ -50,7 +50,15 @@ export const onboardingFormSchema = z.object({
     .min(7, "Please enter a valid phone number")
     .max(15, "Phone number too long"),
 });
-export type OnboardingFormType = z.infer<typeof onboardingFormSchema>;
+export type PersonalInfoFormType = z.infer<typeof personalInfoFormSchema>;
+
+export const confirmEmailFormSchema = z.object({
+  confirmCode: z
+    .string()
+    .min(1, { message: requiredText })
+    .max(5, "Code must be 5 characters"),
+});
+export type ConfirmEmailFormType = z.infer<typeof confirmEmailFormSchema>;
 
 // --------------
 

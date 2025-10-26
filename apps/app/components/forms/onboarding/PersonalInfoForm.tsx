@@ -1,13 +1,13 @@
 "use client";
 
-import PhoneInput from "react-phone-input-2";
+import { compeleteOnboarding } from "@/actions/user";
 import {
-  onboardingFormSchema,
-  OnboardingFormType,
+  personalInfoFormSchema,
+  PersonalInfoFormType,
 } from "@/lib/validationSchema";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { Card, CardContent, CardHeader } from "@ezlegin/ui/components/ui/card";
+import { CardContent, CardHeader } from "@ezlegin/ui/components/ui/card";
 import {
   Form,
   FormControl,
@@ -21,23 +21,19 @@ import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { CountrySelectInput } from "./login/CountrySelectInput";
+import PhoneInput from "react-phone-input-2";
 import { toast } from "sonner";
-import { compeleteOnboarding } from "@/actions/user";
-import { User, Wallet } from "@ezlegin/database";
+import { CountrySelectInput } from "../login/CountrySelectInput";
+import { UserType } from "./OnboardingForm";
 
-const OnboardingForm = ({
-  user,
-}: {
-  user?: (User & { wallet: Wallet | null }) | null;
-}) => {
+const PersonalInfoForm = ({ user }: { user?: UserType | null }) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
   // CONSTS
 
-  const form = useForm<OnboardingFormType>({
+  const form = useForm<PersonalInfoFormType>({
     mode: "onChange",
-    resolver: zodResolver(onboardingFormSchema),
+    resolver: zodResolver(personalInfoFormSchema),
     defaultValues: {
       fullName: user?.name || "",
       country: user?.country || "US",
@@ -48,7 +44,7 @@ const OnboardingForm = ({
   const callbackUrl = searchParams.get("callbackUrl");
   const redirectTo = searchParams.get("redirectTo");
 
-  const onSubmit = async (data: OnboardingFormType) => {
+  const onSubmit = async (data: PersonalInfoFormType) => {
     setLoading(true);
 
     const res = await compeleteOnboarding(data);
@@ -67,7 +63,7 @@ const OnboardingForm = ({
   };
 
   return (
-    <Card className="p-5 max-w-lg w-full">
+    <>
       <CardHeader className="text-center">
         <h3>Welcome Aboard!👋</h3>
         <p className="text-muted-foreground text-sm">
@@ -157,8 +153,8 @@ const OnboardingForm = ({
           </form>
         </Form>
       </CardContent>
-    </Card>
+    </>
   );
 };
 
-export default OnboardingForm;
+export default PersonalInfoForm;

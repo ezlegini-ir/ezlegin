@@ -1,7 +1,10 @@
 "use client";
 
 import { verifyOtp } from "@/actions/login/verify-otp";
+import { OtpType, otpSchema } from "@/lib/validationSchema";
 import CountdownTimer from "@ezlegin/ui/components/CountDown";
+import Flex from "@ezlegin/ui/components/Flex";
+import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { CardDescription, CardTitle } from "@ezlegin/ui/components/ui/card";
 import {
@@ -16,27 +19,23 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@ezlegin/ui/components/ui/input-otp";
-import Loader from "@ezlegin/ui/components/Loader";
 import { useLoading } from "@ezlegin/utils";
-import { OtpType, otpSchema } from "@/lib/validationSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
-import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import Flex from "@ezlegin/ui/components/Flex";
 
 const ConfirmEmailForm = ({
   email,
-  setOpenOtpForm,
+  onSuccessfulConfirm,
 }: {
-  userId: number;
   email: string;
-  setOpenOtpForm: Dispatch<SetStateAction<boolean>>;
+  onSuccessfulConfirm: Dispatch<
+    SetStateAction<"CONFIRM_EMAIL" | "PERSONAL_INFO">
+  >;
 }) => {
   // HOOKS
-  const router = useRouter();
   const { loading, setLoading } = useLoading();
   const [failedAttempts, setFailedAttempts] = useState(0);
 
@@ -54,7 +53,6 @@ const ConfirmEmailForm = ({
     if (failedAttempts >= 3) {
       toast.warning("Too many attempts, Please try again later.");
       setLoading(false);
-      setOpenOtpForm(false);
       return;
     }
 
@@ -71,8 +69,7 @@ const ConfirmEmailForm = ({
     setFailedAttempts(0);
 
     toast.success("Email Verification Successfull!");
-    router.refresh();
-    setOpenOtpForm(false);
+    onSuccessfulConfirm("PERSONAL_INFO");
   };
 
   const otpValue = form.watch("otp");
@@ -88,8 +85,8 @@ const ConfirmEmailForm = ({
   }, [otpValue]);
 
   return (
-    <>
-      <Flex className="justify-center flex-col mb-3 text-center">
+    <div className="p-5">
+      <Flex className="justify-center flex-col mb-6 text-center gap-3">
         <CardTitle>Confirm Email</CardTitle>
         <CardDescription>
           Please insert verification code sent to <br />
@@ -144,7 +141,7 @@ const ConfirmEmailForm = ({
           </form>
         </Form>
       </div>
-    </>
+    </div>
   );
 };
 

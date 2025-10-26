@@ -2,7 +2,7 @@
 
 import { getSessionUser, getUserById } from "@/data/user";
 import {
-  OnboardingFormType,
+  PersonalInfoFormType,
   ProfileFormType,
   RegisterUserFormType,
 } from "@/lib/validationSchema";
@@ -36,7 +36,7 @@ export async function registerUser(data: RegisterUserFormType) {
   }
 }
 
-export async function compeleteOnboarding(data: OnboardingFormType) {
+export async function compeleteOnboarding(data: PersonalInfoFormType) {
   const { fullName, country, phoneNumber } = data;
   try {
     const user = await getSessionUser();

@@ -26,8 +26,8 @@ import {
   FileText,
   LifeBuoy,
   MessageCircle,
+  Subtitles,
   TvMinimalPlay,
-  Users,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -68,14 +68,14 @@ const PurchaseSection = ({ course }: Props) => {
       iconColor: "text-foreground",
     },
     {
+      label: `English Subtitles`,
+      icon: Subtitles,
+      iconColor: "text-destructive",
+    },
+    {
       label: `Includes certificate`,
       icon: Award,
       iconColor: "text-yellow-400",
-    },
-    {
-      label: `Unlimited & Free support`,
-      icon: LifeBuoy,
-      iconColor: "text-cyan-400",
     },
     {
       label: `Direct chat with tutor`,
@@ -83,8 +83,8 @@ const PurchaseSection = ({ course }: Props) => {
       iconColor: "text-pink-400",
     },
     {
-      label: `Lifetime & Limitless Access`,
-      icon: Users,
+      label: `Lifetime & Unlimited Free Access`,
+      icon: LifeBuoy,
       iconColor: "text-green-400",
     },
   ];

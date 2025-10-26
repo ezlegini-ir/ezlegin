@@ -21,14 +21,14 @@ const MotiviationSection = () => {
           <div className="hidden md:block">
             <AnimatedTitle
               textDir="LEFT"
-              title="You Can Make it, As I did 14 years ago!"
+              title="You Can Make it, As I did 12 years ago!"
               highlight="You Can Make it"
             />
           </div>
           <div className="md:hidden">
             <AnimatedTitle
               textDir="CENTER"
-              title="You Can Make it, As I did 14 years ago!"
+              title="You Can Make it, As I did 12 years ago!"
               highlight="You Can Make it"
             />
           </div>
