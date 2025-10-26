@@ -1,6 +1,5 @@
 import { SideBar } from "@/app/panel/components/SideBar";
 import { getSessionUser } from "@/data/user";
-import { authenticateSession } from "@/lib/auth";
 import NotifBar from "@ezlegin/ui/components/NotifBar";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
@@ -8,6 +7,7 @@ import {
   SidebarTrigger,
 } from "@ezlegin/ui/components/ui/sidebar";
 import UserBar from "@ezlegin/ui/components/UserBar";
+import { sendOtpEmail } from "@ezlegin/utils";
 import { Home } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -19,9 +19,16 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const user = await getSessionUser();
-  await authenticateSession();
 
-  if (!user?.onboardingCompleted) redirect("/onboarding");
+  if (!user) redirect("/login");
+
+  if (!user.emailVerified) {
+    await sendOtpEmail({ email: user?.email, userId: user?.id });
+    redirect("/onboarding");
+  }
+  if (!user?.onboardingCompleted) {
+    redirect("/onboarding");
+  }
 
   return (
     <div>

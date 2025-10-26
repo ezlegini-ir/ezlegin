@@ -22,7 +22,7 @@ const CourseRegisterButton = ({
       {!isUserEnrolled && (
         <div className="space-y-3 ">
           <div className="flex gap-3">
-            <Link className="w-full" href={`/quick-cart/${courseId}`}>
+            <Link className="w-full" href={`/checkout/${courseId}`}>
               <Button
                 size={"lg"}
                 variant={isPresale ? "dark" : "indigo"}

@@ -23,7 +23,7 @@ import {
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
-import { useLoading } from "@ezlegin/utils";
+import { sendOtpEmail, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Handshake } from "lucide-react";
 import Link from "next/link";
@@ -76,6 +76,8 @@ const RegisterForm = ({
     if (auth.success) {
       toast.success(auth.success);
       if (onSuccess) onSuccess();
+
+      await sendOtpEmail({ email: data.email, userId: res.user?.id });
 
       redirect(
         callbackUrl

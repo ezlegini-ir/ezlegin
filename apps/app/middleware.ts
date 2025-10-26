@@ -49,7 +49,7 @@ export const privateRoutes = [
   "/onboarding",
   "/api",
   "/cart",
-  "/quick-cart",
+  "/checkout",
   "/checkout-result",
   "/classroom",
 ];

@@ -81,7 +81,7 @@ export async function generateCertificate(
 
       doc.end();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       reject(error);
     }
   });

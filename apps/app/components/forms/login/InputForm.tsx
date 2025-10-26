@@ -71,10 +71,8 @@ const InputForm = ({
       }
 
       recaptchaToken = await executeRecaptcha("verify_otp");
-      console.log("first", recaptchaToken);
     }
     if (recaptchaToken) await isHumanOrNot(recaptchaToken);
-    console.log("second");
 
     const res = await signInUser({ email, password });
 
