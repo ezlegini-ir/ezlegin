@@ -15,10 +15,12 @@ import {
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
+import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import PhoneInput from "react-phone-input-2";
 import { toast } from "sonner";
 import { CountrySelectInput } from "./login/CountrySelectInput";
 
@@ -38,6 +40,9 @@ const UserProfileForm = ({ user }: Props) => {
       email: user.email,
       name: user.name || "",
       country: user.country || "",
+      phoneNumber: user.phoneNumber || "",
+      postalCode: user.postalCode || "",
+      address: user.address || "",
     },
   });
 
@@ -69,7 +74,21 @@ const UserProfileForm = ({ user }: Props) => {
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input className="" {...field} />
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input disabled {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,8 +112,70 @@ const UserProfileForm = ({ user }: Props) => {
             )}
           />
 
+          <FormField
+            control={form.control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                {/* <FormLabel>Phone Number</FormLabel> */}
+                <FormControl>
+                  <PhoneInput
+                    specialLabel="Phone Number"
+                    country={form.watch("country")?.toLowerCase()}
+                    value={field.value}
+                    onChange={(phone) => field.onChange(phone)}
+                    containerStyle={{
+                      fontSize: "14px",
+                    }}
+                    inputStyle={{
+                      marginTop: "4px",
+                      paddingLeft: "20px",
+                      width: "100%",
+                      height: "40px",
+                      backgroundColor: "transparent",
+                      color: "white",
+                      border: "1px solid rgb(30, 41, 59)",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="postalCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Postal Code</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Address</FormLabel>
+                <FormControl>
+                  <Textarea {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <Button
-            disabled={!form.formState.isDirty || loading}
+            disabled={
+              !form.formState.isValid || !form.formState.isDirty || loading
+            }
             className="w-full flex gap-2"
             type="submit"
           >

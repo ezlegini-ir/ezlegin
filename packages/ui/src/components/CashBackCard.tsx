@@ -6,7 +6,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@ezlegin/ui/components/ui/tooltip";
-import { cashBackCalculator } from "@ezlegin/utils";
+import { cashBackCalculator, formatPrice } from "@ezlegin/utils";
 
 const CashBackCard = ({ price }: { price: number }) => {
   const cashBackAmount = cashBackCalculator(price);
@@ -23,11 +23,11 @@ const CashBackCard = ({ price }: { price: number }) => {
               <Banknote size={22} />
               Cashback to wallet:
             </span>
-            <span>${cashBackAmount.toLocaleString("en-US")}</span>
+            <span>{formatPrice(cashBackAmount)}</span>
           </Badge>
         </TooltipTrigger>
         <TooltipContent className="bg-muted text-foreground">
-          <p>For every $99 paid = $5 cashback to your wallet</p>
+          <p>For every €99 paid = €5 cashback to your wallet</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

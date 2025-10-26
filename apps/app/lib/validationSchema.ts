@@ -90,14 +90,28 @@ export const profileFormSchema = z.object({
     .string()
     .min(1, { message: requiredText })
     .email({ message: "Invalid email address" }),
+  phoneNumber: z
+    .string()
+    .min(7, "Please enter a valid phone number")
+    .max(15, "Phone number too long"),
+  postalCode: z.string().optional(),
+  address: z.string().optional(),
 });
 export type ProfileFormType = z.infer<typeof profileFormSchema>;
 
 //! CART FORM
-export const discountFormSchema = z.object({
-  code: z.string().min(1),
+export const checkoutFormSchema = z.object({
+  discountCode: z.string().optional(),
+  name: z.string().min(3, { message: "At least 3 characters" }).trim(),
+  country: z.string().min(1, "Country is required"),
+  phoneNumber: z
+    .string()
+    .min(7, "Please enter a valid phone number")
+    .max(15, "Phone number too long"),
+  postalCode: z.string().min(1, { message: requiredText }),
+  address: z.string().min(1, { message: requiredText }),
 });
-export type DiscountFormType = z.infer<typeof discountFormSchema>;
+export type CheckoutFormType = z.infer<typeof checkoutFormSchema>;
 
 // --------------
 

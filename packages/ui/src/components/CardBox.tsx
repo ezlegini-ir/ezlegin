@@ -9,11 +9,13 @@ const CardBox = ({
   btn,
   children,
   className,
+  containerClassname,
 }: {
   title: string;
   btn?: { title: string; href: string };
   children: ReactNode;
   className?: string;
+  containerClassname?: string;
 }) => {
   return (
     <div className={`card px-0 py-0 space-y-0 ${className}`}>
@@ -35,7 +37,9 @@ const CardBox = ({
 
       <Separator />
 
-      <div className="p-3 space-y-3 h-full">{children}</div>
+      <div className={`p-3 space-y-3 h-full ${containerClassname}`}>
+        {children}
+      </div>
     </div>
   );
 };

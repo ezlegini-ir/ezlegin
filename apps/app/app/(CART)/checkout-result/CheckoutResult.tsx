@@ -1,6 +1,6 @@
 "use client";
 
-import { verifyPayment } from "@/actions/quickPayment";
+import { verifyPayment } from "@/actions/payment";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import useError from "@/hooks/useError";

@@ -26,6 +26,7 @@ export const studentProfile7 = "/students/student-profile-7.webp";
 export const studentProfile8 = "/students/student-profile-8.webp";
 export const studentProfile9 = "/students/student-profile-9.webp";
 
+export const paymentsLogos = "/payments-logos.svg";
 export const userTall = "/user-tall.png";
 export const purse = "/purse.png";
 export const wallet = "/wallet.png";

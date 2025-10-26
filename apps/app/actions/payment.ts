@@ -11,7 +11,7 @@ import { InitiatePurchase, verifyPurchase } from "./zarinPal";
 
 //* CREATE PAYMENT -------------------------------------------------------
 
-export interface QuickPaymentDataType {
+export interface CheckoutFormDataType {
   amount: number;
   courseId: number;
   user: User & { wallet: Wallet | null };
@@ -21,9 +21,16 @@ export interface QuickPaymentDataType {
   itemsTotal: number;
   useWallet?: boolean;
   useWalletAmount?: number;
+  userDate: {
+    name: string;
+    country: string;
+    phoneNumber: string;
+    postalCode: string;
+    address: string;
+  };
 }
 
-export const createPayment = async (data: QuickPaymentDataType) => {
+export const createPayment = async (data: CheckoutFormDataType) => {
   const {
     amount,
     courseId,
@@ -34,6 +41,7 @@ export const createPayment = async (data: QuickPaymentDataType) => {
     itemsTotal,
     useWallet,
     useWalletAmount,
+    userDate: { name, country, phoneNumber, postalCode, address },
   } = data;
 
   try {
@@ -54,6 +62,17 @@ export const createPayment = async (data: QuickPaymentDataType) => {
 
     if (existingEnrollment)
       return { error: "You have already enrolled in this course." };
+
+    await database.user.update({
+      where: { id: user.id },
+      data: {
+        name,
+        country,
+        phoneNumber,
+        postalCode,
+        address,
+      },
+    });
 
     const newPayment = await database.payment.create({
       data: {
@@ -157,14 +176,14 @@ export const createPayment = async (data: QuickPaymentDataType) => {
       //* Send Email
       await sendSuccessPaymentEmail(
         newPayment.user.email,
-        newPayment.user.name,
+        newPayment.user.name!,
         newPayment
       );
 
       //* Send Email To Admin
       await sendSuccessPaymentEmailToAdmin(
         adminData.email,
-        newPayment.user.name,
+        newPayment.user.name!,
         newPayment
       );
 
@@ -291,14 +310,14 @@ export const verifyPayment = async (
       //* Send Email
       await sendSuccessPaymentEmail(
         updatedPayment.user.email,
-        updatedPayment.user.name,
+        updatedPayment.user.name!,
         updatedPayment
       );
 
       //* Send Email To Admin
       await sendSuccessPaymentEmailToAdmin(
         adminData.email,
-        updatedPayment.user.name,
+        updatedPayment.user.name!,
         updatedPayment
       );
 
