@@ -3,7 +3,6 @@
 import { database } from "@ezlegin/database";
 import { kavenegar } from "./config/kavenegar";
 import { newQaCreationText, newTicketCreationText } from "./sms-templates";
-import { convertPersianDigitsToEnglish } from "./utils";
 
 const sender = process.env.KAVENEGAR_SENDER!;
 
@@ -12,13 +11,11 @@ const sender = process.env.KAVENEGAR_SENDER!;
 export const sendSms = async (data: { message: string; phone: string }) => {
   const { message, phone } = data;
 
-  const receptor = convertPersianDigitsToEnglish(phone);
-
   return kavenegar.Send(
     {
       message,
       sender,
-      receptor,
+      receptor: phone,
     },
     function (response, status) {
       // console.log(response);

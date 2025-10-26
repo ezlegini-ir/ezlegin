@@ -1,5 +1,4 @@
 import { database } from "@ezlegin/database";
-import axios from "axios";
 import { addDays, format, subDays } from "date-fns";
 
 //! --------------------------------------------------------
@@ -131,52 +130,6 @@ export async function generateUniqueSerial(): Promise<string> {
   }
 
   return serial;
-}
-
-//! --------------------------------------------------
-
-export const detectInputType = (input: string) => {
-  const persianDigitsRegex = /^[۰-۹]{11}$/;
-  const englishDigitsRegex = /^0\d{10}$/;
-
-  if (persianDigitsRegex.test(input) || englishDigitsRegex.test(input)) {
-    return "phone";
-  } else {
-    return "email";
-  }
-};
-//! --------------------------------------------------
-
-export async function verifyRecaptcha(token: string): Promise<boolean> {
-  const secret = process.env.RECAPTCHA_SECRET_KEY!;
-
-  const { data } = await axios.post(
-    `https://www.google.com/recaptcha/api/siteverify`,
-    null,
-    {
-      params: {
-        secret,
-        response: token,
-      },
-    }
-  );
-
-  return data.success && data.score > 0.5;
-}
-
-export async function isHumanOrNot(token: string) {
-  const isHuman = await verifyRecaptcha(token);
-
-  if (!isHuman) {
-    throw new Error("You've Recognized as a Bot, Please Try Again later...");
-  }
-}
-
-//! --------------------------------------------------
-
-export function convertPersianDigitsToEnglish(input: string): string {
-  const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
-  return input.replace(/[۰-۹]/g, (char) => String(persianDigits.indexOf(char)));
 }
 
 //! --------------------------------------------------
