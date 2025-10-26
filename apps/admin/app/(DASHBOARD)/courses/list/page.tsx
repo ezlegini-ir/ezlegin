@@ -35,10 +35,7 @@ const page = async ({ searchParams }: Props) => {
               { title: { contains: search } },
               {
                 tutor: {
-                  OR: [
-                    { name: { contains: search } },
-                    { displayName: { contains: search } },
-                  ],
+                  OR: [{ name: { contains: search } }],
                 },
               },
             ],
@@ -149,22 +146,6 @@ const Filters = async () => {
           { label: "No Free", value: "no" },
         ]}
       />
-      {/* {<Filter
-        name="student"
-        placeholder="All Students"
-        options={[
-          { label: "Most Students", value: "most" },
-          { label: "Lowest Students", value: "lowest" },
-        ]}
-      />
-      <Filter
-        name="rate"
-        placeholder="All Rates"
-        options={[
-          { label: "Highest", value: "high" },
-          { label: "Lowest", value: "low" },
-        ]}
-      />} */}
     </>
   );
 };

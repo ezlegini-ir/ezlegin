@@ -4,10 +4,10 @@ import Table from "@ezlegin/ui/components/Table";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
 import ViewButton from "@ezlegin/ui/components/ViewButton";
-import { smartformatJalaliDate } from "@ezlegin/utils";
 import { placeHolder } from "@/public";
 import { AskTutor, Course, Image as ImageType, User } from "@ezlegin/database";
 import Image from "next/image";
+import { formatDate } from "date-fns";
 
 interface QaType extends AskTutor {
   user: User;
@@ -59,10 +59,10 @@ const renderRows = (qa: QaType) => {
       </TableCell>
 
       <TableCell className="text-left hidden lg:table-cell">
-        {smartformatJalaliDate(qa.createdAt)}
+        {formatDate(qa.createdAt, "PPP")}
       </TableCell>
       <TableCell className="text-left">
-        {smartformatJalaliDate(qa.updatedAt)}
+        {formatDate(qa.updatedAt, "PPP")}
       </TableCell>
 
       <TableCell>

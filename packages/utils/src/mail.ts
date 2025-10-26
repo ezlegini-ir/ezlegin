@@ -8,7 +8,7 @@ import {
   renderSuccessPaymentEmail,
   renderSuccessPaymentEmailToAdmin,
 } from "./email-templates";
-import { generateEmailOtp } from "./otp";
+import { generateOtp } from "./otp";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -44,14 +44,24 @@ export const sendEmail = async ({
 
 //! -------------------------------------------------------------------
 
-export const sendOtpEmail = async (email: string, userId: number) => {
+export const sendOtpEmail = async (data: {
+  email: string;
+  userId?: number;
+  adminId?: number;
+  tutorId?: number;
+}) => {
   try {
-    const { plainOtp } = await generateEmailOtp(email, userId);
+    const { plainOtp } = await generateOtp(
+      data.email,
+      data.userId,
+      data.adminId,
+      data.tutorId
+    );
     const emailHtml = await renderOtpEmail(plainOtp);
 
     await sendEmail({
       subject: `🔒 Verification Code: ${plainOtp}`,
-      to: email,
+      to: data.email,
       html: emailHtml,
     });
 

@@ -314,7 +314,7 @@ const CourseFormSidebar = ({
             name="basePrice"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Base Price ($)</FormLabel>
+                <FormLabel>Base Price (€)</FormLabel>
                 <FormControl>
                   <Input
                     min={0}

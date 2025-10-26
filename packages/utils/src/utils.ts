@@ -7,6 +7,19 @@ export function encodeUrl(url: string) {
   return url.split(" ").join("-").trim();
 }
 
+//! --------------------------------------------------------
+
+export const detectInputType = (input: string) => {
+  const persianDigitsRegex = /^[۰-۹]{11}$/;
+  const englishDigitsRegex = /^0\d{10}$/;
+
+  if (persianDigitsRegex.test(input) || englishDigitsRegex.test(input)) {
+    return "phone";
+  } else {
+    return "email";
+  }
+};
+
 //! --------------------------------------------------
 
 export function truncateFileName(name: string, maxLength = 20) {

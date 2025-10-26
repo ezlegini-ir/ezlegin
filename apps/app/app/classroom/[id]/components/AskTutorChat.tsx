@@ -1,6 +1,3 @@
-import Avatar from "@ezlegin/ui/components/Avatar";
-import { Button } from "@ezlegin/ui/components/ui/button";
-import { formatJalaliDate, truncateFileName } from "@ezlegin/utils";
 import {
   AskTutorMessages,
   File,
@@ -8,9 +5,12 @@ import {
   Tutor,
   User,
 } from "@ezlegin/database";
+import Avatar from "@ezlegin/ui/components/Avatar";
+import { Button } from "@ezlegin/ui/components/ui/button";
+import { truncateFileName } from "@ezlegin/utils";
+import { formatDate } from "date-fns";
 import { Download } from "lucide-react";
 import Link from "next/link";
-import { formatDate } from "date-fns";
 
 interface AskTutorMessageType extends AskTutorMessages {
   attachment: File | null;
@@ -44,11 +44,9 @@ const AskTutorChat = ({ messages, tutor, user }: Props) => {
 
                 <div className="flex flex-col">
                   <span>
-                    {message?.senderType === "TUTOR"
-                      ? tutor?.displayName
-                      : user?.name}
+                    {message?.senderType === "TUTOR" ? tutor?.name : user?.name}
                   </span>
-                  <span className="text-[10px] text-slate-400">
+                  <span className="text-[10px] text-muted-foreground">
                     {formatDate(message?.createdAt, "yyyy/MM/dd - HH:mm")}
                   </span>
                 </div>

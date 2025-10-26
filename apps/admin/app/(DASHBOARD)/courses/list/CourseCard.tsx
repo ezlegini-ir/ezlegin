@@ -8,6 +8,7 @@ import Link from "next/link";
 import { CourseType } from "./CoursesList";
 import Avatar from "@ezlegin/ui/components/Avatar";
 import { Enrollment } from "@ezlegin/database";
+import { formatPrice } from "@ezlegin/utils";
 
 interface Props {
   course: CourseType;
@@ -104,7 +105,7 @@ const CourseCard = ({ course, enrollment }: Props) => {
             {course.price === 0 ? (
               <Badge variant={"green"}>Free</Badge>
             ) : (
-              course?.price.toLocaleString("en-US") + " T"
+              formatPrice(course?.price)
             )}
           </span>
         </li>

@@ -1,7 +1,7 @@
 "use server";
 
 import { database } from "@ezlegin/database";
-import { newQaResponseSms, uploadCloudFile } from "@ezlegin/utils";
+import { uploadCloudFile } from "@ezlegin/utils";
 import { UploadApiResponse } from "cloudinary";
 import { QaFormType } from "@/lib/validationSchema";
 
@@ -16,7 +16,7 @@ export const sendAskTutorMessage = async (
       throw new Error("Message content is required.");
     }
 
-    const newMessage = await database.$transaction(async (tx) => {
+    await database.$transaction(async (tx) => {
       const updatedAskTutor = await tx.askTutor.update({
         where: { id: askTutorId },
         data: {
@@ -25,7 +25,7 @@ export const sendAskTutorMessage = async (
         include: {
           user: {
             select: {
-              phone: true,
+              email: true,
             },
           },
         },
@@ -74,8 +74,6 @@ export const sendAskTutorMessage = async (
 
       return updatedAskTutor;
     });
-
-    await newQaResponseSms(newMessage.user.phone);
 
     return { success: "Message Sent Successfully." };
   } catch (error) {

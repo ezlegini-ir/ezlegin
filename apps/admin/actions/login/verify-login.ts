@@ -1,19 +1,18 @@
 "use server";
 
-import { getAdminByIdentifier } from "@/data/admin";
-import { sendOtp } from "@ezlegin/utils";
-import { isHumanOrNot } from "@ezlegin/utils";
+import { getAdminByEmail } from "@/data/admin";
+import { isHumanOrNot, sendOtpEmail } from "@ezlegin/utils";
 import bcrypt from "bcrypt";
 
 export const verifyLogin = async (
-  identifier: string,
+  email: string,
   password: string,
   recaptchaToken: string
 ) => {
   try {
-    await isHumanOrNot(recaptchaToken, "EN");
+    await isHumanOrNot(recaptchaToken);
 
-    const existingAdmin = await getAdminByIdentifier(identifier);
+    const existingAdmin = await getAdminByEmail(email);
     if (!existingAdmin) return { error: "Invalid Credentials" };
 
     const isValidPassword = await bcrypt.compare(
@@ -23,9 +22,12 @@ export const verifyLogin = async (
 
     if (!isValidPassword) return { error: "Invalid Credentials" };
 
-    await sendOtp(identifier);
+    await sendOtpEmail({
+      email,
+      adminId: existingAdmin.id,
+    });
 
-    return { success: `Otp Sent to ${identifier}.` };
+    return { success: `Otp Sent to ${email}.` };
   } catch (error) {
     return { error: String(error) };
   }

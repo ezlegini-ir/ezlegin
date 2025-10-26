@@ -1,7 +1,7 @@
 "use server";
 
 import { getOtpByIdentifier } from "@/data/otp";
-import { getAdminByIdentifier } from "@/data/admin";
+import { getAdminByEmail } from "@/data/admin";
 import { database } from "@ezlegin/database";
 import bcrypt from "bcrypt";
 import { isHumanOrNot } from "@ezlegin/utils";
@@ -38,7 +38,7 @@ export const verifyOtp = async (
     });
 
     // FIND USER OF THIS OTP
-    const existingAdmin = await getAdminByIdentifier(identifier);
+    const existingAdmin = await getAdminByEmail(identifier);
 
     return { success: "Seccuess", role: existingAdmin?.role };
   } catch (error) {

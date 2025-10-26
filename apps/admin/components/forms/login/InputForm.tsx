@@ -32,7 +32,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
   const form = useForm<LoginFormType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      phoneOrEmail: "",
+      email: "",
       password: "",
     },
   });
@@ -51,11 +51,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
 
     const recaptchaToken = await executeRecaptcha("login_form");
 
-    const res = await verifyLogin(
-      data.phoneOrEmail,
-      data.password,
-      recaptchaToken
-    );
+    const res = await verifyLogin(data.email, data.password, recaptchaToken);
 
     if (res?.error) {
       toast.error(res.error);
@@ -66,7 +62,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
     if (res.success) {
       setLoginStep?.("OTP");
       toast.success(res.success);
-      setIdentifier?.(data.phoneOrEmail);
+      setIdentifier?.(data.email);
     }
   };
 
@@ -82,7 +78,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
         <form className="space-y-3" onSubmit={form.handleSubmit(sendOtp)}>
           <FormField
             control={form.control}
-            name="phoneOrEmail"
+            name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Phone or Email</FormLabel>

@@ -6,11 +6,9 @@ export const getAdmins = async () => {
   return await database.admin.findMany();
 };
 
-export const getAdminByIdentifier = async (identifier: string) => {
+export const getAdminByEmail = async (email: string) => {
   return await database.admin.findFirst({
-    where: {
-      OR: [{ phone: identifier }, { email: identifier }],
-    },
+    where: { email },
   });
 };
 

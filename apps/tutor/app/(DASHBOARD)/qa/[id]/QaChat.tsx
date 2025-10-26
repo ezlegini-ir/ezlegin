@@ -18,7 +18,6 @@ import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 import { useFileName } from "@ezlegin/utils";
 import { useLoading } from "@ezlegin/utils";
-import { formatJalaliDate } from "@ezlegin/utils";
 import { truncateFileName as truncateName } from "@ezlegin/utils";
 import { QaFormSchema, QaFormType } from "@/lib/validationSchema";
 import { placeHolder } from "@/public";
@@ -38,6 +37,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ControllerRenderProps, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { formatDate } from "date-fns";
 
 interface QaType extends AskTutor {
   user: User;
@@ -56,8 +56,7 @@ const QaChat = ({ qa }: Props) => {
   const { loading, setLoading } = useLoading();
   const { fileName, setFileName } = useFileName();
 
-  const initalMessage = `با سلام و وقت بخیر،
-  کاربر محترم آی‌گرافیکال:`;
+  const initalMessage = `Hi there, How are you doing?`;
 
   const form = useForm<QaFormType>({
     resolver: zodResolver(QaFormSchema),
@@ -85,12 +84,12 @@ const QaChat = ({ qa }: Props) => {
       const maxSize = 5 * 1024 * 1024;
 
       if (!allowedFormats.includes(file.type)) {
-        toast.error("این فرمت مجاز نمی‌باشد!");
+        toast.error("This Format is not Allowed!");
         return;
       }
 
       if (file.size > maxSize) {
-        toast.error("حداکثر حجم فایل 5 مگابایت می‌باشد!");
+        toast.error("Maximum of 5MB!");
         return;
       }
 
@@ -247,10 +246,10 @@ const QaChat = ({ qa }: Props) => {
                                 : qa.user.name}
                             </span>
                             <span className="text-xs text-gray-400 ">
-                              {formatJalaliDate(message.createdAt, {
-                                useMonthName: false,
-                                withTime: true,
-                              })}
+                              {formatDate(
+                                message.createdAt,
+                                "yyyy-MM-dd - HH:mm"
+                              )}
                             </span>
                           </div>
                         </div>
@@ -297,7 +296,7 @@ const QaChat = ({ qa }: Props) => {
                 <p className="flex flex-col">
                   <span>Created At</span>
                   <span className="text-sm">
-                    {formatJalaliDate(qa?.createdAt, { withTime: true })}
+                    {formatDate(qa?.createdAt, "yyyy-MM-dd - HH:mm")}
                   </span>
                 </p>
                 <div>
@@ -306,7 +305,7 @@ const QaChat = ({ qa }: Props) => {
                 <p className="flex flex-col text-right">
                   <span>Last Update</span>
                   <span className="text-sm">
-                    {formatJalaliDate(qa?.updatedAt, { withTime: true })}
+                    {formatDate(qa?.updatedAt, "yyyy-MM-dd - HH:mm")}
                   </span>
                 </p>
               </div>

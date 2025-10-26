@@ -1,6 +1,6 @@
 "use server";
 
-import { getAdminById, getAdminByIdentifier } from "@/data/admin";
+import { getAdminById, getAdminByEmail } from "@/data/admin";
 import { AdminFormType } from "@/lib/validationSchema";
 import { database } from "@ezlegin/database";
 import bcrypt from "bcrypt";
@@ -14,11 +14,11 @@ export const createAdmin = async (data: AdminFormType) => {
   if (!password) return { error: "Password Required." };
 
   try {
-    const existingAdminByEmail = await getAdminByIdentifier(email);
+    const existingAdminByEmail = await getAdminByEmail(email);
     if (existingAdminByEmail)
       return { error: "User with this Email Already Exists." };
 
-    const existingAdminByPhone = await getAdminByIdentifier(phone);
+    const existingAdminByPhone = await getAdminByEmail(phone);
     if (existingAdminByPhone)
       return { error: "User with this Phone Already Exists." };
 

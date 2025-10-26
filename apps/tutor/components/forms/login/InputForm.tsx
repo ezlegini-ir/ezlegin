@@ -32,7 +32,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
   const form = useForm<LoginFormType>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      phoneOrEmail: "",
+      email: "",
       password: "",
     },
   });
@@ -48,11 +48,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
     }
     const recaptchaToken = await executeRecaptcha("login_form");
 
-    const res = await verifyLogin(
-      data.phoneOrEmail,
-      data.password,
-      recaptchaToken
-    );
+    const res = await verifyLogin(data.email, data.password, recaptchaToken);
 
     if (res?.error) {
       toast.error(res.error);
@@ -60,8 +56,12 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
       return;
     }
 
-    setLoginStep?.("OTP");
-    setIdentifier?.(data.phoneOrEmail);
+    if (res?.success) {
+      toast.success(res.success);
+      setLoginStep?.("OTP");
+      setIdentifier?.(data.email);
+      setLoading(false);
+    }
   };
 
   return (
@@ -76,12 +76,12 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
         <form className="space-y-3" onSubmit={form.handleSubmit(sendOtp)}>
           <FormField
             control={form.control}
-            name="phoneOrEmail"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone or Email</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input className="" {...field} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +95,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" className="" {...field} />
+                  <Input type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

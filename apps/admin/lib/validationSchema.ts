@@ -45,7 +45,7 @@ const image = z
 
 //! LOGIN FORM
 export const loginFormSchema = z.object({
-  phoneOrEmail: z
+  email: z
     .string()
     .trim()
     .refine((val) => {

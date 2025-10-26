@@ -11,7 +11,7 @@ export const verifyOtp = async (
   recaptchaToken: string
 ) => {
   try {
-    await isHumanOrNot(recaptchaToken, "EN");
+    await isHumanOrNot(recaptchaToken);
 
     const existingOtp = await getOtpByIdentifier(identifier);
 
@@ -27,7 +27,7 @@ export const verifyOtp = async (
 
     await database.otp.delete({
       where: {
-        identifier: existingOtp.identifier,
+        email: existingOtp.email,
       },
     });
 

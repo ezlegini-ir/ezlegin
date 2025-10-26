@@ -1,19 +1,21 @@
 "use server";
 
-import { getTutorByIdentifier } from "@/data/tutor";
-import { sendOtp } from "@ezlegin/utils";
-import { isHumanOrNot } from "@ezlegin/utils";
+import { database } from "@ezlegin/database";
+import { isHumanOrNot, sendOtpEmail } from "@ezlegin/utils";
 import bcrypt from "bcrypt";
 
 export const verifyLogin = async (
-  identifier: string,
+  email: string,
   password: string,
   recaptchaToken: string
 ) => {
   try {
-    await isHumanOrNot(recaptchaToken, "EN");
+    await isHumanOrNot(recaptchaToken);
 
-    const existingTutor = await getTutorByIdentifier(identifier);
+    const existingTutor = await database.tutor.findFirst({
+      where: { email },
+    });
+
     if (!existingTutor) return { error: "Invalid Credentials" };
 
     const isValidPassword = await bcrypt.compare(
@@ -23,7 +25,9 @@ export const verifyLogin = async (
 
     if (!isValidPassword) return { error: "Invalid Credentials" };
 
-    await sendOtp(identifier);
+    await sendOtpEmail({ email, tutorId: existingTutor.id });
+
+    return { success: "OTP sent successfully." };
   } catch (error) {
     return { error: String(error) };
   }
