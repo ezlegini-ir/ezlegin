@@ -14,9 +14,12 @@ export async function middleware(req: NextRequest) {
   );
 
   const isAuthRoute = nextUrl.pathname.startsWith("/api/auth/");
+  const isPaymentResultApiRoute = nextUrl.pathname.startsWith(
+    "/api/payment-result/"
+  );
   const isLoginRoute = nextUrl.pathname.startsWith("/login");
 
-  if (isAuthRoute) {
+  if (isAuthRoute || isPaymentResultApiRoute) {
     return NextResponse.next();
   }
 

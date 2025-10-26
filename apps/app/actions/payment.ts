@@ -7,7 +7,7 @@ import {
   sendSuccessPaymentEmail,
   sendSuccessPaymentEmailToAdmin,
 } from "@ezlegin/utils";
-import { InitiatePurchase, verifyPurchase } from "./zarinPal";
+import { initiatePurchase, verifyPurchase } from "./yekPay";
 
 //* CREATE PAYMENT -------------------------------------------------------
 
@@ -28,6 +28,7 @@ export interface CheckoutFormDataType {
     phoneNumber: string;
     postalCode: string;
     address: string;
+    city: string;
   };
 }
 
@@ -49,6 +50,7 @@ export const createPayment = async (data: CheckoutFormDataType) => {
       phoneNumber,
       postalCode,
       address,
+      city,
     },
   } = data;
 
@@ -77,7 +79,7 @@ export const createPayment = async (data: CheckoutFormDataType) => {
         userId: user.id,
         total: amount,
         itemsTotal,
-        paymentMethod: amount > 0 ? "ZARRIN_PAL" : "NO_METHOD",
+        paymentMethod: amount > 0 ? "YEKPAY" : "NO_METHOD",
         discountCode,
         discountCodeAmount,
         couponId: existingCoupon?.id,
@@ -115,20 +117,27 @@ export const createPayment = async (data: CheckoutFormDataType) => {
 
     // PURCHASE
     if (amount > 0) {
-      const res = await InitiatePurchase(
+      const res = await initiatePurchase({
         user,
-        amount,
-        newPayment.id,
-        "?Type=QUICK"
-      );
+        address,
+        city,
+        country,
+        email: user.email!,
+        firstName,
+        lastName,
+        mobile: phoneNumber || "",
+        orderNumber: newPayment.id.toString(),
+        amount: amount,
+        postalCode: postalCode || "",
+      });
 
-      if (res?.success && res.data.authority && res.data.paymentUrl) {
+      if (res?.success && res.authority && res.paymentUrl) {
         await database.quickCart.create({
           data: {
             courseId,
             userId: user.id,
-            amount: amount * 10,
-            authority: res?.data?.authority,
+            amount: amount,
+            authority: res.authority,
             paymentId: newPayment.id,
           },
         });
@@ -138,7 +147,7 @@ export const createPayment = async (data: CheckoutFormDataType) => {
 
       return {
         success: "Redirecting to payment gateway...",
-        paymentUrl: res?.data?.paymentUrl,
+        paymentUrl: res.paymentUrl,
       };
     } else {
       if (newPayment.walletUsed) {
@@ -201,19 +210,19 @@ export const verifyPayment = async (
   status: "OK" | "NOK"
 ) => {
   try {
+    if (status !== "OK") {
+      return { error: "Payment Failed!" };
+    }
+
     const existingQuickCart = await database.quickCart.findFirst({
       where: { authority },
     });
 
     if (!existingQuickCart) return { error: "Payment Token is not valid" };
 
-    const res = await verifyPurchase(
-      authority,
-      existingQuickCart.amount,
-      status
-    );
+    const res = await verifyPurchase(authority);
 
-    if (res?.success && res?.data) {
+    if (res?.success) {
       const deletedQuickCart = await database.quickCart.delete({
         where: { authority },
         include: { payment: true, course: true },
@@ -229,7 +238,7 @@ export const verifyPayment = async (
         data: {
           status: "SUCCESS",
           paidAt: new Date(),
-          transactionId: res.data.ref_id.toString(),
+          transactionId: res.authority,
           enrollment: {
             create: {
               userId: deletedQuickCart.userId,
@@ -318,7 +327,7 @@ export const verifyPayment = async (
         updatedPayment
       );
 
-      return { success: "Payment Successfull!", refId: res.data.ref_id };
+      return { success: "Payment Successfull!", refId: res.authority };
     } else {
       await database.quickCart.delete({
         where: { authority },

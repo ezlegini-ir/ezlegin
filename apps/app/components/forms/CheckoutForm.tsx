@@ -253,6 +253,7 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
         phoneNumber: form.getValues("phoneNumber"),
         postalCode: form.getValues("postalCode"),
         address: form.getValues("address"),
+        city: form.getValues("city"),
       },
     };
 

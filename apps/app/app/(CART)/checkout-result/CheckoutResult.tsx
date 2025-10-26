@@ -14,10 +14,9 @@ type Status = "SUCCESS" | "FAIL" | "PENDING";
 interface Props {
   authority: string;
   status: "OK" | "NOK";
-  type: "QUICK" | "PAYMENT";
 }
 
-const CheckoutResult = ({ authority, status, type }: Props) => {
+const CheckoutResult = ({ authority, status }: Props) => {
   const [result, setResult] = useState<Status>("PENDING");
   const [refId, setRefId] = useState<number>();
   const { error, setError } = useError();
@@ -40,7 +39,7 @@ const CheckoutResult = ({ authority, status, type }: Props) => {
       if (res.success && res.refId) {
         setResult("SUCCESS");
         setSuccess(res.success);
-        setRefId(res.refId);
+        setRefId(+res.refId);
         return;
       }
     };

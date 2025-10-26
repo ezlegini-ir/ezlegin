@@ -598,8 +598,7 @@ model Payment {
 }
 
 enum PaymentMethod {
-  ZARRIN_PAL
-  MELLI
+  YEKPAY
   ADMIN
   NO_METHOD
 }

@@ -4,14 +4,13 @@ interface Props {
   searchParams: Promise<{
     Authority: string;
     Status: "OK" | "NOK";
-    Type: "QUICK" | "PAYMENT";
   }>;
 }
 
 const page = async ({ searchParams }: Props) => {
-  const { Authority, Status, Type } = await searchParams;
+  const { Authority, Status } = await searchParams;
 
-  return <CheckoutResult authority={Authority} status={Status} type={Type} />;
+  return <CheckoutResult authority={Authority} status={Status} />;
 };
 
 export default page;
