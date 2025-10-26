@@ -49,7 +49,7 @@ export function SideBar({ user }: Props) {
             <Avatar src={user.image} />
             <div className="flex flex-col">
               <span className="font-medium">{user.name}</span>
-              <span className="text-xs text-muted-foreground">
+              <span className="text-[10px] text-muted-foreground">
                 {user.email}
               </span>
             </div>

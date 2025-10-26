@@ -45,6 +45,10 @@ export type RegisterUserFormType = z.infer<typeof registerUserFormSchema>;
 export const onboardingFormSchema = z.object({
   fullName: z.string().min(2, { message: "Minimum 3 characters" }).trim(),
   country: z.string().min(1, "Country is required"),
+  phoneNumber: z
+    .string()
+    .min(7, "Please enter a valid phone number")
+    .max(15, "Phone number too long"),
 });
 export type OnboardingFormType = z.infer<typeof onboardingFormSchema>;
 

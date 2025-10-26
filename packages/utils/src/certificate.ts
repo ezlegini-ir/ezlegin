@@ -6,18 +6,6 @@ import PDFDocument from "pdfkit";
 import { formatDurationToWords } from "@ezlegin/utils";
 import moment from "moment-jalaali";
 
-function convertToPersianNumbers(text: string): string {
-  const persianNumbers = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-  return text.replace(/\d/g, (match) => persianNumbers[parseInt(match)]!);
-}
-
-function reverseNumbersInText(text: string): string {
-  return text.replace(/\d+/g, (match) => {
-    const reversedNumber = match.split("").reverse().join("");
-    return convertToPersianNumbers(reversedNumber);
-  });
-}
-
 export async function generateCertificate(
   user: User,
   courseTitle: string,
@@ -61,29 +49,23 @@ export async function generateCertificate(
       doc
         .fontSize(10)
         .fillColor("#909090")
-        .text(
-          reverseNumbersInText(`شماره سریال: ${serialNumber}`),
-          margin,
-          210,
-          {
-            width: pageWidth - margin * 2,
-            align: "center",
-            features: ["rtla"],
-          }
-        );
-
-      doc
-        .fontSize(18)
-        .fillColor("#000")
-        .text(user.fullName, margin, 235, {
+        .text(`Serial Number: ${serialNumber}`, margin, 210, {
           width: pageWidth - margin * 2,
           align: "center",
           features: ["rtla"],
         });
 
-      const certText = reverseNumbersInText(
-        `به وسیله این گواهی اعلام می‌شود که ${user.fullName} با کد ملی ${user.nationalId} دوره مذکور را با موفقیت به اتمام رسانده است.`
-      );
+      doc
+        .fontSize(18)
+        .fillColor("#000")
+        .text(user.name!, margin, 235, {
+          width: pageWidth - margin * 2,
+          align: "center",
+          features: ["rtla"],
+        });
+
+      const certText = `This is to certify that ${user.name} has successfully completed the mentioned course.`;
+
       doc
         .fontSize(11)
         .fillColor("#6d6d6d")
@@ -93,11 +75,10 @@ export async function generateCertificate(
           features: ["rtla"],
         });
 
-      const courseInfoText = reverseNumbersInText(
-        `این دوره شامل بیش از ${formatDurationToWords(
-          courseDuration
-        )} آموزش تخصصی بوده و در تاریخ ${persianFormattedDate} به پایان رسیده است.`
-      );
+      const courseInfoText = `This course included more than ${formatDurationToWords(
+        courseDuration
+      )} of professional training and was completed on ${persianFormattedDate}.`;
+
       doc
         .fontSize(11)
         .fillColor("#6d6d6d")

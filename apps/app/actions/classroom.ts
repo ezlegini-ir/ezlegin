@@ -5,7 +5,6 @@ import {
   generateCertificate,
   generateUniqueSerial,
   sendFinishCourseEmail,
-  sendFinishCourseSms,
 } from "@ezlegin/utils";
 import { UploadApiResponse } from "cloudinary";
 import { uploadCloudFile } from "@ezlegin/utils";
@@ -178,7 +177,7 @@ export const createLessonProgress = async (
         await sendFinishCourseEmail(
           user.email,
           result.enrollment.course.title,
-          user.name
+          user.name!
         );
       }
     }

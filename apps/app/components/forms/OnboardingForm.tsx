@@ -1,5 +1,6 @@
 "use client";
 
+import PhoneInput from "react-phone-input-2";
 import {
   onboardingFormSchema,
   OnboardingFormType,
@@ -39,7 +40,8 @@ const OnboardingForm = ({
     resolver: zodResolver(onboardingFormSchema),
     defaultValues: {
       fullName: user?.name || "",
-      country: "US",
+      country: user?.country || "US",
+      phoneNumber: user?.phoneNumber || "",
     },
   });
   const searchParams = useSearchParams();
@@ -100,6 +102,41 @@ const OnboardingForm = ({
                     <CountrySelectInput
                       value={field.value}
                       onChange={field.onChange}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  {/* <FormLabel>Phone Number</FormLabel> */}
+                  <FormControl>
+                    <PhoneInput
+                      specialLabel="Phone Number"
+                      country={form.watch("country")?.toLowerCase()}
+                      value={field.value}
+                      onChange={(phone) => field.onChange(phone)}
+                      buttonStyle={{
+                        visibility: "hidden",
+                      }}
+                      containerStyle={{
+                        fontSize: "14px",
+                      }}
+                      inputStyle={{
+                        marginTop: "4px",
+                        paddingLeft: "20px",
+                        width: "100%",
+                        height: "40px",
+                        backgroundColor: "transparent",
+                        color: "white",
+                        border: "1px solid rgb(30, 41, 59)",
+                        borderRadius: "10px",
+                      }}
                     />
                   </FormControl>
                   <FormMessage />

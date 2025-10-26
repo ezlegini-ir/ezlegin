@@ -37,7 +37,7 @@ export async function registerUser(data: RegisterUserFormType) {
 }
 
 export async function compeleteOnboarding(data: OnboardingFormType) {
-  const { fullName, country } = data;
+  const { fullName, country, phoneNumber } = data;
   try {
     const user = await getSessionUser();
     if (!user) return { error: "Unauthorized, Please login again." };
@@ -47,6 +47,7 @@ export async function compeleteOnboarding(data: OnboardingFormType) {
       data: {
         name: fullName,
         country,
+        phoneNumber,
         onboardingCompleted: true,
       },
     });
