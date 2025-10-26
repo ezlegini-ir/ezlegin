@@ -118,7 +118,7 @@ export const createLessonProgress = async (
         data: {
           enrollment: {
             update: {
-              status: "COMPLETED", // update to status of compelted
+              status: "COMPLETED",
             },
           },
         },
@@ -137,7 +137,11 @@ export const createLessonProgress = async (
         },
       });
 
+      console.log("started here.... 0");
+
       if (!existingCertificate) {
+        console.log("started here.... 0.5");
+
         const buffer = await generateCertificate(
           user,
           updatedClassroom?.enrollment.course.title,
@@ -146,12 +150,16 @@ export const createLessonProgress = async (
           serialNumber
         );
 
+        console.log("started here.... 1");
+
         const { secure_url, bytes, public_id, resource_type } =
           (await uploadCloudFile(buffer, {
             format: "pdf",
             resource_type: "raw",
             folder: "certificate",
           })) as UploadApiResponse;
+
+        console.log("started here.... 2");
 
         const newCertificate = await database.certificate.create({
           data: {
@@ -160,6 +168,8 @@ export const createLessonProgress = async (
             enrollmentId: result.enrollment.id,
           },
         });
+
+        console.log("started here.... 3");
 
         await database.file.create({
           data: {
@@ -173,6 +183,8 @@ export const createLessonProgress = async (
             certificateId: newCertificate.id,
           },
         });
+
+        console.log("started here.... 4");
 
         await sendFinishCourseEmail(
           user.email,

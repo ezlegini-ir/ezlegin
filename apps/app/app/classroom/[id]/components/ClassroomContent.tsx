@@ -136,7 +136,6 @@ const ClassroomContent = ({ classroom }: Props) => {
       <div className="col-span-12 md:col-span-7 lg:col-span-6 xl:col-span-8 space-y-8 xl:pr-5">
         <ClassroomVideo
           isLastLesson={isLastLesson}
-          courseTitle={classroom.enrollment.course.title}
           currentLesson={currentLesson}
         />
 

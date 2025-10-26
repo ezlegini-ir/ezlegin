@@ -1,10 +1,10 @@
 "use server";
 
 import { User } from "@ezlegin/database";
+import { formatDuration } from "@ezlegin/utils";
+import { format } from "date-fns";
 import path from "path";
 import PDFDocument from "pdfkit";
-import { formatDurationToWords } from "@ezlegin/utils";
-import moment from "moment-jalaali";
 
 export async function generateCertificate(
   user: User,
@@ -15,22 +15,19 @@ export async function generateCertificate(
 ): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     try {
+      const bgPath = path.join(process.cwd(), "public/certificate-temp.png");
+
       const fontPath = path.join(
         process.cwd(),
-        "public/fonts/Kalameh-Medium.ttf"
+        "public/fonts/Inter-Medium.ttf"
       );
-      moment.loadPersian({
-        dialect: "persian-modern",
-        usePersianDigits: false,
-      });
-      const bgPath = path.join(process.cwd(), "public/certificate-temp.png");
-      const persianFormattedDate = moment(completedAt).format("jDD/jMM/jYYYY");
 
       const doc = new PDFDocument({
         size: "A4",
         layout: "landscape",
         font: fontPath,
       });
+
       const buffers: Buffer[] = [];
 
       doc.on("data", buffers.push.bind(buffers));
@@ -43,7 +40,6 @@ export async function generateCertificate(
       doc.fontSize(21).text(courseTitle, margin, 170, {
         width: pageWidth - margin * 2,
         align: "center",
-        features: ["rtla"],
       });
 
       doc
@@ -52,7 +48,6 @@ export async function generateCertificate(
         .text(`Serial Number: ${serialNumber}`, margin, 210, {
           width: pageWidth - margin * 2,
           align: "center",
-          features: ["rtla"],
         });
 
       doc
@@ -61,7 +56,6 @@ export async function generateCertificate(
         .text(user.name!, margin, 235, {
           width: pageWidth - margin * 2,
           align: "center",
-          features: ["rtla"],
         });
 
       const certText = `This is to certify that ${user.name} has successfully completed the mentioned course.`;
@@ -72,12 +66,9 @@ export async function generateCertificate(
         .text(certText, margin, 265, {
           width: pageWidth - margin * 2,
           align: "center",
-          features: ["rtla"],
         });
 
-      const courseInfoText = `This course included more than ${formatDurationToWords(
-        courseDuration
-      )} of professional training and was completed on ${persianFormattedDate}.`;
+      const courseInfoText = `This course included more than ${formatDuration(courseDuration)} of professional training and was completed on ${format(completedAt, "yyyy-MM-dd")}.`;
 
       doc
         .fontSize(11)
@@ -90,6 +81,7 @@ export async function generateCertificate(
 
       doc.end();
     } catch (error) {
+      console.log(error);
       reject(error);
     }
   });

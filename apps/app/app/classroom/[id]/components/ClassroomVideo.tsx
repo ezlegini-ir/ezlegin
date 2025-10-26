@@ -18,15 +18,10 @@ const Video = dynamic(() => import("@ezlegin/ui/components/Video"), {
 
 interface Props {
   currentLesson: LessonType;
-  courseTitle: string;
   isLastLesson: boolean;
 }
 
-const ClassroomVideo = ({
-  currentLesson,
-  courseTitle,
-  isLastLesson,
-}: Props) => {
+const ClassroomVideo = ({ currentLesson, isLastLesson }: Props) => {
   const params = useParams();
   const router = useRouter();
   const { loading, setLoading } = useLoading();
