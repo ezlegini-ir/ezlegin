@@ -102,7 +102,9 @@ export type ProfileFormType = z.infer<typeof profileFormSchema>;
 //! CART FORM
 export const checkoutFormSchema = z.object({
   discountCode: z.string().optional(),
-  name: z.string().min(3, { message: "At least 3 characters" }).trim(),
+  firstName: z.string().min(1, { message: requiredText }),
+  lastName: z.string().min(1, { message: requiredText }),
+  city: z.string().min(1, { message: requiredText }),
   country: z.string().min(1, "Country is required"),
   phoneNumber: z
     .string()

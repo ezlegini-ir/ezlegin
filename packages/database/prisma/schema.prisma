@@ -21,8 +21,6 @@ model User {
   country             String?
   onboardingCompleted Boolean   @default(false)
   phoneNumber         String?   @unique
-  address             String?
-  postalCode          String?
 
   comments           Comment[]
   review             Review[]

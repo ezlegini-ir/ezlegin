@@ -22,7 +22,8 @@ export interface CheckoutFormDataType {
   useWallet?: boolean;
   useWalletAmount?: number;
   userDate: {
-    name: string;
+    firstName: string;
+    lastName: string;
     country: string;
     phoneNumber: string;
     postalCode: string;
@@ -41,7 +42,14 @@ export const createPayment = async (data: CheckoutFormDataType) => {
     itemsTotal,
     useWallet,
     useWalletAmount,
-    userDate: { name, country, phoneNumber, postalCode, address },
+    userDate: {
+      firstName,
+      lastName,
+      country,
+      phoneNumber,
+      postalCode,
+      address,
+    },
   } = data;
 
   try {
@@ -62,17 +70,6 @@ export const createPayment = async (data: CheckoutFormDataType) => {
 
     if (existingEnrollment)
       return { error: "You have already enrolled in this course." };
-
-    await database.user.update({
-      where: { id: user.id },
-      data: {
-        name,
-        country,
-        phoneNumber,
-        postalCode,
-        address,
-      },
-    });
 
     const newPayment = await database.payment.create({
       data: {

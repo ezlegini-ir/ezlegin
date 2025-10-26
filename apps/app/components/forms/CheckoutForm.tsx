@@ -76,11 +76,13 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       discountCode: "",
-      name: user.name || "",
+      firstName: user.name || "",
+      lastName: "",
+      city: "",
       country: user.country || "",
       phoneNumber: user.phoneNumber || "",
-      postalCode: user.postalCode || "",
-      address: user.address || "",
+      postalCode: "",
+      address: "",
     },
     mode: "onSubmit",
   });
@@ -245,7 +247,8 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
       useWallet,
       useWalletAmount: useWallet ? usedWalletAmount : undefined,
       userDate: {
-        name: form.getValues("name"),
+        firstName: form.getValues("firstName"),
+        lastName: form.getValues("lastName"),
         country: form.getValues("country"),
         phoneNumber: form.getValues("phoneNumber"),
         postalCode: form.getValues("postalCode"),
@@ -277,36 +280,35 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
           className="w-full"
           containerClassname="p-5"
         >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex gap-5">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem className="w-full ">
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="country"
-            render={({ field }) => (
-              <FormItem className="flex flex-col gap-1">
-                <FormLabel>Country</FormLabel>
-                <FormControl>
-                  <CountrySelectInput
-                    value={field.value}
-                    onChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
           <FormField
             control={form.control}
@@ -334,6 +336,37 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
                       borderRadius: "10px",
                     }}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="country"
+            render={({ field }) => (
+              <FormItem className="flex flex-col gap-1 w-full">
+                <FormLabel>Country</FormLabel>
+                <FormControl>
+                  <CountrySelectInput
+                    value={field.value}
+                    onChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>City</FormLabel>
+                <FormControl>
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
