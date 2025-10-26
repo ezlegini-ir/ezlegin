@@ -2,7 +2,7 @@
 
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 import { Button } from "@ezlegin/ui/components/ui/button";
-import { formatJalaliDate } from "@ezlegin/utils";
+import { formatDate } from "date-fns";
 import { UserRoundPlus } from "lucide-react";
 import Link from "next/link";
 
@@ -36,7 +36,7 @@ const CourseRegisterButton = ({
             {isPresale && releaseDate && (
               <Badge variant="blue" className="w-full gap-1">
                 <span>Publish Date:</span>
-                <span>{formatJalaliDate(releaseDate)}</span>
+                <span>{formatDate(releaseDate, "PPP")}</span>
               </Badge>
             )}
           </div>

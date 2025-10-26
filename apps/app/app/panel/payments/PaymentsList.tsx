@@ -15,6 +15,7 @@ import {
   DialogTrigger,
 } from "@ezlegin/ui/components/ui/dialog";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
+import { formatPrice } from "@ezlegin/utils";
 import { formatDate } from "date-fns";
 import { Eye } from "lucide-react";
 import Image from "next/image";
@@ -68,15 +69,13 @@ const PaymentsList = ({ payments }: Props) => {
     return (
       <TableRow key={payment.id}>
         <TableCell>{payment.id}</TableCell>
-        <TableCell>
-          {formatDate(payment.createdAt, "yyyy/MM/dd - HH:mm:ss")}
-        </TableCell>
+        <TableCell>{formatDate(payment.createdAt, "PPP - HH:mm:ss")}</TableCell>
         <TableCell>{status}</TableCell>
         <TableCell className="text-center">
-          ${payment.discountAmount?.toLocaleString("en-US")}
+          {formatPrice(payment.discountAmount)}
         </TableCell>
         <TableCell className="py-4 text-center">
-          ${payment.total.toLocaleString("en-US")}
+          {formatPrice(payment.total)}
         </TableCell>
         <TableCell className="text-left py-2">
           <Dialog>

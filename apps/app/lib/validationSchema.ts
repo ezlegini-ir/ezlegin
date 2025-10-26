@@ -94,8 +94,6 @@ export const profileFormSchema = z.object({
     .string()
     .min(7, "Please enter a valid phone number")
     .max(15, "Phone number too long"),
-  postalCode: z.string().optional(),
-  address: z.string().optional(),
 });
 export type ProfileFormType = z.infer<typeof profileFormSchema>;
 

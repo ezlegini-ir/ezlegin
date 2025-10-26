@@ -1,5 +1,4 @@
-import moment, { loadPersian } from "moment-jalaali";
-import { formatDistance, differenceInHours, format } from "date-fns";
+import { differenceInHours, format, formatDistance } from "date-fns";
 
 export function formatDuration(minutes: number): string {
   if (minutes < 60) {
@@ -21,7 +20,7 @@ export function formatPrice(
   if (!price)
     return options?.showNumber ? "€" + 0 : options?.noValuePlaceholder || "--";
 
-  return "€" + price.toLocaleString("en-US");
+  return "€" + price.toFixed(1);
 }
 
 //! --------------------------------------------------
@@ -33,51 +32,6 @@ export const formatNumber = (num: number) => {
     return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
   return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
 };
-
-export const formatPriceBy3Digits = (num: number) => {
-  return num.toLocaleString("en-US");
-};
-
-//! --------------------------------------------------
-
-// Load Persian locale settings once
-loadPersian({ dialect: "persian-modern", usePersianDigits: true });
-
-interface FormatDateOptions {
-  withTime?: boolean;
-  useMonthName?: boolean;
-  format?: string;
-}
-
-export function formatJalaliDate(
-  date: string | number | Date,
-  options: FormatDateOptions = {}
-): string {
-  const { withTime = false, useMonthName = true, format } = options;
-
-  let dateFormat = useMonthName ? "jDD jMMMM jYYYY" : "jYYYY/jMM/jDD";
-  if (withTime) dateFormat += " - HH:mm";
-
-  return moment(date).format(format || dateFormat);
-}
-
-//! --------------------------------------------------
-
-export function smartformatJalaliDate(
-  date: string | number | Date,
-  options: FormatDateOptions = {}
-): string {
-  const now = moment();
-  const input = moment(date);
-
-  const diffInDays = now.diff(input, "days");
-
-  if (diffInDays < 4) {
-    return input.fromNow();
-  } else {
-    return formatJalaliDate(date, options);
-  }
-}
 
 //! --------------------------------------------------
 

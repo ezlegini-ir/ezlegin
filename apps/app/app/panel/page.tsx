@@ -1,12 +1,12 @@
-import { getSessionUser } from "@/data/user";
-import { database } from "@ezlegin/database";
-import StatusCardsGrid from "./components/StatusCardsGrid";
-import RunningCourses from "./components/RunningCourses";
-import LastTicketsList from "./components/LastTicketsList";
-import Image from "next/image";
-import { wallet as walletPic } from "@/public";
-import { formatPriceBy3Digits } from "@ezlegin/utils";
 import Slider from "@/components/Slider";
+import { getSessionUser } from "@/data/user";
+import { wallet as walletPic } from "@/public";
+import { database } from "@ezlegin/database";
+import { formatPrice } from "@ezlegin/utils";
+import Image from "next/image";
+import LastTicketsList from "./components/LastTicketsList";
+import RunningCourses from "./components/RunningCourses";
+import StatusCardsGrid from "./components/StatusCardsGrid";
 
 const page = async () => {
   const userId = (await getSessionUser())?.id;
@@ -75,7 +75,7 @@ const page = async () => {
               Wallet Balance
             </span>
             <span className="font-medium text-xl">
-              ${formatPriceBy3Digits(wallet?.balance || 0)}
+              {formatPrice(wallet?.balance || 0)}
             </span>
           </div>
           <Image

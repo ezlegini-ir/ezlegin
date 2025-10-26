@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
-import { Textarea } from "@ezlegin/ui/components/ui/textarea";
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -41,8 +40,6 @@ const UserProfileForm = ({ user }: Props) => {
       name: user.name || "",
       country: user.country || "",
       phoneNumber: user.phoneNumber || "",
-      postalCode: user.postalCode || "",
-      address: user.address || "",
     },
   });
 
@@ -138,34 +135,6 @@ const UserProfileForm = ({ user }: Props) => {
                       borderRadius: "10px",
                     }}
                   />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="postalCode"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Postal Code</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address</FormLabel>
-                <FormControl>
-                  <Textarea {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
