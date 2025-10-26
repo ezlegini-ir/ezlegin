@@ -1,14 +1,15 @@
-import PageTitle from "@ezlegin/ui/components/PageTitle";
+import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import Title from "@ezlegin/ui/components/Title";
 import { Metadata } from "next";
-import React from "react";
 
 const Page = () => {
   return (
     <div className="max-w-4xl mx-auto">
-      <PageTitle
-        title="Ezlegin Terms and Privacy Policy"
-        description="By registering on the Ezlegin website, you accept Ezlegin's terms and conditions for using the services of this platform. Below are some of the important rules of Ezlegin:"
+      <AnimatedTitle
+        title={"Ezlegin's Terms and Privacy Policy"}
+        subtitle={
+          "By registering on the Ezlegin website, you accept Ezlegin's terms and conditions for using the services of this platform. Below are some of the important rules of Ezlegin:"
+        }
       />
 
       <div className="space-y-3 mb-6 text-sm">

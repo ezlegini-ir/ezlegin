@@ -1,4 +1,4 @@
-import PageTitle from "@ezlegin/ui/components/PageTitle";
+import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import {
   Accordion,
   AccordionContent,
@@ -12,9 +12,12 @@ import Link from "next/link";
 const Faq = () => {
   return (
     <div className="max-w-2xl mx-auto">
-      <PageTitle
-        title="Frequently Asked Questions"
-        description="If you have a question, you can find your answer on this page."
+      <AnimatedTitle
+        title={"Frequently Asked Questions (FAQ)"}
+        highlight="(FAQ)"
+        subtitle={
+          "If you have a question, you can find your answer on this page."
+        }
       />
 
       <Accordion className="mb-12" type="single" collapsible>

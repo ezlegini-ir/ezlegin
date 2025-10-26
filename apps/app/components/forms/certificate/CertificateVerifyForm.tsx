@@ -1,6 +1,7 @@
 "use client";
 
 import { verifyCertificate } from "@/actions/certificate";
+import { Certificate, Course, Enrollment, User } from "@ezlegin/database";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import {
   Form,
@@ -11,16 +12,15 @@ import {
 } from "@ezlegin/ui/components/ui/form";
 import { Input } from "@ezlegin/ui/components/ui/input";
 import { useLoading } from "@ezlegin/utils";
-import { formatJalaliDate } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Certificate, Course, Enrollment, User } from "@ezlegin/database";
+import { formatDate } from "date-fns";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const formSchema = z.object({
   serialNumber: z.string().min(6),
@@ -91,10 +91,12 @@ const CertificateVerifyForm = () => {
           <div className="flex flex-col  justify-center items-center gap-3">
             <CheckCircle size={75} className="text-green-500" />
             <span className="font-semibold">This certificate is valid!</span>
-            <div className="card w-full text-gray-500 flex flex-col gap-3">
-              <span> دانش آموز: {certificate?.enrollment.user.name} </span>
-              <span> دوره: {certificate?.enrollment.course?.title} </span>
-              <span>تاریخ اخذ: {formatJalaliDate(certificate?.issuedAt!)}</span>
+            <div className="card w-full text-muted-foreground flex flex-col gap-3">
+              <span> Student: {certificate?.enrollment.user.name} </span>
+              <span> Course: {certificate?.enrollment.course?.title} </span>
+              <span>
+                Completed At: {formatDate(certificate?.issuedAt!, "PPP")}
+              </span>
             </div>
           </div>
         ) : result === "INVALID" ? (

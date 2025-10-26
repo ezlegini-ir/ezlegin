@@ -1,15 +1,15 @@
+import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import CertificateVerifyForm from "@/components/forms/certificate/CertificateVerifyForm";
-import PageTitle from "@ezlegin/ui/components/PageTitle";
 import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 import { Metadata } from "next";
-import React from "react";
 
 const page = () => {
   return (
     <div className="flex items-center flex-col gap-3">
-      <PageTitle
+      <AnimatedTitle
         title={"Certificate Verification"}
-        description={"On this page, you can verify your Ezlegin certificate."}
+        highlight="Verification"
+        subtitle={"On this page, you can verify your Ezlegin certificate."}
       />
 
       <RecaptchaWrapper
