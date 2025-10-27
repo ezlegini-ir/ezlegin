@@ -66,7 +66,10 @@ const page = async ({ searchParams }: Props) => {
           <NavBar />
         </div>
 
-        <HeroLanding courseSummary={course.summary} />
+        <HeroLanding
+          courseSummary={course.summary}
+          tizerUrl={course.tizerUrl}
+        />
       </div>
 
       <LearningPath />

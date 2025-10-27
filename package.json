@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=18"
   },
-  "name": "igraphical",
+  "name": "ezlegin",
   "version": "0.1.0",
   "dependencies": {
     "@prisma/client": "^6.6.0",

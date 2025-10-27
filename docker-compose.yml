@@ -40,8 +40,8 @@ services:
     platform: linux/amd64
     restart: always
     environment:
-      DATABASE_URL: mysql://root:R@MIN3517r@m@localhost:3306/igraphical
-      MYSQL_DATABASE: igraphical
+      DATABASE_URL: mysql://root:R@MIN3517r@m@localhost:3306/ezlegin
+      MYSQL_DATABASE: ezlegin
       MYSQL_ALLOW_EMPTY_PASSWORD: "1"
     volumes:
       - database:/var/lib/mysql
@@ -66,14 +66,14 @@ services:
     container_name: tutor
     restart: always
     env_file:
-      - /root/projects/igraphical/apps/tutor/.env.local
+      - /root/projects/ezlegin/apps/tutor/.env.local
     environment:
       VIRTUAL_PORT: 3000
-      VIRTUAL_HOST: tutor.igraphical.ir
-      LETSENCRYPT_HOST: tutor.igraphical.ir
-      LETSENCRYPT_EMAIL: admin@igraphical.ir
-      DATABASE_URL: "mysql://root@database:3306/igraphical"
-      NEXTAUTH_URL: https://tutor.igraphical.ir
+      VIRTUAL_HOST: tutor.ezlegin.com
+      LETSENCRYPT_HOST: tutor.ezlegin.com
+      LETSENCRYPT_EMAIL: admin@ezlegin.com
+      DATABASE_URL: "mysql://root@database:3306/ezlegin"
+      NEXTAUTH_URL: https://tutor.ezlegin.com
       CLIENT_MAX_BODY_SIZE: 10m
     depends_on:
       database:
@@ -97,13 +97,13 @@ services:
     container_name: admin
     restart: always
     env_file:
-      - /root/projects/igraphical/apps/admin/.env.local
+      - /root/projects/ezlegin/apps/admin/.env.local
     environment:
       VIRTUAL_PORT: 3000
-      VIRTUAL_HOST: admin.igraphical.ir
-      LETSENCRYPT_HOST: admin.igraphical.ir
-      LETSENCRYPT_EMAIL: admin@igraphical.ir
-      NEXTAUTH_URL: https://admin.igraphical.ir
+      VIRTUAL_HOST: admin.ezlegin.com
+      LETSENCRYPT_HOST: admin.ezlegin.com
+      LETSENCRYPT_EMAIL: admin@ezlegin.com
+      NEXTAUTH_URL: https://admin.ezlegin.com
       CLIENT_MAX_BODY_SIZE: 10m
     depends_on:
       database:
@@ -112,7 +112,7 @@ services:
       - app_network
     volumes:
       - db_backups:/app/backups
-      - /root/projects/igraphical/apps/admin/ga.json:/app/ga.json:ro # THIS IS FOR GOOGLE ANALYTICS
+      - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # THIS IS FOR GOOGLE ANALYTICS
 
   app:
     build:
@@ -128,13 +128,13 @@ services:
     container_name: app
     restart: always
     env_file:
-      - /root/projects/igraphical/apps/app/.env.local
+      - /root/projects/ezlegin/apps/app/.env.local
     environment:
       VIRTUAL_PORT: 3000
-      VIRTUAL_HOST: igraphical.ir
-      LETSENCRYPT_HOST: igraphical.ir
-      LETSENCRYPT_EMAIL: admin@igraphical.ir
-      NEXTAUTH_URL: https://igraphical.ir
+      VIRTUAL_HOST: ezlegin.com
+      LETSENCRYPT_HOST: ezlegin.com
+      LETSENCRYPT_EMAIL: admin@ezlegin.com
+      NEXTAUTH_URL: https://ezlegin.com
       CLIENT_MAX_BODY_SIZE: 10m
     depends_on:
       database:

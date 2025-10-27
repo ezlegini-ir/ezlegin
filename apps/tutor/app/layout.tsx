@@ -20,11 +20,11 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   title: {
-    default: "Tutor - iGraphical",
-    template: "%s - iGraphical",
+    default: "Tutor - Ezlegin",
+    template: "%s - Ezlegin",
   },
   icons: {
     icon: "/favicon.svg",
   },
-  description: "iGraphical Panel",
+  description: "Ezlegin Panel",
 };

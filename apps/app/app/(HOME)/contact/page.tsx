@@ -57,5 +57,5 @@ export default page;
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "If you need support, advice, or want to collaborate, get in touch with us. iGraphical's contact information includes email, phone number, social networks, and contact form.",
+    "If you need support, advice, or want to collaborate, get in touch with us. Ezlegin's contact information includes email, phone number, social networks, and contact form.",
 };

@@ -23,11 +23,11 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   title: {
-    default: "Admin - iGraphical",
-    template: "%s - iGraphical",
+    default: "Admin - Ezlegin",
+    template: "%s - Ezlegin",
   },
   icons: {
     icon: "/favicon.svg",
   },
-  description: "iGraphical Panel",
+  description: "Ezlegin Panel",
 };

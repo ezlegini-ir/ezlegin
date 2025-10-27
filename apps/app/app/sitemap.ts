@@ -1,10 +1,9 @@
 import { staticRoutes } from "@/middleware";
-import { database } from "@ezlegin/database";
 import type { MetadataRoute } from "next";
 
 export const dynamic = "force-dynamic";
 
-const url = process.env.NEXT_PUBLIC_BASE_URL || "https://igraphical.ir";
+const url = process.env.NEXT_PUBLIC_BASE_URL || "https://ezlegin.com";
 type ChangeFreq =
   | "daily"
   | "yearly"
@@ -24,6 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 1.0,
   };
 
+  const uiCoursePath = {
+    url: url + "/ui-design-course",
+    lastModified: new Date().toISOString(),
+    changeFrequency: "daily" as ChangeFreq,
+    priority: 1.0,
+  };
+
   //! 1) Static routes
   const staticPaths = staticRoutes.map((path) => ({
     url: `${url + path}`,
@@ -33,45 +39,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   //! 2) Courses (only published)
-  const courses = await database.course.findMany({
-    where: { status: { not: "DRAFT" } },
-    select: { url: true, updatedAt: true },
-  });
-  const coursePaths = courses.map(({ url: courseUrl, updatedAt }) => ({
-    url: `${url}/courses/${encodeURIComponent(courseUrl)}`,
-    lastModified: updatedAt.toISOString(),
-    changeFrequency: "monthly" as ChangeFreq,
-    priority: 0.8,
-  }));
+  // const courses = await database.course.findMany({
+  //   where: { status: { not: "DRAFT" } },
+  //   select: { url: true, updatedAt: true },
+  // });
+  // const coursePaths = courses.map(({ url: courseUrl, updatedAt }) => ({
+  //   url: `${url}/courses/${encodeURIComponent(courseUrl)}`,
+  //   lastModified: updatedAt.toISOString(),
+  //   changeFrequency: "monthly" as ChangeFreq,
+  //   priority: 0.8,
+  // }));
 
   //! 3) Blog posts (only published)
-  const posts = await database.post.findMany({
-    where: { status: "PUBLISHED" },
-    select: { url: true, updatedAt: true },
-  });
-  const postPaths = posts.map(({ url: postUrl, updatedAt }) => ({
-    url: `${url}/${encodeURIComponent(postUrl)}`,
-    lastModified: updatedAt.toISOString(),
-    changeFrequency: "weekly" as ChangeFreq,
-    priority: 0.8,
-  }));
+  // const posts = await database.post.findMany({
+  //   where: { status: "PUBLISHED" },
+  //   select: { url: true, updatedAt: true },
+  // });
+  // const postPaths = posts.map(({ url: postUrl, updatedAt }) => ({
+  //   url: `${url}/${encodeURIComponent(postUrl)}`,
+  //   lastModified: updatedAt.toISOString(),
+  //   changeFrequency: "weekly" as ChangeFreq,
+  //   priority: 0.8,
+  // }));
 
   //! 4) Tutors
-  const tutors = await database.tutor.findMany({
-    select: { slug: true },
-  });
-  const tutorPaths = tutors.map(({ slug }) => ({
-    url: `${url}/tutors/${encodeURIComponent(slug)}`,
-    lastModified: new Date().toISOString(),
-    changeFrequency: "monthly" as ChangeFreq,
-    priority: 0.6,
-  }));
+  // const tutors = await database.tutor.findMany({
+  //   select: { slug: true },
+  // });
+  // const tutorPaths = tutors.map(({ slug }) => ({
+  //   url: `${url}/tutors/${encodeURIComponent(slug)}`,
+  //   lastModified: new Date().toISOString(),
+  //   changeFrequency: "monthly" as ChangeFreq,
+  //   priority: 0.6,
+  // }));
 
   return [
     homePath,
-    ...tutorPaths,
-    ...postPaths,
-    ...coursePaths,
+    uiCoursePath,
+    // ...tutorPaths,
     ...staticPaths,
   ];
 }

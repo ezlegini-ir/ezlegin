@@ -6,9 +6,10 @@ import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 
 interface Props {
   courseSummary: string;
+  tizerUrl: string;
 }
 
-const HeroLanding = ({ courseSummary }: Props) => {
+const HeroLanding = ({ courseSummary, tizerUrl }: Props) => {
   return (
     <div className="space-y-10 px-4">
       <div className="space-y-3 w-full">
@@ -27,7 +28,7 @@ const HeroLanding = ({ courseSummary }: Props) => {
         </div>
       </div>
 
-      <TizerVideo url="https://dl.igraphical.ir/Courses/ui-design/tizer.mp4" />
+      <TizerVideo url={tizerUrl} />
     </div>
   );
 };

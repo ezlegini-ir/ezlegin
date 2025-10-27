@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default async function Page() {
   const course = await database.course.findFirst({
-    select: { price: true },
+    select: { price: true, tizerUrl: true },
   });
 
   return (
@@ -103,7 +103,7 @@ export default async function Page() {
                   <div className="text-xs  text-white/80">
                     · Complete Ui Design Course Trailer
                   </div>
-                  <TizerVideo url="http://dl.igraphical.ir//Courses/ui-design/tizer.mp4" />
+                  <TizerVideo url={course?.tizerUrl || ""} />
                 </div>
               </div>
 

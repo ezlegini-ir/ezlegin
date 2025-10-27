@@ -9,7 +9,7 @@ const EzleginLogoSquare = ({ size, inputProps }: Props) => {
   return (
     <Image
       src={"/ezlegin-logo-square.svg"}
-      alt={"iGraphical"}
+      alt={"Ezlegin"}
       width={size || 50}
       height={size || 50}
       draggable={false}
