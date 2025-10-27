@@ -12,8 +12,8 @@ import {
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { TableCell, TableRow } from "@ezlegin/ui/components/ui/table";
 import ViewButton from "@ezlegin/ui/components/ViewButton";
-import { formatJalaliDate, formatPrice } from "@ezlegin/utils";
-import { format } from "date-fns";
+import { formatPrice } from "@ezlegin/utils";
+import { format, formatDate } from "date-fns";
 
 export interface SettlementType extends Settlement {
   tutor: Tutor & { image: Image | null };
@@ -57,7 +57,7 @@ const renderRows = (settlement: SettlementType) => {
 
       <TableCell className="text-center">
         {settlement.paidAt ? (
-          formatJalaliDate(settlement.paidAt, { withTime: true })
+          formatDate(settlement.paidAt, "PPP")
         ) : (
           <span className="text-gray-400">Not Paid</span>
         )}

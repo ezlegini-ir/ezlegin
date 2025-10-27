@@ -2,10 +2,10 @@
 
 import { database } from "@ezlegin/database";
 
-export const getOtpByIdentifier = async (identifier: string) => {
+export const getOtpByEmail = async (email: string) => {
   return await database.otp.findFirst({
     where: {
-      identifier,
+      email,
     },
   });
 };

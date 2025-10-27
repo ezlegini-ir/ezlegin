@@ -52,7 +52,7 @@ export const deleteImage = async (public_id: string) => {
 
     if (res.result !== "ok") return { error: "Operation Failed" };
 
-    return { success: "تصویر با موفقیت حذف شد!" };
+    return { success: "Image Deleted Successfully!" };
   } catch (error) {
     return { error: String(error) };
   }
@@ -62,20 +62,21 @@ export const deleteImage = async (public_id: string) => {
 
 export const deleteUserImage = async (userId: number) => {
   try {
-    await database.user.update({
+    const updatedUser = await database.user.update({
       where: { id: userId },
       data: { image: null },
+      select: {
+        userImage: true,
+      },
     });
 
-    const deletedImage = await database.image.delete({
-      where: { userId },
-    });
+    if (updatedUser.userImage) {
+      const res = (await deleteCloudFile(updatedUser.userImage.public_id)) as {
+        result: "ok";
+      };
 
-    const res = (await deleteCloudFile(deletedImage.public_id)) as {
-      result: "ok";
-    };
-
-    if (res.result !== "ok") return { error: "Operation Failed" };
+      if (res.result !== "ok") return { error: "Operation Failed" };
+    }
 
     return { success: "User Image Removed Successfully!" };
   } catch (error) {

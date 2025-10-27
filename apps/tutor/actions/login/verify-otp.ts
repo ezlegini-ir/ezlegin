@@ -3,7 +3,7 @@
 import { isHumanOrNot } from "@ezlegin/utils";
 import { database } from "@ezlegin/database";
 import bcrypt from "bcrypt";
-import { getOtpByIdentifier } from "@/data/otp";
+import { getOtpByEmail } from "@/data/otp";
 
 export const verifyOtp = async (
   otp: string,
@@ -13,7 +13,7 @@ export const verifyOtp = async (
   try {
     await isHumanOrNot(recaptchaToken);
 
-    const existingOtp = await getOtpByIdentifier(identifier);
+    const existingOtp = await getOtpByEmail(identifier);
 
     if (!existingOtp) return { error: "Invalid Code" };
 

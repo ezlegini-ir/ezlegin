@@ -1,6 +1,6 @@
 "use server";
 
-import { getOtpByIdentifier } from "@/data/otp";
+import { getOtpByEmail } from "@/data/otp";
 import { getAdminByEmail } from "@/data/admin";
 import { database } from "@ezlegin/database";
 import bcrypt from "bcrypt";
@@ -15,7 +15,7 @@ export const verifyOtp = async (
     await isHumanOrNot(recaptchaToken, "EN");
 
     // OTP LOOK UP
-    const existingOtp = await getOtpByIdentifier(identifier);
+    const existingOtp = await getOtpByEmail(identifier);
 
     // CHECK EXISTANCE
     if (!existingOtp) return { error: "Invalid Code" };

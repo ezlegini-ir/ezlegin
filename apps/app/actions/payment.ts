@@ -73,6 +73,11 @@ export const createPayment = async (data: CheckoutFormDataType) => {
     if (existingEnrollment)
       return { error: "You have already enrolled in this course." };
 
+    await database.user.update({
+      where: { id: user.id },
+      data: { name: `${firstName} ${lastName}`, country, phoneNumber },
+    });
+
     const newPayment = await database.payment.create({
       data: {
         status: amount > 0 ? "PENDING" : "SUCCESS",
