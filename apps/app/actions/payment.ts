@@ -132,7 +132,7 @@ export const createPayment = async (data: CheckoutFormDataType) => {
       });
 
       if (res?.success && res.authority && res.paymentUrl) {
-        await database.quickCart.create({
+        await database.checkout.create({
           data: {
             courseId,
             userId: user.id,
@@ -214,23 +214,23 @@ export const verifyPayment = async (
       return { error: "Payment Failed!" };
     }
 
-    const existingQuickCart = await database.quickCart.findFirst({
+    const existingCart = await database.checkout.findFirst({
       where: { authority },
     });
 
-    if (!existingQuickCart) return { error: "Payment Token is not valid" };
+    if (!existingCart) return { error: "Payment Token is not valid" };
 
     const res = await verifyPurchase(authority);
 
     if (res?.success) {
-      const deletedQuickCart = await database.quickCart.delete({
+      const deletedCart = await database.checkout.delete({
         where: { authority },
         include: { payment: true, course: true },
       });
 
       //* PAYMENT
       const updatedPayment = await database.payment.update({
-        where: { id: deletedQuickCart.paymentId },
+        where: { id: deletedCart.paymentId },
         include: {
           user: true,
           enrollment: { include: { course: true } },
@@ -241,13 +241,13 @@ export const verifyPayment = async (
           transactionId: res.authority,
           enrollment: {
             create: {
-              userId: deletedQuickCart.userId,
-              courseId: deletedQuickCart.courseId,
-              price: deletedQuickCart.amount / 10,
-              courseOriginalPrice: deletedQuickCart.course.price,
+              userId: deletedCart.userId,
+              courseId: deletedCart.courseId,
+              price: deletedCart.amount / 10,
+              courseOriginalPrice: deletedCart.course.price,
               classroom: {
                 create: {
-                  userId: deletedQuickCart.userId,
+                  userId: deletedCart.userId,
                 },
               },
             },
@@ -272,7 +272,7 @@ export const verifyPayment = async (
           },
           create: {
             balance: cashbackAmount,
-            userId: deletedQuickCart.userId,
+            userId: deletedCart.userId,
             transactions: {
               create: {
                 amount: cashbackAmount,
@@ -329,11 +329,11 @@ export const verifyPayment = async (
 
       return { success: "Payment Successfull!", refId: res.authority };
     } else {
-      await database.quickCart.delete({
+      await database.checkout.delete({
         where: { authority },
       });
       await database.payment.update({
-        where: { id: existingQuickCart.paymentId },
+        where: { id: existingCart.paymentId },
         data: {
           status: "FAILED",
         },

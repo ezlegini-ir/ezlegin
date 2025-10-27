@@ -31,10 +31,9 @@ model User {
   TicketMessage      TicketMessage[]
   askTutor           AskTutor[]
   classroom          ClassRoom[]
-  quickCart          QuickCart[]
+  checkout           Checkout[]
   otp                Otp[]
   accounts           Account[]
-  cart               Cart?
   wallet             Wallet?
   resetPasswordToken ResetPasswordToken[]
 
@@ -326,8 +325,7 @@ model Course {
   includedInCoupons Coupon[]        @relation("includescoupons")
   excludedInCoupons Coupon[]        @relation("excludescoupons")
   askTutor          AskTutor[]
-  quickCart         QuickCart[]
-  CartItem          CartItem[]
+  checkout          Checkout[]
 
   @@map("course")
 }
@@ -595,8 +593,7 @@ model Payment {
   couponId          Int?
   user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            Int
-  QuickCart         QuickCart[]
-  Cart              Cart[]
+  checkout          Checkout[]
   WalletTransaction WalletTransaction[]
 
   @@map("payment")
@@ -845,8 +842,8 @@ model ClassRoom {
   @@map("classroom")
 }
 
-//! CART ---------------------------------------------------------
-model QuickCart {
+//! CHECKOUT ---------------------------------------------------------
+model Checkout {
   id        String   @id @default(uuid())
   amount    Float
   authority String   @unique
@@ -859,37 +856,7 @@ model QuickCart {
   payment   Payment @relation(fields: [paymentId], references: [id], onDelete: Cascade)
   paymentId Int
 
-  @@map("quickcart")
-}
-
-model Cart {
-  id        Int      @id @default(autoincrement())
-  amount    Float?
-  authority String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    Int        @unique
-  payment   Payment?   @relation(fields: [paymentId], references: [id], onDelete: Cascade)
-  paymentId Int?
-  cartItem  CartItem[]
-
-  @@map("cart")
-}
-
-model CartItem {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  paidPrice Float?
-
-  cart     Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  cartId   Int
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  courseId Int
-
-  @@unique([courseId, cartId])
-  @@map("cartitem")
+  @@map("checkout")
 }
 
 //! LOGS ---------------------------------------------------------
