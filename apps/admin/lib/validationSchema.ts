@@ -18,12 +18,7 @@ export const enrollmentStatus = [
   "IN_PROGRESS",
   "COMPLETED",
 ] as const;
-export const paymentMethod = [
-  "ZARRIN_PAL",
-  "MELLI",
-  "ADMIN",
-  "NO_METHOD",
-] as const;
+export const paymentMethod = ["YEKPAY", "ADMIN", "NO_METHOD"] as const;
 export const couponType = [
   "FIXED_ON_COURSE",
   "FIXED_ON_CART",
@@ -348,7 +343,6 @@ export type SettlementFormType = z.infer<typeof settlementFormSchema>;
 //! ADMINS
 export const adminFormSchema = z.object({
   name: z.string().min(1),
-  displayName: z.string().min(1),
   role: z.enum(adminRoles),
   email: z.string().email().min(1),
   image,

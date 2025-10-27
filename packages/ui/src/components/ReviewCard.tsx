@@ -20,9 +20,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
         <Avatar src={"./avtar.svg"} />
 
         <div>
-          <span className="text-sm font-medium">
-            {review.user.firstName} {review.user.lastName}
-          </span>
+          <span className="text-sm font-medium">{review.user.name}</span>
 
           <div className="flex gap-4 text-gray-400 text-[10px] font-medium">
             <span className="flex gap-1 items-center ">

@@ -2,7 +2,11 @@
 
 import { database } from "@ezlegin/database";
 import { kavenegar } from "./config/kavenegar";
-import { newQaCreationText, newTicketCreationText } from "./sms-templates";
+import {
+  newQaCreationText,
+  newTicketCreationText,
+  paidSettlementSmsText,
+} from "./sms-templates";
 
 const sender = process.env.KAVENEGAR_SENDER!;
 
@@ -43,5 +47,18 @@ export const sendNewQaCreationSms = async (phone: string) => {
   sendSms({
     message: newQaCreationText(),
     phone,
+  });
+};
+
+//! -----------------------------------------------------
+
+export const sendPaidSettlmentSms = async (
+  fullName: string,
+  phone: string,
+  amount: number
+) => {
+  sendSms({
+    message: paidSettlementSmsText(fullName, amount),
+    phone: phone,
   });
 };

@@ -27,7 +27,7 @@ import { sendOtpEmail, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Handshake } from "lucide-react";
 import Link from "next/link";
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { LoginFormsProps } from "./LoginForm";
@@ -48,8 +48,8 @@ const RegisterForm = ({
       password: "",
     },
   });
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
+  // const searchParams = useSearchParams();
+  const callbackUrl = 'searchParams.get("callbackUrl");';
 
   const onRegisterUser = async (data: RegisterUserFormType) => {
     setLoading(true);

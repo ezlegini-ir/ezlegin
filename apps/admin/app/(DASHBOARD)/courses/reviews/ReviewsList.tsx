@@ -42,7 +42,7 @@ const renderRows = (review: ReviewType) => {
 
       <TableCell className="hidden md:table-cell">
         <Link href={`/students?search=${review.user.email}`}>
-          {review.user.firstName} {review.user.lastName}
+          {review.user.name}
         </Link>
       </TableCell>
 

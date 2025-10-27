@@ -41,7 +41,7 @@ const renderRows = (tutor: TutorType) => {
         </div>
       </TableCell>
       <TableCell className="text-center hidden xl:table-cell">
-        {tutor.displayName}
+        {tutor.name}
       </TableCell>
 
       <TableCell className="text-center">{tutor.email}</TableCell>

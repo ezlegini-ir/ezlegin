@@ -1,7 +1,7 @@
+import { placeHolder } from "@/public";
 import { Button } from "@ezlegin/ui/components/ui/button";
 import { Progress } from "@ezlegin/ui/components/ui/progress";
-import { placeHolder } from "@/public";
-import { MoveLeft, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

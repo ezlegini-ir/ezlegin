@@ -53,7 +53,6 @@ const AdminForm = ({ type, admin }: Props) => {
     mode: "onBlur",
     defaultValues: {
       name: admin?.name || "",
-      displayName: admin?.displayName || "",
       password: "",
       email: admin?.email || "",
       phone: admin?.phone || "",
@@ -118,20 +117,6 @@ const AdminForm = ({ type, admin }: Props) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="displayName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Display Name</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>

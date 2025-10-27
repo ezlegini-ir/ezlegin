@@ -3,11 +3,9 @@
 import { auth } from "@ezlegin/auth";
 import { database } from "@ezlegin/database";
 
-export const getUserByIdentifier = async (phoneOrEmail: string) => {
+export const getUserByEmail = async (email: string) => {
   return await database.user.findFirst({
-    where: {
-      OR: [{ phone: phoneOrEmail }, { email: phoneOrEmail }],
-    },
+    where: { email: email },
   });
 };
 

@@ -25,7 +25,7 @@ const page = async ({ searchParams }: Props) => {
         ? {
             OR: [
               { course: { title: { contains: search } } },
-              { user: { fullName: { contains: search } } },
+              { user: { name: { contains: search } } },
             ],
           }
         : {},

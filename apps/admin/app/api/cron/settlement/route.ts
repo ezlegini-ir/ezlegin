@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
 
       createdCount++;
 
-      await sendPaidSettlmentSms(tutor.displayName, tutor.phone, amount);
+      await sendPaidSettlmentSms(tutor.name, tutor.phone, amount);
     }
 
     return NextResponse.json({

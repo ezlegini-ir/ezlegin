@@ -42,9 +42,8 @@ const PaymentPreview = ({ payment }: { payment: PaymentType }) => {
     { label: "Status", value: status },
     {
       label: "User",
-      value: payment.user.firstName + " " + payment.user.lastName,
+      value: payment.user.name,
     },
-    { label: "Phone", value: payment.user.phone },
     { label: "Email", value: payment.user.email },
     {
       label: "Items Total",

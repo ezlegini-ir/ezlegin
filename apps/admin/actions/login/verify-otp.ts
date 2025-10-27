@@ -8,14 +8,14 @@ import { isHumanOrNot } from "@ezlegin/utils";
 
 export const verifyOtp = async (
   otp: string,
-  identifier: string,
+  email: string,
   recaptchaToken: string
 ) => {
   try {
-    await isHumanOrNot(recaptchaToken, "EN");
+    await isHumanOrNot(recaptchaToken);
 
     // OTP LOOK UP
-    const existingOtp = await getOtpByEmail(identifier);
+    const existingOtp = await getOtpByEmail(email);
 
     // CHECK EXISTANCE
     if (!existingOtp) return { error: "Invalid Code" };
@@ -33,12 +33,12 @@ export const verifyOtp = async (
     // DELETE OTP
     await database.otp.delete({
       where: {
-        identifier: existingOtp.identifier,
+        email: existingOtp.email,
       },
     });
 
     // FIND USER OF THIS OTP
-    const existingAdmin = await getAdminByEmail(identifier);
+    const existingAdmin = await getAdminByEmail(email);
 
     return { success: "Seccuess", role: existingAdmin?.role };
   } catch (error) {

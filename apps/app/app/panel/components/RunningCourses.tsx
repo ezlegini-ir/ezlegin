@@ -62,7 +62,7 @@ const RunningCourses = ({ runningCourses, showBtn }: Props) => {
               remainingLessons={remainingLessons}
               progress={course.enrollment[0]?.progress}
               title={course.title}
-              tutor={course.tutor?.displayName!}
+              tutor={course.tutor?.name!}
               imageUrl={course.image?.url}
               classroomUrl={`/classroom/${course.enrollment[0]?.classroom?.id}`}
             />

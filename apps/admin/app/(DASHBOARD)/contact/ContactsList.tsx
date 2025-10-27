@@ -35,7 +35,6 @@ const renderRows = (contact: ContactType) => {
     <TableRow key={contact.id} className="odd:bg-slate-50">
       <TableCell>{contact.fullName}</TableCell>
       <TableCell className="hidden lg:table-cell">{contact.email}</TableCell>
-      <TableCell className="hidden xl:table-cell">{contact.phone}</TableCell>
       <TableCell className="text-center">{contact.subject}</TableCell>
       <TableCell className="text-center hidden xl:table-cell">
         {formatMiladiDate(contact.createdAt)}
@@ -65,7 +64,6 @@ const renderRows = (contact: ContactType) => {
 const columns = [
   { label: "Full Name", className: "hidden xl:table-cell" },
   { label: "Email", className: "hidden lg:table-cell" },
-  { label: "Phone", className: "" },
   { label: "Subject", className: "text-center" },
   { label: "Created At", className: "text-center hidden xl:table-cell" },
   { label: "Status", className: "text-center" },

@@ -81,7 +81,7 @@ const InputForm = ({ setLoginStep, setIdentifier }: Props) => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone or Email</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input className="" {...field} />
                 </FormControl>

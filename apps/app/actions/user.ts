@@ -61,7 +61,7 @@ export async function compeleteOnboarding(data: PersonalInfoFormType) {
 //* UPDATE --------------------------------------------------------
 
 export const updateUserProfile = async (data: ProfileFormType, id: number) => {
-  const { email, name, country, phoneNumber, address, postalCode } = data;
+  const { email, name, country, phoneNumber } = data;
 
   try {
     // USER LOOP UP
@@ -75,8 +75,6 @@ export const updateUserProfile = async (data: ProfileFormType, id: number) => {
           name,
           email,
           country,
-          address,
-          postalCode,
           phoneNumber,
         },
       });

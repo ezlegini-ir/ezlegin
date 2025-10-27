@@ -1,13 +1,11 @@
-import { Badge } from "@ezlegin/ui/components/ui/badge";
-import { SidebarTrigger } from "@ezlegin/ui/components/ui/sidebar";
 import { getSessionAdmin } from "@/data/admin";
 import { getOnlineUsers } from "@/data/ga";
 import { database } from "@ezlegin/database";
+import { Badge } from "@ezlegin/ui/components/ui/badge";
+import { SidebarTrigger } from "@ezlegin/ui/components/ui/sidebar";
 import { Home, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import AdminUserBar from "./AdminUserBar";
-import { redirect } from "next/navigation";
-import { loginPageRoute } from "@/middleware";
 
 const AdminDashboardHeader = async () => {
   const sessionUser = await getSessionAdmin();
@@ -70,7 +68,7 @@ const AdminDashboardHeader = async () => {
           </Link>
         </div>
 
-        <AdminUserBar user={sessionUser} />
+        <AdminUserBar user={sessionUser!} />
       </div>
     </div>
   );

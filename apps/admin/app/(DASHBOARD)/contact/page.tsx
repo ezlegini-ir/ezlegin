@@ -13,9 +13,7 @@ const page = async ({ searchParams }: Props) => {
 
   const where: Prisma.ContactWhereInput = {
     status: status as ContactStatus,
-    OR: search
-      ? [{ phone: { contains: search } }, { email: { contains: search } }]
-      : undefined,
+    email: search ? { contains: search } : undefined,
   };
 
   const { skip, take } = pagination(page);

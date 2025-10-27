@@ -10,7 +10,7 @@ import { deleteCloudFile, uploadCloudFile } from "@ezlegin/utils";
 //* CREATE ------------------------------------------------------------
 
 export const createAdmin = async (data: AdminFormType) => {
-  const { displayName, email, name, phone, role, password, image } = data;
+  const { email, name, phone, role, password, image } = data;
   if (!password) return { error: "Password Required." };
 
   try {
@@ -26,7 +26,6 @@ export const createAdmin = async (data: AdminFormType) => {
 
     const newAdmin = await database.admin.create({
       data: {
-        displayName,
         email,
         name,
         password: hashedPassword,
@@ -72,7 +71,7 @@ export const createAdmin = async (data: AdminFormType) => {
 //? UPDATE ------------------------------------------------------------
 
 export const updateAdmin = async (data: AdminFormType, id: number) => {
-  const { displayName, email, name, phone, role, password, image } = data;
+  const { email, name, phone, role, password, image } = data;
 
   try {
     const existingAdmin = await getAdminById(id);
@@ -95,7 +94,7 @@ export const updateAdmin = async (data: AdminFormType, id: number) => {
       },
       data: {
         id,
-        displayName,
+
         email,
         name,
         password: password ? hashedPassword : existingAdmin.password,

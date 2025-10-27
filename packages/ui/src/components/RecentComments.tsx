@@ -42,7 +42,7 @@ const renderRows = (comment: CommentType) => {
           className="text-primary/60"
           href={`/students?search=${comment.author?.email}`}
         >
-          {comment.author?.fullName || "GUEST"}
+          {comment.author?.name || "GUEST"}
         </Link>
       </TableCell>
       <TableCell className="text-right">

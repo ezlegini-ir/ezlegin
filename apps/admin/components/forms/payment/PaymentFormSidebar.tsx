@@ -385,11 +385,7 @@ const PaymentFormSidebar = ({
             <>
               <li className="flex justify-between">
                 <span className="font-medium">User</span>
-                <span className="text-gray-500">{selectedUser.fullName}</span>
-              </li>
-              <li className="flex justify-between">
-                <span className="font-medium">Phone</span>
-                <span className="text-gray-500">{selectedUser.phone}</span>
+                <span className="text-gray-500">{selectedUser.name}</span>
               </li>
               <li className="flex justify-between">
                 <span className="font-medium">Email</span>

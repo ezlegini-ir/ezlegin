@@ -32,7 +32,6 @@ const page = async ({ searchParams }: Props) => {
           tutor: {
             OR: [
               { name: { contains: search } },
-              { displayName: { contains: search } },
               { phone: { contains: search } },
               { email: { contains: search } },
             ],

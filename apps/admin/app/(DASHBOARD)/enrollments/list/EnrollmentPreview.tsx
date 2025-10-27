@@ -64,9 +64,8 @@ const EnrollmentPreview = ({ enrollment }: { enrollment: EnrollmentType }) => {
     },
     {
       label: "User",
-      value: enrollment.user.fullName,
+      value: enrollment.user.name,
     },
-    { label: "Phone", value: enrollment.user.phone },
     { label: "Email", value: enrollment.user.email },
     { label: "Enrolled At", value: formatMiladiDate(enrollment.enrolledAt) },
   ];

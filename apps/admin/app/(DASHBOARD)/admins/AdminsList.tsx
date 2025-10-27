@@ -41,7 +41,7 @@ const renderRows = (admin: AdminType) => {
         </div>
       </TableCell>
       <TableCell className="text-center hidden xl:table-cell">
-        {admin.displayName}
+        {admin.name}
       </TableCell>
       <TableCell className="text-center text-xs font-medium text-gray-500">
         {admin.role === "ADMIN" ? (

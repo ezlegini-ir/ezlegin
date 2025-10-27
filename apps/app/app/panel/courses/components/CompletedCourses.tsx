@@ -79,7 +79,7 @@ const CompletedCourses = async () => {
         </TableCell>
         <TableCell className="hidden md:table-cell">
           <Link href={`/tutors/${enrollment.course.tutor?.slug}`}>
-            {enrollment.course.tutor?.displayName}
+            {enrollment.course.tutor?.name}
           </Link>
         </TableCell>
         <TableCell>

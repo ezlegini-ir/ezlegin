@@ -14,7 +14,7 @@ export async function sendOtp({
   try {
     const existingUser = await getUserByEmail(email);
 
-    await sendOtpEmail(email, userId);
+    await sendOtpEmail({ email, userId });
 
     return { isNewUser: !!!existingUser };
   } catch (error) {

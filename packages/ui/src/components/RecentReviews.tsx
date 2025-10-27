@@ -55,7 +55,7 @@ const renderRows = (review: ReviewType) => {
           className="text-primary/60"
           href={`/students?search=${review.user?.email}`}
         >
-          {review.user.fullName}
+          {review.user.name}
         </Link>
       </TableCell>
     </TableRow>

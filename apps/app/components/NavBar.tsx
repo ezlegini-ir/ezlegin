@@ -1,10 +1,6 @@
 import { getSessionUser } from "@/data/user";
-import { Cart, User } from "@ezlegin/database";
+import { User } from "@ezlegin/database";
 import NavBarContent from "./NavBarContent";
-
-export interface CartType extends Cart {
-  _count: { cartItem: number };
-}
 
 export interface NavbarProps {
   user: User | undefined | null;
