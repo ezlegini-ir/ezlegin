@@ -56,7 +56,7 @@ services:
       - app_network
 
   # Tutor service for ezlegin
-  tutor:
+  ezlegin-tutor:
     build:
       context: .
       dockerfile: ./apps/tutor/Dockerfile
@@ -88,7 +88,7 @@ services:
       - ezlegin_db_backups:/app/backups
 
   # Admin service for ezlegin
-  admin:
+  ezlegin-admin:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
@@ -120,7 +120,7 @@ services:
       - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
   # App service for ezlegin
-  app:
+  ezlegin-app:
     build:
       context: .
       dockerfile: ./apps/app/Dockerfile
