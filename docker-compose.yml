@@ -13,9 +13,9 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - certs:/etc/nginx/certs:rw
-      - vhost.d:/etc/nginx/vhost.d:rw
-      - html:/usr/share/nginx/html:rw
+      - ezlegin_certs:/etc/nginx/certs:rw
+      - ezlegin_vhost.d:/etc/nginx/vhost.d:rw
+      - ezlegin_html:/usr/share/nginx/html:rw
     networks:
       - app_network
 
@@ -30,16 +30,16 @@ services:
       - nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - certs:/etc/nginx/certs:rw
-      - vhost.d:/etc/nginx/vhost.d:rw
-      - html:/usr/share/nginx/html:rw
+      - ezlegin_certs:/etc/nginx/certs:rw
+      - ezlegin_vhost.d:/etc/nginx/vhost.d:rw
+      - ezlegin_html:/usr/share/nginx/html:rw
     networks:
       - app_network
 
   # Database for ezlegin
   database:
     image: mysql:8.0.32
-    container_name: database
+    container_name: ezlegin-database # New unique name to avoid conflict with igraphical
     platform: linux/amd64
     restart: always
     environment:
@@ -47,7 +47,7 @@ services:
       MYSQL_DATABASE: ezlegin
       MYSQL_ALLOW_EMPTY_PASSWORD: "1"
     volumes:
-      - database:/var/lib/mysql
+      - ezlegin_database:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -76,7 +76,7 @@ services:
       VIRTUAL_HOST: tutor.ezlegin.com
       LETSENCRYPT_HOST: tutor.ezlegin.com
       LETSENCRYPT_EMAIL: admin@ezlegin.com
-      DATABASE_URL: "mysql://root@database:3306/ezlegin"
+      DATABASE_URL: "mysql://root@ezlegin-database:3306/ezlegin"
       NEXTAUTH_URL: https://tutor.ezlegin.com
       CLIENT_MAX_BODY_SIZE: 10m
     depends_on:
@@ -85,7 +85,7 @@ services:
     networks:
       - app_network
     volumes:
-      - db_backups:/app/backups
+      - ezlegin_db_backups:/app/backups
 
   # Admin service for ezlegin
   admin:
@@ -116,7 +116,7 @@ services:
     networks:
       - app_network
     volumes:
-      - db_backups:/app/backups
+      - ezlegin_db_backups:/app/backups
       - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
   # App service for ezlegin
@@ -148,14 +148,14 @@ services:
     networks:
       - app_network
     volumes:
-      - db_backups:/app/backups
+      - ezlegin_db_backups:/app/backups
 
 volumes:
-  database:
-  certs:
-  vhost.d:
-  html:
-  db_backups:
+  ezlegin_database:
+  ezlegin_certs:
+  ezlegin_vhost.d:
+  ezlegin_html:
+  ezlegin_db_backups:
 
 networks:
   app_network:
