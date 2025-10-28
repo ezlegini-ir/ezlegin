@@ -1,6 +1,7 @@
 # version: "3.8"
 
 services:
+  # Reuse the existing nginx-proxy from igraphical setup
   nginx-proxy:
     image: jwilder/nginx-proxy
     container_name: nginx-proxy
@@ -18,6 +19,7 @@ services:
     networks:
       - app_network
 
+  # Reuse the existing nginx-letsencrypt container
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     container_name: nginx-letsencrypt
@@ -34,6 +36,7 @@ services:
     networks:
       - app_network
 
+  # Database for ezlegin
   database:
     image: mysql:8.0.32
     container_name: database
@@ -52,13 +55,14 @@ services:
     networks:
       - app_network
 
+  # Tutor service for ezlegin
   tutor:
     build:
       context: .
       dockerfile: ./apps/tutor/Dockerfile
       extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
-        - "registry.npmjs.org:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
+        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
+        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -83,13 +87,14 @@ services:
     volumes:
       - db_backups:/app/backups
 
+  # Admin service for ezlegin
   admin:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
       extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
-        - "registry.npmjs.org:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
+        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
+        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -112,15 +117,16 @@ services:
       - app_network
     volumes:
       - db_backups:/app/backups
-      - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # THIS IS FOR GOOGLE ANALYTICS
+      - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
+  # App service for ezlegin
   app:
     build:
       context: .
       dockerfile: ./apps/app/Dockerfile
       extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
-        - "registry.npmjs.org:125.125.125.125" # This is related to solve IRAN sanctions By Hostiran.
+        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
+        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
