@@ -3,7 +3,7 @@ import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import { Card } from "@ezlegin/ui/components/ui/card";
 import Link from "next/link";
 
-const page = async () => {
+const page = () => {
   return (
     <div className="w-full flex justify-center gap-3  h-full">
       <div className="hidden md:flex w-5/12 text-background relative rounded-xl overflow-hidden items-end justify-center pb-10">

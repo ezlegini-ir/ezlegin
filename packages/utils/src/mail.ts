@@ -24,7 +24,7 @@ export const sendEmail = async ({
 }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: "Ezlegin <onboarding@resend.dev>",
+      from: "Ezlegin <noreply@ezlegin.com>",
       to,
       subject,
       html,

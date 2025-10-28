@@ -18,13 +18,8 @@ import { Input } from "@ezlegin/ui/components/ui/input";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { isHumanOrNot, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  redirect,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-import { useEffect, useState } from "react";
+import { redirect, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -92,22 +87,6 @@ const InputForm = ({
     setFailedAttempts(0);
     setLoading(false);
   };
-
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const confirmEmail = searchParams.get("confirmEmail");
-
-    if (confirmEmail) {
-      const newQueryParams = new URLSearchParams(searchParams);
-      newQueryParams.delete("confirmEmail");
-
-      const newUrl = `${pathname}?${newQueryParams.toString()}`;
-
-      router.push(newUrl);
-    }
-  }, [pathname, searchParams, router]);
 
   return (
     <div className="space-y-8">
