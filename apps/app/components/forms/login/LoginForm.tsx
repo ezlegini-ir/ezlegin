@@ -30,7 +30,7 @@ export type LoginSteps = "INPUT" | "FORGOTPASSWORD" | "REGISTER";
 
 const LoginForm = ({ redirectTo, onSuccess }: Props) => {
   // HOOKS
-  const [loginStep, setLoginStep] = useState<LoginSteps>("REGISTER");
+  const [loginStep, setLoginStep] = useState<LoginSteps>("INPUT");
 
   return (
     <div className="md:w-[350px] mx-auto">

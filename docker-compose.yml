@@ -13,9 +13,9 @@ services:
       - "443:443"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ezlegin_certs:/etc/nginx/certs:rw
-      - ezlegin_vhost.d:/etc/nginx/vhost.d:rw
-      - ezlegin_html:/usr/share/nginx/html:rw
+      - certs:/etc/nginx/certs:rw
+      - vhost.d:/etc/nginx/vhost.d:rw
+      - html:/usr/share/nginx/html:rw
     networks:
       - app_network
 
@@ -30,9 +30,9 @@ services:
       - nginx-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ezlegin_certs:/etc/nginx/certs:rw
-      - ezlegin_vhost.d:/etc/nginx/vhost.d:rw
-      - ezlegin_html:/usr/share/nginx/html:rw
+      - certs:/etc/nginx/certs:rw
+      - vhost.d:/etc/nginx/vhost.d:rw
+      - html:/usr/share/nginx/html:rw
     networks:
       - app_network
 

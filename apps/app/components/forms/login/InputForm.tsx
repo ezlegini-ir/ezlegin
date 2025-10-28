@@ -154,7 +154,7 @@ const InputForm = ({
           <div className="flex gap-3 pt-8">
             <Button
               variant={"outline"}
-              onClick={() => setLoginStep("INPUT")}
+              onClick={() => setLoginStep("REGISTER")}
               className="w-full"
               type="button"
             >
