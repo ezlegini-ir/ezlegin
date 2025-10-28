@@ -56,7 +56,7 @@ services:
       - app_network
 
   # Tutor service for ezlegin
-  ezlegin-tutor:
+  tutor:
     build:
       context: .
       dockerfile: ./apps/tutor/Dockerfile
@@ -67,7 +67,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: tutor
+    container_name: ezlegin-tutor
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/tutor/.env.local
@@ -88,7 +88,7 @@ services:
       - ezlegin_db_backups:/app/backups
 
   # Admin service for ezlegin
-  ezlegin-admin:
+  admin:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
@@ -99,7 +99,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: admin
+    container_name: ezlegin-admin
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/admin/.env.local
@@ -120,7 +120,7 @@ services:
       - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
   # App service for ezlegin
-  ezlegin-app:
+  app:
     build:
       context: .
       dockerfile: ./apps/app/Dockerfile
@@ -131,7 +131,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: app
+    container_name: ezlegin-app
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/app/.env.local
