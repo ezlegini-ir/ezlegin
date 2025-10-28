@@ -36,10 +36,10 @@ services:
     networks:
       - app_network
 
-  # Database for ezlegin
+  #! Database service
   database:
     image: mysql:8.0.32
-    container_name: ezlegin-database # New unique name to avoid conflict with igraphical
+    container_name: ezlegin-database
     platform: linux/amd64
     restart: always
     environment:
@@ -55,7 +55,7 @@ services:
     networks:
       - app_network
 
-  # Tutor service for ezlegin
+  #! Tutor service
   tutor:
     build:
       context: .
@@ -87,7 +87,7 @@ services:
     volumes:
       - ezlegin_db_backups:/app/backups
 
-  # Admin service for ezlegin
+  #! Admin service
   admin:
     build:
       context: .
@@ -119,7 +119,7 @@ services:
       - ezlegin_db_backups:/app/backups
       - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
-  # App service for ezlegin
+  #! App service
   app:
     build:
       context: .
