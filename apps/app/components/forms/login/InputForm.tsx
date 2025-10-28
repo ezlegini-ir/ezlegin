@@ -1,7 +1,6 @@
 "use client";
 
 import { signInUser } from "@/actions/login/signin-user";
-import OAuthSignInForm from "@/components/sign-in";
 import { LoginFormType, loginFormSchema } from "@/lib/validationSchema";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
@@ -24,6 +23,7 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { LoginFormsProps } from "./LoginForm";
+import OAuthSignInForm from "@/components/sign-in";
 
 const InputForm = ({
   setLoginStep,
@@ -154,7 +154,7 @@ const InputForm = ({
           <div className="flex gap-3 pt-8">
             <Button
               variant={"outline"}
-              onClick={() => setLoginStep("PREREGISTER")}
+              onClick={() => setLoginStep("INPUT")}
               className="w-full"
               type="button"
             >

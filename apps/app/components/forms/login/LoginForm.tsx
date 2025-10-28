@@ -1,11 +1,13 @@
 "use client";
 
+import { User } from "@ezlegin/database";
 import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 import { Dispatch, SetStateAction, useState } from "react";
-import InputForm from "./InputForm";
-import RegisterForm from "./RegisterForm";
+import dynamic from "next/dynamic";
 import ResetPasswordInputForm from "./ResetPasswordInputForm";
-import { User } from "@ezlegin/database";
+
+const RegisterForm = dynamic(() => import("./RegisterForm"), { ssr: false });
+const InputForm = dynamic(() => import("./InputForm"), { ssr: false });
 
 interface Props {
   redirectTo?: string;
@@ -24,15 +26,11 @@ export interface LoginFormsProps {
   setNewUser?: Dispatch<SetStateAction<User | undefined>>;
 }
 
-export type LoginSteps =
-  | "INPUT"
-  | "FORGOTPASSWORD"
-  | "PREREGISTER"
-  | "REGISTER";
+export type LoginSteps = "INPUT" | "FORGOTPASSWORD" | "REGISTER";
 
 const LoginForm = ({ redirectTo, onSuccess }: Props) => {
   // HOOKS
-  const [loginStep, setLoginStep] = useState<LoginSteps>("INPUT");
+  const [loginStep, setLoginStep] = useState<LoginSteps>("REGISTER");
 
   return (
     <div className="md:w-[350px] mx-auto">
@@ -51,7 +49,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
           <ResetPasswordInputForm setLoginStep={setLoginStep} />
         )}
 
-        {loginStep === "PREREGISTER" && (
+        {loginStep === "REGISTER" && (
           <RegisterForm
             setLoginStep={setLoginStep}
             redirectTo={redirectTo}
