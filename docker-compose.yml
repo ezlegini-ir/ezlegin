@@ -39,7 +39,7 @@ services:
   #! Database service
   database:
     image: mysql:8.0.32
-    container_name: ezlegin-database
+    container_name: database
     platform: linux/amd64
     restart: always
     environment:
@@ -47,7 +47,7 @@ services:
       MYSQL_DATABASE: ezlegin
       MYSQL_ALLOW_EMPTY_PASSWORD: "1"
     volumes:
-      - ezlegin_database:/var/lib/mysql
+      - database:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -67,7 +67,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: ezlegin-tutor
+    container_name: tutor
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/tutor/.env.local
@@ -76,7 +76,7 @@ services:
       VIRTUAL_HOST: tutor.ezlegin.com
       LETSENCRYPT_HOST: tutor.ezlegin.com
       LETSENCRYPT_EMAIL: admin@ezlegin.com
-      DATABASE_URL: "mysql://root@ezlegin-database:3306/ezlegin"
+      DATABASE_URL: "mysql://root@database:3306/ezlegin"
       NEXTAUTH_URL: https://tutor.ezlegin.com
       CLIENT_MAX_BODY_SIZE: 10m
     depends_on:
@@ -85,7 +85,7 @@ services:
     networks:
       - app_network
     volumes:
-      - ezlegin_db_backups:/app/backups
+      - db_backups:/app/backups
 
   #! Admin service
   admin:
@@ -99,7 +99,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: ezlegin-admin
+    container_name: admin
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/admin/.env.local
@@ -116,7 +116,7 @@ services:
     networks:
       - app_network
     volumes:
-      - ezlegin_db_backups:/app/backups
+      - db_backups:/app/backups
       - /root/projects/ezlegin/apps/admin/ga.json:/app/ga.json:ro # Google Analytics
 
   #! App service
@@ -131,7 +131,7 @@ services:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
         RESEND_API_KEY: ${RESEND_API_KEY}
-    container_name: ezlegin-app
+    container_name: app
     restart: always
     env_file:
       - /root/projects/ezlegin/apps/app/.env.local
@@ -148,14 +148,14 @@ services:
     networks:
       - app_network
     volumes:
-      - ezlegin_db_backups:/app/backups
+      - db_backups:/app/backups
 
 volumes:
-  ezlegin_database:
-  ezlegin_certs:
-  ezlegin_vhost.d:
-  ezlegin_html:
-  ezlegin_db_backups:
+  database:
+  certs:
+  vhost.d:
+  html:
+  db_backups:
 
 networks:
   app_network:
