@@ -67,7 +67,7 @@ export const sendOtpEmail = async (data: {
 
     return { success: true };
   } catch (error) {
-    throw new Error(String(error));
+    return { error: String(error) };
   }
 };
 

@@ -32,7 +32,7 @@ const UserBar = ({ user }: Props) => {
         <Button variant={"outline"} className="justify-between">
           <div className="flex gap-2 items-center">
             <Avatar src={user?.image} size={26} />
-            {user?.name}
+            {user?.name || "User Panel"}
           </div>
           <ChevronDown className="text-slate-500" />
         </Button>

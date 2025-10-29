@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import { useState, type JSX } from "react";
-
 import { $createLinkNode } from "@lexical/link";
 import { $createListItemNode, $createListNode } from "@lexical/list";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
@@ -16,7 +14,6 @@ import {
   EditorState,
   TextNode,
 } from "lexical";
-
 import { FlashMessageContext } from "./context/FlashMessageContext";
 import { useSettings } from "./context/SettingsContext";
 import { SharedHistoryContext } from "./context/SharedHistoryContext";
@@ -31,10 +28,6 @@ import TypingPerfPlugin from "./plugins/TypingPerfPlugin";
 import PlaygroundEditorTheme from "./themes/PlaygroundEditorTheme";
 import { parseAllowedColor } from "./ui/ColorPicker";
 import { CourseBannerNode } from "./nodes/CourseBannerNode";
-
-// console.warn(
-//   "If you are profiling the playground app, please ensure you turn off the debug view. You can disable it by pressing on the settings control in the bottom-left of your screen and toggling the debug view setting."
-// );
 
 function $prepopulatedRichText() {
   const root = $getRoot();

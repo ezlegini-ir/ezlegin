@@ -7,7 +7,6 @@ import {
   SidebarTrigger,
 } from "@ezlegin/ui/components/ui/sidebar";
 import UserBar from "@ezlegin/ui/components/UserBar";
-import { sendOtpEmail } from "@ezlegin/utils";
 import { Home } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -22,11 +21,7 @@ export default async function Layout({
 
   if (!user) redirect("/login");
 
-  if (!user.emailVerified) {
-    await sendOtpEmail({ email: user?.email, userId: user?.id });
-    redirect("/onboarding");
-  }
-  if (!user?.onboardingCompleted) {
+  if (!user.emailVerified || !user?.onboardingCompleted) {
     redirect("/onboarding");
   }
 

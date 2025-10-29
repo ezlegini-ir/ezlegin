@@ -3,7 +3,6 @@
 import { createPost, deletePost, updatePost } from "@/actions/post";
 import { PostType } from "@/app/(DASHBOARD)/posts/list/PostsList";
 import { PostFormType, postFormSchema } from "@/lib/validationSchema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Admin, PostCategory } from "@ezlegin/database";
 import CardBox from "@ezlegin/ui/components/CardBox";
 import DeleteButton from "@ezlegin/ui/components/DeleteButton";
@@ -31,14 +30,15 @@ import {
   SelectValue,
 } from "@ezlegin/ui/components/ui/select";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
-import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 import { useImagePreview, useLoading } from "@ezlegin/utils";
-import dynamic from "next/dynamic";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import ImageField from "../../ImageField";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 
 const TextEditor = dynamic(() => import("@ezlegin/editor/Editor"), {
   ssr: false,
