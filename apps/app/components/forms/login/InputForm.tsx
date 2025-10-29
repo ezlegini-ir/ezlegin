@@ -1,6 +1,7 @@
 "use client";
 
 import { signInUser } from "@/actions/login/signin-user";
+import OAuthSignInForm from "@/components/sign-in";
 import { LoginFormType, loginFormSchema } from "@/lib/validationSchema";
 import Loader from "@ezlegin/ui/components/Loader";
 import { Button } from "@ezlegin/ui/components/ui/button";
@@ -17,18 +18,18 @@ import { Input } from "@ezlegin/ui/components/ui/input";
 import { Separator } from "@ezlegin/ui/components/ui/separator";
 import { isHumanOrNot, useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect, useSearchParams } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { LoginFormsProps } from "./LoginForm";
-import OAuthSignInForm from "@/components/sign-in";
 
 const InputForm = ({
   setLoginStep,
   redirectTo,
   onSuccess,
+  callbackUrl,
 }: LoginFormsProps) => {
   // HOOKS
   const { loading, setLoading } = useLoading();
@@ -44,8 +45,6 @@ const InputForm = ({
   });
 
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
 
   const onSignIn = async ({ email, password }: LoginFormType) => {
     setLoading(true);

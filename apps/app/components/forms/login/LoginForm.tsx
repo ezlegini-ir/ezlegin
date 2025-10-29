@@ -3,14 +3,13 @@
 import { User } from "@ezlegin/database";
 import RecaptchaWrapper from "@ezlegin/ui/components/RecaptchaWrapper";
 import { Dispatch, SetStateAction, useState } from "react";
-import dynamic from "next/dynamic";
 import ResetPasswordInputForm from "./ResetPasswordInputForm";
-
-const RegisterForm = dynamic(() => import("./RegisterForm"), { ssr: false });
-const InputForm = dynamic(() => import("./InputForm"), { ssr: false });
+import InputForm from "./InputForm";
+import RegisterForm from "./RegisterForm";
 
 interface Props {
   redirectTo?: string;
+  callbackUrl?: string;
   onSuccess?: () => void;
 }
 
@@ -22,13 +21,14 @@ export interface LoginFormsProps {
   setIsNewUser?: Dispatch<React.SetStateAction<boolean>>;
   isNewUser?: boolean;
   redirectTo?: string;
+  callbackUrl?: string;
   onSuccess?: () => void;
   setNewUser?: Dispatch<SetStateAction<User | undefined>>;
 }
 
 export type LoginSteps = "INPUT" | "FORGOTPASSWORD" | "REGISTER";
 
-const LoginForm = ({ redirectTo, onSuccess }: Props) => {
+const LoginForm = ({ redirectTo, onSuccess, callbackUrl }: Props) => {
   // HOOKS
   const [loginStep, setLoginStep] = useState<LoginSteps>("INPUT");
 
@@ -42,6 +42,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
             setLoginStep={setLoginStep}
             onSuccess={onSuccess}
             redirectTo={redirectTo}
+            callbackUrl={callbackUrl}
           />
         )}
 
@@ -54,6 +55,7 @@ const LoginForm = ({ redirectTo, onSuccess }: Props) => {
             setLoginStep={setLoginStep}
             redirectTo={redirectTo}
             onSuccess={onSuccess}
+            callbackUrl={callbackUrl}
           />
         )}
       </RecaptchaWrapper>

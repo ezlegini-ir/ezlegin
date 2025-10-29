@@ -3,7 +3,13 @@ import EzleginLogoSquare from "@ezlegin/ui/components/EzleginLogoSquare";
 import { Card } from "@ezlegin/ui/components/ui/card";
 import Link from "next/link";
 
-const page = () => {
+interface Props {
+  searchParams: Promise<{ callbackUrl: string }>;
+}
+
+const page = async ({ searchParams }: Props) => {
+  const { callbackUrl } = await searchParams;
+
   return (
     <div className="w-full flex justify-center gap-3  h-full">
       <div className="hidden md:flex w-5/12 text-background relative rounded-xl overflow-hidden items-end justify-center pb-10">
@@ -26,7 +32,7 @@ const page = () => {
       </div>
 
       <Card className="md:w-8/12 bg-background rounded-xl flex items-center justify-center p-4">
-        <LoginForm />
+        <LoginForm callbackUrl={callbackUrl} />
       </Card>
     </div>
   );
