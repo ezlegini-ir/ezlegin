@@ -85,7 +85,7 @@ const OtpForm = ({ setLoginStep, identifier }: Props) => {
 
   useEffect(() => {
     const autoSubmit = async () => {
-      if (otpValue.length === 6) {
+      if (otpValue.length === 5) {
         await onVerifyOtp({ otp: otpValue });
       }
     };
@@ -123,7 +123,7 @@ const OtpForm = ({ setLoginStep, identifier }: Props) => {
                 <FormControl>
                   <InputOTP
                     autoFocus
-                    maxLength={6}
+                    maxLength={5}
                     {...field}
                     pattern={REGEXP_ONLY_DIGITS}
                   >
@@ -136,7 +136,6 @@ const OtpForm = ({ setLoginStep, identifier }: Props) => {
                       <InputOTPSlot index={2} />
                       <InputOTPSlot index={3} />
                       <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
                     </InputOTPGroup>
                   </InputOTP>
                 </FormControl>
