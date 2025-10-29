@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export async function verifyRecaptcha(token: string): Promise<boolean> {
+export async function isHumanOrNot(token: string) {
   const secret = process.env.RECAPTCHA_SECRET_KEY!;
 
   const { data } = await axios.post(
@@ -16,11 +16,7 @@ export async function verifyRecaptcha(token: string): Promise<boolean> {
     }
   );
 
-  return data.success && data.score > 0.5;
-}
-
-export async function isHumanOrNot(token: string) {
-  const isHuman = await verifyRecaptcha(token);
+  const isHuman = data.success && data.score > 0.5;
 
   if (!isHuman) {
     throw new Error("You've Recognized as a Bot, Please Try Again later...");
