@@ -60,9 +60,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/tutor/Dockerfile
-      extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
-        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -92,9 +89,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/admin/Dockerfile
-      extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
-        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -124,9 +118,6 @@ services:
     build:
       context: .
       dockerfile: ./apps/app/Dockerfile
-      extra_hosts:
-        - "binaries.prisma.sh:125.125.125.125" # IRAN sanctions workaround
-        - "registry.npmjs.org:125.125.125.125" # IRAN sanctions workaround
       args:
         DATABASE_URL: ${DATABASE_URL}
         NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
