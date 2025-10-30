@@ -19,9 +19,9 @@
   </defs>
   <path class="st2" d="M193,0h0C300.1,0,387,86.9,387,194h0c0,107.1-86.9,194-194,194h0C85.9,388-1,301.1-1,194h0C-1,86.9,85.9,0,193,0Z"/>
   <g>
-    <rect class="st1" x="113" y="175.2" width="159.9" height="37.7" rx="17" ry="17"/>
-    <rect class="st0" x="113" y="113.9" width="159.3" height="37.7" rx="17" ry="17"/>
-    <rect class="st0" x="113" y="175.2" width="99.6" height="37.7" rx="17" ry="17"/>
-    <rect class="st0" x="113" y="236.4" width="159.3" height="37.7" rx="17" ry="17"/>
+    <rect class="st1" x="92.9" y="170.5" width="200" height="47.2" rx="21.3" ry="21.3"/>
+    <rect class="st0" x="92.9" y="93.8" width="199.3" height="47.2" rx="21.3" ry="21.3"/>
+    <rect class="st0" x="92.9" y="170.5" width="124.6" height="47.2" rx="21.3" ry="21.3"/>
+    <rect class="st0" x="92.9" y="247" width="199.3" height="47.2" rx="21.3" ry="21.3"/>
   </g>
 </svg>

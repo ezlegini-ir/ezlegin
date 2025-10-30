@@ -44,13 +44,8 @@ export function CountrySelectInput({
           className={cn("justify-between", !value && "text-muted-foreground")}
         >
           {value ? (
-            <div className="flex gap-1 items-center">
-              {" "}
-              <img
-                src={selectedCountry?.flag}
-                alt={`${selectedCountry?.label}`}
-                className="w-5 h-5 mr-2"
-              />
+            <div className="flex gap-3 items-center">
+              <img src={selectedCountry?.flag} className="w-5 h-5" />
               {selectedCountry?.label}
             </div>
           ) : (

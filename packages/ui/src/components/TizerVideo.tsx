@@ -3,7 +3,7 @@
 import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
 import { Play } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
@@ -14,6 +14,16 @@ const TizerVideo = ({ url }: { url: string }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [playing, setPlaying] = useState(false);
   const playerRef = useRef(null);
+
+  const subtitleUrl = useMemo(() => {
+    try {
+      return url.replace(/\.[^/.]+$/, ".vtt");
+    } catch {
+      return null;
+    }
+  }, [url]);
+
+  console.log(subtitleUrl);
 
   return (
     <motion.div
@@ -33,6 +43,22 @@ const TizerVideo = ({ url }: { url: string }) => {
         height="100%"
         className="rounded-lg"
         onReady={() => setIsLoading(false)}
+        config={{
+          file: {
+            attributes: { crossOrigin: "anonymous" },
+            tracks: subtitleUrl
+              ? [
+                  {
+                    kind: "subtitles",
+                    src: subtitleUrl,
+                    srcLang: "en",
+                    label: "English",
+                    default: true,
+                  },
+                ]
+              : [],
+          },
+        }}
       />
 
       {!playing && (

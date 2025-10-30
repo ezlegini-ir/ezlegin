@@ -24,9 +24,7 @@ const page = async ({ searchParams }: Props) => {
     : {};
 
   const students = await database.user.findMany({
-    where: {
-      OR: [],
-    },
+    where,
     orderBy: { id: "desc" },
 
     skip,
