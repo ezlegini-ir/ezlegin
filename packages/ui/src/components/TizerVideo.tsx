@@ -23,8 +23,6 @@ const TizerVideo = ({ url }: { url: string }) => {
     }
   }, [url]);
 
-  console.log(subtitleUrl);
-
   return (
     <motion.div
       initial={{ y: 70, opacity: 0 }}
