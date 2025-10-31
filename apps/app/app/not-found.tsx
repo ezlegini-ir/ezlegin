@@ -21,7 +21,7 @@ const notFound = () => {
             draggable={false}
           />
           <Link href={"/"} className="btn btn-primary py-3">
-            <Button>صفحه اصلی</Button>
+            <Button>Home Page</Button>
           </Link>
         </div>
         <SimpleFooter />

@@ -41,8 +41,8 @@ export const figmaCursor = "/figma-cursor.svg";
 export const sketchVideo = "/sketch.mp4";
 
 // ALIREZA EZLEGINI
-export const alirezaEzlegini = "/alireza-ezlegini.png";
-export const alirezaEzlegniPen = "/alireza-ezlegini-pen.png";
-export const alirezaEzlegniPodcast = "/alireza-ezlegini-podcast.png";
-export const alirezaEzlegniPointing = "/alireza-ezlegini-pointing.png";
-export const alirezaEzlegniLooking = "/alireza-ezlegini-looking.png";
+export const alirezaEzleginiProfile = "/alireza-ezlegini/profile.png";
+export const alirezaEzlegniPen = "/alireza-ezlegini/pen.png";
+export const alirezaEzlegniPodcast = "/alireza-ezlegini/podcast.png";
+export const alirezaEzlegniPointing = "/alireza-ezlegini/pointing.png";
+export const alirezaEzlegniLooking = "/alireza-ezlegini/looking.png";
