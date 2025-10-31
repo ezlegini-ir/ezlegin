@@ -11,7 +11,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { LessonType } from "./ClassroomContent";
 
-//! REPLACE AFTER WAR
 const Video = dynamic(() => import("@ezlegin/ui/components/Video"), {
   ssr: false,
 });
@@ -72,7 +71,9 @@ const ClassroomVideo = ({ currentLesson, isLastLesson }: Props) => {
       </div>
       <div className="space-y-3">
         {currentLesson?.type === "VIDEO" ? (
-          <Video key={currentLesson.url} src={currentLesson.url} />
+          <div className="bg-slate-900 aspect-video w-full rounded-sm overflow-hidden">
+            <Video key={currentLesson.url} src={currentLesson.url} />
+          </div>
         ) : currentLesson?.type === "ASSET" ? (
           <div>
             <Link

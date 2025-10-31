@@ -1,23 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import Plyr, { PlyrOptions, PlyrSource } from "plyr-react";
 import "plyr-react/plyr.css";
-import { Skeleton } from "@ezlegin/ui/components/ui/skeleton";
+import React, { useMemo } from "react";
 
 interface VideoProps {
   src: string;
-  subtitleSrc?: string;
   poster?: string;
 }
 
-const Video: React.FC<VideoProps> = ({ src, poster, subtitleSrc }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+const Video: React.FC<VideoProps> = ({ poster, src }) => {
+  const subtitleUrl = useMemo(() => {
+    try {
+      return src.replace(/\.[^/.]+$/, ".vtt");
+    } catch {
+      return null;
+    }
+  }, [src]);
 
   const plyrProps: {
     source: PlyrSource;
@@ -30,14 +29,15 @@ const Video: React.FC<VideoProps> = ({ src, poster, subtitleSrc }) => {
         {
           src,
           type: "video/mp4",
+          provider: "html5",
         },
       ],
-      tracks: subtitleSrc
+      tracks: subtitleUrl
         ? [
             {
               kind: "captions",
               label: "English",
-              src: subtitleSrc,
+              src: subtitleUrl,
               srcLang: "en",
               default: true,
             },
@@ -55,7 +55,7 @@ const Video: React.FC<VideoProps> = ({ src, poster, subtitleSrc }) => {
         "progress",
         "current-time",
         "mute",
-        "volume",
+        "captions",
         "settings",
         "fullscreen",
       ],
@@ -64,25 +64,7 @@ const Video: React.FC<VideoProps> = ({ src, poster, subtitleSrc }) => {
     },
   };
 
-  return (
-    <div className="mx-auto rounded-md overflow-hidden">
-      <div className="relative aspect-video bg-black">
-        {isLoading && (
-          <div className="absolute inset-0 z-10">
-            <Skeleton />
-          </div>
-        )}
-        {isMounted && (
-          <div
-            className="absolute inset-0"
-            onLoadedData={() => setIsLoading(false)}
-          >
-            <Plyr {...plyrProps} />
-          </div>
-        )}
-      </div>
-    </div>
-  );
+  return <Plyr key={src} crossOrigin="anonymous" {...plyrProps} />;
 };
 
 export default Video;
