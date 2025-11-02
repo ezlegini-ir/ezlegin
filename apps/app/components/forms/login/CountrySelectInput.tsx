@@ -21,7 +21,7 @@ import { Check, ChevronsUpDown } from "lucide-react";
 const formattedCountries = Object.keys(countries).map((key) => ({
   label: countries[key as keyof typeof countries].name,
   value: key,
-  flag: `/flags/${key}.svg`,
+  flag: `/flags/${key.toLowerCase()}.svg`,
 }));
 
 interface CountrySelectInputProps {
