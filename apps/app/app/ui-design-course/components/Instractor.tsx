@@ -2,7 +2,7 @@ import AnimatedOrbit from "@/components/animations/AnimatedOrbit";
 import AnimatedTitle from "@/components/animations/AnimatedTitle";
 import { alirezaEzlegniPen } from "@/public";
 import { Card } from "@ezlegin/ui/components/ui/card";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -72,10 +72,6 @@ const SocialsIcon = () => {
 
 const socials = [
   { href: "https://instagram.com/ezlegni.ir", icon: <Instagram size={23} /> },
-  {
-    href: "https://www.linkedin.com/in/alireza-e-b92a65105/",
-    icon: <Linkedin size={23} />,
-  },
 ];
 
 export default Instractor;

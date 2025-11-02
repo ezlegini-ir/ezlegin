@@ -42,6 +42,18 @@ export async function compeleteOnboarding(data: PersonalInfoFormType) {
     const user = await getSessionUser();
     if (!user) return { error: "Unauthorized, Please login again." };
 
+    const existingUserByPhone = await database.user.findFirst({
+      where: { phoneNumber },
+    });
+
+    if (existingUserByPhone && existingUserByPhone.id !== user.id) {
+      return { error: "The phone number is already in use." };
+    }
+
+    if (invalidPhoneNumbers.some((invalid) => phoneNumber.endsWith(invalid))) {
+      return { error: "Invalid phone number detected." };
+    }
+
     await database.user.update({
       where: { id: user.id },
       data: {
@@ -57,6 +69,23 @@ export async function compeleteOnboarding(data: PersonalInfoFormType) {
     return { error: String(error) };
   }
 }
+
+const invalidPhoneNumbers = [
+  "000000",
+  "111111",
+  "222222",
+  "333333",
+  "444444",
+  "555555",
+  "666666",
+  "777777",
+  "888888",
+  "999999",
+  "123456",
+  "654321",
+  "123123",
+  "321321",
+];
 
 //* UPDATE --------------------------------------------------------
 

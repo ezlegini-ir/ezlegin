@@ -25,6 +25,8 @@ import PhoneInput from "react-phone-input-2";
 import { toast } from "sonner";
 import { CountrySelectInput } from "../login/CountrySelectInput";
 import { UserType } from "./OnboardingForm";
+import Link from "next/link";
+import { Home } from "lucide-react";
 
 const PersonalInfoForm = ({ user }: { user?: UserType | null }) => {
   // HOOKS
@@ -140,7 +142,7 @@ const PersonalInfoForm = ({ user }: { user?: UserType | null }) => {
               )}
             />
 
-            <div className="pt-8 space-y-3">
+            <div className="space-y-3">
               <Button
                 disabled={!form.formState.isValid || loading}
                 className="w-full"
@@ -149,6 +151,20 @@ const PersonalInfoForm = ({ user }: { user?: UserType | null }) => {
                 <Loader loading={loading} />
                 Complete
               </Button>
+
+              <div>
+                <Link href={"/"}>
+                  <Button
+                    variant={"outline"}
+                    disabled={loading}
+                    className="w-full"
+                    type="button"
+                  >
+                    <Home />
+                    Home
+                  </Button>
+                </Link>
+              </div>
             </div>
           </form>
         </Form>

@@ -1,4 +1,4 @@
-import { Youtube } from "lucide-react";
+import { Youtube, Instagram } from "lucide-react";
 import Link from "next/link";
 
 const SocialsIcon = () => {
@@ -18,6 +18,7 @@ const SocialsIcon = () => {
 
 const socials = [
   { href: "https://youtube.com/@ezlegin", icon: <Youtube size={23} /> },
+  { href: "https://instagram.com/ezlegin.co", icon: <Instagram size={23} /> },
 ];
 
 export default SocialsIcon;

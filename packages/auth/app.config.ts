@@ -77,7 +77,9 @@ export default {
         if (!user) throw new Error("Invalid Credentials");
 
         if (!user.password) {
-          throw new Error("You need to sign in with Your Google account");
+          throw new Error(
+            "You need to sign in with Your Google account or reset your password."
+          );
         }
 
         const isPasswordValid = await bcrypt.compare(password, user.password);

@@ -1,18 +1,7 @@
 import { getSessionUser } from "@/data/user";
 import { database } from "@ezlegin/database";
 import BreadCrumb from "@ezlegin/ui/components/BreadCrumb";
-import { Button } from "@ezlegin/ui/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@ezlegin/ui/components/ui/dialog";
-import { OctagonMinus } from "lucide-react";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { cache } from "react";
 import ClassroomContent from "./components/ClassroomContent";
@@ -88,28 +77,6 @@ const page = async ({ params }: Props) => {
         />
         <ClassroomContent classroom={classroom} />
       </div>
-
-      <Dialog open={!user.emailVerified}>
-        <DialogTrigger />
-
-        <DialogContent>
-          <DialogHeader className="space-y-3">
-            <DialogTitle className="text-center flex flex-col items-center gap-3">
-              <OctagonMinus className="text-destructive" size={60} />
-              Please verify your email first.
-            </DialogTitle>
-            <DialogDescription className="text-sm text-muted-foreground text-center">
-              Email verification is required for issuing the course completion
-              certificate. Please go to your profile, enter your email, and
-              verify it.
-            </DialogDescription>
-
-            <Link href={"/panel/profile"}>
-              <Button className="w-full">My Profile</Button>
-            </Link>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

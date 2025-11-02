@@ -22,6 +22,8 @@ import {
 import { useLoading } from "@ezlegin/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { Home } from "lucide-react";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -128,15 +130,29 @@ const ConfirmEmailForm = ({
 
             <CountdownTimer minute={2} progressBar />
 
-            <div>
+            <div className="space-y-3">
               <Button
                 disabled={!form.formState.isValid || loading}
-                className="w-full mb-3"
+                className="w-full"
                 type="submit"
               >
                 {<Loader loading={loading} />}
                 Verify Code
               </Button>
+
+              <div>
+                <Link href={"/"}>
+                  <Button
+                    variant={"outline"}
+                    disabled={loading}
+                    className="w-full"
+                    type="button"
+                  >
+                    <Home />
+                    Home
+                  </Button>
+                </Link>
+              </div>
             </div>
           </form>
         </Form>

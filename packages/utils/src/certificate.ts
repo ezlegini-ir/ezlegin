@@ -68,7 +68,7 @@ export async function generateCertificate(
           align: "center",
         });
 
-      const courseInfoText = `This course included more than ${formatDuration(courseDuration)} of professional training and was completed on ${format(completedAt, "yyyy-MM-dd")}.`;
+      const courseInfoText = `This course included more than ${formatDuration(courseDuration)} of professional training and was completed on ${format(completedAt, "PPP")}.`;
 
       doc
         .fontSize(11)
