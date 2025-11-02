@@ -55,7 +55,7 @@ We continually strive to create a safer environment for our valued users by upda
 export default Page;
 
 export const metadata: Metadata = {
-  title: "قوانین و حریم شخصی",
+  title: "Terms and Conditions - Ezlegin",
   description:
-    " لطفاً قبل از استفاده از خدمات ما، قوانین و مقررات را مطالعه کنید. شامل شرایط استفاده، مسئولیت‌ها و حقوق کاربران",
+    "Read Ezlegin's terms and conditions for using our services and learn about our commitment to user privacy.",
 };

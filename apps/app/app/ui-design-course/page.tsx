@@ -12,6 +12,7 @@ import PromiseSection from "./components/PromiseSection";
 import PurchaseSection from "./components/PurchaseSection";
 import ReviewsSection from "./components/ReviewsSection";
 import VoiceoverSection from "./components/VoiceoverSection";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -96,3 +97,21 @@ const page = async ({ searchParams }: Props) => {
 };
 
 export default page;
+
+export const metadata: Metadata = {
+  title: "UI Design Course",
+  description:
+    "Join the UI Design Course at Ezlegin to master user interface design principles, tools, and techniques. Learn from industry experts and build a strong portfolio.",
+  keywords: [
+    "UI Design Course",
+    "User Interface Design",
+    "Ezlegin",
+    "Design Principles",
+    "UI/UX Design",
+    "Design Tools",
+    "Design Techniques",
+    "Design Portfolio",
+    "Online Design Course",
+    "Design Education",
+  ],
+};
