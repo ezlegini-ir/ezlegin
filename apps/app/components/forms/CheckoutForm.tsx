@@ -72,12 +72,14 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
 
   // CONSTS ---------------------------
   const walletBalance = wallet?.balance || 0;
+  const [firstName, ...rest] = user.name?.trim().split(/\s+/) || [];
+  const lastName = rest.join(" ") || "";
   const form = useForm<CheckoutFormType>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       discountCode: "",
-      firstName: user.name || "",
-      lastName: "",
+      firstName: firstName || "",
+      lastName: lastName || "",
       city: "",
       country: user.country || "",
       phoneNumber: user.phoneNumber || "",

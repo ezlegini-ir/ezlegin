@@ -3,7 +3,7 @@ import CheckoutResult from "./CheckoutResult";
 interface Props {
   searchParams: Promise<{
     Authority: string;
-    Status: "OK" | "NOK";
+    Status: string;
   }>;
 }
 

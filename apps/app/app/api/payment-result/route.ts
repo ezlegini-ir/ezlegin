@@ -2,17 +2,27 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { Authority } = await req.json();
-    const { Status } = await req.json();
+    const { searchParams, origin } = new URL(req.url);
+    const authority = searchParams.get("authority");
+    const success = searchParams.get("success");
 
-    return NextResponse.redirect(
+    if (!authority || success === null) {
+      return NextResponse.json(
+        { success: false, error: "Missing query parameters" },
+        { status: 400 }
+      );
+    }
+
+    const redirectUrl =
       process.env.NODE_ENV === "development"
-        ? `http://localhost:3000/checkout-result?Authority=${Authority}&Status=${Status}`
-        : `https://ezlegin.com/checkout-result?Authority=${Authority}&Status=${Status}`
-    );
+        ? `${origin}/checkout-result?Authority=${authority}&Status=${success}`
+        : `https://ezlegin.com/checkout-result?Authority=${authority}&Status=${success}`;
+
+    return NextResponse.redirect(redirectUrl, 303);
   } catch (error: any) {
+    console.error(error);
     return NextResponse.json(
-      { success: false, error: error.response?.data || error.message },
+      { success: false, error: error.message || "Internal Server Error" },
       { status: 500 }
     );
   }

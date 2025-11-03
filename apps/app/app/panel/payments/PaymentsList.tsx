@@ -48,7 +48,7 @@ const PaymentsList = ({ payments }: Props) => {
         className="w-[90px] text-nowrap flex justify-center font-medium"
         variant={"orange"}
       >
-        Awaiting Payment
+        Awaiting
       </Badge>
     ) : canceled ? (
       <Badge

@@ -80,6 +80,7 @@ export async function initiatePurchase(params: PurchaseParams) {
       };
     }
   } catch (error: any) {
+    console.error(error);
     return {
       success: false,
       error: error.response?.data || error.message,

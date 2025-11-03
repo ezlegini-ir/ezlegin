@@ -13,7 +13,7 @@ type Status = "SUCCESS" | "FAIL" | "PENDING";
 
 interface Props {
   authority: string;
-  status: "OK" | "NOK";
+  status: string;
 }
 
 const CheckoutResult = ({ authority, status }: Props) => {
@@ -64,8 +64,8 @@ const CheckoutResult = ({ authority, status }: Props) => {
             <div className="text-gray-500 text-sm flex flex-col gap-2">
               <span className="text-foreground">Please try again</span>
               <Separator />
-              If the amount was deducted from your account, it will be refunded
-              within 72 hours.
+              If the amount was deducted from your account, contact us at panel{" "}
+              {">"} support.
             </div>
           )}
         </div>

@@ -210,12 +210,9 @@ export const createPayment = async (data: CheckoutFormDataType) => {
 
 //* VERIFY PAYMENT -------------------------------------------------------
 
-export const verifyPayment = async (
-  authority: string,
-  status: "OK" | "NOK"
-) => {
+export const verifyPayment = async (authority: string, status: string) => {
   try {
-    if (status !== "OK") {
+    if (status !== "0") {
       return { error: "Payment Failed!" };
     }
 
