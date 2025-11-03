@@ -12,15 +12,11 @@
     "cloudinary": "^2.6.0",
     "kavenegar": "^1.1.4",
     "lucide-react": "^0.488.0",
-    "moment-jalaali": "^0.10.4",
-    "nodemailer": "^6.10.0",
     "pdfkit": "^0.17.0",
-    "resend": "^4.4.1",
-    "zarinpal-node-sdk": "^2.1.0"
+    "resend": "^4.4.1"
   },
   "devDependencies": {
     "@types/kavenegar": "^1.1.3",
-    "@types/moment-jalaali": "^0.7.9",
     "@types/nodemailer": "^6.4.17",
     "@types/pdfkit": "^0.13.9"
   }

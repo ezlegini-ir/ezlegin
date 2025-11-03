@@ -1,6 +1,6 @@
 "use client";
 
-import { createPayment, CheckoutFormDataType } from "@/actions/payment";
+import { CheckoutFormDataType, createPayment } from "@/actions/payment";
 import { getCouponByCode } from "@/data/coupon";
 import { getSessionUser } from "@/data/user";
 import { checkoutFormSchema, CheckoutFormType } from "@/lib/validationSchema";
@@ -61,6 +61,7 @@ interface Props {
 const CheckoutForm = ({ course, wallet, user }: Props) => {
   // HOOKS ---------------------------
   const [initialCartTotal] = useState(course.price);
+  const [userCountry, setUserCountry] = useState(null);
   const [cartTotal, setCartTotal] = useState(course.price);
   const [usedWalletAmount, setUsedWalletAmount] = useState(0);
   const [useWallet, setUseWallet] = useState<boolean>(false);
@@ -232,11 +233,35 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
     toast.success("Discount code applied successfully.");
   };
 
+  useEffect(() => {
+    // Fetch the user's IP and country using ipinfo.io
+    const getUserCountry = async () => {
+      try {
+        const res = await fetch("https://ipinfo.io?token=41a6316c39fa84");
+        const data = await res.json();
+        const country = data.country;
+        setUserCountry(country);
+      } catch (error) {
+        console.error("Error fetching IP information:", error);
+      }
+    };
+
+    getUserCountry();
+  }, []);
+
   //! ON SUBMIT  ---------------------------
   const onPayment = async () => {
     const user = await getSessionUser();
     setLoading(true);
     if (!user) return;
+
+    if (userCountry === "US") {
+      toast.warning(
+        "Payment Gateway for United States IP is not allowed. Please use a VPN."
+      );
+      setLoading(false);
+      return;
+    }
 
     const data: CheckoutFormDataType = {
       amount: cartTotal,
@@ -483,6 +508,24 @@ const CheckoutForm = ({ course, wallet, user }: Props) => {
                   <span className="flex">Complete registration</span>
                 )}
               </Button>
+
+              {userCountry === "US" && (
+                <Badge variant={"orange"} className="p-3 text-sm">
+                  <div className="text-center">
+                    <span className="font-normal">
+                      Payment Gateway for United States IP is not allowed.
+                      Please use a VPN.{" "}
+                    </span>
+                    <a
+                      className="underline text-primary"
+                      href="https://xvpn.io/download/vpn-win"
+                      target="_blank"
+                    >
+                      Download X-VPN
+                    </a>
+                  </div>
+                </Badge>
+              )}
 
               <CashBackCard price={cartTotal} />
             </div>

@@ -1,3 +1,4 @@
+import { alirezaEzleginiProfile } from "@/public";
 import { database } from "@ezlegin/database";
 import TizerVideo from "@ezlegin/ui/components/TizerVideo";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
@@ -79,7 +80,7 @@ export default async function Page() {
 
             <div className="flex gap-2 items-center">
               <Image
-                src="/alireza-ezlegini.png"
+                src={alirezaEzleginiProfile}
                 alt="Alireza Ezlegini"
                 width={56}
                 height={56}
