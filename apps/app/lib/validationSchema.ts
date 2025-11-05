@@ -22,7 +22,7 @@ export type LoginFormType = z.infer<typeof loginFormSchema>;
 // --------------
 
 export const otpSchema = z.object({
-  otp: z.string().min(6, { message: "کد احراز هویت 5 رقمی می باشد" }),
+  otp: z.string().min(6, { message: "5 Digit Code is required." }),
 });
 export type OtpType = z.infer<typeof otpSchema>;
 

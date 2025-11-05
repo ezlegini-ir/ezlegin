@@ -24,7 +24,7 @@ export const sendEmail = async ({
 }) => {
   try {
     const { data, error } = await resend.emails.send({
-      from: "Ezlegin <noreply@ezlegin.com>",
+      from: "Ezlegin <admin@ezlegin.com>",
       to,
       subject,
       html,
@@ -67,7 +67,7 @@ export const sendOtpEmail = async (data: {
 
     return { success: true };
   } catch (error) {
-    throw new Error(String(error));
+    return { error: String(error) };
   }
 };
 

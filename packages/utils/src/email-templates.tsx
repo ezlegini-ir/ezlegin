@@ -65,7 +65,7 @@ const Header = () => {
       }}
     >
       <Img
-        src="https://dl.igraphical.ir/assets/ezlegin-logo.png"
+        src="https://dl.ezlegin.com/public/ezlegin-logo.png"
         alt="Ezlegin"
         width="135"
         height="auto"
@@ -79,19 +79,21 @@ const Header = () => {
 
 const OtpEmail = ({ otp }: OtpEmailProps) => {
   return (
-    <Html lang="fa">
+    <Html lang="en">
       <Head />
-      <Preview>🔒 verification code: {otp}</Preview>
+      <Preview>
+        Dear user, to verify your email address, please use this code.
+      </Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
           <Text style={{ fontSize: "18px", color: "#333" }}>
-            Dear user, to verify your identity, please use the code below:
+            Dear user, to verify your email address, please use the code below.
           </Text>
           <Text
             style={{
-              fontSize: "24px",
+              fontSize: "30px",
               fontWeight: "bold",
               direction: "ltr",
               unicodeBidi: "plaintext",

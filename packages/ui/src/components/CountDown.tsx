@@ -3,12 +3,12 @@ import { Progress } from "@ezlegin/ui/components/ui/progress";
 import { Badge } from "@ezlegin/ui/components/ui/badge";
 
 interface Props {
-  minute: number;
+  seconds: number;
   progressBar?: boolean;
 }
 
-const CountdownTimer = ({ minute, progressBar = false }: Props) => {
-  const totalTime = minute * 60 * 1000;
+const CountdownTimer = ({ seconds, progressBar = false }: Props) => {
+  const totalTime = seconds * 1000;
   const [timeLeft, setTimeLeft] = useState(totalTime);
 
   useEffect(() => {

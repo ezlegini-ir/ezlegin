@@ -2,7 +2,7 @@
 
 import { database } from "@ezlegin/database";
 import bcrypt from "bcryptjs";
-import { addMinutes } from "date-fns";
+import { addMinutes, differenceInSeconds } from "date-fns";
 
 export const generateOtp = async (
   email: string,
@@ -21,10 +21,21 @@ export const generateOtp = async (
     },
   });
 
-  if (existingToken)
+  if (existingToken && existingToken.expires > new Date()) {
+    const remainingSeconds = differenceInSeconds(
+      existingToken.expires,
+      new Date()
+    );
+    throw new Error(
+      `An OTP has already been sent to this email. Please wait ${remainingSeconds} seconds before requesting a new one.`
+    );
+  }
+
+  if (existingToken) {
     await database.otp.delete({
       where: { email },
     });
+  }
 
   // HASH OTP
   const hashedOTP = await bcrypt.hash(plainOtp, 10);

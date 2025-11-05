@@ -15,12 +15,13 @@ const OnboardingForm = ({ user }: { user: UserType }) => {
 
   return (
     <div className="max-w-lg w-full space-y-3">
-      <Card className="p-5">
+      <Card className="p-5 transition-all">
         {stage === "PERSONAL_INFO" ? (
           <PersonalInfoForm user={user} />
         ) : (
           <ConfirmEmailForm
             email={user.email}
+            userId={user.id}
             onSuccessfulConfirm={() => setStage("PERSONAL_INFO")}
           />
         )}
