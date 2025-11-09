@@ -120,7 +120,7 @@ export default async function Page() {
                 </Card>
                 <Card className="flex justify-center items-center gap-2 h-full">
                   <Video className="text-destructive" size={18} />
-                  +30 hours content
+                  +15 hours content
                 </Card>
               </div>
             </div>

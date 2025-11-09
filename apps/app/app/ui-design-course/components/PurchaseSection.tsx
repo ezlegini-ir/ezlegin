@@ -20,7 +20,6 @@ import {
   Tutor,
   User,
 } from "@ezlegin/database";
-import { formatDuration } from "@ezlegin/utils";
 import {
   Award,
   FileText,
@@ -49,7 +48,7 @@ interface Props {
 }
 
 const PurchaseSection = ({ course }: Props) => {
-  const duration = formatDuration(course.duration);
+  // const duration = formatDuration(course.duration);
   const seasons = course.curriculum.length;
   const lessons = course.curriculum.reduce(
     (acc, curr) => acc + curr.lessons.filter((l) => l.type === "VIDEO").length,
@@ -58,7 +57,7 @@ const PurchaseSection = ({ course }: Props) => {
 
   const courseIncludes: CourseIncludesTypes[] = [
     {
-      label: `${duration}+ content`,
+      label: `15+ hrs Content`,
       icon: TvMinimalPlay,
       iconColor: "text-primary",
     },

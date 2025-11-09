@@ -18,7 +18,7 @@ const CurriculumSection = ({ curriculum }: Props) => {
   );
 
   const courseInfo = [
-    { icon: Video, text: "Over 30+ hrs Content" },
+    { icon: Video, text: "Over 15+ hrs Content" },
     { icon: FileText, text: `${seasons} Seasons - ${lessons} Lessons` },
   ];
 
