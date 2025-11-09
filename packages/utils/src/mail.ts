@@ -60,7 +60,7 @@ export const sendOtpEmail = async (data: {
     const emailHtml = await renderOtpEmail(plainOtp);
 
     await sendEmail({
-      subject: `🔒 Verification Code: ${plainOtp}`,
+      subject: `🔒 Email Verification: ${plainOtp}`,
       to: data.email,
       html: emailHtml,
     });

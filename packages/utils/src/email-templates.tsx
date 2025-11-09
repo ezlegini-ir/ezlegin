@@ -79,54 +79,49 @@ const Header = () => {
 
 const OtpEmail = ({ otp }: OtpEmailProps) => {
   return (
-    <Html lang="en">
+    <Html lang="en" dir="ltr">
       <Head />
-      <Preview>
-        Dear user, to verify your email address, please use this code.
-      </Preview>
+      <Preview>Your Verification Code for Ezlegin</Preview>
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
-          <Text style={{ fontSize: "18px", color: "#333" }}>
-            Dear user, to verify your email address, please use the code below.
+          <Text style={{ fontSize: "18px", color: "#333", direction: "ltr" }}>
+            Hello! Thank you for registering with Ezlegin.
+          </Text>
+
+          <Text style={{ fontSize: "16px", color: "#333", direction: "ltr" }}>
+            Here is your verification code:
           </Text>
           <Text
             style={{
-              fontSize: "30px",
+              fontSize: "24px",
               fontWeight: "bold",
               direction: "ltr",
               unicodeBidi: "plaintext",
               color: "#526eff",
+              margin: "20px 0",
             }}
           >
-            <span dir="ltr" style={{ unicodeBidi: "plaintext" }}>
-              {otp}
-            </span>
+            {otp}
           </Text>
 
-          <Button href="https://ezlegin.com/login" style={buttonStyles}>
-            Log in to your account
-          </Button>
+          {/* <Button href={"https://ezlegin.com/login"} style={buttonStyles}>
+            Access Your Account
+          </Button> */}
 
           <Hr className="my-[16px] border-t-2 border-gray-300" />
 
-          <Text style={{ color: "#6b7280" }}>
-            For security reasons, this code is only valid for a limited time.
-            Please act as soon as possible.
-          </Text>
-          <Text style={{ color: "#6b7280" }}>
-            If you did not make this request, you can safely ignore this email.
+          <Text style={{ color: "#6b7280", direction: "ltr" }}>
+            This verification code will expire shortly for security purposes.
           </Text>
 
-          <Hr className="my-[16px] border-t-2 border-gray-300" />
-
-          <Text style={{ fontSize: "12px", color: "#888" }}>
-            If you have any questions, contact us at ezlegin.com@gmail.com
+          <Text style={{ fontSize: "12px", color: "#888", direction: "ltr" }}>
+            Questions? Contact our support team at ezlegin.com@gmail.com
           </Text>
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            Ezlegin.com
+            Visit Ezlegin
           </Link>
         </Container>
       </Body>
@@ -147,52 +142,56 @@ const ResetPasswordEmail = ({
   email: string;
 }) => {
   return (
-    <Html lang="en" dir="ltr">
+    <Html>
       <Head />
-      <Preview>🔒 Reset Password | Ezlegin</Preview>
+      {/* <Preview>Password Reset Instructions for Your Account</Preview> */}
       <Body style={bodyStyles}>
         <Header />
 
         <Container style={containerStyles}>
           <Text style={{ fontSize: "18px", color: "#333", direction: "ltr" }}>
-            Dear user, to reset your password, please click the button below:
+            Dear User, You have requested to reset your password.
           </Text>
-          <Text
-            style={{
-              fontSize: "24px",
-              fontWeight: "bold",
-              direction: "ltr",
-              unicodeBidi: "plaintext",
-              color: "#526eff",
-            }}
+
+          <Button
+            href={`${process.env.NEXT_PUBLIC_BASE_URL}/login/reset-password?token=${token}&email=${email}`}
+            style={buttonStyles}
           >
-            <Button
-              href={`${process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL : "http://localhost:3000"}/login/reset-password?token=${token}&email=${email}`}
-              style={buttonStyles}
+            Set New Password
+          </Button>
+
+          <Text
+            style={{ color: "#6b7280", direction: "ltr", marginTop: "20px" }}
+          >
+            This link will expire in 24 hours for security purposes.
+          </Text>
+
+          <Text style={{ color: "#6b7280", direction: "ltr" }}>
+            If you didn't request this password reset, please disregard this
+            message.
+          </Text>
+
+          <Hr style={{ margin: "20px 0" }} />
+
+          <Text style={{ fontSize: "14px", color: "#666", direction: "ltr" }}>
+            Need assistance? Contact our support team at{" "}
+            <Link
+              href="mailto:support@ezlegin.com"
+              style={{ color: "#526eff" }}
             >
-              Reset Your Password
-            </Button>
-          </Text>
-
-          <Hr className="my-[16px] border-t-2 border-gray-300" />
-
-          <Text style={{ color: "#6b7280", direction: "ltr" }}>
-            For security reasons, this code is only valid for a limited time.
-            Please act as soon as possible.
-          </Text>
-          <Text style={{ color: "#6b7280", direction: "ltr" }}>
-            If you did not request this, you can safely ignore this email.
-          </Text>
-
-          <Hr className="my-[16px] border-t-2 border-gray-300" />
-
-          <Text style={{ fontSize: "12px", color: "#888", direction: "ltr" }}>
-            If you have any questions, contact us at ezlegin.com@gmail.com.
+              support@ezlegin.com
+            </Link>
           </Text>
 
           <Link href={process.env.NEXT_PUBLIC_BASE_URL} style={linkStyles}>
-            Ezlegin.com
+            Visit Ezlegin
           </Link>
+
+          {/* 
+
+          
+
+           */}
         </Container>
       </Body>
     </Html>
